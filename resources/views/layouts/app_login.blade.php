@@ -20,14 +20,32 @@
 
     <!-- dataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+
+    <!-- css custom -->
+    <link rel="stylesheet" href="{{ asset('assets/css/estilos.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/inputs.css') }}">
+
 </head>
 
     <body>
-            <main class="">
-
-                @yield('content')
-
+            <main class="main-content main-content-bg my-auto">
+                @yield('login')
             </main>
+
+            <footer class="footer footer_login py-2">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-8 mx-auto text-center mt-1">
+                      <p class="mb-0 text-white">
+                        Power By <script>
+                          document.write(new Date().getFullYear())
+                        </script> WebTech
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </footer>
     </body>
 
     <!-- Bootstrap -->

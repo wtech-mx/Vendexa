@@ -1,73 +1,72 @@
-@extends('layouts.app')
+@extends('layouts.app_login')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+@section('login')
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+<div class="page-header min-vh-100" style="">
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+    <span class="mask"></span>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+    <div class="container">
+        <div class="row justify-content-center">
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+          <div class="col-lg-4 col-md-7">
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+            <div class="card card_login">
+              <div class="card-header border_card_header">
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                <img class="img_login_header" src="{{ asset('assets/media/img/ilustraciones/sobreexpuesto2.webp') }}" alt="">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                <h5 class="text-dark text-center tittle_login mt-2 mb-3">
+                    ¡BIENVENIDO!
+                </h5>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+              </div>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+              <div class="card-body px-3">
+                <form method="POST" action="{{ route('login') }}" class="row">
 
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+                  @csrf
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                  <div class="form-group col-12 mb-3">
+                      <label for="name" class="label_custom_primary_Dark">Celular :</label>
+                      <div class="input-group ">
+                          <span class="input-group-text span_custom_primary_dark" id="basic-addon1">
+                              <img src="{{ asset('assets/media/icons/telefono-movil.webp') }}" alt="" width="35px">
+                          </span>
+                          <input id="email" type="email" placeholder="Email" class="form-control input_custom_primary_dark @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                      </div>
+                  </div>
+
+                  <div class="form-group col-12 mb-3">
+                    <label for="name" class="label_custom_primary_Dark">Contraseña :</label>
+                    <div class="input-group ">
+                        <span class="input-group-text span_custom_primary_dark" id="basic-addon1">
+                            <img src="{{ asset('assets/media/icons/encerrar.webp') }}" alt="" width="35px">
+                        </span>
+                        <input id="password" type="password" placeholder="*****" class="form-control input_custom_primary_dark @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                    </div>
+                  </div>
+
+                  <div class="form-group col-12 mb-2">
+                    <label for="name" class="label_custom_primary_Dark"></label>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" id=" customCheckLogin" type="checkbox" name="remember" id="remember"{{ old('remember') ? 'checked' : '' }}>
+                        <label class="form-check-label" for="rememberMe">Recuerdame</label>
+                      </div>
+                  </div>
+
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn_gradient_primary w-100 mt-3 mb-3"> Iniciar Sesion</button>
+                  </div>
+
+                </form>
+              </div>
+
             </div>
+          </div>
+
         </div>
     </div>
 </div>
+
 @endsection
