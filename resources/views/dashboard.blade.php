@@ -20,9 +20,53 @@
                 </h6>
             </div>
 
+            <div class="d-flex justify-content-center">
+                <p class="text-center mt-2 mb-3 subtiitle_dash">
+                    Ordenes<br># 43
+                </p>
+                <p class="text-center mt-2 mb-3 subtiitle_dash">
+                    productos vendidos<br># 150
+                </p>
+            </div>
+
+            <div class="row">
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="card_header_dash mb-3">
+                        <p class="text-center mt-3">
+                            <img src="{{ asset('assets/media/icons/t debito.webp') }}" alt="" class="img_card_head_dash">
+                        </p>
+                        <p class="text_minicards text-center">Tarjeta <br> <strong> $1,500.0 </strong>
+
+                        </p>
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="card_header_dash mb-3">
+                        <p class="text-center mt-3">
+                            <img src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="" class="img_card_head_dash">
+                        </p>
+                        <p class="text_minicards text-center">Efectivo <br> <strong> $1,500.0 </strong>
+
+                        </p>
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="card_header_dash mb-3">
+                        <p class="text-center mt-3">
+                            <img src="{{ asset('assets/media/icons/pago-movil.webp') }}" alt="" class="img_card_head_dash">
+                        </p>
+                        <p class="text_minicards text-center">Transferencias <br> <strong> $1,500.0 </strong>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>
+
+    {{-- Cards del menu de opciones --}}
 
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
 

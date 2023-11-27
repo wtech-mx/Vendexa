@@ -2,6 +2,29 @@
     background-color: #F0F0F0;
 }
 
+.card_header_dash{
+    background-color: #F0F0F0;
+    border-radius: 16px;
+    width: 120px;
+    height: 140px;
+    position: relative;
+    z-index: 100;
+    box-shadow:1px 4px 5px rgba(0, 0, 0, 0.25);
+}
+
+.img_card_head_dash{
+    width: 50px;
+    height: 50px;
+}
+
+.text_minicards{
+    font-family: Lexend;
+    font-size: 14px;
+    font-weight: 400;
+    text-shadow: 1px 3px 11px rgba(0, 0, 0, 0.2);
+    color: #577590;
+}
+
 .tittle_dash{
     color: #fff !important;
     font-family: Lexend;
@@ -22,7 +45,21 @@
     font-family: Lexend;
     font-size: 22px;
     font-weight: 400;
-    background-color: #B8C8D6;
+    background-color: #F0F0F0;
+    z-index: 1000;
+    position: relative;
+    text-shadow: 3px 7px 11px rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    border-radius: 16px;
+    padding: 10px 40px 10px 40px;
+    margin-top: 2rem!important;
+}
+
+.subtiitle_dash{
+    color: #fff !important;
+    font-family: Lexend;
+    font-size: 22px;
+    font-weight: 400;
     z-index: 1000;
     position: relative;
     text-shadow: 3px 7px 11px rgba(0, 0, 0, 0.5);
@@ -141,7 +178,8 @@
     .border_card_header {
         position: relative; /* Asegura que los elementos superpuestos sean posicionados correctamente */
         overflow: hidden; /* Para que la imagen no se desborde del contenedor */
-        height: 400px;
+        height: auto;
+        margin-bottom: 1rem;
     }
 
     .border_card_header::before {
@@ -150,7 +188,7 @@
         top: 0;
         left: -47%;
         right: 0;
-        bottom: 0px;
+        bottom: 60px;
         background-image: url(/assets/media/img/backgrounds/fondo_redondeado_sf.png);
         background-repeat: no-repeat;
         background-size: cover;
