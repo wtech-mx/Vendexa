@@ -20,13 +20,17 @@
 
     <!-- dataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+
+    <!-- css custom -->
+    <link rel="stylesheet" href="{{ asset('assets/css/estilos.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/inputs.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
+
 </head>
 
-    <body>
+    <body class="bg_dash">
             <main class="">
-
                 @yield('content')
-
             </main>
     </body>
 
