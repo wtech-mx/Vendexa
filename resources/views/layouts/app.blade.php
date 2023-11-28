@@ -25,14 +25,51 @@
     <link rel="stylesheet" href="{{ asset('assets/css/estilos.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/inputs.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/navbar.css') }}">
 
 </head>
 
-    <body class="bg_dash">
-            <main class="">
-                @yield('content')
-            </main>
-    </body>
+<body class="bg_dash">
+    <div id="mobile" class="demo1">
+        <div id="burgerBtn"></div>
+
+        <ul id="nav">
+            <li class="li_navbar">
+                Caja <img class="icon_navbar" src="{{ asset('assets/media/icons/puntoventa.webp') }}" alt="">
+            </li>
+
+            <li class="li_navbar">
+                Scanner <img class="icon_navbar" src="{{ asset('assets/media/icons/scanner.webp') }}" alt="">
+            </li>
+
+            <li class="li_navbar">
+                Productos  <img class="icon_navbar" src="{{ asset('assets/media/icons/carrito.webp') }}" alt="">
+            </li>
+
+            <li class="li_navbar">
+                Clientes <img class="icon_navbar" src="{{ asset('assets/media/icons/clientes.webp') }}" alt="">
+            </li>
+
+            <li class="li_navbar">
+                Reportes <img class="icon_navbar" src="{{ asset('assets/media/icons/resultado.webp') }}" alt="">
+            </li>
+
+            <li class="li_navbar">
+                Comisiones <img class="icon_navbar" src="{{ asset('assets/media/icons/comisiones.webp') }}" alt="">
+            </li>
+
+        </ul>
+
+        <div id="mobileBodyContent">
+                <main class="">
+                    @yield('content')
+                </main>
+        </div>
+
+    </div>
+</body>
+
+
 
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -44,5 +81,8 @@
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <!-- js custom -->
+    <script type="text/javascript" src="{{ asset('assets/js/navbar.js') }}"></script>
 
 </html>
