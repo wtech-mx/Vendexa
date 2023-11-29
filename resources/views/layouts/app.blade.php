@@ -65,8 +65,10 @@
                     @yield('content')
                 </main>
         </div>
-
     </div>
+
+    @include('modals.create_product')
+
 </body>
 
 

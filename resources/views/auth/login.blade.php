@@ -11,7 +11,7 @@
 
           <div class="col-lg-4 col-md-7">
 
-            <div class="card card_login">
+            <div class="card card_login mt-5 mb-5">
               <div class="card-header border_card_header">
 
                 <img class="img_login_header" src="{{ asset('assets/media/img/ilustraciones/sobreexpuesto2.webp') }}" alt="">

@@ -128,7 +128,7 @@
 
                     <a href="" class="btn_primary_blue_dash">Acceder </a>
 
-                    <a href="" class="btn_plus_dash">
+                    <a type="button" class="btn_plus_dash" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
                     </a>
 
