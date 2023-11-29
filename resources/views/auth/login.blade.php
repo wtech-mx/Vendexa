@@ -31,7 +31,7 @@
                       <label for="name" class="label_custom_primary_Dark">Celular :</label>
                       <div class="input-group ">
                           <span class="input-group-text span_custom_primary_dark" id="basic-addon1">
-                              <img src="{{ asset('assets/media/icons/telefono-movil.webp') }}" alt="" width="35px">
+                              <img class="icon_span_form" src="{{ asset('assets/media/icons/telefono-movil.webp') }}" alt="" width="35px">
                           </span>
                           <input id="email" type="email" placeholder="Email" class="form-control input_custom_primary_dark @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                       </div>
@@ -41,7 +41,7 @@
                     <label for="name" class="label_custom_primary_Dark">Contraseña :</label>
                     <div class="input-group ">
                         <span class="input-group-text span_custom_primary_dark" id="basic-addon1">
-                            <img src="{{ asset('assets/media/icons/encerrar.webp') }}" alt="" width="35px">
+                            <img class="icon_span_form" src="{{ asset('assets/media/icons/encerrar.webp') }}" alt="" width="35px">
                         </span>
                         <input id="password" type="password" placeholder="*****" class="form-control input_custom_primary_dark @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                     </div>

@@ -1,16 +1,6 @@
 #mobile {
-    /* height: 667px;
-    width: 375px;
-    background: #c6c4c1;
-    position: relative;
-    margin: 30px auto;
-    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
-    -khtml-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
-    -o-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
-    overflow: hidden; */
     background: #577590;
+    height: 100vh;
   }
 
 
@@ -172,4 +162,12 @@
     margin-left: 260px;
     border-radius: 16px;
     border: solid 0px transparent;
+  }
+
+  @media screen and (max-width: 767px) {
+
+    #mobile {
+        height: auto;
+      }
+
   }

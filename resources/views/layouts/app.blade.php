@@ -87,4 +87,6 @@
     <!-- js custom -->
     <script type="text/javascript" src="{{ asset('assets/js/navbar.js') }}"></script>
 
+    @yield('js_custom')
+
 </html>

@@ -11,6 +11,11 @@
     border: 4px solid transparent;
 }
 
+.icon_span_form{
+    padding: 5px;
+    width: 35px;
+}
+
 .label_custom_primary_Dark{
     font-family: Lexend;
     font-size: 19px;
@@ -39,3 +44,16 @@
     background-color: #577590!important;
     border-color: #577590!important;
 }
+
+.textarea_custom_primary_dark{
+    background: linear-gradient(white, white) padding-box,linear-gradient(to right, #14213D, #577590) border-box;
+    border-radius: 13px!important;
+    border: 4px solid transparent;
+}
+
+.select_custom_primary_dark{
+    background: linear-gradient(white, white) padding-box,linear-gradient(to right, #14213D, #577590) border-box;
+    border-radius: 13px!important;
+    border: 4px solid transparent;
+}
+

@@ -2,3 +2,41 @@
     font-family: 'Lexend';
     src: url('/assets/media/fonts/Lexend/Lexend-VariableFont_wght.ttf');
  }
+
+ .tiitle_modal_dark{
+    color: #162440 !important;
+    font-family: Lexend;
+    font-size:40px;
+	letter-spacing:0;
+    font-weight: 500;
+    text-shadow: 1px 3px 11px rgba(0, 0, 0, 0.2);
+ }
+
+ .modal-content {
+    border-radius: 19px;
+}
+
+.modal_bg {
+    position: relative;
+    overflow: hidden;
+    height: 140%;
+    background: #F0F0F0;
+    border-radius: 19px;
+}
+
+.modal_bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    background-image: url(/assets/media/img/backgrounds/patter_sf.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom right;
+    opacity: 0.10;
+    z-index: 1;
+    width: 200%;
+    border-radius: 19px;
+}
