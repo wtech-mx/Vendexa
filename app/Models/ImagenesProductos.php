@@ -9,6 +9,7 @@ class ImagenesProductos extends Model
 {
     use HasFactory;
     protected $table = "imagenes_productos";
+    protected $dateFormat = 'd/m/Y';
     protected $primarykey = "id";
     public $timestamps = true;
 

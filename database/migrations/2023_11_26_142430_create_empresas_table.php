@@ -14,14 +14,16 @@ return new class extends Migration
         Schema::create('empresas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->unique();
-            $table->string('referencia')->nullable();
             $table->string('telefono')->unique();
             $table->string('correo')->nullable();
+            $table->string('referencia')->nullable();
+            $table->string('giro')->nullable();
+            $table->string('pais')->nullable();
+            $table->string('estado')->nullable();
             $table->string('colonia')->nullable();
             $table->string('codigo_postal')->nullable();
             $table->string('alcaldia')->nullable();
             $table->string('calle_numero')->nullable();
-            $table->string('giro')->nullable();
             $table->timestamps();
         });
     }

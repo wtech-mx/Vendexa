@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('tipo')->nullable();
             $table->float('total')->nullable();
             $table->float('restante')->nullable();
-            $table->string('comentario')->nullable();
-            
+            $table->text('comentario')->nullable();
+
             $table->unsignedBigInteger('id_empresa');
             $table->foreign('id_empresa')
                 ->references('id')->on('empresas')
@@ -34,7 +34,7 @@ return new class extends Migration
                 ->references('id')->on('users')
                 ->inDelete('set null');
 
-            $table->unsignedBigInteger('id_orden_woocommerce');
+            $table->unsignedBigInteger('id_orden_woocommerce')->nullable();
             $table->timestamps();
         });
     }

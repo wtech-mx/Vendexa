@@ -9,6 +9,7 @@ class SubCategorias extends Model
 {
     use HasFactory;
     protected $table = "subcategorias";
+    protected $dateFormat = 'd/m/Y';
     protected $primarykey = "id";
     public $timestamps = true;
 
@@ -22,7 +23,7 @@ class SubCategorias extends Model
     {
         return $this->belongsTo(Categorias::class, 'id_categoria');
     }
-    
+
     public function Empresa()
     {
         return $this->belongsTo(Empresas::class, 'id_empresa');

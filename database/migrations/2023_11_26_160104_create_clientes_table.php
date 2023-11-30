@@ -16,11 +16,13 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('telefono')->nullable();
             $table->string('correo')->nullable();
+            $table->string('pais')->nullable();
+            $table->string('estado')->nullable();
             $table->string('colonia')->nullable();
             $table->string('codigo_postal')->nullable();
             $table->string('alcaldia')->nullable();
             $table->string('calle_numero')->nullable();
-            
+
             $table->string('tipo')->nullable();
             $table->text('constancia_fiscal')->nullable();
 

@@ -9,6 +9,7 @@ class Ordenes extends Model
 {
     use HasFactory;
     protected $table = "ordenes";
+    protected $dateFormat = 'd/m/Y';
     protected $primarykey = "id";
     public $timestamps = true;
 

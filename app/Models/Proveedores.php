@@ -9,6 +9,7 @@ class Proveedores extends Model
 {
     use HasFactory;
     protected $table = "proveedores";
+    protected $dateFormat = 'd/m/Y';
     protected $primarykey = "id";
     public $timestamps = true;
 
