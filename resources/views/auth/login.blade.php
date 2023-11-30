@@ -33,7 +33,13 @@
                           <span class="input-group-text span_custom_primary_dark" id="basic-addon1">
                               <img class="icon_span_form" src="{{ asset('assets/media/icons/telefono-movil.webp') }}" alt="" width="35px">
                           </span>
-                          <input id="email" type="email" placeholder="Email" class="form-control input_custom_primary_dark @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                          <input id="email" type="number" class="form-control input_custom_primary_dark @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                          @error('email')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                          @enderror
                       </div>
                   </div>
 
@@ -43,7 +49,13 @@
                         <span class="input-group-text span_custom_primary_dark" id="basic-addon1">
                             <img class="icon_span_form" src="{{ asset('assets/media/icons/encerrar.webp') }}" alt="" width="35px">
                         </span>
-                        <input id="password" type="password" placeholder="*****" class="form-control input_custom_primary_dark @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                        <input id="password" type="password" class="form-control input_custom_primary_dark @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                   </div>
 
