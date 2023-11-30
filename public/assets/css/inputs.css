@@ -61,6 +61,14 @@
     text-shadow: 3px 5px 10px rgb(2 2 2 / 30%);
 }
 
+.label_custom_primary_sm{
+    font-family: Lexend;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+    text-shadow: 3px 5px 10px rgb(2 2 2 / 15%);
+}
+
 .btn_gradient_primary{
     border-radius: 16px;
     background-image: linear-gradient(to right, #14213d, #233451, #344966, #455f7b, #577590);

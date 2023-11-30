@@ -1,3 +1,8 @@
+@section('css_custom')
+
+
+@endsection
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -5,7 +10,7 @@
 
         <div class="modal-body modal_bg row">
 
-            <form action="" class="z-1">
+            <form action="" class="z-1" action="/file-upload"class="dropzone" id="my-awesome-dropzone">>
 
                 <div class="col-12">
                     <h2 class="tiitle_modal_dark text-center mt-3">Crear Producto</h2>
@@ -258,6 +263,119 @@
 
                             <div class="tab-pane row fade" id="pills-metadatos" role="tabpanel" aria-labelledby="pills-metadatos-tab" tabindex="0">
 
+                                <div class="row">
+
+                                    <div class="form-group col-9 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_product mb-2">Marca :</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/marca.webp') }}" alt="" >
+                                            </span>
+                                            <select name="" id="" class="form-select d-inline-block input_custom_tab"  value="{{old('')}}">
+                                                <option value="" {{ old('') == '' ? 'selected' : '' }}>Selecionar </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-3 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_product mb-4">Agregar</label>
+                                        <a class="btn_plus_dash" data-bs-toggle="collapse" href="#collapseMarca" role="button" aria-expanded="false" aria-controls="collapseMarca">
+                                            <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
+                                        </a>
+                                    </div>
+
+                                    <div class="form-group col-12 px-5 py-3 collapse"  id="collapseMarca">
+                                        <label for="name" class="label_custom_primary_sm mb-2">Agregar Marca :</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/marca.webp') }}" alt="" >
+                                            </span>
+                                            <input id="" name="" type="text"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-9 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_product mb-2">Categoria :</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/categorias.webp') }}" alt="" >
+                                            </span>
+                                            <select name="" id="" class="form-select d-inline-block input_custom_tab"  value="{{old('')}}">
+                                                <option value="" {{ old('') == '' ? 'selected' : '' }}>Selecionar </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-3 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_product mb-4">Agregar</label>
+                                        <a class="btn_plus_dash" data-bs-toggle="collapse" href="#collapseCategoria" role="button" aria-expanded="false" aria-controls="collapseCategoria">
+                                            <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
+                                        </a>
+                                    </div>
+
+                                    <div class="form-group col-12 px-5 py-3 collapse"  id="collapseCategoria">
+                                        <label for="name" class="label_custom_primary_sm mb-2">Agregar Categoria :</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/categorias.webp') }}" alt="" >
+                                            </span>
+                                            <input id="" name="" type="text"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-9 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_product mb-2">Subcategoria :</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/paquete.webp') }}" alt="" >
+                                            </span>
+                                            <select name="" id="" class="form-select d-inline-block input_custom_tab"  value="{{old('')}}">
+                                                <option value="" {{ old('') == '' ? 'selected' : '' }}>Selecionar </option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-3 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_product mb-4">Agregar </label>
+                                        <a class="btn_plus_dash" data-bs-toggle="collapse" href="#collapseSubcategoria" role="button" aria-expanded="false" aria-controls="collapseSubcategoria">
+                                            <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
+                                        </a>
+                                    </div>
+
+                                    <div class="form-group col-12 px-5 py-3 collapse"  id="collapseSubcategoria">
+                                        <label for="name" class="label_custom_primary_sm mb-2">Agregar Subcategoria :</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/paquete.webp') }}" alt="" >
+                                            </span>
+                                            <input id="" name="" type="text"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-12 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_product mb-2">Imagen de Portada :</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/imagen.webp') }}" alt="" >
+                                            </span>
+                                            <input id="" name="" type="file"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-12 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_product mb-2">Galeria :</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/galeria-de-imagenes.webp') }}" alt="" >
+                                            </span>
+                                            <input type="file" name="file" />
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
 
 
@@ -289,6 +407,7 @@
 @section('js_custom')
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
   <script>
 
@@ -372,7 +491,7 @@
                 console.console.log(errorMessage);
             }
 
-            var html5QrcodeScanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250 });
+            var html5QrcodeScanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 200 });
             html5QrcodeScanner.render(onScanSuccess, onScanError);
 
             document.getElementById('resetScannerBtn').addEventListener('click', () => {
