@@ -46,7 +46,6 @@ return new class extends Migration
             $table->string('visibilidad_estatus')->nullable();
             $table->string('precio_normal')->nullable();
             $table->string('precio_mayo')->nullable();
-            $table->string('codigo_mayo')->nullable();
             $table->string('precio_descuento')->nullable();
             $table->string('fecha_inicio_desc')->nullable();
             $table->string('fecha_fin_desc')->nullable();

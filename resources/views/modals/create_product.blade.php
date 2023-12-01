@@ -379,7 +379,53 @@
                             </div>
 
 
-                            <div class="tab-pane row fade" id="pills-atributos" role="tabpanel" aria-labelledby="pills-atributos-tab" tabindex="0">
+                            <div class="tab-pane fade" id="pills-atributos" role="tabpanel" aria-labelledby="pills-atributos-tab" tabindex="0">
+
+                                <div class="row">
+
+                                    <div class="form-group col-12 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_product mb-2">Seleciona la unidad:</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text span_custom_primary_dark" >
+                                                <img class="icon_span_form" src="{{ asset('assets/media/icons/cinta-metrica.webp') }}" alt="" >
+                                            </span>
+                                            <select name="" id="" class="form-select d-inline-block select_custom_primary_dark"  value="{{old('')}}">
+                                                <option value="" {{ old('') == '' ? 'selected' : '' }}>Selecionar opcion</option>
+                                                <option value="Pieza" {{ old('') == 'Pieza' ? 'selected' : '' }}>Pieza</option>
+                                                <option value="Metro" {{ old('') == 'Metro' ? 'selected' : '' }}>Metro</option>
+                                                <option value="Kilo" {{ old('') == 'Kilo' ? 'selected' : '' }}>Kilo</option>
+                                                <option value="Litro" {{ old('') == 'Litro' ? 'selected' : '' }}>Litro</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-6 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_product mb-2">Clave SAT :</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/sat.webp') }}" alt="" >
+                                            </span>
+                                            <input id="" name="" type="text"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}"  autocomplete="" autofocus>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-6 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_product mb-2">Estatus </label>
+
+                                        <div class="input-group d-flex justify-content-around mt-3">
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="" value="Si">
+                                                <label class="form-check-label" for="">Publicado</label>
+                                              </div>
+
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="" value="No">
+                                                <label class="form-check-label" for="">Pausa</label>
+                                              </div>
+                                        </div>
+                                    </div>
+
+                                </div>
 
                             </div>
 
