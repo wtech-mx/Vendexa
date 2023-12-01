@@ -114,14 +114,14 @@
                             </li>
 
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-metadatos-tab" data-bs-toggle="pill" data-bs-target="#pills-metadatos" type="button" role="tab" aria-controls="pills-metadatos" aria-selected="false">
-                                    <img class="tab_custom_icon" src="{{ asset('assets/media/icons/gear.webp') }}" alt="" > Metadatos
+                                <button class="nav-link" id="pills-atributos-tab" data-bs-toggle="pill" data-bs-target="#pills-atributos" type="button" role="tab" aria-controls="pills-atributos" aria-selected="false">
+                                    <img class="tab_custom_icon" src="{{ asset('assets/media/icons/resultado.webp') }}" alt="" > Atributos
                                 </button>
                             </li>
 
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-atributos-tab" data-bs-toggle="pill" data-bs-target="#pills-atributos" type="button" role="tab" aria-controls="pills-atributos" aria-selected="false">
-                                    <img class="tab_custom_icon" src="{{ asset('assets/media/icons/resultado.webp') }}" alt="" > Atributos
+                                <button class="nav-link" id="pills-metadatos-tab" data-bs-toggle="pill" data-bs-target="#pills-metadatos" type="button" role="tab" aria-controls="pills-metadatos" aria-selected="false">
+                                    <img class="tab_custom_icon" src="{{ asset('assets/media/icons/gear.webp') }}" alt="" > Metadatos
                                 </button>
                             </li>
                         </ul>
@@ -259,7 +259,6 @@
                                 </div>
 
                             </div>
-
 
                             <div class="tab-pane row fade" id="pills-metadatos" role="tabpanel" aria-labelledby="pills-metadatos-tab" tabindex="0">
 
@@ -430,8 +429,6 @@
                             </div>
 
                         </div>
-
-
 
                     </div>
                 </div>
