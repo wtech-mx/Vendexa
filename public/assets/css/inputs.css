@@ -188,3 +188,8 @@
     border-radius: 13px;
     background-color: #577590;
 }
+
+.icon_edit_btn{
+    width: 25px;
+    height: auto;
+}

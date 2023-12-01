@@ -61,5 +61,35 @@
 	background-image:linear-gradient(0deg, rgba(255, 255, 255, 1) 0%,rgba(218.00000220537186, 218.00000220537186, 218.00000220537186, 1) 100%) ;
 	width:105.26315307617188px;
     border-radius: 9px;
+}
 
+.card_box_colores{
+    width: 43px;
+    height: 43px;
+    border-radius: 9px;
+    box-shadow:1px 1px 6px rgba(87.00000241398811, 117.00000062584877, 144.00000661611557, 0.6000000238418579);
+	background-color:rgba(234.00000125169754, 255, 109.00000110268593, 1);
+}
+
+.stock{
+    background-color: #6DFF73;
+}
+
+.lowStock{
+    background-color: #EAFF6D;
+}
+
+.outStock{
+    background-color: #FF6D6D;
+}
+
+.text_estatus_product{
+    color: #000!important;
+    font-family: Lexend;
+    font-weight: 400;
+    font-size: 13px;
+    text-shadow: 3px 5px 10px rgb(2 2 2 / 42%);
+    position: relative;
+    top: 50px;
+    left: 3px;
 }

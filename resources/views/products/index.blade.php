@@ -35,6 +35,24 @@
               <div class="collapse" id="collapseFilter">
                 dfsdf
               </div>
+
+        </div>
+
+        <div class="col-12 mb-5">
+            <div class="d-flex justify-content-center row ">
+
+                <div class="card_box_colores me-5 stock">
+                    <p class="text_estatus_product">Stock</p>
+                </div>
+
+                <div class="card_box_colores me-5 ms-5 lowStock">
+                    <p class="text_estatus_product">BajoStock</p>
+                </div>
+
+                <div class="card_box_colores me-5 ms-5 outStock">
+                    <p class="text_estatus_product">Sin Stock</p>
+                </div>
+            </div>
         </div>
 
         <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center px-3 py-3">
@@ -89,7 +107,7 @@
 
                         <div class="col-12 mb-4">
                             <a href="" class="btn btn_edit_prodcut w-100">
-                                Ver/Editar
+                                Ver/Editar <img class="icon_edit_btn" src="{{ asset('assets/media/icons/editar.webp') }}" alt="">
                             </a>
                         </div>
 
