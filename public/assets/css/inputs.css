@@ -147,3 +147,44 @@
     font-weight: 300;
     text-shadow: 3px 5px 10px rgb(2 2 2 / 20%);
 }
+
+.input_search{
+    border-radius: 13px 0 0 13px!important;
+    color: #fff;
+    border-top: 4px solid #577590;
+    border-bottom: 4px solid #577590;
+    border-left: 4px solid #577590;
+    background: #57759059;
+}
+
+.input_search::placeholder{
+    color: #fff;
+    font-family: Lexend;
+    font-weight: 300;
+    font-size: 16px;
+    text-shadow: 3px 5px 10px rgb(2 2 2);
+}
+
+.icon_search{
+    width: 45px;
+    padding: 5px;
+}
+
+.btn_search{
+    background: #57759059;
+    border-radius: 0 13px 13px 0!important;
+    border-right: 4px solid #577590;
+    border-top: 4px solid #577590;
+    border-bottom: 4px solid #577590;
+    border-left: 0px solid #577590;
+}
+
+.btn_filter{
+    border-radius: 13px;
+    background-color: #14213D;
+}
+
+.btn_filter:hover{
+    border-radius: 13px;
+    background-color: #577590;
+}

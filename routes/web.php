@@ -17,6 +17,10 @@ Route::get('dashboard', function () {
     return view('dashboard');
 });
 
+Route::get('products', function () {
+    return view('products.index');
+});
+
 Route::get('/', function () {
     return view('auth.login');
 });
