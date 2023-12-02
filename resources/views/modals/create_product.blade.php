@@ -4,7 +4,7 @@
 @endsection
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="creatProduct" tabindex="-1" aria-labelledby="creatProductLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
 
@@ -12,8 +12,16 @@
 
             <form action="" class="z-1" action="/file-upload"class="dropzone" id="my-awesome-dropzone">>
 
-                <div class="col-12">
-                    <h2 class="tiitle_modal_dark text-center mt-3">Crear Producto</h2>
+                <div class="row">
+                    <div class="col-10">
+                        <h2 class="tiitle_modal_dark text-center mt-3">Crear Producto</h2>
+                    </div>
+
+                    <div class="col-2">
+                        <button class="input-group-text span_custom_primary_dark mt-3" data-bs-dismiss="modal">
+                            <img class="icon_span_form" src="{{ asset('assets/media/icons/close_white.webp') }}" alt="" >
+                        </button>
+                    </div>
                 </div>
 
                 <div class="form-group col-12 mb-3 p-2">
