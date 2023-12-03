@@ -73,7 +73,8 @@
 .border_card_header {
     position: relative;
     overflow: hidden;
-    height: 140%;
+    height: 100%;
+    padding: 140px 50px 300px 50px;
 }
 
 .border_card_header::before {
@@ -181,6 +182,7 @@
         overflow: hidden; /* Para que la imagen no se desborde del contenedor */
         height: auto;
         margin-bottom: 1rem;
+        padding: 0;
     }
 
     .border_card_header::before {
