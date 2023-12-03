@@ -93,6 +93,14 @@
     text-shadow: 3px 5px 10px rgb(2 2 2 / 15%);
 }
 
+.label_custom_primary_sm_dark{
+    font-family: Lexend;
+    font-size: 13px;
+    font-weight: 400;
+    color: #fff;
+    text-shadow: 3px 5px 10px rgb(2 2 2 / 15%);
+}
+
 .btn_gradient_primary{
     border-radius: 16px;
     background-image: linear-gradient(to right, #14213d, #233451, #344966, #455f7b, #577590);
@@ -131,6 +139,11 @@
     background: linear-gradient(white, white) padding-box,linear-gradient(to right, #14213D, #577590) border-box;
     border-radius: 13px!important;
     border: 4px solid transparent;
+}
+
+.select_custom_primary_dark_complete{
+    border-radius: 13px!important;
+    border: 4px solid #14213D;
 }
 
 .section_tab_bg{
@@ -234,4 +247,10 @@
 .icon_edit_btn{
     width: 25px;
     height: auto;
+}
+
+.icon_edit_btn_warning{
+    width: 15px;
+    height: auto;
+    margin-left: 10px;
 }
