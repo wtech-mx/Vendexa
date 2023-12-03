@@ -21,6 +21,11 @@ Route::get('products', function () {
     return view('products.index');
 });
 
+Route::get('caja', function () {
+    return view('caja.index');
+});
+
+
 Route::get('/', function () {
     return view('auth.login');
 });
