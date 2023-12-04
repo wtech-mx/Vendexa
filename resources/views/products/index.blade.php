@@ -55,6 +55,8 @@
             </div>
         </div>
 
+
+
         <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center px-3 py-3">
             <div class="card card_prodcut p-3">
 

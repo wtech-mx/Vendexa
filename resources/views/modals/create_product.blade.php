@@ -516,7 +516,7 @@
                     processData: false,
                     success: async function(response) { // Agrega "async" aquí
                         // El formulario se ha enviado correctamente, ahora realiza la impresión
-                        imprimirRecibo(response);
+                        saveSuccess(response);
 
                     },
                     error: function (xhr, status, error) {
@@ -541,6 +541,25 @@
                 });
 
             });
+
+            async function saveSuccess(response) {
+                const producto_data = response.producto_data;
+
+                Swal.fire({
+                        title: "Producto Guardado <strong>¡Exitosamente!</strong>",
+                        icon: "success",
+                        html: "<div class='row'><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/fuente.webp') }}' ><p><strong>Nombre:</strong> <br>"+ producto_data.nombre +"</p></div><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/en-stock.png.webp') }}' ><p><strong>Stock:</strong><br>"+ producto_data.stock +" </p> </div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/monedas.webp') }}' ><p><strong>Precio:</strong><br> "+ producto_data.precio +"</p></div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/sku.webp') }}'><p><strong>Sku:</strong><br>"+ producto_data.sku +" </p></div></div>",
+                        showCloseButton: true,
+                        showCancelButton: true,
+                        focusConfirm: false,
+                        confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('productos.index') }}" >Ver Productos</a>',
+                        cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="" >Cerrar</a>`,
+                    }).then(() => {
+                        // Recarga la página
+                       window.location.href = '/home/';
+                    });
+
+            }
 
 
             const radioSiMayo = document.getElementById('radioSiMayo');

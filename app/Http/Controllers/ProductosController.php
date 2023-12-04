@@ -118,7 +118,14 @@ class ProductosController extends Controller
         $producto->id_user = $user->id;
         $producto->save();
 
-        return response()->json(['success' => true, 'recibo' => $recibo]);
+        $producto_data = [
+            "nombre" => $producto->nombre,
+            "stock" => $producto->stock,
+            "precio" => $producto->precio_normal,
+            "sku" => $producto->sku,
+        ];
+
+        return response()->json(['success' => true, 'producto_data' => $producto_data]);
 
     }
 }

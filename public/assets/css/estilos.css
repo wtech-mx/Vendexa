@@ -86,3 +86,24 @@
     width: 200%;
     border-radius: 19px;
 }
+
+.swal2-styled.swal2-confirm{
+    background: #162440!important;
+    border-radius: 9px!important;;
+}
+
+.btn_swalater_confirm{
+    text-decoration: none;
+    color: #fff;
+}
+
+.swal2-styled.swal2-cancel {
+    background: #577590!important;
+    border-radius: 9px!important;;
+}
+
+.btn_swalater_cancel{
+    text-decoration: none;
+    color: #fff;
+}
+
