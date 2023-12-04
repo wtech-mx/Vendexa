@@ -24,7 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_subcategoria');
             $table->foreign('id_subcategoria')
                 ->references('id')->on('subcategorias')
-                ->inDelete('set null');
+                ->inDelete('set null')->nullable();
 
             $table->unsignedBigInteger('id_marca');
             $table->foreign('id_marca')
@@ -60,7 +60,7 @@ return new class extends Migration
                 ->references('id')->on('users')
                 ->inDelete('set null');
 
-            $table->unsignedBigInteger('id_woocommerce');
+            $table->unsignedBigInteger('id_woocommerce')->nullable();
             $table->timestamps();
         });
     }

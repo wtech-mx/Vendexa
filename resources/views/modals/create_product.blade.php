@@ -10,7 +10,7 @@
 
         <div class="modal-body modal_bg row">
 
-            <form method="POST" action="{{ route('productos.store') }}" class="z-1" action="/file-upload" class="dropzone" id="miFormulario">
+            <form method="POST" action="{{ route('productos.store') }}" class="z-1 dropzone" id="my-awesome-dropzone" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-10">
@@ -571,16 +571,6 @@
             const precioMayoristaContainer = document.getElementById('precioMayoristaContainer');
             const precioPromoContainer = document.getElementById('precioPromoContainer');
 
-            const radioSiMayoEdit = document.getElementById('radioSiMayoEdit');
-            const radioNoMayoEdit = document.getElementById('radioNoMayoEdit');
-
-            const radioSirebajaEdit = document.getElementById('radioSirebajaEdit');
-            const radioNorebajaEdit = document.getElementById('radioNorebajaEdit');
-
-            const precioMayoristaContainerEdit = document.getElementById('precioMayoristaContainerEdit');
-            const precioPromoContainerEdit = document.getElementById('precioPromoContainerEdit');
-
-
             radioSiMayo.addEventListener('change', function() {
                 if (radioSiMayo.checked) {
                     precioMayoristaContainer.style.display = 'block';
@@ -605,31 +595,6 @@
                 }
             });
 
-            radioSiMayoEdit.addEventListener('change', function() {
-                if (radioSiMayoEdit.checked) {
-                    precioMayoristaContainerEdit.style.display = 'block';
-                    console.log('Entro');
-                }
-            });
-
-            radioNoMayoEdit.addEventListener('change', function() {
-                if (radioNoMayoEdit.checked) {
-                    precioMayoristaContainerEdit.style.display = 'none';
-                }
-            });
-
-            radioSirebajaEdit.addEventListener('change', function() {
-                if (radioSirebajaEdit.checked) {
-                    precioPromoContainerEdit.style.display = 'contents';
-                    console.log('Entro');
-                }
-            });
-
-            radioNorebajaEdit.addEventListener('change', function() {
-                if (radioNorebajaEdit.checked) {
-                    precioPromoContainerEdit.style.display = 'none';
-                }
-            });
 
             // Manejar el cambio en el select
             $('#opcion').change(function() {
