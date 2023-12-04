@@ -9,6 +9,8 @@ use App\Models\Proveedores;
 use App\Models\SubCategorias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+
 
 class ProductosController extends Controller
 {
@@ -26,7 +28,26 @@ class ProductosController extends Controller
 
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required',
+            'stock' => 'required',
+            'sku_scanner' => 'required_if:sku_generado,null',
+            'costo' => 'required',
+            'precio_normal' => 'required',
+            'visibilidad_estatus' => 'required',
+            'id_proveedor' => 'required',
+            'codigo_proveedor' => 'required',
+            'id_marca' => 'required',
+            'id_categoria' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
         $user = auth()->user();
+
         if($request->get('sku_generado') == NULL){
             $sku = $request->get('sku_scanner');
         }else{
@@ -97,8 +118,7 @@ class ProductosController extends Controller
         $producto->id_user = $user->id;
         $producto->save();
 
-        Session::flash('success', 'Se ha guardado sus datos con exito');
-        return redirect()->back()->with('success', 'Envio de correo exitoso.');
+        return response()->json(['success' => true, 'recibo' => $recibo]);
 
     }
 }

@@ -27,6 +27,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/navbar.css') }}">
 
+    <!-- Sweetalert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.1/dist/sweetalert2.min.css">
+
     @yield('css_custom')
 
 </head>
@@ -90,6 +93,9 @@
 
         <!-- js custom -->
         <script type="text/javascript" src="{{ asset('assets/js/navbar.js') }}"></script>
+
+        <!-- Sweetalert2 -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.1/dist/sweetalert2.all.min.js"></script>
 
         @yield('js_custom')
 

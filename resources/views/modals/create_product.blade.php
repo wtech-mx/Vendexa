@@ -10,7 +10,7 @@
 
         <div class="modal-body modal_bg row">
 
-            <form method="POST" action="{{ route('productos.store') }}" class="z-1" action="/file-upload"class="dropzone" id="my-awesome-dropzone">>
+            <form method="POST" action="{{ route('productos.store') }}" class="z-1" action="/file-upload" class="dropzone" id="miFormulario">
                 @csrf
                 <div class="row">
                     <div class="col-10">
@@ -30,7 +30,7 @@
                         <span class="input-group-text span_custom_primary_dark" >
                             <img class="icon_span_form" src="{{ asset('assets/media/icons/una.webp') }}" alt="" >
                         </span>
-                        <input id="nombre" name="nombre" type="text"  class="form-control input_custom_primary_dark @error('nombre') is-invalid @enderror"  value="{{ old('nombre') }}" required autocomplete="" autofocus>
+                        <input id="nombre" name="nombre" type="text"  class="form-control input_custom_primary_dark @error('nombre') is-invalid @enderror"  value="{{ old('nombre') }}"  autocomplete="" autofocus>
                     </div>
                 </div>
 
@@ -138,7 +138,7 @@
                             <div class="tab-pane fade show active" id="pills-detalles" role="tabpanel" aria-labelledby="pills-detalles-tab" tabindex="0">
                                 <div class="row">
 
-                                    <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-6 px-4 py-3">
+                                    <div class="form-group col-9 px-4 py-3">
                                         <label for="name" class="label_custom_primary_product mb-2">Proveedor :</label>
                                         <div class="input-group ">
                                             <span class="input-group-text span_custom_tab" >
@@ -150,6 +150,23 @@
                                                     <option value="{{ $proveedor->id }}" @if(old('id_proveedor') == $proveedor->id) selected @endif>{{ $proveedor->nombre }}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-3 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_product mb-4">Agregar</label>
+                                        <a class="btn_plus_dash" data-bs-toggle="collapse" href="#collapseProveedor" role="button" aria-expanded="false" aria-controls="collapseProveedor">
+                                            <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
+                                        </a>
+                                    </div>
+
+                                    <div class="form-group col-12 px-5 py-3 collapse"  id="collapseProveedor">
+                                        <label for="name" class="label_custom_primary_sm mb-2">Agregar Proveedor :</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/camion.webp') }}" alt="" >
+                                            </span>
+                                            <input id="" name="" type="text"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" autocomplete="" autofocus>
                                         </div>
                                     </div>
 
@@ -169,7 +186,7 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/en-stock.png.webp') }}" alt="" >
                                             </span>
-                                            <input id="stock" name="stock" type="number"  class="form-control input_custom_tab @error('stock') is-invalid @enderror"  value="{{ old('stock') }}" required autocomplete="" autofocus>
+                                            <input id="stock" name="stock" type="number"  class="form-control input_custom_tab @error('stock') is-invalid @enderror"  value="{{ old('stock') }}"  autocomplete="" autofocus>
                                         </div>
                                     </div>
 
@@ -179,7 +196,7 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="" >
                                             </span>
-                                            <input id="costo" name="costo" type="number"  class="form-control input_custom_tab @error('costo') is-invalid @enderror"  value="{{ old('costo') }}" required autocomplete="" autofocus>
+                                            <input id="costo" name="costo" type="number"  class="form-control input_custom_tab @error('costo') is-invalid @enderror"  value="{{ old('costo') }}"  autocomplete="" autofocus>
                                         </div>
                                     </div>
 
@@ -189,7 +206,7 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/monedas.webp') }}" alt="" >
                                             </span>
-                                            <input id="precio_normal" name="precio_normal" type="number"  class="form-control input_custom_tab @error('precio_normal') is-invalid @enderror"  value="{{ old('precio_normal') }}" required autocomplete="" autofocus>
+                                            <input id="precio_normal" name="precio_normal" type="number"  class="form-control input_custom_tab @error('precio_normal') is-invalid @enderror"  value="{{ old('precio_normal') }}"  autocomplete="" autofocus>
                                         </div>
                                     </div>
 
@@ -268,6 +285,7 @@
                                         </div>
 
                                     </div>
+
 
                                 </div>
 
@@ -379,7 +397,7 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/imagen.webp') }}" alt="" >
                                             </span>
-                                            <input id="imagen_principal" name="imagen_principal" type="file"  class="form-control input_custom_tab @error('imagen_principal') is-invalid @enderror"  value="{{ old('imagen_principal') }}" required autocomplete="" autofocus>
+                                            <input id="imagen_principal" name="imagen_principal" type="file"  class="form-control input_custom_tab @error('imagen_principal') is-invalid @enderror"  value="{{ old('imagen_principal') }}"  autocomplete="" autofocus>
                                         </div>
                                     </div>
 
@@ -398,7 +416,6 @@
 
                             </div>
 
-
                             <div class="tab-pane fade" id="pills-atributos" role="tabpanel" aria-labelledby="pills-atributos-tab" tabindex="0">
 
                                 <div class="row">
@@ -409,7 +426,7 @@
                                             <span class="input-group-text span_custom_primary_dark" >
                                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/cinta-metrica.webp') }}" alt="" >
                                             </span>
-                                            <select name="unidad_venta" id="unidad_venta" class="form-select d-inline-block select_custom_primary_dark" required>
+                                            <select name="unidad_venta" id="unidad_venta" class="form-select d-inline-block select_custom_primary_dark" >
                                                 <option value="" @if(old('unidad_venta') == '') selected @endif>Seleccionar</option>
                                                 <option value="Pieza" @if(old('unidad_venta') == 'Pieza') selected @endif>Pieza</option>
                                                 <option value="Metro" @if(old('unidad_venta') == 'Metro') selected @endif>Metro</option>
@@ -425,7 +442,7 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/sat.webp') }}" alt="" >
                                             </span>
-                                            <select name="clave_sat" id="clave_sat" class="form-select d-inline-block select_custom_primary_dark">
+                                            <select name="clave_sat" id="clave_sat" class="form-select d-inline-block input_custom_tab">
                                                 <option value="" @if(old('clave_sat') == '') selected @endif>Seleccionar</option>
                                                 <option value="10101500 - Animales vivos de granja" @if(old('clave_sat') == '10101500 - Animales vivos de granja') selected @endif>10101500 - Animales vivos de granja</option>
                                                 <option value="30151800 - Bicicletas y accesorios" @if(old('clave_sat') == '30151800 - Bicicletas y accesorios') selected @endif>30151800 - Bicicletas y accesorios</option>
@@ -486,6 +503,46 @@
 
         $(document).ready(function() {
 
+
+            $("#miFormulario").on("submit", function (event) {
+                event.preventDefault(); // Evita el envío predeterminado del formulario
+
+                // Realiza la solicitud POST usando AJAX
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    success: async function(response) { // Agrega "async" aquí
+                        // El formulario se ha enviado correctamente, ahora realiza la impresión
+                        imprimirRecibo(response);
+
+                    },
+                    error: function (xhr, status, error) {
+                            var errors = xhr.responseJSON.errors;
+                            var errorMessage = '';
+
+                            // Itera a través de los errores y agrega cada mensaje de error al mensaje final
+                            for (var key in errors) {
+                                if (errors.hasOwnProperty(key)) {
+                                    var errorMessages = errors[key].join('<br>'); // Usamos <br> para separar los mensajes
+                                    errorMessage += '<strong>' + key + ':</strong><br>' + errorMessages + '<br>';
+                                }
+                            }
+                            console.log(errorMessage);
+                            // Muestra el mensaje de error en una SweetAlert
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Faltan Campos',
+                                html: errorMessage, // Usa "html" para mostrar el mensaje con formato HTML
+                            });
+                    }
+                });
+
+            });
+
+
             const radioSiMayo = document.getElementById('radioSiMayo');
             const radioNoMayo = document.getElementById('radioNoMayo');
 
@@ -495,14 +552,14 @@
             const precioMayoristaContainer = document.getElementById('precioMayoristaContainer');
             const precioPromoContainer = document.getElementById('precioPromoContainer');
 
-                const radioSiMayoEdit = document.getElementById('radioSiMayoEdit');
-                const radioNoMayoEdit = document.getElementById('radioNoMayoEdit');
+            const radioSiMayoEdit = document.getElementById('radioSiMayoEdit');
+            const radioNoMayoEdit = document.getElementById('radioNoMayoEdit');
 
-                const radioSirebajaEdit = document.getElementById('radioSirebajaEdit');
-                const radioNorebajaEdit = document.getElementById('radioNorebajaEdit');
+            const radioSirebajaEdit = document.getElementById('radioSirebajaEdit');
+            const radioNorebajaEdit = document.getElementById('radioNorebajaEdit');
 
-                const precioMayoristaContainerEdit = document.getElementById('precioMayoristaContainerEdit');
-                const precioPromoContainerEdit = document.getElementById('precioPromoContainerEdit');
+            const precioMayoristaContainerEdit = document.getElementById('precioMayoristaContainerEdit');
+            const precioPromoContainerEdit = document.getElementById('precioPromoContainerEdit');
 
 
             radioSiMayo.addEventListener('change', function() {
@@ -529,31 +586,31 @@
                 }
             });
 
-                radioSiMayoEdit.addEventListener('change', function() {
-                    if (radioSiMayoEdit.checked) {
-                        precioMayoristaContainerEdit.style.display = 'block';
-                        console.log('Entro');
-                    }
-                });
+            radioSiMayoEdit.addEventListener('change', function() {
+                if (radioSiMayoEdit.checked) {
+                    precioMayoristaContainerEdit.style.display = 'block';
+                    console.log('Entro');
+                }
+            });
 
-                radioNoMayoEdit.addEventListener('change', function() {
-                    if (radioNoMayoEdit.checked) {
-                        precioMayoristaContainerEdit.style.display = 'none';
-                    }
-                });
+            radioNoMayoEdit.addEventListener('change', function() {
+                if (radioNoMayoEdit.checked) {
+                    precioMayoristaContainerEdit.style.display = 'none';
+                }
+            });
 
-                radioSirebajaEdit.addEventListener('change', function() {
-                    if (radioSirebajaEdit.checked) {
-                        precioPromoContainerEdit.style.display = 'contents';
-                        console.log('Entro');
-                    }
-                });
+            radioSirebajaEdit.addEventListener('change', function() {
+                if (radioSirebajaEdit.checked) {
+                    precioPromoContainerEdit.style.display = 'contents';
+                    console.log('Entro');
+                }
+            });
 
-                radioNorebajaEdit.addEventListener('change', function() {
-                    if (radioNorebajaEdit.checked) {
-                        precioPromoContainerEdit.style.display = 'none';
-                    }
-                });
+            radioNorebajaEdit.addEventListener('change', function() {
+                if (radioNorebajaEdit.checked) {
+                    precioPromoContainerEdit.style.display = 'none';
+                }
+            });
 
             // Manejar el cambio en el select
             $('#opcion').change(function() {
