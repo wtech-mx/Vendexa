@@ -274,22 +274,6 @@
             </div>
 
             <div class="form-group col-6 px-2 py-1">
-                <label for="name" class="label_custom_primary_product_white mb-2">Factura </label>
-
-                <div class="input-group text-white d-flex justify-content-around mt-3">
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input " type="radio" name="inlineRadioOptions" id="" value="Si">
-                        <label class="form-check-label" for="">Si</label>
-                      </div>
-
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input " type="radio" name="inlineRadioOptions" id="" value="No">
-                        <label class="form-check-label" for="">No</label>
-                      </div>
-                </div>
-            </div>
-
-            <div class="form-group col-6 px-2 py-1">
                 <label for="name" class="label_custom_primary_product_white mb-2">Total :</label>
                 <div class="input-group ">
                     <span class="input-group-text span_custom_tab" >
@@ -297,6 +281,77 @@
                     </span>
                     <input id="" name="" type="text"  class="form-control input_custom_tab_dark @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
                 </div>
+            </div>
+
+            <div class="form-group col-6 px-2 py-1">
+                <label for="name" class="label_custom_primary_product_white mb-2">Factura </label>
+
+                <div class="input-group text-white d-flex justify-content-around mt-3">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input " type="radio" name="inlineRadioOptions"  id="radioSiFact" value="Si">
+                        <label class="form-check-label" for="">Si</label>
+                      </div>
+
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input " type="radio" name="inlineRadioOptions"  id="radioNoFact" value="No">
+                        <label class="form-check-label" for="">No</label>
+                      </div>
+                </div>
+            </div>
+
+            <div class="row" id="FacturaContainer" style="display: none;">
+
+                <div class="form-group col-12 px-4 py-3" >
+                    <label for="name" class="label_custom_primary_product_white mb-2">Nombre / Razon Social :</label>
+                    <div class="input-group ">
+                        <span class="input-group-text span_custom_tab" >
+                            <img class="icon_span_tab" src="{{ asset('assets/media/icons/fuente.webp') }}" alt="" >
+                        </span>
+                        <input id="" name="" type="text"  class="form-control input_custom_tab_dark @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                    </div>
+                </div>
+
+                <div class="form-group col-6 px-4 py-3" >
+                    <label for="name" class="label_custom_primary_product_white mb-2">RFC:</label>
+                    <div class="input-group ">
+                        <span class="input-group-text span_custom_tab" >
+                            <img class="icon_span_tab" src="{{ asset('assets/media/icons/sat.webp') }}" alt="" >
+                        </span>
+                        <input id="" name="" type="text"  class="form-control input_custom_tab_dark @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                    </div>
+                </div>
+
+                <div class="form-group col-6 px-4 py-3" >
+                    <label for="name" class="label_custom_primary_product_white mb-2">CFDI :</label>
+                    <div class="input-group ">
+                        <span class="input-group-text span_custom_tab" >
+                            <img class="icon_span_tab" src="{{ asset('assets/media/icons/categorias.webp') }}" alt="" >
+                        </span>
+                        <select name="" id="" class="form-select d-inline-block input_custom_tab_dark"  value="{{old('')}}">
+                            <option value="" {{ old('') == '' ? 'selected' : '' }}>Selecionar </option>
+                            <option value="G01 Adquisición de Mercancías" {{ old('') == '' ? 'selected' : '' }}>G01 Adquisición de Mercancías </option>
+                            <option value="G02 Devoluciones, Descuentos o bonificaciones" {{ old('') == '' ? 'selected' : '' }}>G02 Devoluciones, Descuentos o bonificaciones </option>
+                            <option value="G03 Gastos en general" {{ old('') == '' ? 'selected' : '' }}>G03 Gastos en general </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group col-12 px-4 py-3" >
+                    <label for="name" class="label_custom_primary_product_white mb-2">Direccion de Facturacion:</label>
+                    <div class="input-group ">
+                        <span class="input-group-text span_custom_tab" >
+                            <img class="icon_span_tab" src="{{ asset('assets/media/icons/mapa-de-la-ciudad.webp') }}" alt="" >
+                        </span>
+                        <input id="" name="" type="text"  class="form-control input_custom_tab_dark @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group col-12 mt-4 mb-4 ">
+                <p class="text-center ">
+                    <button class="btn btn-success btn_save_custom">Guardar</button>
+                </p>
             </div>
 
         </div>
@@ -308,3 +363,30 @@
 </section>
 
 @endsection
+
+@section('js_custom')
+
+    <script>
+
+            const radioSiFact = document.getElementById('radioSiFact');
+            const radioNoFact = document.getElementById('radioNoFact');
+
+            const FacturaContainer = document.getElementById('FacturaContainer');
+
+            radioSiFact.addEventListener('change', function() {
+                if (radioSiFact.checked) {
+                    FacturaContainer.style.display = 'contents';
+                }
+            });
+
+            radioNoFact.addEventListener('change', function() {
+                if (radioNoFact.checked) {
+                    FacturaContainer.style.display = 'none';
+                }
+            });
+
+
+    </script>
+
+@endsection
+
