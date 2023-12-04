@@ -10,7 +10,7 @@
 
         <div class="modal-body modal_bg row">
 
-            <form method="POST" action="{{ route('productos.store') }}" class="z-1 dropzone" id="my-awesome-dropzone" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('productos.store') }}" class="z-1 dropzone"  id="miFormulario" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-10">
