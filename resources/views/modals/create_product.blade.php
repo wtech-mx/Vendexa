@@ -10,8 +10,8 @@
 
         <div class="modal-body modal_bg row">
 
-            <form action="" class="z-1" action="/file-upload"class="dropzone" id="my-awesome-dropzone">>
-
+            <form method="POST" action="{{ route('productos.store') }}" class="z-1" action="/file-upload"class="dropzone" id="my-awesome-dropzone">>
+                @csrf
                 <div class="row">
                     <div class="col-10">
                         <h2 class="tiitle_modal_dark text-center mt-3">Crear Producto</h2>
@@ -25,32 +25,32 @@
                 </div>
 
                 <div class="form-group col-12 mb-3 p-2">
-                    <label for="name" class="label_custom_primary_product mb-2">Nombre :</label>
+                    <label for="name" class="label_custom_primary_product mb-2">Nombre : *</label>
                     <div class="input-group ">
                         <span class="input-group-text span_custom_primary_dark" >
                             <img class="icon_span_form" src="{{ asset('assets/media/icons/una.webp') }}" alt="" >
                         </span>
-                        <input id="" name="" type="text"  class="form-control input_custom_primary_dark @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                        <input id="nombre" name="nombre" type="text"  class="form-control input_custom_primary_dark @error('nombre') is-invalid @enderror"  value="{{ old('nombre') }}" required autocomplete="" autofocus>
                     </div>
                 </div>
 
                 <div class="form-group col-12 mb-3 p-2">
                     <label for="name" class="label_custom_primary_product mb-2">Descripcion :</label>
                     <div class="input-group ">
-                        <textarea class="form-control textarea_custom_primary_dark" placeholder="" id="" name=""></textarea>
+                        <textarea class="form-control textarea_custom_primary_dark @error('descripcion') is-invalid @enderror" id="descripcion" name="descripcion" value="{{ old('descripcion') }}"></textarea>
                     </div>
                 </div>
 
                 <div class="form-group col-12 mb-3 p-2">
-                    <label for="name" class="label_custom_primary_product mb-2">Escanear o generar SKU :</label>
+                    <label for="name" class="label_custom_primary_product mb-2">Escanear o generar SKU : *</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text span_custom_primary_dark" >
                             <img class="icon_span_form" src="{{ asset('assets/media/icons/scanner2.webp') }}" alt="" >
                         </span>
-                        <select name="opcion" id="opcion" class="form-select d-inline-block select_custom_primary_dark"  value="{{old('')}}">
-                            <option value="" {{ old('') == '' ? 'selected' : '' }}>Selecionar opcion</option>
-                            <option value="Generar SKU" {{ old('') == 'Generar SKU' ? 'selected' : '' }}>Generar SKU</option>
-                            <option value="Escanear Codigo" {{ old('') == 'Escanear Codigo' ? 'selected' : '' }}>Escanear Codigo</option>
+                        <select name="opcion" id="opcion" class="form-select d-inline-block select_custom_primary_dark">
+                            <option value="" @if(old('opcion') == '') selected @endif>Seleccionar opción</option>
+                            <option value="Generar SKU" @if(old('opcion') == 'Generar SKU') selected @endif>Generar SKU</option>
+                            <option value="Escanear Codigo" @if(old('opcion') == 'Escanear Codigo') selected @endif>Escanear Código</option>
                         </select>
                     </div>
                 </div>
@@ -69,13 +69,13 @@
                     </div>
 
                     <div class="form-group col-9 mb-3 " >
-                        <label for="name" class="label_custom_primary_product mb-2">SKU :</label>
+                        <label for="name" class="label_custom_primary_product mb-2">SKU : *</label>
                         <div class="input-group ">
                             <span class="input-group-text span_custom_primary_dark" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/code_barras.webp') }}" alt="" >
                             </span>
 
-                            <input id="skuInput" name="" type="number" class="form-control input_custom_primary_dark @error('') is-invalid @enderror" value="{{ old('') }}" required autocomplete="" autofocus>
+                            <input id="skuInput" name="sku_generado" type="number" class="form-control input_custom_primary_dark @error('sku_generado') is-invalid @enderror" value="{{ old('sku_generado') }}" autocomplete="" autofocus>
                         </div>
                     </div>
                 </div>
@@ -89,13 +89,13 @@
 
 
                     <div class="form-group col-10 mb-3 ">
-                        <label for="name" class="label_custom_primary_product mb-2">SKU :</label>
+                        <label for="name" class="label_custom_primary_product mb-2">SKU : *</label>
                         <div class="input-group ">
                             <span class="input-group-text span_custom_primary_dark" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/code_barras.webp') }}" alt="" >
                             </span>
 
-                            <input id="skuInputScanner" name="" type="number" class="form-control input_custom_primary_dark @error('') is-invalid @enderror" value="{{ old('') }}" required autocomplete="" autofocus>
+                            <input id="skuInputScanner" name="sku_scanner" type="number" class="form-control input_custom_primary_dark @error('sku_scanner') is-invalid @enderror" value="{{ old('sku_scanner') }}" autocomplete="" autofocus>
                         </div>
                     </div>
 
@@ -144,7 +144,12 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/camion.webp') }}" alt="" >
                                             </span>
-                                            <input id="" name="" type="text"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                                            <select name="id_proveedor" id="id_proveedor" class="form-select d-inline-block input_custom_tab"  value="{{old('')}}">
+                                                <option value="" {{ old('') == '' ? 'selected' : '' }}>Selecionar </option>
+                                                @foreach ($proveedores as $proveedor)
+                                                    <option value="{{ $proveedor->id }}" @if(old('id_proveedor') == $proveedor->id) selected @endif>{{ $proveedor->nombre }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
 
@@ -154,37 +159,37 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/cero.webp') }}" alt="" >
                                             </span>
-                                            <input id="" name="" type="text"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                                            <input id="codigo_proveedor" name="codigo_proveedor" type="text"  class="form-control input_custom_tab @error('codigo_proveedor') is-invalid @enderror"  value="{{ old('codigo_proveedor') }}" autocomplete="" autofocus>
                                         </div>
                                     </div>
 
                                     <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-6 px-4 py-3">
-                                        <label for="name" class="label_custom_primary_product mb-2">Stock :</label>
+                                        <label for="name" class="label_custom_primary_product mb-2">Stock : *</label>
                                         <div class="input-group ">
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/en-stock.png.webp') }}" alt="" >
                                             </span>
-                                            <input id="" name="" type="text"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                                            <input id="stock" name="stock" type="number"  class="form-control input_custom_tab @error('stock') is-invalid @enderror"  value="{{ old('stock') }}" required autocomplete="" autofocus>
                                         </div>
                                     </div>
 
                                     <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-6 px-4 py-3">
-                                        <label for="name" class="label_custom_primary_product mb-2">Costo :</label>
+                                        <label for="name" class="label_custom_primary_product mb-2">Costo : *</label>
                                         <div class="input-group ">
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="" >
                                             </span>
-                                            <input id="" name="" type="text"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                                            <input id="costo" name="costo" type="number"  class="form-control input_custom_tab @error('costo') is-invalid @enderror"  value="{{ old('costo') }}" required autocomplete="" autofocus>
                                         </div>
                                     </div>
 
                                     <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-6 px-4 py-3">
-                                        <label for="name" class="label_custom_primary_product mb-2">Precio normal :</label>
+                                        <label for="name" class="label_custom_primary_product mb-2">Precio normal : *</label>
                                         <div class="input-group ">
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/monedas.webp') }}" alt="" >
                                             </span>
-                                            <input id="" name="" type="text"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                                            <input id="precio_normal" name="precio_normal" type="number"  class="form-control input_custom_tab @error('precio_normal') is-invalid @enderror"  value="{{ old('precio_normal') }}" required autocomplete="" autofocus>
                                         </div>
                                     </div>
 
@@ -210,7 +215,7 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/signo-de-dolar.webp') }}" alt="" >
                                             </span>
-                                            <input id="" name="" type="text"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                                            <input id="precio_mayo" name="precio_mayo" type="text"  class="form-control input_custom_tab @error('precio_mayo') is-invalid @enderror"  value="{{ old('precio_mayo') }}" autocomplete="" autofocus>
                                         </div>
                                     </div>
 
@@ -238,7 +243,7 @@
                                                 <span class="input-group-text span_custom_tab" >
                                                     <img class="icon_span_tab" src="{{ asset('assets/media/icons/descuento.webp') }}" alt="" >
                                                 </span>
-                                                <input id="" name="" type="text"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                                                <input id="precio_descuento" name="precio_descuento" type="text"  class="form-control input_custom_tab @error('precio_descuento') is-invalid @enderror"  value="{{ old('precio_descuento') }}" autocomplete="" autofocus>
                                             </div>
                                         </div>
 
@@ -248,7 +253,7 @@
                                                 <span class="input-group-text span_custom_tab" >
                                                     <img class="icon_span_tab" src="{{ asset('assets/media/icons/calendar-dar.webp') }}" alt="" >
                                                 </span>
-                                                <input id="" name="" type="date"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                                                <input id="fecha_inicio_desc" name="fecha_inicio_desc" type="date"  class="form-control input_custom_tab @error('fecha_inicio_desc') is-invalid @enderror"  value="{{ old('fecha_inicio_desc') }}" autocomplete="" autofocus>
                                             </div>
                                         </div>
 
@@ -258,7 +263,7 @@
                                                 <span class="input-group-text span_custom_tab" >
                                                     <img class="icon_span_tab" src="{{ asset('assets/media/icons/calendar-dar.webp') }}" alt="" >
                                                 </span>
-                                                <input id="" name="" type="date"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                                                <input id="fecha_fin_desc" name="fecha_fin_desc" type="date"  class="form-control input_custom_tab @error('fecha_fin_desc') is-invalid @enderror"  value="{{ old('fecha_fin_desc') }}" autocomplete="" autofocus>
                                             </div>
                                         </div>
 
@@ -278,8 +283,11 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/marca.webp') }}" alt="" >
                                             </span>
-                                            <select name="" id="" class="form-select d-inline-block input_custom_tab"  value="{{old('')}}">
+                                            <select name="id_marca" id="id_marca" class="form-select d-inline-block input_custom_tab">
                                                 <option value="" {{ old('') == '' ? 'selected' : '' }}>Selecionar </option>
+                                                @foreach ($marcas as $marca)
+                                                    <option value="{{ $marca->id }}" @if(old('id_marca') == $marca->id) selected @endif>{{ $marca->nombre }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -297,7 +305,7 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/marca.webp') }}" alt="" >
                                             </span>
-                                            <input id="" name="" type="text"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                                            <input id="nombre_marca" name="nombre_marca" type="text"  class="form-control input_custom_tab @error('nombre_marca') is-invalid @enderror"  value="{{ old('nombre_marca') }}" autocomplete="" autofocus>
                                         </div>
                                     </div>
 
@@ -307,8 +315,11 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/categorias.webp') }}" alt="" >
                                             </span>
-                                            <select name="" id="" class="form-select d-inline-block input_custom_tab"  value="{{old('')}}">
+                                            <select name="id_categoria" id="id_categoria" class="form-select d-inline-block input_custom_tab">
                                                 <option value="" {{ old('') == '' ? 'selected' : '' }}>Selecionar </option>
+                                                @foreach ($categorias as $categoria)
+                                                    <option value="{{ $categoria->id }}" @if(old('id_categoria') == $categoria->id) selected @endif>{{ $categoria->nombre }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -326,7 +337,7 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/categorias.webp') }}" alt="" >
                                             </span>
-                                            <input id="" name="" type="text"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                                            <input id="nombre_categoria" name="nombre_categoria" type="text"  class="form-control input_custom_tab @error('nombre_categoria') is-invalid @enderror"  value="{{ old('nombre_categoria') }}" autocomplete="" autofocus>
                                         </div>
                                     </div>
 
@@ -336,9 +347,11 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/paquete.webp') }}" alt="" >
                                             </span>
-                                            <select name="" id="" class="form-select d-inline-block input_custom_tab"  value="{{old('')}}">
+                                            <select name="id_subcategoria" id="id_subcategoria" class="form-select d-inline-block input_custom_tab">
                                                 <option value="" {{ old('') == '' ? 'selected' : '' }}>Selecionar </option>
-
+                                                @foreach ($subcategorias as $subcategoria)
+                                                    <option value="{{ $subcategoria->id }}" @if(old('id_subcategoria') == $subcategoria->id) selected @endif>{{ $subcategoria->nombre }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -356,17 +369,17 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/paquete.webp') }}" alt="" >
                                             </span>
-                                            <input id="" name="" type="text"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                                            <input id="nombre_subcategoria" name="nombre_subcategoria" type="text"  class="form-control input_custom_tab @error('nombre_subcategoria') is-invalid @enderror"  value="{{ old('nombre_subcategoria') }}"  autocomplete="" autofocus>
                                         </div>
                                     </div>
 
                                     <div class="form-group col-12 px-4 py-3">
-                                        <label for="name" class="label_custom_primary_product mb-2">Imagen de Portada :</label>
+                                        <label for="name" class="label_custom_primary_product mb-2">Imagen de Portada : *</label>
                                         <div class="input-group ">
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/imagen.webp') }}" alt="" >
                                             </span>
-                                            <input id="" name="" type="file"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" required autocomplete="" autofocus>
+                                            <input id="imagen_principal" name="imagen_principal" type="file"  class="form-control input_custom_tab @error('imagen_principal') is-invalid @enderror"  value="{{ old('imagen_principal') }}" required autocomplete="" autofocus>
                                         </div>
                                     </div>
 
@@ -391,17 +404,17 @@
                                 <div class="row">
 
                                     <div class="form-group col-12 px-4 py-3">
-                                        <label for="name" class="label_custom_primary_product mb-2">Seleciona la unidad:</label>
+                                        <label for="name" class="label_custom_primary_product mb-2">Seleciona la unidad: *</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text span_custom_primary_dark" >
                                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/cinta-metrica.webp') }}" alt="" >
                                             </span>
-                                            <select name="" id="" class="form-select d-inline-block select_custom_primary_dark"  value="{{old('')}}">
-                                                <option value="" {{ old('') == '' ? 'selected' : '' }}>Selecionar opcion</option>
-                                                <option value="Pieza" {{ old('') == 'Pieza' ? 'selected' : '' }}>Pieza</option>
-                                                <option value="Metro" {{ old('') == 'Metro' ? 'selected' : '' }}>Metro</option>
-                                                <option value="Kilo" {{ old('') == 'Kilo' ? 'selected' : '' }}>Kilo</option>
-                                                <option value="Litro" {{ old('') == 'Litro' ? 'selected' : '' }}>Litro</option>
+                                            <select name="unidad_venta" id="unidad_venta" class="form-select d-inline-block select_custom_primary_dark" required>
+                                                <option value="" @if(old('unidad_venta') == '') selected @endif>Seleccionar</option>
+                                                <option value="Pieza" @if(old('unidad_venta') == 'Pieza') selected @endif>Pieza</option>
+                                                <option value="Metro" @if(old('unidad_venta') == 'Metro') selected @endif>Metro</option>
+                                                <option value="Kilo" @if(old('unidad_venta') == 'Kilo') selected @endif>Kilo</option>
+                                                <option value="Litro" @if(old('unidad_venta') == 'Litro') selected @endif>Litro</option>
                                             </select>
                                         </div>
                                     </div>
@@ -412,7 +425,16 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/sat.webp') }}" alt="" >
                                             </span>
-                                            <input id="" name="" type="text"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}"  autocomplete="" autofocus>
+                                            <select name="clave_sat" id="clave_sat" class="form-select d-inline-block select_custom_primary_dark">
+                                                <option value="" @if(old('clave_sat') == '') selected @endif>Seleccionar</option>
+                                                <option value="10101500 - Animales vivos de granja" @if(old('clave_sat') == '10101500 - Animales vivos de granja') selected @endif>10101500 - Animales vivos de granja</option>
+                                                <option value="30151800 - Bicicletas y accesorios" @if(old('clave_sat') == '30151800 - Bicicletas y accesorios') selected @endif>30151800 - Bicicletas y accesorios</option>
+                                                <option value="50161500 - Vehículos terrestres" @if(old('clave_sat') == '50161500 - Vehículos terrestres') selected @endif>50161500 - Vehículos terrestres</option>
+                                                <option value="70171500 - Herramientas generales" @if(old('clave_sat') == '70171500 - Herramientas generales') selected @endif>70171500 - Herramientas generales</option>
+                                                <option value="90181600 - Productos farmacéuticos" @if(old('clave_sat') == '90181600 - Productos farmacéuticos') selected @endif>90181600 - Productos farmacéuticos</option>
+                                                <option value="11111700 - Confitería" @if(old('clave_sat') == '11111700 - Confitería') selected @endif>11111700 - Confitería</option>
+                                                <option value="12121800 - Equipos de audio y video" @if(old('clave_sat') == '12121800 - Equipos de audio y video') selected @endif>12121800 - Equipos de audio y video</option>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -421,12 +443,12 @@
 
                                         <div class="input-group d-flex justify-content-around mt-3">
                                               <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="" value="Si">
+                                                <input class="form-check-input" type="radio" name="visibilidad_estatus" id="" value="Si">
                                                 <label class="form-check-label" for="">Publicado</label>
                                               </div>
 
                                               <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="" value="No">
+                                                <input class="form-check-input" type="radio" name="visibilidad_estatus" id="" value="No">
                                                 <label class="form-check-label" for="">Pausa</label>
                                               </div>
                                         </div>
@@ -443,7 +465,7 @@
 
                 <div class="form-group col-12 mt-4 mb-4 ">
                     <p class="text-center ">
-                        <button class="btn btn-success btn_save_custom">Guardar</button>
+                        <button type="submit" class="btn btn-success btn_save_custom">Guardar</button>
                     </p>
                 </div>
 

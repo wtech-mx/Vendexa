@@ -15,9 +15,22 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('correo')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+
+            $table->unsignedBigInteger('id_direccion');
+            $table->foreign('id_direccion')
+                ->references('id')->on('direcciones')
+                ->inDelete('set null');
+
+            $table->unsignedBigInteger('id_empresa');
+            $table->foreign('id_empresa')
+                ->references('id')->on('empresas')
+                ->inDelete('set null');
+
+            $table->unsignedBigInteger('id_woocommerce')->nullable();
             $table->timestamps();
         });
     }

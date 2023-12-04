@@ -44,9 +44,11 @@
                 Scanner <img class="icon_navbar" src="{{ asset('assets/media/icons/scanner.webp') }}" alt="">
             </li>
 
-            <li class="li_navbar">
-                Productos  <img class="icon_navbar" src="{{ asset('assets/media/icons/carrito.webp') }}" alt="">
-            </li>
+            <a href="{{ route('productos.index') }}">
+                <li class="li_navbar">
+                    Productos  <img class="icon_navbar" src="{{ asset('assets/media/icons/carrito.webp') }}" alt="">
+                </li>
+            </a>
 
             <li class="li_navbar">
                 Clientes <img class="icon_navbar" src="{{ asset('assets/media/icons/clientes.webp') }}" alt="">

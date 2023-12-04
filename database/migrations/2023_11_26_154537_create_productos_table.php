@@ -47,8 +47,8 @@ return new class extends Migration
             $table->string('precio_normal')->nullable();
             $table->string('precio_mayo')->nullable();
             $table->string('precio_descuento')->nullable();
-            $table->string('fecha_inicio_desc')->nullable();
-            $table->string('fecha_fin_desc')->nullable();
+            $table->date('fecha_inicio_desc')->nullable();
+            $table->date('fecha_fin_desc')->nullable();
 
             $table->unsignedBigInteger('id_empresa');
             $table->foreign('id_empresa')

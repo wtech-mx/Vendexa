@@ -9,7 +9,6 @@ class Categorias extends Model
 {
     use HasFactory;
     protected $table = "categorias";
-    protected $dateFormat = 'd/m/Y';
     protected $primarykey = "id";
     public $timestamps = true;
 

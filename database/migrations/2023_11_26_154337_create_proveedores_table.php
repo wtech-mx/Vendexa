@@ -16,12 +16,11 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('correo');
             $table->string('telefono')->nullable();
-            $table->string('pais')->nullable();
-            $table->string('estado')->nullable();
-            $table->string('colonia')->nullable();
-            $table->string('codigo_postal')->nullable();
-            $table->string('alcaldia')->nullable();
-            $table->string('calle_numero')->nullable();
+            
+            $table->unsignedBigInteger('id_direccion');
+            $table->foreign('id_direccion')
+                ->references('id')->on('direcciones')
+                ->inDelete('set null');
 
             $table->unsignedBigInteger('id_empresa');
             $table->foreign('id_empresa')
