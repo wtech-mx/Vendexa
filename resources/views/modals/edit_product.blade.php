@@ -10,7 +10,7 @@
 
         <div class="modal-body modal_bg_edit_product row">
 
-            <form method="POST" action="{{ route('productos.update', $producto->id) }}" class="z-1 px-4 dropzone" id="my-awesome-dropzone">
+            <form method="POST" action="{{ route('productos.update', $producto->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="miFormulario2">
                 @csrf
                 <input type="hidden" name="_method" value="PATCH">
                 <div class="row">
@@ -147,7 +147,7 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/monedas.webp') }}" alt="" >
                                             </span>
-                                            <input id="precio_normal" name="precio_normal" type="text"  class="form-control input_custom_tab_dark @error('') is-invalid @enderror"  value="{{ old('precio_normal', $producto->precio_normal) }}" autocomplete="" autofocus>
+                                            <input id="precio_normal" name="precio_normal" type="text"  class="form-control input_custom_tab_dark @error('precio_normal') is-invalid @enderror"  value="{{ old('precio_normal', $producto->precio_normal) }}" autocomplete="" autofocus>
                                         </div>
                                     </div>
 
@@ -238,7 +238,7 @@
                                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/cinta-metrica.webp') }}" alt="" >
                                             </span>
                                             <select name="unidad_venta" id="unidad_venta" class="form-select d-inline-block select_custom_primary_dark_complete" >
-                                                <option value="" @if(old($producto->unidad_venta) == '') selected @endif>{{$producto->unidad_venta}}</option>
+                                                <option value="{{$producto->unidad_venta}}">{{$producto->unidad_venta}}</option>
                                                 <option value="Pieza" @if(old('unidad_venta') == 'Pieza') selected @endif>Pieza</option>
                                                 <option value="Metro" @if(old('unidad_venta') == 'Metro') selected @endif>Metro</option>
                                                 <option value="Kilo" @if(old('unidad_venta') == 'Kilo') selected @endif>Kilo</option>
@@ -262,12 +262,21 @@
 
                                         <div class="input-group text-white d-flex justify-content-around mt-3">
                                               <div class="form-check form-check-inline">
-                                                <input class="form-check-input " type="radio" name="inlineRadioOptions" id="" value="Si">
+                                                @if ($producto->visibilidad_estatus == NULL)
+                                                    <input class="form-check-input " type="radio" name="visibilidad_estatus" id="" value="Si">
+                                                    @else
+                                                    <input class="form-check-input " type="radio" name="visibilidad_estatus" id="" value="Si" checked>
+                                                @endif
+
                                                 <label class="form-check-label" for="">Publicado</label>
                                               </div>
 
                                               <div class="form-check form-check-inline">
-                                                <input class="form-check-input " type="radio" name="inlineRadioOptions" id="" value="No">
+                                                @if ($producto->visibilidad_estatus == NULL)
+                                                    <input class="form-check-input " type="radio" name="visibilidad_estatus" id="" value="No" checked>
+                                                    @else
+                                                    <input class="form-check-input " type="radio" name="visibilidad_estatus" id="" value="No">
+                                                @endif
                                                 <label class="form-check-label" for="">Pausa</label>
                                               </div>
                                         </div>
@@ -284,7 +293,7 @@
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/marca.webp') }}" alt="" >
                                             </span>
                                             <select name="id_marca" id="id_marca" class="form-select d-inline-block input_custom_tab_dark">
-                                                <option value="{{ old($producto->id_marca) }}">{{ $producto->Marca->nombre }}</option>
+                                                <option value="{{$producto->id_marca}}">{{ $producto->Marca->nombre }}</option>
                                                 @foreach ($marcas as $marca)
                                                     <option value="{{ $marca->id }}" @if(old('id_marca') == $marca->id) selected @endif>{{ $marca->nombre }}</option>
                                                 @endforeach
@@ -316,7 +325,7 @@
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/categorias.webp') }}" alt="" >
                                             </span>
                                             <select name="id_categoria" id="id_categoria" class="form-select d-inline-block input_custom_tab_dark">
-                                                <option value="{{ old($producto->id_categoria) }}">{{ $producto->Categoria->nombre }}</option>
+                                                <option value="{{$producto->id_categoria}}">{{ $producto->Categoria->nombre }}</option>
                                                 @foreach ($categorias as $categoria)
                                                     <option value="{{ $categoria->id }}" @if(old('id_categoria') == $categoria->id) selected @endif>{{ $categoria->nombre }}</option>
                                                 @endforeach
@@ -348,7 +357,12 @@
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/paquete.webp') }}" alt="" >
                                             </span>
                                             <select name="id_subcategoria" id="id_subcategoria" class="form-select d-inline-block input_custom_tab_dark">
-                                                <option value="{{ old($producto->id_subcategoria) }}">{{ $producto->SubCategoria->nombre }}</option>
+                                                @if ($producto->id_subcategoria == NULL)
+                                                    <option value="">Seleccionar</option>
+                                                @else
+                                                    <option value="{{$producto->id_subcategoria}}">{{ $producto->SubCategoria->nombre }}</option>
+                                                @endif
+
                                                 @foreach ($subcategorias as $subcategoria)
                                                     <option value="{{ $subcategoria->id }}" @if(old('id_subcategoria') == $subcategoria->id) selected @endif>{{ $subcategoria->nombre }}</option>
                                                 @endforeach
@@ -504,80 +518,84 @@
                                         <h2 class="tiitle_modal_white text-left ms-2">Modificaciones</h2>
                                     </div>
 
-                                    <div class="col-12 px-4 py-1">
-                                        <div class="row bg_minicart_ventas  ">
+                                    @foreach ($modoficaciones_productos as $modoficacion_producto)
+                                        @if ($producto->id == $modoficacion_producto->id_producto)
+                                            <div class="col-12 px-4 py-1">
+                                                <div class="row bg_minicart_ventas">
 
-                                            <div class="col-4 my-auto">
-                                                <p class="text-center" style="margin: 0">
-                                                    <img class="img_portada_product_edit_ventas" src="{{ asset('assets/media/img/ilustraciones/chamarra.png') }}" alt="">
-                                                </p>
-                                            </div>
-
-                                            <div class="col-8 ">
-
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <p class="text_empleado text-start">Empleado</p>
-                                                    </div>
-
-                                                    <div class="col-6">
-                                                        <p class="text_empleado text-end"><strong> #2342</strong></p>
-                                                    </div>
-
-                                                    <div class="col-12 mb-2">
-                                                        <P class="text_empleado_value text-start">
-                                                            Pablo sanoval barros
-                                                        </P>
-                                                    </div>
-
-                                                    <div class="col-4 mb-1">
-                                                        <p class="text_subtittle_ventas text-start">
-                                                             <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/etiqueta-del-precio.webp') }}" alt="">
-                                                             Precio :
-                                                        </p>
-                                                        <p class="text_subtittle_ventas_sv text-center">
-                                                            $500 a $450
+                                                    <div class="col-4 my-auto">
+                                                        <p class="text-center" style="margin: 0">
+                                                            <img class="img_portada_product_edit_ventas" src="{{ asset('imagen_principal/'.$producto->imagen_principal) }}" alt="">
                                                         </p>
                                                     </div>
 
-                                                    <div class="col-4 mb-1">
-                                                        <p class="text_subtittle_ventas text-start">
-                                                             <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/en-stock.png.webp') }}" alt="">
-                                                             Piezas :
-                                                        </p>
-                                                        <p class="text_subtittle_ventas_sv text-center">
-                                                            50pza 30pza
-                                                        </p>
-                                                    </div>
+                                                    <div class="col-8 ">
 
-                                                    <div class="col-4 mb-1">
-                                                        <p class="text_subtittle_ventas text-start">
-                                                             <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/coins.webp') }}" alt="">
-                                                             Total :
-                                                        </p>
-                                                        <p class="text_subtittle_ventas_sv text-center">
-                                                            $200 a $150
-                                                        </p>
-                                                    </div>
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <p class="text_empleado text-start">Empleado</p>
+                                                            </div>
 
-                                                    <div class="col-12 mb-2 mt-2">
-                                                        <div class="d-flex justify-content-between  ">
-                                                            <P class="text_empleado_value text-start mt-2">
-                                                                20 de Abril 2023
-                                                            </P>
-                                                            <a type="button"  class="btn btn-sm btn_edit_prodcut_warning" data-bs-toggle="modal" data-bs-target="#editProduct">
-                                                                Ver <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/editar.webp') }}" alt="">
-                                                            </a>
+                                                            <div class="col-6">
+                                                                <p class="text_empleado text-end"><strong> #{{$producto->id}}</strong></p>
+                                                            </div>
+
+                                                            <div class="col-12 mb-2">
+                                                                <P class="text_empleado_value text-start">
+                                                                    {{$modoficacion_producto->User->name}}
+                                                                </P>
+                                                            </div>
+
+                                                            <div class="col-4 mb-1">
+                                                                <p class="text_subtittle_ventas text-start">
+                                                                    <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/etiqueta-del-precio.webp') }}" alt="">
+                                                                    Precio :
+                                                                </p>
+                                                                <p class="text_subtittle_ventas_sv text-center">
+                                                                    {{$modoficacion_producto->precio_normal}}
+                                                                </p>
+                                                            </div>
+
+                                                            <div class="col-4 mb-1">
+                                                                <p class="text_subtittle_ventas text-start">
+                                                                    <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/en-stock.png.webp') }}" alt="">
+                                                                    {{$producto->unidad_venta}} :
+                                                                </p>
+                                                                <p class="text_subtittle_ventas_sv text-center">
+                                                                    {{$modoficacion_producto->unidad_venta}}
+                                                                </p>
+                                                            </div>
+
+                                                            <div class="col-4 mb-1">
+                                                                <p class="text_subtittle_ventas text-start">
+                                                                    <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/coins.webp') }}" alt="">
+                                                                    Costo :
+                                                                </p>
+                                                                <p class="text_subtittle_ventas_sv text-center">
+                                                                    {{$modoficacion_producto->costo}}
+                                                                </p>
+                                                            </div>
+
+                                                            <div class="col-12 mb-2 mt-2">
+                                                                <div class="d-flex justify-content-between  ">
+                                                                    <P class="text_empleado_value text-start mt-2">
+                                                                        {{\Carbon\Carbon::createFromFormat('Y-m-d', $modoficacion_producto->fecha)->format('d \d\e F Y')}}
+
+                                                                    </P>
+                                                                    <a type="button"  class="btn btn-sm btn_edit_prodcut_warning" data-bs-toggle="modal" data-bs-target="#editProduct">
+                                                                        Ver <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/editar.webp') }}" alt="">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
+
                                                     </div>
 
                                                 </div>
-
                                             </div>
-
-                                        </div>
-                                    </div>
-
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
 
@@ -608,7 +626,62 @@
   <script>
 
         $(document).ready(function() {
+            $("#miFormulario2").on("submit", function (event) {
+                event.preventDefault(); // Evita el envío predeterminado del formulario
 
+                // Realiza la solicitud POST usando AJAX
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    success: async function(response) { // Agrega "async" aquí
+                        // El formulario se ha enviado correctamente, ahora realiza la impresión
+                        saveSuccess(response);
+
+                    },
+                    error: function (xhr, status, error) {
+                            var errors = xhr.responseJSON.errors;
+                            var errorMessage = '';
+
+                            // Itera a través de los errores y agrega cada mensaje de error al mensaje final
+                            for (var key in errors) {
+                                if (errors.hasOwnProperty(key)) {
+                                    var errorMessages = errors[key].join('<br>'); // Usamos <br> para separar los mensajes
+                                    errorMessage += '<strong>' + key + ':</strong><br>' + errorMessages + '<br>';
+                                }
+                            }
+                            console.log(errorMessage);
+                            // Muestra el mensaje de error en una SweetAlert
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Faltan Campos',
+                                html: errorMessage, // Usa "html" para mostrar el mensaje con formato HTML
+                            });
+                    }
+                });
+
+            });
+
+            async function saveSuccess(response) {
+                const producto_data = response.producto_data;
+
+                Swal.fire({
+                        title: "Producto Guardado <strong>¡Exitosamente!</strong>",
+                        icon: "success",
+                        html: "<div class='row'><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/fuente.webp') }}' ><p><strong>Nombre:</strong> <br>"+ producto_data.nombre +"</p></div><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/en-stock.png.webp') }}' ><p><strong>Stock:</strong><br>"+ producto_data.stock +" </p> </div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/monedas.webp') }}' ><p><strong>Precio:</strong><br> "+ producto_data.precio +"</p></div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/sku.webp') }}'><p><strong>Sku:</strong><br>"+ producto_data.sku +" </p></div></div>",
+                        showCloseButton: true,
+                        showCancelButton: true,
+                        focusConfirm: false,
+                        confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('productos.index') }}" >Ver Productos</a>',
+                        cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="" >Cerrar</a>`,
+                    }).then(() => {
+                        // Recarga la página
+                       window.location.href = '/home/';
+                    });
+
+            }
         });
 
   </script>

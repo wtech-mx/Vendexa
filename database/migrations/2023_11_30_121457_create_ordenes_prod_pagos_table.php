@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('cambio');
             $table->integer('metodo_pago');
             $table->integer('comprobante')->nullable();
-            $table->integer('fecha');
+            $table->date('fecha');
             $table->timestamps();
         });
     }

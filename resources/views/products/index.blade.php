@@ -94,7 +94,12 @@
                                     <img class="icon_product" src="{{ asset('assets/media/icons/coins.webp') }}" alt="">
                                     P. Mayoreo :
                                 </h5>
-                                <p class="subtitle_products">${{number_format($producto->precio_mayo, 2, '.', ',');}}</p>
+                                @if ($producto->precio_mayo == NULL)
+                                    <p class="subtitle_products"></p>
+                                @else
+                                    <p class="subtitle_products">${{number_format($producto->precio_mayo, 2, '.', ',');}}</p>
+                                @endif
+
                             </div>
 
                             <div class="col-6 mb-3">
