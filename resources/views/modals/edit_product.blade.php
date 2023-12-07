@@ -6,11 +6,11 @@
 <!-- Modal -->
 <div class="modal fade" id="editProduct-{{$producto->id}}" tabindex="-1" aria-labelledby="editProductLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
+      <div class="modal-content" style="border: solid 1px transparent;">
 
         <div class="modal-body modal_bg_edit_product row">
 
-            <form method="POST" action="{{ route('productos.update', $producto->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="miFormulario2">
+            <form method="POST" action="{{ route('productos.update', $producto->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="miFormulario2" style="border: solid 5px red;border-radius: 16px;">
                 @csrf
                 <input type="hidden" name="_method" value="PATCH">
                 <div class="row">
@@ -21,9 +21,9 @@
                     </div>
 
                     <div class="col-2">
-                        <button class="input-group-text span_custom_primary_white mt-3" data-bs-dismiss="modal">
+                        <a class="input-group-text span_custom_primary_white mt-3" data-bs-dismiss="modal" style="margin-right: 0rem!important;">
                             <img class="icon_span_form" src="{{ asset('assets/media/icons/close_dark.webp') }}" alt="" >
-                        </button>
+                        </a>
                     </div>
 
                 </div>

@@ -77,14 +77,14 @@
                         <div class="row mt-4 px-3">
 
                             <div class="col-12 mb-3">
-                                <h5 class="tiitle_products">Nombre :</h5>
+                                <h5 class="tiitle_products">Nombre</h5>
                                 <p class="subtitle_products">{{$producto->nombre}}</p>
                             </div>
 
                             <div class="col-6 mb-3">
                                 <h5 class="tiitle_products">
                                     <img class="icon_product" src="{{ asset('assets/media/icons/etiqueta-del-precio.webp') }}" alt="">
-                                    Precio :
+                                    Precio
                                 </h5>
                                 <p class="subtitle_products">${{number_format($producto->precio_normal, 2, '.', ',');}}</p>
                             </div>
@@ -92,7 +92,7 @@
                             <div class="col-6 mb-3">
                                 <h5 class="tiitle_products">
                                     <img class="icon_product" src="{{ asset('assets/media/icons/coins.webp') }}" alt="">
-                                    P. Mayoreo :
+                                    Mayoreo
                                 </h5>
                                 @if ($producto->precio_mayo == NULL)
                                     <p class="subtitle_products"></p>
@@ -105,7 +105,7 @@
                             <div class="col-6 mb-3">
                                 <h5 class="tiitle_products">
                                     <img class="icon_product" src="{{ asset('assets/media/icons/code_barras.webp') }}" alt="">
-                                    Sku :
+                                    Sku
                                 </h5>
                                 <p class="subtitle_products">{{$producto->sku}}</p>
                             </div>
@@ -113,7 +113,7 @@
                             <div class="col-6 mb-3">
                                 <h5 class="tiitle_products">
                                     <img class="icon_product" src="{{ asset('assets/media/icons/en-stock.png.webp') }}" alt="">
-                                    Stock :
+                                    Stock
                                 </h5>
                                 <p class="subtitle_products">{{$producto->stock}}</p>
                             </div>

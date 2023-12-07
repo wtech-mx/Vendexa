@@ -47,10 +47,12 @@
     position: relative;
     overflow: hidden;
     height: 140%;
-    background: #577590;
+    background: #577590b0;
     border-radius: 19px;
     padding: 0;
 }
+
+
 
 
 .modal_bg::before {

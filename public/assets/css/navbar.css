@@ -99,6 +99,10 @@
     transition: 0.01ms;
   }
 
+  .enlace_sidebar{
+    text-decoration: none;
+  }
+
   .navigation #nav li:hover {
     color: #fff;
   }

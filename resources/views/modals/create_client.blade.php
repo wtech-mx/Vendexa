@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="col-2">
-                        <a class="input-group-text span_custom_primary_dark mt-3" data-bs-dismiss="modal">
+                        <a class="input-group-text span_custom_primary_dark mt-3" data-bs-dismiss="modal" style="margin-right: 0rem!important;">
                             <img class="icon_span_form" src="{{ asset('assets/media/icons/close_white.webp') }}" alt="" >
                         </a>
                     </div>
