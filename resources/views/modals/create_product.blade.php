@@ -18,9 +18,9 @@
                     </div>
 
                     <div class="col-2">
-                        <button class="input-group-text span_custom_primary_dark mt-3" data-bs-dismiss="modal">
+                        <a class="input-group-text span_custom_primary_dark mt-3" data-bs-dismiss="modal">
                             <img class="icon_span_form" src="{{ asset('assets/media/icons/close_white.webp') }}" alt="" >
-                        </button>
+                        </a>
                     </div>
                 </div>
 

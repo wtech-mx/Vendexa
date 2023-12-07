@@ -58,7 +58,7 @@
 
 .icon_span_form{
     padding: 5px;
-    width: 35px;
+    width: 30px;
 }
 
 .label_custom_primary_Dark{
@@ -253,4 +253,12 @@
     width: 15px;
     height: auto;
     margin-left: 10px;
+}
+
+.subtittle_clientes {
+    color: #162440;
+    font-family: Lexend;
+    font-weight: 400;
+    font-size: 25px;
+    text-shadow: 3px 5px 10px rgb(2 2 2 / 19%);
 }

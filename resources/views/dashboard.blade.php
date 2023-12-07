@@ -68,7 +68,7 @@
 
     {{-- Cards del menu de opciones --}}
 
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 my-auto">
+    <div class="my-auto col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 ss">
 
         <div class="section cards_dash row">
 

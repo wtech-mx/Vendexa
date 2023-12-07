@@ -4,7 +4,7 @@
 
 <section class="dashboard bg_dash row">
 
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 my-auto">
 
         <div class="border_card_header">
 
@@ -68,7 +68,7 @@
 
     {{-- Cards del menu de opciones --}}
 
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 my-auto">
 
         <div class="section cards_dash row">
 
@@ -149,7 +149,7 @@
 
                     <a href="" class="btn_primary_blue_dash">Acceder </a>
 
-                    <a href="" class="btn_plus_dash">
+                    <a type="button" class="btn_plus_dash" data-bs-toggle="modal" data-bs-target="#creatClient">
                         <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
                     </a>
 
@@ -201,9 +201,6 @@
         </div>
 
     </div>
-
-
-
 
 </section>
 
