@@ -25,13 +25,14 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     Route::get('/home', 'HomeController@index')->name('home');
 
+    Route::get('/scanner', 'ScannerController@index')->name('home');
+
     // =============== M O D U L O   P R O D U C T O S ===============================
     Route::get('/productos', 'ProductosController@index')->name('productos.index');
     Route::post('/productos/store', 'ProductosController@store')->name('productos.store');
     Route::patch('/productos/update/{id}', 'ProductosController@update')->name('productos.update');
 
  });
-
 
 Route::get('caja', function () {
     return view('caja.index');

@@ -105,12 +105,11 @@
 
                     <h6 class="tittle_card_dash text-center mt-3 mb-3">Scanner</h6>
 
-                    <a href="" class="btn_primary_blue_dash">Acceder </a>
+                    <div class="d-flex justify-content-center">
+                        <a href="" class="btn_primary_blue_dash">Acceder </a>
+                    </div>
 
-                    <a href="" class="btn_plus_dash">
-                        <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
-                    </a>
-
+                    </p>
                 </div>
             </div>
 

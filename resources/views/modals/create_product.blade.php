@@ -84,7 +84,7 @@
                 <div class="row mb-3 " id="contentEscanearCodigo" style="display: none;">
 
                     <div class="form-group col-12 mb-3 ">
-                        <div style="width: 500px" id="reader"></div>
+                            <div style="width: 415px" id="reader"></div>
                     </div>
 
 
@@ -640,7 +640,7 @@
                 console.console.log(errorMessage);
             }
 
-            var html5QrcodeScanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 200 });
+            var html5QrcodeScanner = new Html5QrcodeScanner("reader", { fps: 15, qrbox: 250 });
             html5QrcodeScanner.render(onScanSuccess, onScanError);
 
             document.getElementById('resetScannerBtn').addEventListener('click', () => {
