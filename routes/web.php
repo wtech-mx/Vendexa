@@ -13,22 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('dashboard', function () {
-    return view('dashboard');
-});
-
-Route::get('products', function () {
-    return view('products.index');
-});
-
-// =============== M O D U L O   P R O D U C T O S ===============================
-Route::get('/productos/index', [App\Http\Controllers\ProductosController::class, 'index'])->name('productos.index');
-Route::post('/productos/store', [App\Http\Controllers\ProductosController::class, 'store'])->name('productos.store');
-Route::patch('/productos/update/{id}', [App\Http\Controllers\ProductosController::class, 'update'])->name('productos.update');
-
-Route::get('caja', function () {
-    return view('caja.index');
-});
+Auth::routes();
 
 
 Route::get('/', function () {
@@ -36,6 +21,23 @@ Route::get('/', function () {
 });
 
 
-Auth::routes();
+Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], function () {
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    // =============== M O D U L O   P R O D U C T O S ===============================
+    Route::get('/productos', 'ProductosController@index')->name('productos.index');
+    Route::post('/productos/store', 'ProductosController@store')->name('productos.store');
+    Route::patch('/productos/update/{id}', 'ProductosController@update')->name('productos.update');
+
+ });
+
+
+Route::get('caja', function () {
+    return view('caja.index');
+});
+
+
+
+
+

@@ -40,7 +40,7 @@
 
         <ul id="nav">
 
-            <a href="" class="enlace_sidebar">
+            <a href="{{ route('home') }}" class="enlace_sidebar">
                 <li class="li_navbar">
                     Panel <img class="icon_navbar" src="{{ asset('assets/media/icons/home.webp') }}" alt="">
                 </li>
