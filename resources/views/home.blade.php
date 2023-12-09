@@ -106,7 +106,9 @@
                     <h6 class="tittle_card_dash text-center mt-3 mb-3">Scanner</h6>
 
                     <div class="d-flex justify-content-center">
-                        <a href="" class="btn_primary_blue_dash">Acceder </a>
+                        <a type="button" class="btn_primary_blue_dash" data-bs-toggle="modal" data-bs-target="#show_Scanner">
+                            Acceder
+                        </a>
                     </div>
 
                     </p>

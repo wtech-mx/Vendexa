@@ -83,7 +83,7 @@
 
                 <div class="row mb-3 " id="contentEscanearCodigo" style="display: none;">
 
-                    <div class="form-group col-12 mb-3 px-5">
+                    <div class="form-group col-12 mb-3 px-5 ">
                             <div style="width: 415px" id="reader"></div>
                     </div>
 
