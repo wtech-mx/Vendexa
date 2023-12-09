@@ -83,7 +83,7 @@
 
                 <div class="row mb-3 " id="contentEscanearCodigo" style="display: none;">
 
-                    <div class="form-group col-12 mb-3 ">
+                    <div class="form-group col-12 mb-3 px-5">
                             <div style="width: 415px" id="reader"></div>
                     </div>
 
@@ -95,7 +95,7 @@
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/code_barras.webp') }}" alt="" >
                             </span>
 
-                            <input id="skuInputScanner" name="sku_scanner" type="number" class="form-control input_custom_primary_dark @error('sku_scanner') is-invalid @enderror" value="{{ old('sku_scanner') }}" autocomplete="" autofocus>
+                            <input id="skuInputScanner" name="sku_scanner" type="text" class="form-control input_custom_primary_dark @error('sku_scanner') is-invalid @enderror" value="{{ old('sku_scanner') }}" autocomplete="" autofocus>
                         </div>
                     </div>
 
@@ -560,7 +560,6 @@
                     });
 
             }
-
 
             const radioSiMayo = document.getElementById('radioSiMayo');
             const radioNoMayo = document.getElementById('radioNoMayo');

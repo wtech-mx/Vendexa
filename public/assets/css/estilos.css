@@ -109,3 +109,30 @@
     color: #fff;
 }
 
+
+.float{
+	position:fixed;
+	width:40px;
+	height:40px;
+	bottom:40px;
+	right:40px;
+	background-color:#577590;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+    font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+    z-index:100;
+    border: solid 3px#fff;
+}
+
+.my-float{
+	margin-top:16px;
+}
+
+.icon_float_scanner{
+    width: 20px;
+    position: absolute;
+    left: 21%;
+    top: 21%;}
+
