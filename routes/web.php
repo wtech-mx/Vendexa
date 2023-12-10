@@ -21,12 +21,15 @@ Route::get('/', function () {
 });
 
 
+
+
 Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::get('/scanner', 'ScannerController@index')->name('scanner.index');
     Route::get('/orders', 'OrdersController@index')->name('orders.index');
+    Route::get('/orders/ticket', 'OrdersController@show')->name('orders.show');
 
 
     // =============== M O D U L O   P R O D U C T O S ===============================

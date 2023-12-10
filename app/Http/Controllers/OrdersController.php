@@ -32,4 +32,10 @@ class OrdersController extends Controller
 
     }
 
+    public function show(){
+
+        return view('orders.show');
+
+    }
+
 }
