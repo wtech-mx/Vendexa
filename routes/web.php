@@ -37,11 +37,11 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::post('/productos/store', 'ProductosController@store')->name('productos.store');
     Route::patch('/productos/update/{id}', 'ProductosController@update')->name('productos.update');
 
+    // =============== M O D U L O   C A J A ===============================
+    Route::get('/caja', 'CajaController@index')->name('caja.index');
+    Route::post('/agregar-al-carrito', 'CajaController@agregarAlCarrito')->name('agregar.al.carrito');
+    Route::get('/obtener-datos-producto/{id}', 'CajaController@obtenerDatosProducto');
  });
-
-Route::get('caja', function () {
-    return view('caja.index');
-});
 
 
 
