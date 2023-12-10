@@ -25,7 +25,9 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/scanner', 'ScannerController@index')->name('home');
+    Route::get('/scanner', 'ScannerController@index')->name('scanner.index');
+    Route::get('/orders', 'OrdersController@index')->name('orders.index');
+
 
     // =============== M O D U L O   P R O D U C T O S ===============================
     Route::get('/productos', 'ProductosController@index')->name('productos.index');
