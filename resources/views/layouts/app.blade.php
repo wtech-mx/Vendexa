@@ -32,6 +32,9 @@
     <!-- Sweetalert2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.1/dist/sweetalert2.min.css">
 
+    <!-- Select2  -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     @yield('css_custom')
 
 </head>
@@ -55,8 +58,6 @@
         </div>
 
     </div>
-
-        @include('modals.create_product')
         @include('modals.create_client')
         @include('modals.show_scanner')
 
@@ -79,6 +80,9 @@
 
         <!-- Sweetalert2 -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.1/dist/sweetalert2.all.min.js"></script>
+
+        <!-- Select2  -->
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
         @yield('js_custom')
 
