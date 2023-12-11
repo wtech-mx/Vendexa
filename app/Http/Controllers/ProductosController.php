@@ -32,8 +32,7 @@ class ProductosController extends Controller
         return view('products.index', compact('proveedores', 'marcas', 'categorias', 'subcategorias', 'productos', 'modoficaciones_productos'));
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
 
         $validator = Validator::make($request->all(), [
             'nombre' => 'required',
@@ -95,7 +94,7 @@ class ProductosController extends Controller
         $producto = new Productos;
         $producto->nombre = $request->get('nombre');
         $producto->descripcion = $request->get('descripcion');
-        $producto->sku = $sku;
+        $producto->sku = $sku.'_'.$user->id_empresa;
         $producto->id_proveedor = $request->get('id_proveedor');
         $producto->codigo_proveedor = $request->get('codigo_proveedor');
         $producto->stock = $request->get('stock');
@@ -114,7 +113,7 @@ class ProductosController extends Controller
 
         if ($request->hasFile("imagen_principal")) {
             $file = $request->file('imagen_principal');
-            $path = public_path() . '/imagen_principal';
+            $path = public_path() . '/imagen_principal/empresa'.auth()->user()->id_empresa;
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $producto->imagen_principal = $fileName;

@@ -14,20 +14,20 @@ class CajaController extends Controller
         $productos = Productos::where('id_empresa', $user)->get();
         $clientes = Clientes::where('id_empresa', $user)->get();
 
-        return view('caja.index', compact('productos', 'clientes'));
+        return view('caja.index', compact('productos', 'clientes', 'user'));
     }
 
     public function agregarAlCarrito(Request $request)
     {
-        $producto = Productos::find($request->get('producto_id'));
+        $codigo = $request->input('codigo');
+        $producto = Productos::find($codigo);
 
-        return response()->json(['producto' => $producto, 'mensaje' => 'Producto añadido al carrito']);
-    }
+        if ($producto) {
+            $datosProducto = $producto->toArray();
 
-    public function obtenerDatosProducto($id)
-    {
-        $producto = Productos::find($id);
-
-        return response()->json(['producto' => $producto]);
+            return response()->json($datosProducto);
+        } else {
+            return response()->json(['nombre' => 'Producto no encontrado']);
+        }
     }
 }

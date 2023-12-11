@@ -21,12 +21,12 @@ return new class extends Migration
                 ->references('id')->on('categorias')
                 ->inDelete('set null');
 
-            $table->unsignedBigInteger('id_subcategoria');
+            $table->unsignedBigInteger('id_subcategoria')->nullable();
             $table->foreign('id_subcategoria')
                 ->references('id')->on('subcategorias')
-                ->inDelete('set null')->nullable();
+                ->inDelete('set null');
 
-            $table->unsignedBigInteger('id_marca');
+            $table->unsignedBigInteger('id_marca')->nullable();
             $table->foreign('id_marca')
                 ->references('id')->on('marcas')
                 ->inDelete('set null');
@@ -40,13 +40,13 @@ return new class extends Migration
             $table->string('unidad_venta')->nullable();
             $table->float('stock')->nullable();
             $table->text('imagen_principal')->nullable();
-            $table->string('clave_sat')->nullable();
-            $table->string('sku')->nullable();
-            $table->string('costo')->nullable();
+            $table->text('clave_sat')->nullable();
+            $table->string('sku')->unique();
+            $table->float('costo')->nullable();
             $table->string('visibilidad_estatus')->nullable();
-            $table->string('precio_normal')->nullable();
-            $table->string('precio_mayo')->nullable();
-            $table->string('precio_descuento')->nullable();
+            $table->float('precio_normal')->nullable();
+            $table->float('precio_mayo')->nullable();
+            $table->float('precio_descuento')->nullable();
             $table->date('fecha_inicio_desc')->nullable();
             $table->date('fecha_fin_desc')->nullable();
 
