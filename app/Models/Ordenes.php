@@ -29,10 +29,18 @@ class Ordenes extends Model
     }
     public function User()
     {
-        return $this->belongsTo(Users::class, 'id_user');
+        return $this->belongsTo(User::class, 'id_user');
     }
     public function Empresa()
     {
         return $this->belongsTo(Empresas::class, 'id_empresa');
+    }
+    public function Productos()
+    {
+        return $this->hasMany(OrdenesProductos::class, 'id_orden');
+    }
+    public function Pagos()
+    {
+        return $this->hasMany(OrdenesPagos::class, 'id_orden');
     }
 }

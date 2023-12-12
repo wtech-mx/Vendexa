@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categorias;
 use App\Models\Marcas;
 use App\Models\ModificacionesProductos;
+use App\Models\Ordenes;
 use App\Models\Productos;
 use App\Models\Proveedores;
 use App\Models\SubCategorias;
@@ -20,22 +21,15 @@ class OrdersController extends Controller
     public function index(){
         $user = auth()->user()->id_empresa;
 
+        $ordenes = Ordenes::where('id_empresa', $user)->get();
 
-        $proveedores = Proveedores::where('id_empresa', $user)->get();
-        $user = auth()->user()->id_empresa;
-        $proveedores = Proveedores::where('id_empresa', $user)->get();
-        $marcas = Marcas::where('id_empresa', $user)->get();
-        $categorias = Categorias::where('id_empresa', $user)->get();
-        $subcategorias = SubCategorias::where('id_empresa', $user)->get();
-
-        return view('orders.index', compact('proveedores', 'marcas', 'categorias', 'subcategorias'));
-
+        return view('orders.index', compact('ordenes'));
     }
 
-    public function show(){
+    public function show($id){
+        $orden = Ordenes::find($id);
 
-        return view('orders.show');
-
+        return view('orders.show', compact('orden'));
     }
 
 }

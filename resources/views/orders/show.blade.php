@@ -28,7 +28,7 @@
         <img class="icon_tikcet" src="{{ asset('assets/media/icons/telefono.png.webp') }}" alt="">
 
         <strong>Telefono:</strong>
-         <a href="tel:+525529291962" style="text-decoration: none;color:#577590">5529291962</a>
+         <a href="tel:+525529291962" style="text-decoration: none;color:#577590">{{$orden->Cliente->telefono}}</a>
     </p>
 
     <div class="details row">
@@ -41,7 +41,7 @@
                 <img class="icon_tikcet" src="{{ asset('assets/media/icons/user_predeterminado.webp') }}" alt="">
                 <strong>Cajero</strong>
             </p>
-            <span>josue adrian ramirez hernadnez</span>
+            <span>{{$orden->User->name}}</span>
         </div>
        </div>
 
@@ -51,26 +51,33 @@
                 <img class="icon_tikcet" src="{{ asset('assets/media/icons/distribuidor-imageonline.co-1952752.webp') }}" alt="">
                 <strong>Cliente</strong>
             </p>
-            <span>Pablo sandobal barros </span>
+            <span>{{$orden->Cliente->nombre}}</span>
         </div>
        </div>
 
        {{-- productos --}}
+       @foreach ($orden->Productos as $producto)
+       <div class="col-2">
+            <div class="item">
+                <span>Cantidad</span>
+                <p><strong>{{$producto->cantidad}}</strong></p>
+            </div>
+        </div>
 
-       <div class="col-8">
-        <div class="item">
-            <span>Producto</span>
-            <p><strong>Palanca de cambios</strong></p>
-         </div>
-       </div>
+        <div class="col-7">
+            <div class="item">
+                <span>Producto</span>
+                <p><strong>{{$producto->Productos->nombre}}</strong></p>
+            </div>
+        </div>
 
-       <div class="col-4">
-        <div class="item">
-            <span>Precio</span>
-            <p><strong>$500.0</strong></p>
-         </div>
-       </div>
-
+        <div class="col-3">
+            <div class="item">
+                <span>Subtotal</span>
+                <p><strong>${{$producto->subtotal}}.00</strong></p>
+            </div>
+        </div>
+       @endforeach
         {{-- Metodos de pago --}}
 
         <div class="col-12 col-md-8 col-lg-8 ">
@@ -80,13 +87,19 @@
                 <div class="col-12">
                     <img class="icon_tikcet" src="{{ asset('assets/media/icons/metodo-de-pago.webp') }}" alt="">
                     <span>Metodo Pago</span>
-                    <p><strong>Tarjeta</strong></p>
+                    @foreach ($orden->Pagos as $pago)
+                     <p><strong>
+                            {{ $pago->metodo_pago }}
+                     </strong></p>
+                     @endforeach
                 </div>
 
                 <div class="col-6">
                     <img class="icon_tikcet" src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="">
                     <span>Descuento</span>
-                    <p><strong>10 %</strong></p>
+                    <p><strong>
+                        {{$orden->descuento}}
+                    </strong></p>
                 </div>
 
                 <div class="col-6">
