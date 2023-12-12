@@ -23,6 +23,8 @@ return new class extends Migration
             $table->float('total')->nullable();
             $table->float('restante')->nullable();
             $table->text('comentario')->nullable();
+            $table->text('tipo_desc')->nullable();
+            $table->float('descuento')->nullable();
 
             $table->unsignedBigInteger('id_empresa');
             $table->foreign('id_empresa')

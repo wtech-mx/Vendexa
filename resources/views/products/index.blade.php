@@ -70,7 +70,7 @@
                     <div class="card_prodcuto" style="border: solid 3px red;border-radius: 12px;">
                         <div class="card_container_img">
                             <p class="text-center mb-0">
-                                <img class="img_portada_product" src="{{ asset('imagen_principal/'.$producto->imagen_principal) }}" alt="">
+                                <img class="img_portada_product" src="{{ asset('imagen_principal/empresa'.auth()->user()->id_empresa.'/'.$producto->imagen_principal) }}" alt="">
                             </p>
                         </div>
 

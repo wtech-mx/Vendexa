@@ -32,6 +32,9 @@
     <!-- Sweetalert2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.1/dist/sweetalert2.min.css">
 
+    <!-- Select2  -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     @yield('css_custom')
 
 </head>
@@ -41,49 +44,7 @@
         <div id="burgerBtn"></div>
 
         <ul id="nav">
-
-            <a href="{{ route('home') }}" class="enlace_sidebar">
-                <li class="li_navbar">
-                    Panel <img class="icon_navbar" src="{{ asset('assets/media/icons/home.webp') }}" alt="">
-                </li>
-            </a>
-
-            <a href="" class="enlace_sidebar">
-                <li class="li_navbar">
-                    Caja <img class="icon_navbar" src="{{ asset('assets/media/icons/puntoventa.webp') }}" alt="">
-                </li>
-            </a>
-
-            <a href="" class="enlace_sidebar">
-                <li class="li_navbar">
-                    Scanner <img class="icon_navbar" src="{{ asset('assets/media/icons/scanner.webp') }}" alt="">
-                </li>
-             </a>
-
-            <a href="{{ route('productos.index') }}" class="enlace_sidebar">
-                <li class="li_navbar">
-                    Productos  <img class="icon_navbar" src="{{ asset('assets/media/icons/carrito.webp') }}" alt="">
-                </li>
-            </a>
-
-            <a href="" class="enlace_sidebar">
-                <li class="li_navbar">
-                    Clientes <img class="icon_navbar" src="{{ asset('assets/media/icons/clientes.webp') }}" alt="">
-                </li>
-             </a>
-
-            <a href="" class="enlace_sidebar">
-                <li class="li_navbar">
-                    Reportes <img class="icon_navbar" src="{{ asset('assets/media/icons/resultado.webp') }}" alt="">
-                </li>
-                </a>
-
-            <a href="" class="enlace_sidebar">
-                <li class="li_navbar">
-                    Comisiones <img class="icon_navbar" src="{{ asset('assets/media/icons/comisiones.webp') }}" alt="">
-                </li>
-            </a>
-
+            @include('layouts.menu_items')
         </ul>
 
         <div id="mobileBodyContent">
@@ -97,8 +58,6 @@
         </div>
 
     </div>
-
-        @include('modals.create_product')
         @include('modals.create_client')
         @include('modals.show_scanner')
 
@@ -121,6 +80,9 @@
 
         <!-- Sweetalert2 -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.1/dist/sweetalert2.all.min.js"></script>
+
+        <!-- Select2  -->
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
         @yield('js_custom')
 

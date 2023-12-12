@@ -18,11 +18,11 @@ return new class extends Migration
                 ->references('id')->on('ordenes')
                 ->inDelete('set null');
 
-            $table->integer('monto');
-            $table->integer('dinero_recibido');
-            $table->integer('cambio');
-            $table->integer('metodo_pago');
-            $table->integer('comprobante')->nullable();
+            $table->float('monto')->nullable();
+            $table->float('dinero_recibido');
+            $table->float('cambio');
+            $table->text('metodo_pago');
+            $table->text('comprobante')->nullable();
             $table->date('fecha');
             $table->timestamps();
         });

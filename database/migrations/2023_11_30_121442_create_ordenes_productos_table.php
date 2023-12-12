@@ -28,6 +28,8 @@ return new class extends Migration
             $table->float('precio');
             $table->float('subtotal');
             $table->date('fecha');
+            $table->text('tipo_desc')->nullable();
+            $table->float('descuento')->nullable();
             $table->timestamps();
         });
     }

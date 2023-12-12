@@ -84,7 +84,7 @@
 
                     <h6 class="tittle_card_dash text-center mt-3 mb-3">Caja</h6>
 
-                    <a href="" class="btn_primary_blue_dash">Acceder </a>
+                    <a href="{{ route('caja.index') }}" class="btn_primary_blue_dash">Acceder </a>
 
                     <a href="" class="btn_plus_dash">
                         <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
@@ -128,6 +128,27 @@
                     <h6 class="tittle_card_dash text-center mt-3 mb-3">Productos</h6>
 
                     <a href="{{ route('productos.index') }}" class="btn_primary_blue_dash">Acceder </a>
+
+                    <a type="button" class="btn_plus_dash" data-bs-toggle="modal" data-bs-target="#creatProduct">
+                        <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
+                    </a>
+                    @include('modals.create_product')
+                </div>
+            </div>
+
+            <div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center">
+                <div class="card_dashboard p-2">
+
+                    <div class="card_img">
+                        <a href="">
+                            <img class="img_icon_dash" src="{{ asset('assets/media/icons/validando-billete.webp') }}" alt="">
+                        </a>
+                    </div>
+
+
+                    <h6 class="tittle_card_dash text-center mt-3 mb-3">Ordenes</h6>
+
+                    <a href="{{ route('orders.index') }}" class="btn_primary_blue_dash">Acceder </a>
 
                     <a type="button" class="btn_plus_dash" data-bs-toggle="modal" data-bs-target="#creatProduct">
                         <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">

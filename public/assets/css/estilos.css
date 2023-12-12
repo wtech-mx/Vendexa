@@ -3,6 +3,20 @@
     src: url('/assets/media/fonts/Lexend/Lexend-VariableFont_wght.ttf');
  }
 
+ .modal-backdrop.show {
+    opacity: 0!important;
+}
+
+.modal-backdrop {
+ z-index: 10!important;
+}
+
+.modal.show{
+    display: block;
+    background: #162440a8;
+    backdrop-filter: blur(1.5px);
+}
+
  .tiitle_modal_dark{
     color: #162440 !important;
     font-family: Lexend;
