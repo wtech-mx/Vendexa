@@ -20,6 +20,9 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/caja_old', function () {
+    return view('caja.index_old');
+});
 
 
 
