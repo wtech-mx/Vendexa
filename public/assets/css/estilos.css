@@ -148,5 +148,10 @@
     width: 20px;
     position: absolute;
     left: 21%;
-    top: 21%;}
+    top: 21%;
+}
+
+.espaciosnullcols{
+    padding: 0!important;
+}
 

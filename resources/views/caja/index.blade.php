@@ -82,7 +82,7 @@
                 </div>
 
                 <div class="form-group col-3 px-2 py-2">
-                    <label for="name" class="label_custom_primary_product_white mb-4">Agregar</label>
+                    <label for="name" class="label_custom_primary_product_white mb-4 d-block">Agregar</label>
                     <a class="btn_collapse_caja" data-bs-toggle="collapse" href="#collapseNewClient" role="button" aria-expanded="false" aria-controls="collapseNewClient">
                         <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
                     </a>
@@ -446,8 +446,8 @@
                     // =============== D A T O S  P R O D U C T O ===============================
                     const nombreDiv = document.createElement("div");
                     nombreDiv.classList.add("col-4");
+                    nombreDiv.classList.add("espaciosnullcols");
                     nombreDiv.innerHTML = `
-                        <div style="padding:5px;">
                             <h5 class="tiitle_search_caja text-left">Nombre:</h5>
                             <h6 class="subtittle_search_caja mb-3   ">${response.nombre}</h6>
                             <p class="items_search_caja" style="margin:5px;">
@@ -463,12 +463,12 @@
                                     <img class="img_portada_product" src="{{ asset('imagen_principal/empresa') }}${user}/${response.imagen_principal}" alt="">
                                 </p>
                             </div>
-                        </div>
                     `;
 
                     // =============== P R E C I O ===============================
                     const precioDiv = document.createElement("div");
                     precioDiv.classList.add("col-4");
+                    precioDiv.classList.add("espaciosnullcols");
                     precioDiv.innerHTML = `
                         <label for="name" class="tiitle_search_caja_items mb-2">Precio</label>
                         <div class="input-group mb-3">
@@ -483,11 +483,13 @@
                     // =============== C A N T I D A D ===============================
                     const cantidadDiv = document.createElement("div");
                     cantidadDiv.classList.add("col-4");
+                    cantidadDiv.classList.add("espaciosnullcols");
+
                     cantidadDiv.innerHTML = `
                         <label for="name" class="tiitle_search_caja_items mb-2">Cantidad</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text span_custom_tab" >
-                                <img class="icon_caja_item" src="{{ asset('assets/media/icons/etiqueta-del-precio.webp') }}" alt="" >
+                                <img class="icon_caja_item" src="{{ asset('assets/media/icons/retail.webp') }}" alt="" >
                             </span>
                             <label for="name" class="tiitle_search_caja_items mb-2">-</label>
 
@@ -547,7 +549,8 @@
 
                     // =============== S U B T O T A L ===============================
                     const subtotalDiv = document.createElement("div");
-                    subtotalDiv.classList.add("col-4");
+                    subtotalDiv.classList.add("col-sm-12");
+                    subtotalDiv.classList.add("col-12");
                     subtotalDiv.innerHTML = `
                         <label for="name" class="tiitle_search_caja_items mb-2">Subtotal</label>
                         <div class="input-group mb-3">
