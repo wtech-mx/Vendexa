@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     // =============== M O D U L O   C A J A ===============================
     Route::get('/caja', 'CajaController@index')->name('caja.index');
     Route::get('/agregar-al-carrito', 'CajaController@agregarAlCarrito')->name('agregar.al.carrito');
+    Route::post('/caja/store', 'CajaController@store')->name('caja.store');
  });
 
 

@@ -253,7 +253,7 @@ class ProductosController extends Controller
 
         if ($request->hasFile("imagen_principal")) {
             $file = $request->file('imagen_principal');
-            $path = public_path() . '/imagen_principal';
+            $path = public_path() . '/imagen_principal/empresa'.auth()->user()->id_empresa;
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $producto->imagen_principal = $fileName;

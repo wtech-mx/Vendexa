@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('telefono')->nullable();
             $table->string('correo')->nullable();
-            
-            $table->unsignedBigInteger('id_direccion');
+
+            $table->unsignedBigInteger('id_direccion')->nullable();
             $table->foreign('id_direccion')
                 ->references('id')->on('direcciones')
                 ->inDelete('set null');
