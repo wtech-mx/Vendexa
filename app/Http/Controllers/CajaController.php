@@ -24,7 +24,7 @@ class CajaController extends Controller
     public function agregarAlCarrito(Request $request)
     {
         $codigo = $request->input('codigo');
-        $producto = Productos::find($codigo);
+        $producto = Productos::where('sku', $codigo)->first();
 
         if ($producto) {
             $datosProducto = $producto->toArray();

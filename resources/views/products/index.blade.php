@@ -39,7 +39,6 @@
                     <img class="icon_search" src="{{ asset('assets/media/icons/filtrar.webp') }}" alt="">
                   </a>
             </div>
-            @include('modals.create_product')
               <div class="collapse" id="collapseFilter">
                 dfsdf
               </div>

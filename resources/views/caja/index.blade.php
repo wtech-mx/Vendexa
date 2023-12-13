@@ -30,7 +30,7 @@
                     <select name="producto_id" id="producto_id" class="form-select d-inline-block producto">
                         <option value="">Seleccione producto</option>
                         @foreach ($productos as $producto)
-                        <option value="{{ $producto->id }}" data-image="{{ asset('imagen_principal/empresa'.auth()->user()->id_empresa.'/'.$producto->imagen_principal) }}">{{ $producto->nombre }}</option>
+                        <option value="{{ $producto->sku }}" data-image="{{ asset('imagen_principal/empresa'.auth()->user()->id_empresa.'/'.$producto->imagen_principal) }}">{{ $producto->nombre }}</option>
                         @endforeach
                     </select>
 
@@ -312,7 +312,6 @@
 @endsection
 
 @section('js_custom')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript">
 
@@ -358,7 +357,7 @@
 
 
 
-    const html5QrcodeScanner = new Html5QrcodeScanner(
+const html5QrcodeScanner = new Html5QrcodeScanner(
         "reader",
 
         { fps: 5, qrbox: {width: 250, height: 250} },
@@ -630,25 +629,6 @@
             }
         });
     }
-
-    // Función para eliminar un producto escaneado
-    // function eliminarProducto() {
-    //     const productoContainer = this.parentNode;
-    //     console.log(productoContainer.querySelector("input[name='id[]']"));
-    //     const productoId = productoContainer.querySelector("input[name='id[]']").value;
-
-    //     // Eliminar el contenedor del producto escaneado de la lista
-    //     productoContainer.remove();
-
-    //     // Eliminar el producto de la lista de productos escaneados
-    //     const index = productosEscaneados.indexOf(productoId);
-    //     if (index > -1) {
-    //         productosEscaneados.splice(index, 1);
-    //     }
-
-    //     // Recalcular los subtotales
-    //     actualizarSumaSubtotales();
-    // }
 
     function eliminarProducto() {
     const productoContainer = this.closest(".producto-container");

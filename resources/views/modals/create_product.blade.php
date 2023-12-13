@@ -260,7 +260,7 @@
                                                 <span class="input-group-text span_custom_tab" >
                                                     <img class="icon_span_tab" src="{{ asset('assets/media/icons/descuento.webp') }}" alt="" >
                                                 </span>
-                                                <input id="precio_descuento" name="precio_descuento" type="text"  class="form-control input_custom_tab @error('precio_descuento') is-invalid @enderror"  value="{{ old('precio_descuento') }}" autocomplete="" autofocus>
+                                                <input id="precio_descuento" name="precio_descuento" type="number"  class="form-control input_custom_tab @error('precio_descuento') is-invalid @enderror"  value="{{ old('precio_descuento') }}" autocomplete="" autofocus>
                                             </div>
                                         </div>
 
@@ -495,9 +495,6 @@
   </div>
 
 @section('js_custom_productos')
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 
   <script>
 

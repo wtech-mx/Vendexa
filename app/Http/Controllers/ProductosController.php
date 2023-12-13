@@ -23,8 +23,13 @@ class ProductosController extends Controller
 
         $productos = Productos::orderBy('created_at', 'desc')->take(10)->get();
         $modoficaciones_productos = ModificacionesProductos::whereMonth('fecha', $mesActual)->get();
+        $user = auth()->user()->id_empresa;
+        $proveedores = Proveedores::where('id_empresa', $user)->get();
+        $marcas = Marcas::where('id_empresa', $user)->get();
+        $categorias = Categorias::where('id_empresa', $user)->get();
+        $subcategorias = SubCategorias::where('id_empresa', $user)->get();
 
-        return view('products.index', compact('productos', 'modoficaciones_productos'));
+        return view('products.index', compact('productos', 'modoficaciones_productos','proveedores', 'marcas', 'categorias', 'subcategorias'));
     }
 
     public function store(Request $request){

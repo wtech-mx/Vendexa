@@ -224,5 +224,5 @@
     </div>
 
 </section>
-
+@include('modals.create_product')
 @endsection
