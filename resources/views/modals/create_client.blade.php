@@ -117,7 +117,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/cero.webp') }}" alt="" >
                             </span>
-                            <input  name="codigo_postal" type="text"  class="form-control input_custom_tab_dark @error('') is-invalid @enderror"  value="{{ old('') }}"  autocomplete="" autofocus>
+                            <input  name="codigo_postal" type="text"  class="form-control input_custom_tab_dark @error('codigo_postal') is-invalid @enderror"  value="{{ old('codigo_postal') }}"  autocomplete="" autofocus>
                         </div>
                     </div>
 
@@ -127,7 +127,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/independencia.webp') }}" alt="" >
                             </span>
-                            <input  name="estado" type="text"  class="form-control input_custom_tab_dark @error('') is-invalid @enderror"  value="{{ old('') }}"  autocomplete="" autofocus>
+                            <input  name="estado" type="text"  class="form-control input_custom_tab_dark @error('estado') is-invalid @enderror"  value="{{ old('estado') }}"  autocomplete="" autofocus>
                         </div>
                     </div>
 
@@ -137,7 +137,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/alcaldia.webp') }}" alt="" >
                             </span>
-                            <input  name="alcaldia" type="text"  class="form-control input_custom_tab_dark @error('') is-invalid @enderror"  value="{{ old('') }}"  autocomplete="" autofocus>
+                            <input  name="alcaldia" type="text"  class="form-control input_custom_tab_dark @error('alcaldia') is-invalid @enderror"  value="{{ old('alcaldia') }}"  autocomplete="" autofocus>
                         </div>
                     </div>
 
@@ -147,7 +147,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/edificios_ciudad.webp') }}" alt="" >
                             </span>
-                            <input  name="estado" type="text"  class="form-control input_custom_tab_dark @error('') is-invalid @enderror"  value="{{ old('') }}"  autocomplete="" autofocus>
+                            <input  name="ciudad" type="text"  class="form-control input_custom_tab_dark @error('ciudad') is-invalid @enderror"  value="{{ old('ciudad') }}"  autocomplete="" autofocus>
                         </div>
                     </div>
 
@@ -157,17 +157,17 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/poste_luz.webp') }}" alt="" >
                             </span>
-                            <input  name="colonia" type="text"  class="form-control input_custom_tab_dark @error('') is-invalid @enderror"  value="{{ old('') }}"  autocomplete="" autofocus>
+                            <input  name="colonia" type="text"  class="form-control input_custom_tab_dark @error('colonia') is-invalid @enderror"  value="{{ old('colonia') }}"  autocomplete="" autofocus>
                         </div>
                     </div>
 
                     <div class="form-group col-6 mb-3 p-2">
-                        <label for="name" class="label_custom_primary_product mb-2">Calle</label>
+                        <label for="name" class="label_custom_primary_product mb-2">Calle y Numero</label>
                         <div class="input-group ">
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/mapa-de-la-ciudad.webp') }}" alt="" >
                             </span>
-                            <input  name="calle_numero" type="text"  class="form-control input_custom_tab_dark @error('') is-invalid @enderror"  value="{{ old('') }}"  autocomplete="" autofocus>
+                            <input  name="calle_numero" type="text"  class="form-control input_custom_tab_dark @error('calle_numero') is-invalid @enderror"  value="{{ old('calle_numero') }}"  autocomplete="" autofocus>
                         </div>
                     </div>
 

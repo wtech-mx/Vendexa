@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Clientes;
 use App\Models\Categorias;
+use App\Models\Direcciones;
 use App\Models\Marcas;
 use App\Models\Ordenes;
 use App\Models\Productos;
@@ -35,12 +36,26 @@ class ClienteController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
+        if($request->get('codigo_postal') != NULL){
+            $direccion = new Direcciones;
+            $direccion->pais = $request->get('ciudad');
+            $direccion->estado = $request->get('estado');
+            $direccion->colonia = $request->get('colonia');
+            $direccion->codigo_postal = $request->get('codigo_postal');
+            $direccion->alcaldia = $request->get('alcaldia');
+            $direccion->calle_numero = $request->get('calle_numero');
+            $direccion->save();
+        }
+
         $user = auth()->user();
 
         $client = new Clientes;
         $client->nombre = $request->get('nombre_cliente') . ' ' . $request->get('apellido_cliente');
         $client->telefono = $request->get('whats_cliente');
         $client->correo = $request->get('email_cliente');
+        if($request->get('codigo_postal') != NULL){
+            $client->id_direccion = $direccion->id;
+        }
         $client->id_user = auth()->user()->id;
         $client->id_empresa = auth()->user()->id_empresa;
         $client->save();
