@@ -288,3 +288,12 @@
     border-left: 0px solid #14213D!important;
     height: 50px!important;
 }
+
+
+@media only screen and (max-width: 390px) {
+
+    .label_custom_primary_product_white{
+        font-size: 16px;
+    }
+}
+

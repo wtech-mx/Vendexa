@@ -545,12 +545,22 @@
                     // Espacios en blanco
 
                     const colEspaciador = document.createElement("div");
-                    colEspaciador.classList.add("col-8");
+                    colEspaciador.classList.add("col-4");
+                    colEspaciador.classList.add("col-sm-4");
+                    colEspaciador.classList.add("col-md-4");
+                    colEspaciador.classList.add("col-lg-4");
+                    colEspaciador.classList.add("col-lg-4");
 
                     // =============== S U B T O T A L ===============================
                     const subtotalDiv = document.createElement("div");
-                    subtotalDiv.classList.add("col-sm-12");
-                    subtotalDiv.classList.add("col-12");
+                    subtotalDiv.classList.add("col-8");
+                    subtotalDiv.classList.add("col-sm-8");
+                    subtotalDiv.classList.add("col-md-8");
+                    subtotalDiv.classList.add("col-lg-8");
+                    subtotalDiv.classList.add("col-lg-8");
+                    subtotalDiv.classList.add("mt-3");
+                    subtotalDiv.classList.add("px-0");
+
                     subtotalDiv.innerHTML = `
                         <label for="name" class="tiitle_search_caja_items mb-2">Subtotal</label>
                         <div class="input-group mb-3">
