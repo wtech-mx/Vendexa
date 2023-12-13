@@ -34,6 +34,8 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::get('/orders', 'OrdersController@index')->name('orders.index');
     Route::get('/orders/ticket/{id}', 'OrdersController@show')->name('orders.show');
 
+    // =============== M O D U L O   C L I E N T E S ===============================
+    Route::post('/clientes/store', 'ClienteController@store')->name('clientes.store');
 
     // =============== M O D U L O   P R O D U C T O S ===============================
     Route::get('/productos', 'ProductosController@index')->name('productos.index');
@@ -44,6 +46,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::get('/caja', 'CajaController@index')->name('caja.index');
     Route::get('/agregar-al-carrito', 'CajaController@agregarAlCarrito')->name('agregar.al.carrito');
     Route::post('/caja/store', 'CajaController@store')->name('caja.store');
+
  });
 
 

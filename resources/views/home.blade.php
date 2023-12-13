@@ -132,7 +132,6 @@
                     <a type="button" class="btn_plus_dash" data-bs-toggle="modal" data-bs-target="#creatProduct">
                         <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
                     </a>
-                    @include('modals.create_product')
                 </div>
             </div>
 

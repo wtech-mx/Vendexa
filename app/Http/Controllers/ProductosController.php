@@ -45,6 +45,7 @@ class ProductosController extends Controller
             'codigo_proveedor' => 'required',
             'id_marca' => 'required',
             'id_categoria' => 'required',
+            'unidad_venta' => 'required',
         ]);
 
         if ($validator->fails()) {

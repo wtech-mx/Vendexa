@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col-12 bg_img_portada mb-4 mt-3">
                         <p class="text-center" style="margin: 0">
-                            <img class="img_portada_product_edit" src="{{ asset('imagen_principal/'.$producto->imagen_principal) }}" alt="">
+                            <img class="img_portada_product_edit" src="{{ asset('imagen_principal/empresa'.auth()->user()->id_empresa.'/'.$producto->imagen_principal) }}" alt="">
                         </p>
                     </div>
                 </div>

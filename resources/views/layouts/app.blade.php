@@ -58,6 +58,8 @@
         </div>
 
     </div>
+
+        @include('modals.create_product')
         @include('modals.create_client')
         @include('modals.show_scanner')
 
@@ -85,6 +87,8 @@
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
         @yield('js_custom')
+        @yield('js_custom_productos')
+        @yield('js_custom2_clientes')
 
 </body>
 
