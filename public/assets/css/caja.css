@@ -138,6 +138,12 @@
     margin-left: 5px;
 }
 
+.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    width: 80%!important;
+    display: inline-block;
+}
+
+
 @media only screen and (max-width: 781px) {
     .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
         width: 62%!important;

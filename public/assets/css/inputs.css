@@ -271,10 +271,10 @@
     text-shadow: 3px 5px 10px rgb(2 2 2 / 19%);
 }
 
-.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+/* .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
     width: 80%!important;
     display: inline-block;
-}
+} */
 
 .select2-container--default .select2-selection--single {
     background-color: #fff!important;

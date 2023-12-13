@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('comentario')->nullable();
             $table->text('tipo_desc')->nullable();
             $table->float('descuento')->nullable();
+            $table->string('factura')->nullable();
 
             $table->unsignedBigInteger('id_empresa');
             $table->foreign('id_empresa')

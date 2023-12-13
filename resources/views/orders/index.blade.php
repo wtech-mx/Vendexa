@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="col-6">
-                            <p class="text_empleado text-end"><strong> #{{$orden->User->email}}</strong></p>
+                            <p class="text_empleado text-end"><strong> #{{$orden->id}}</strong></p>
                         </div>
 
                         <div class="col-12 mb-2">
@@ -112,7 +112,7 @@
 
                         <div class="col-12 mb-2 mt-3">
                             <div class="d-flex justify-content-center">
-                                <a type="button"  class="btn btn-sm btn_edit_prodcut_warning" href="{{ route('orders.show', $orden->id) }}">
+                                <a type="button" target="_blank" class="btn btn-sm btn_edit_prodcut_warning" href="{{ route('orders.show', $orden->id) }}">
                                     Ver Orden <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/validando-billete.webp') }}" alt="">
                                 </a>
                             </div>

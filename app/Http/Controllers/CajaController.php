@@ -62,6 +62,7 @@ class CajaController extends Controller
             $orden->descuento = $request->get('montoDescuento');
             $orden->id_user = auth()->user()->id;
             $orden->id_empresa = auth()->user()->id_empresa;
+            $orden->factura = $request->get('inlineRadioOptions');
             $orden->save();
 
         // G U A R D A R  O R D E N  P A G O
