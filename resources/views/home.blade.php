@@ -177,7 +177,7 @@
                 </div>
             </div>
 
-            <div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center">
+        <!--<div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center">
                 <div class="card_dashboard p-2">
 
                     <div class="card_img">
@@ -186,11 +186,8 @@
                         </a>
                     </div>
 
-
                     <h6 class="tittle_card_dash text-center mt-3 mb-3">Reportes</h6>
-
                     <a href="" class="btn_primary_blue_dash">Acceder </a>
-
                     <a href="" class="btn_plus_dash">
                         <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
                     </a>
@@ -207,17 +204,14 @@
                         </a>
                     </div>
 
-
                     <h6 class="tittle_card_dash text-center mt-3 mb-3">Comisiones</h6>
-
                     <a href="" class="btn_primary_blue_dash">Acceder </a>
-
                     <a href="" class="btn_plus_dash">
                         <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
                     </a>
 
                 </div>
-            </div>
+            </div>-->
 
         </div>
 

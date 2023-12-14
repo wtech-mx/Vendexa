@@ -34,7 +34,7 @@
         Clientes <img class="icon_navbar" src="{{ asset('assets/media/icons/clientes.webp') }}" alt="">
     </li>
  </a>
-
+<!--
 <a href="" class="enlace_sidebar">
     <li class="li_navbar">
         Reportes <img class="icon_navbar" src="{{ asset('assets/media/icons/resultado.webp') }}" alt="">
@@ -46,3 +46,4 @@
         Comisiones <img class="icon_navbar" src="{{ asset('assets/media/icons/comisiones.webp') }}" alt="">
     </li>
 </a>
+-->
