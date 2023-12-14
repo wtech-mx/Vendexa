@@ -7,7 +7,7 @@
 
           <div class="modal-body modal_bg row">
 
-                  <div class="row">
+                  <div class="row" style="margin: 0!important;padding: 0!important;">
                       <div class="col-10">
                           <h2 class="tiitle_modal_dark text-center mt-3">Scanner</h2>
                       </div>
@@ -18,7 +18,7 @@
                           </a>
                       </div>
 
-                      <div class="col-12">
+                      <div class="col-12"  style="margin: 0!important;padding: 0!important;">
                         <div class="accordion accoirdion_scanner px-4" id="accordionScanner">
                             <div class="accordion-item acoriden_items mb-2">
                               <h2 class="accordion-header accordeon_scanner_header">
@@ -32,7 +32,7 @@
                                 </button>
                               </h2>
                               <div id="collapseProducts" class="accordion-collapse collapse show" data-bs-parent="#accordionScanner">
-                                <div class="accordion-body">
+                                <div class="accordion-body" style="margin: 0!important;padding: 0!important;">
                                     <div style="width: 500px" id="reader_search"></div>
                                 </div>
                                 <div class="row">
