@@ -17,12 +17,7 @@ class ScannerController extends Controller
 
         $producto = Productos::where('sku', '=', $request->search)->first();
 
-        $producto_data = [
-            "nombre" => $producto->nombre,
-            "stock" => $producto->stock,
-            "precio" => $producto->precio_normal,
-            "sku" => $producto->sku,
-        ];
+        $producto_data = $producto->toArray();
 
         return response()->json(['success' => true, 'producto_data' => $producto_data]);
     }
