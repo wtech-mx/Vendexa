@@ -29,7 +29,7 @@
     </li>
 </a>
 
-<a href="" class="enlace_sidebar">
+<a href="{{ route('clientes.index') }}" class="enlace_sidebar">
     <li class="li_navbar">
         Clientes <img class="icon_navbar" src="{{ asset('assets/media/icons/clientes.webp') }}" alt="">
     </li>

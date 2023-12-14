@@ -20,6 +20,11 @@ class ClienteController extends Controller
 
     public function index(){
 
+        $user = auth()->user()->id_empresa;
+
+        $clientes = Clientes::where('id_empresa', $user)->get();
+
+        return view('clientes.index', compact('clientes'));
     }
 
     public function store(Request $request){

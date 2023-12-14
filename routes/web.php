@@ -31,6 +31,9 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::get('/scanner', 'ScannerController@index')->name('scanner.index');
+
+    Route::get('/clientes', 'ClienteController@index')->name('clientes.index');
+
     Route::get('/orders', 'OrdersController@index')->name('orders.index');
     Route::get('/orders/ticket/{id}', 'OrdersController@show')->name('orders.show');
 

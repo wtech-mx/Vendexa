@@ -160,7 +160,7 @@
                 <div class="card_dashboard p-2">
 
                     <div class="card_img">
-                        <a href="">
+                        <a href="{{ route('clientes.index') }}">
                             <img class="img_icon_dash" src="{{ asset('assets/media/icons/clientes.webp') }}" alt="">
                         </a>
                     </div>
@@ -168,7 +168,7 @@
 
                     <h6 class="tittle_card_dash text-center mt-3 mb-3">Clientes</h6>
 
-                    <a href="" class="btn_primary_blue_dash">Acceder </a>
+                    <a href="{{ route('clientes.index') }}" class="btn_primary_blue_dash">Acceder </a>
 
                     <a type="button" class="btn_plus_dash" data-bs-toggle="modal" data-bs-target="#creatClient">
                         <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
