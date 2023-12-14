@@ -58,7 +58,7 @@
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 col-xxl-6 z-1">
-        <form id="miFormulario" class="row" method="POST" action="{{route('caja.store')}}" enctype="multipart/form-data" role="form">
+        <form id="miFormulario" class="row" method="POST" action="{{route('caja.store')}}" enctype="multipart/form-data" role="form" style="margin:0!important;margin-right: -1.5rem!important;">
             @csrf
             <div class="row">
 
@@ -212,7 +212,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-1" id="restanteContainer">>
+                <div class="form-group col-6 px-2 py-1" id="restanteContainer">
                     <label for="name" class="label_custom_primary_product_white mb-2">Restante :</label>
                     <div class="input-group ">
                         <span class="input-group-text span_custom_tab" >
@@ -222,7 +222,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-1" id="cambioContainer">>
+                <div class="form-group col-6 px-2 py-1" id="cambioContainer">
                     <label for="name" class="label_custom_primary_product_white mb-2">Cambio :</label>
                     <div class="input-group ">
                         <span class="input-group-text span_custom_tab" >

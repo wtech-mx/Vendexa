@@ -11,7 +11,7 @@
     </li>
 </a>
 
-<a href="" class="enlace_sidebar">
+<a type="button" class="enlace_sidebar" data-bs-toggle="modal" data-bs-target="#show_Scanner">
     <li class="li_navbar">
         Scanner <img class="icon_navbar" src="{{ asset('assets/media/icons/scanner.webp') }}" alt="">
     </li>
@@ -23,7 +23,7 @@
     </li>
 </a>
 
-<a href="{{ route('productos.index') }}" class="enlace_sidebar">
+<a href="{{ route('orders.index') }}" class="enlace_sidebar">
     <li class="li_navbar">
         Ordenes  <img class="icon_navbar" src="{{ asset('assets/media/icons/validando-billete.webp') }}" alt="">
     </li>
