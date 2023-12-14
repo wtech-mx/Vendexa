@@ -75,6 +75,12 @@
 
                         <div class="row mt-4 px-3">
 
+                            <div class="col-12">
+                                <p class="text-center">
+                                    <img src="data:image/png;base64, {{DNS1D::getBarcodePNG($producto->sku, 'C128', 1.6, 35, array(255, 255, 255), true)}}" >
+                                </p>
+                            </div>
+
                             <div class="col-12 mb-3">
                                 <h5 class="tiitle_products">Nombre</h5>
                                 <p class="subtitle_products">{{$producto->nombre}}</p>

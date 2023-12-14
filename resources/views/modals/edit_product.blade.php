@@ -33,6 +33,10 @@
                         <p class="text-center" style="margin: 0">
                             <img class="img_portada_product_edit" src="{{ asset('imagen_principal/empresa'.auth()->user()->id_empresa.'/'.$producto->imagen_principal) }}" alt="">
                         </p>
+
+                        <p class="text-center">
+                            <img src="data:image/png;base64, {{DNS1D::getBarcodePNG($producto->sku, 'C128', 1.6, 35, array(0, 0, 0), true)}}" >
+                        </p>
                     </div>
                 </div>
 
