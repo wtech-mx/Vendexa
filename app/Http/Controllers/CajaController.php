@@ -9,6 +9,7 @@ use App\Models\OrdenesProductos;
 use App\Models\Productos;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CajaController extends Controller
 {
@@ -36,6 +37,17 @@ class CajaController extends Controller
     }
 
     public function store(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'nombre_cliente' => 'required_if:id_client,null',
+            'apellido_cliente' => 'required_if:id_client,null',
+            'whats_cliente' => 'required_if:id_client,null',
+            'dineroRecibido'=> 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
 
         $fechaActual = Carbon::now();
         // C R E A R  C L I E N T E
@@ -107,7 +119,18 @@ class CajaController extends Controller
 
             OrdenesProductos::insert($insert_data);
 
-        return redirect()->back()
-        ->with('success', 'Caja Creado.');
+            $ticket_data = [
+                "id" => $orden->id,
+                "tipo_desc" => $orden->tipo_desc,
+                "total" => $orden->total,
+                "restante" => $orden->restante,
+                "cambio" =>  $orden_pagos->cambio,
+                "recibido" => $orden_pagos->dinero_recibido,
+                "metodo_pago" => $orden_pagos->metodo_pago,
+            ];
+
+        return response()->json(['success' => true, 'ticket_data' => $ticket_data]);
+
+
     }
 }

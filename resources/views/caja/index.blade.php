@@ -182,7 +182,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-1">
+                <div class="form-group col-6 px-2 py-1" id="comprobanteContainer">
                     <label for="name" class="label_custom_primary_product_white mb-2">Comprobante :</label>
                     <div class="input-group ">
                         <span class="input-group-text span_custom_tab" >
@@ -212,7 +212,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-1">
+                <div class="form-group col-6 px-2 py-1" id="restanteContainer">>
                     <label for="name" class="label_custom_primary_product_white mb-2">Restante :</label>
                     <div class="input-group ">
                         <span class="input-group-text span_custom_tab" >
@@ -222,7 +222,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-1">
+                <div class="form-group col-6 px-2 py-1" id="cambioContainer">>
                     <label for="name" class="label_custom_primary_product_white mb-2">Cambio :</label>
                     <div class="input-group ">
                         <span class="input-group-text span_custom_tab" >
@@ -316,12 +316,34 @@
 <script type="text/javascript">
 
         $(document).ready(function() {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
             $('.cliente').select2();
 
             $('.producto').select2({
                 templateResult: formatOption, // Utiliza la función formatOption para personalizar la presentación
                 templateSelection: formatOption, // Utiliza la función formatOption para personalizar la presentación en la selección
             });
+
+                    // Oculta el campo del comprobante al cargar la página
+                $('#comprobanteContainer').hide();
+
+                // Detecta el cambio en el select de Método de Pago
+                $('#metodo_pago').change(function() {
+                    var selectedOption = $(this).val();
+
+                    // Muestra u oculta el campo del comprobante según la opción seleccionada
+                    if (selectedOption !== 'Efectivo') {
+                        $('#comprobanteContainer').show();
+                    } else {
+                        $('#comprobanteContainer').hide();
+                    }
+                });
 
             // Función para personalizar la presentación de cada opción
             function formatOption(option) {
@@ -353,299 +375,359 @@
                 }
             });
 
-        });
+            $("#miFormulario").on("submit", function (event) {
+                event.preventDefault(); // Evita el envío predeterminado del formulario
 
+                // Realiza la solicitud POST usando AJAX
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    success: async function(response) { // Agrega "async" aquí
+                        // El formulario se ha enviado correctamente, ahora realiza la impresión
+                        saveSuccess(response);
 
+                    },
+                    error: function (xhr, status, error) {
+                            var errors = xhr.responseJSON.errors;
+                            var errorMessage = '';
 
-const html5QrcodeScanner = new Html5QrcodeScanner(
-        "reader",
-
-        { fps: 5, qrbox: {width: 250, height: 250} },
-        { facingMode: "environment" },
-        /* verbose= */ false);
-
-    let escanerHabilitado = true;
-    let productosEscaneados = [];
-
-    html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-
-    function onScanSuccess(result) {
-        if (escanerHabilitado) {
-            console.log(`Producto: ${result}`);
-            mostrarNombreProducto(result);
-
-            escanerHabilitado = false;
-            setTimeout(function () {
-                escanerHabilitado = true;
-            }, 5000);
-
-            const audio = new Audio("{{ asset('assets/media/audio/barras.mp3')}}");
-            audio.play();
-        }
-    }
-
-    document.getElementById('buscarBtn').addEventListener('click', function () {
-        const sku = document.getElementById('producto_id').value;
-        mostrarNombreProducto(sku); // Llamar a la misma función con el SKU
-        const audiosku = new Audio("{{ asset('assets/media/audio/sku_notification.mp3')}}");
-        audiosku.play();
-    });
-
-    function onScanFailure(error) {
-        if (error !== "NotFound") {
-            console.log(`Error al escanear: ${error}`);
-        }
-    }
-
-    function mostrarNombreProducto(codigo) {
-        if (productoYaEscaneado(codigo)) {
-            console.log("Producto duplicado");
-            const audio = new Audio("{{ asset('assets/media/audio/duplicate.mp3')}}");
-            audio.play();
-            return;
-        }
-
-        const url = "{{ route('agregar.al.carrito') }}";
-        const data = { codigo: codigo };
-        var user = {{ $user }};
-
-        const audiomas = new Audio("{{ asset('assets/media/audio/suma.mp3')}}");
-        const audiomenos = new Audio("{{ asset('assets/media/audio/restar.mp3')}}");
-
-        function reproducirSonidoMas() {
-            audiomas.play();
-        }
-
-        function reproducirSonidoMenos() {
-            audiomenos.play();
-        }
-
-        $.ajax({
-            url: url,
-            method: "GET",
-            data: data,
-            success: function (response) {
-                if (response.nombre) {
-                    const productoContainer = document.createElement("div");
-                    productoContainer.classList.add("producto-container");
-                    productoContainer.setAttribute("data-product-id", response.id);
-                    productoContainer.classList.add("bg_productos_search");
-                    productoContainer.classList.add("p-2");
-                    productoContainer.classList.add("mb-3");
-                    productoContainer.classList.add("row");
-
-                    const inputnombreDiv = document.createElement("div");
-                    inputnombreDiv.classList.add("d-none");
-                    inputnombreDiv.innerHTML = `<input type="hidden" name="name[]" value="${response.nombre}">`;
-
-                    const idDiv = document.createElement("div");
-                    idDiv.classList.add("d-none");
-                    idDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>id:</strong></p><input class="form-control" type="hidden" name="id[]" value="${response.id}">`;
-
-                    // =============== D A T O S  P R O D U C T O ===============================
-                    const nombreDiv = document.createElement("div");
-                    nombreDiv.classList.add("col-4");
-                    nombreDiv.classList.add("espaciosnullcols");
-                    nombreDiv.innerHTML = `
-                            <h5 class="tiitle_search_caja text-left">Nombre:</h5>
-                            <h6 class="subtittle_search_caja mb-3   ">${response.nombre}</h6>
-                            <p class="items_search_caja" style="margin:5px;">
-                                <img class="icon_item_Caja" src="{{ asset('assets/media/icons/code_barras.webp') }}" alt="">
-                                <strong>Sku:</strong> ${response.sku}
-                            </p>
-                            <p class="items_search_caja">
-                                <img class="icon_item_Caja" src="{{ asset('assets/media/icons/en-stock.png.webp') }}" alt="">
-                                <strong>Stock:</strong> ${response.stock} ${response.unidad_venta}(s)
-                            </p>
-                            <div class="card_container_img">
-                                <p class="text-center mb-0">
-                                    <img class="img_portada_product" src="{{ asset('imagen_principal/empresa') }}${user}/${response.imagen_principal}" alt="">
-                                </p>
-                            </div>
-                    `;
-
-                    // =============== P R E C I O ===============================
-                    const precioDiv = document.createElement("div");
-                    precioDiv.classList.add("col-4");
-                    precioDiv.classList.add("espaciosnullcols");
-                    precioDiv.innerHTML = `
-                        <label for="name" class="tiitle_search_caja_items mb-2">Precio</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text span_custom_tab" >
-                                <img class="icon_caja_item" src="{{ asset('assets/media/icons/etiqueta-del-precio.webp') }}" alt="" >
-                            </span>
-                            <input class="form-control input_custom_tab_dark" type="number" name="precio[]" value="${response.precio_normal}" readonly>
-                        </div>
-                        <label for="name" class="tiitle_search_caja_items mb-2">Eliminar</label>
-                    `;
-
-                    // =============== C A N T I D A D ===============================
-                    const cantidadDiv = document.createElement("div");
-                    cantidadDiv.classList.add("col-4");
-                    cantidadDiv.classList.add("espaciosnullcols");
-
-                    cantidadDiv.innerHTML = `
-                        <label for="name" class="tiitle_search_caja_items mb-2">Cantidad</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text span_custom_tab" >
-                                <img class="icon_caja_item" src="{{ asset('assets/media/icons/retail.webp') }}" alt="" >
-                            </span>
-                            <label for="name" class="tiitle_search_caja_items mb-2">-</label>
-
-                        </div>
-                    `;
-
-                    const cantidadInput = document.createElement("input");
-                    cantidadInput.classList.add("form-control","input_custom_tab_dark");
-                    cantidadInput.type = "number";
-                    cantidadInput.name = "cantidad[]";
-                    cantidadInput.value = 1;
-
-                    cantidadInput.addEventListener("input", calcularSubtotal); // Usar calcularSubtotal aquí
-
-                    // Obtener el elemento span dentro de cantidadDiv
-                    const spanElement = cantidadDiv.querySelector('.span_custom_tab');
-
-                    // Insertar cantidadInput después del span
-                    spanElement.parentNode.insertBefore(cantidadInput, spanElement.nextSibling);
-
-
-                    // =============== B O T O N E S  I N C R E   D E C R E ===============================
-                    const incrementButton = document.createElement("button");
-                    incrementButton.classList.add("btn", "btn_push_cantidad_mas");
-                    incrementButton.type = "button";
-                    incrementButton.innerHTML = "<img class='img_plus_dash' src='{{ asset('assets/media/icons/anadir_white.webp') }}'>";
-                    incrementButton.onclick = () => {
-                        increment(cantidadInput);
-                        reproducirSonidoMas();
-                        calcularSubtotal();
-                    };
-                    cantidadDiv.appendChild(incrementButton);
-
-                    const decrementButton = document.createElement("button");
-                    decrementButton.classList.add("btn", "btn_push_cantidad_menos");
-                    decrementButton.type = "button";
-                    decrementButton.innerHTML = "<img class='img_plus_dash' src='{{ asset('assets/media/icons/menos.webp') }}'>";
-                    decrementButton.onclick = () => {
-                        decrement(cantidadInput);
-                        reproducirSonidoMenos();
-                        calcularSubtotal();
-                    };
-                    cantidadDiv.appendChild(decrementButton);
-
-                    function increment(input) {
-                        input.stepUp();
+                            // Itera a través de los errores y agrega cada mensaje de error al mensaje final
+                            for (var key in errors) {
+                                if (errors.hasOwnProperty(key)) {
+                                    var errorMessages = errors[key].join('<br>'); // Usamos <br> para separar los mensajes
+                                    errorMessage += '<strong>' + key + ':</strong><br>' + errorMessages + '<br>';
+                                }
+                            }
+                            console.log(errorMessage);
+                            // Muestra el mensaje de error en una SweetAlert
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Faltan Campos',
+                                html: errorMessage, // Usa "html" para mostrar el mensaje con formato HTML
+                            });
                     }
+                });
 
-                    function decrement(input) {
-                        input.stepDown();
+            });
+
+            async function saveSuccess(response) {
+                const ticket_data = response.ticket_data;
+
+                Swal.fire({
+                    title: "Orden Guardada <strong>¡Exitosamente!</strong>",
+                    icon: "success",
+                    html: `<div class='row'><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/gear.webp') }}'><p><strong>Descuento</strong><br>${ticket_data.tipo_desc}</p></div><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/bolsa-de-dinero.webp') }}'><p><strong>Total</strong><br>$ ${ticket_data.total}</p></div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/efectivo.webp') }}'><p><strong>Dinero Recibido</strong><br>$ ${ticket_data.recibido}</p></div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/monedas.webp') }}'><p><strong>Restante</strong><br>$ ${ticket_data.restante}</p></div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/coins.webp') }}'><p><strong>Cambio</strong><br>$ ${ticket_data.cambio}</p></div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/metodo-de-pago.webp') }}'><p><strong>Método de Pago</strong><br>${ticket_data.metodo_pago}</p></div></div>`,
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    confirmButtonText: 'Ver Productos',
+                    cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="/caja" >Cerrar</a>`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Redirige a la ruta con el ticket_data.id
+                        window.open(`/orders/ticket/${ticket_data.id}`, '_blank');
+                         // Recarga la página actual
+                        location.reload();
                     }
+                });
 
-                    // Espacios en blanco
-
-                    const colEspaciador = document.createElement("div");
-                    colEspaciador.classList.add("col-4");
-                    colEspaciador.classList.add("col-sm-4");
-                    colEspaciador.classList.add("col-md-4");
-                    colEspaciador.classList.add("col-lg-4");
-                    colEspaciador.classList.add("col-lg-4");
-
-                    // =============== S U B T O T A L ===============================
-                    const subtotalDiv = document.createElement("div");
-                    subtotalDiv.classList.add("col-8");
-                    subtotalDiv.classList.add("col-sm-8");
-                    subtotalDiv.classList.add("col-md-8");
-                    subtotalDiv.classList.add("col-lg-8");
-                    subtotalDiv.classList.add("col-lg-8");
-                    subtotalDiv.classList.add("mt-3");
-                    subtotalDiv.classList.add("px-0");
-
-                    subtotalDiv.innerHTML = `
-                        <label for="name" class="tiitle_search_caja_items mb-2">Subtotal</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text span_custom_tab span_custom_tab_sub" >
-                                <img class="icon_caja_item" src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="" >
-                            </span>
-                        </div>
-                    `;
-
-                    const subtotalInput = document.createElement("input");
-                    subtotalInput.classList.add("form-control","input_custom_tab_dark");
-                    subtotalInput.type = "number";
-                    subtotalInput.name = "subtotal[]";
-                    subtotalDiv.appendChild(subtotalInput);
-
-                    // Obtener el elemento span dentro de cantidadDiv
-                    const spanElementsub = subtotalDiv.querySelector('.span_custom_tab_sub');
-
-                    // Insertar cantidadInput después del span
-                    spanElementsub.parentNode.insertBefore(subtotalInput, spanElementsub.nextSibling);
-
-                    const precio = parseFloat(response.precio_normal);
-                    subtotalInput.value = (precio * cantidadInput.value).toFixed(2);
-
-                    // =============== E L I M I N A R ===============================
-
-                    const eliminarBtn = document.createElement("a");
-                    eliminarBtn.classList.add("btn", "w-100", "btn_trash_caja", "mt-1");
-                    eliminarBtn.innerHTML = "<img class='icon_caja_item' src='{{ asset('assets/media/icons/borrar.webp') }}'>";
-                    eliminarBtn.addEventListener("click", eliminarProducto);
-                    precioDiv.appendChild(eliminarBtn);
-
-
-                    // =============== M U E S T R A  L O S  I N P U T S  (EL ORDEN ES IMPORTANTE) ===============================
-                    productoContainer.appendChild(idDiv);
-                    productoContainer.appendChild(nombreDiv);
-                    productoContainer.appendChild(inputnombreDiv);
-                    productoContainer.appendChild(precioDiv);
-                    //productoContainer.appendChild(eliminarBtn);
-                    productoContainer.appendChild(cantidadDiv);
-                    productoContainer.appendChild(colEspaciador);
-                    productoContainer.appendChild(subtotalDiv);
-
-                    const listaProductos = document.getElementById("listaProductos");
-                    listaProductos.appendChild(productoContainer);
-
-                    productosEscaneados.push(codigo);
-
-                    // =============== M U E S T R A  L O S  I N P U T S  (EL ORDEN ES IMPORTANTE) ===============================
-                    function calcularSubtotal() {
-                        const precio = parseFloat(precioDiv.querySelector("input[name='precio[]']").value);
-                        const cantidad = parseFloat(cantidadInput.value);
-                        subtotalInput.value = (precio * cantidad).toFixed(2);
-                        actualizarSumaSubtotales();
-                    }
-
-                    cantidadInput.addEventListener("input", calcularSubtotal);
-                    precioDiv.querySelector("input[name='precio[]']").addEventListener("input", calcularSubtotal);
-
-                    actualizarSumaSubtotales();
-                } else {
-                    console.log("Producto no encontrado");
-                }
-            },
-            error: function (error) {
-                console.log(`Error en la petición AJAX: ${error}`);
             }
+
         });
+
+
+    const html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader",
+
+            { fps: 5, qrbox: {width: 250, height: 250} },
+            { facingMode: "environment" },
+            /* verbose= */ false);
+
+        let escanerHabilitado = true;
+        let productosEscaneados = [];
+
+        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+
+        function onScanSuccess(result) {
+            if (escanerHabilitado) {
+                console.log(`Producto: ${result}`);
+                mostrarNombreProducto(result);
+
+                escanerHabilitado = false;
+                setTimeout(function () {
+                    escanerHabilitado = true;
+                }, 5000);
+
+                const audio = new Audio("{{ asset('assets/media/audio/barras.mp3')}}");
+                audio.play();
+            }
+        }
+
+        document.getElementById('buscarBtn').addEventListener('click', function () {
+            const sku = document.getElementById('producto_id').value;
+            mostrarNombreProducto(sku); // Llamar a la misma función con el SKU
+            const audiosku = new Audio("{{ asset('assets/media/audio/sku_notification.mp3')}}");
+            audiosku.play();
+        });
+
+        function onScanFailure(error) {
+            if (error !== "NotFound") {
+                console.log(`Error al escanear: ${error}`);
+            }
+        }
+
+        function mostrarNombreProducto(codigo) {
+            if (productoYaEscaneado(codigo)) {
+                console.log("Producto duplicado");
+                const audio = new Audio("{{ asset('assets/media/audio/duplicate.mp3')}}");
+                audio.play();
+                return;
+            }
+
+            const url = "{{ route('agregar.al.carrito') }}";
+            const data = { codigo: codigo };
+            var user = {{ $user }};
+
+            const audiomas = new Audio("{{ asset('assets/media/audio/suma.mp3')}}");
+            const audiomenos = new Audio("{{ asset('assets/media/audio/restar.mp3')}}");
+
+            function reproducirSonidoMas() {
+                audiomas.play();
+            }
+
+            function reproducirSonidoMenos() {
+                audiomenos.play();
+            }
+
+            $.ajax({
+                url: url,
+                method: "GET",
+                data: data,
+                success: function (response) {
+                    if (response.nombre) {
+                        const productoContainer = document.createElement("div");
+                        productoContainer.classList.add("producto-container");
+                        productoContainer.setAttribute("data-product-id", response.id);
+                        productoContainer.classList.add("bg_productos_search");
+                        productoContainer.classList.add("p-2");
+                        productoContainer.classList.add("mb-3");
+                        productoContainer.classList.add("row");
+
+                        const inputnombreDiv = document.createElement("div");
+                        inputnombreDiv.classList.add("d-none");
+                        inputnombreDiv.innerHTML = `<input type="hidden" name="name[]" value="${response.nombre}">`;
+
+                        const idDiv = document.createElement("div");
+                        idDiv.classList.add("d-none");
+                        idDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>id:</strong></p><input class="form-control" type="hidden" name="id[]" value="${response.id}">`;
+
+                        // =============== D A T O S  P R O D U C T O ===============================
+                        const nombreDiv = document.createElement("div");
+                        nombreDiv.classList.add("col-4");
+                        nombreDiv.classList.add("espaciosnullcols");
+                        nombreDiv.innerHTML = `
+                                <h5 class="tiitle_search_caja text-left">Nombre:</h5>
+                                <h6 class="subtittle_search_caja mb-3   ">${response.nombre}</h6>
+                                <p class="items_search_caja" style="margin:5px;">
+                                    <img class="icon_item_Caja" src="{{ asset('assets/media/icons/code_barras.webp') }}" alt="">
+                                    <strong>Sku:</strong> ${response.sku}
+                                </p>
+                                <p class="items_search_caja">
+                                    <img class="icon_item_Caja" src="{{ asset('assets/media/icons/en-stock.png.webp') }}" alt="">
+                                    <strong>Stock:</strong> ${response.stock} ${response.unidad_venta}(s)
+                                </p>
+                                <div class="card_container_img">
+                                    <p class="text-center mb-0">
+                                        <img class="img_portada_product" src="{{ asset('imagen_principal/empresa') }}${user}/${response.imagen_principal}" alt="">
+                                    </p>
+                                </div>
+                        `;
+
+                        // =============== P R E C I O ===============================
+                        const precioDiv = document.createElement("div");
+                        precioDiv.classList.add("col-4");
+                        precioDiv.classList.add("espaciosnullcols");
+                        precioDiv.innerHTML = `
+                            <label for="name" class="tiitle_search_caja_items mb-2">Precio</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text span_custom_tab" >
+                                    <img class="icon_caja_item" src="{{ asset('assets/media/icons/etiqueta-del-precio.webp') }}" alt="" >
+                                </span>
+                                <input class="form-control input_custom_tab_dark" type="number" name="precio[]" value="${response.precio_normal}" readonly>
+                            </div>
+                            <label for="name" class="tiitle_search_caja_items mb-2">Eliminar</label>
+                        `;
+
+                        // =============== C A N T I D A D ===============================
+                        const cantidadDiv = document.createElement("div");
+                        cantidadDiv.classList.add("col-4");
+                        cantidadDiv.classList.add("espaciosnullcols");
+
+                        cantidadDiv.innerHTML = `
+                            <label for="name" class="tiitle_search_caja_items mb-2">Cantidad</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text span_custom_tab" >
+                                    <img class="icon_caja_item" src="{{ asset('assets/media/icons/retail.webp') }}" alt="" >
+                                </span>
+                                <label for="name" class="tiitle_search_caja_items mb-2">-</label>
+
+                            </div>
+                        `;
+
+                        const cantidadInput = document.createElement("input");
+                        cantidadInput.classList.add("form-control","input_custom_tab_dark");
+                        cantidadInput.type = "number";
+                        cantidadInput.name = "cantidad[]";
+                        cantidadInput.value = 1;
+
+                        cantidadInput.addEventListener("input", calcularSubtotal); // Usar calcularSubtotal aquí
+
+                        // Obtener el elemento span dentro de cantidadDiv
+                        const spanElement = cantidadDiv.querySelector('.span_custom_tab');
+
+                        // Insertar cantidadInput después del span
+                        spanElement.parentNode.insertBefore(cantidadInput, spanElement.nextSibling);
+
+
+                        // =============== B O T O N E S  I N C R E   D E C R E ===============================
+                        const incrementButton = document.createElement("button");
+                        incrementButton.classList.add("btn", "btn_push_cantidad_mas");
+                        incrementButton.type = "button";
+                        incrementButton.innerHTML = "<img class='img_plus_dash' src='{{ asset('assets/media/icons/anadir_white.webp') }}'>";
+                        incrementButton.onclick = () => {
+                            increment(cantidadInput);
+                            reproducirSonidoMas();
+                            calcularSubtotal();
+                        };
+                        cantidadDiv.appendChild(incrementButton);
+
+                        const decrementButton = document.createElement("button");
+                        decrementButton.classList.add("btn", "btn_push_cantidad_menos");
+                        decrementButton.type = "button";
+                        decrementButton.innerHTML = "<img class='img_plus_dash' src='{{ asset('assets/media/icons/menos.webp') }}'>";
+                        decrementButton.onclick = () => {
+                            decrement(cantidadInput);
+                            reproducirSonidoMenos();
+                            calcularSubtotal();
+                        };
+                        cantidadDiv.appendChild(decrementButton);
+
+                        function increment(input) {
+                            input.stepUp();
+                        }
+
+                        function decrement(input) {
+                            input.stepDown();
+                        }
+
+                        // Espacios en blanco
+
+                        const colEspaciador = document.createElement("div");
+                        colEspaciador.classList.add("col-4");
+                        colEspaciador.classList.add("col-sm-4");
+                        colEspaciador.classList.add("col-md-4");
+                        colEspaciador.classList.add("col-lg-4");
+                        colEspaciador.classList.add("col-lg-4");
+
+                        // =============== S U B T O T A L ===============================
+                        const subtotalDiv = document.createElement("div");
+                        subtotalDiv.classList.add("col-8");
+                        subtotalDiv.classList.add("col-sm-8");
+                        subtotalDiv.classList.add("col-md-8");
+                        subtotalDiv.classList.add("col-lg-8");
+                        subtotalDiv.classList.add("col-lg-8");
+                        subtotalDiv.classList.add("mt-3");
+                        subtotalDiv.classList.add("px-0");
+
+                        subtotalDiv.innerHTML = `
+                            <label for="name" class="tiitle_search_caja_items mb-2">Subtotal</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text span_custom_tab span_custom_tab_sub" >
+                                    <img class="icon_caja_item" src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="" >
+                                </span>
+                            </div>
+                        `;
+
+                        const subtotalInput = document.createElement("input");
+                        subtotalInput.classList.add("form-control","input_custom_tab_dark");
+                        subtotalInput.type = "number";
+                        subtotalInput.name = "subtotal[]";
+                        subtotalDiv.appendChild(subtotalInput);
+
+                        // Obtener el elemento span dentro de cantidadDiv
+                        const spanElementsub = subtotalDiv.querySelector('.span_custom_tab_sub');
+
+                        // Insertar cantidadInput después del span
+                        spanElementsub.parentNode.insertBefore(subtotalInput, spanElementsub.nextSibling);
+
+                        const precio = parseFloat(response.precio_normal);
+                        subtotalInput.value = (precio * cantidadInput.value).toFixed(2);
+
+                        // =============== E L I M I N A R ===============================
+
+                        const eliminarBtn = document.createElement("a");
+                        eliminarBtn.classList.add("btn", "w-100", "btn_trash_caja", "mt-1");
+                        eliminarBtn.innerHTML = "<img class='icon_caja_item' src='{{ asset('assets/media/icons/borrar.webp') }}'>";
+                        eliminarBtn.addEventListener("click", eliminarProducto);
+                        precioDiv.appendChild(eliminarBtn);
+
+
+                        // =============== M U E S T R A  L O S  I N P U T S  (EL ORDEN ES IMPORTANTE) ===============================
+                        productoContainer.appendChild(idDiv);
+                        productoContainer.appendChild(nombreDiv);
+                        productoContainer.appendChild(inputnombreDiv);
+                        productoContainer.appendChild(precioDiv);
+                        //productoContainer.appendChild(eliminarBtn);
+                        productoContainer.appendChild(cantidadDiv);
+                        productoContainer.appendChild(colEspaciador);
+                        productoContainer.appendChild(subtotalDiv);
+
+                        const listaProductos = document.getElementById("listaProductos");
+                        listaProductos.appendChild(productoContainer);
+
+                        productosEscaneados.push(codigo);
+
+                        // =============== M U E S T R A  L O S  I N P U T S  (EL ORDEN ES IMPORTANTE) ===============================
+                        function calcularSubtotal() {
+                            const precio = parseFloat(precioDiv.querySelector("input[name='precio[]']").value);
+                            const cantidad = parseFloat(cantidadInput.value);
+                            subtotalInput.value = (precio * cantidad).toFixed(2);
+                            actualizarSumaSubtotales();
+                        }
+
+                        cantidadInput.addEventListener("input", calcularSubtotal);
+                        precioDiv.querySelector("input[name='precio[]']").addEventListener("input", calcularSubtotal);
+
+                        actualizarSumaSubtotales();
+                    } else {
+                        console.log("Producto no encontrado");
+                    }
+                },
+                error: function (error) {
+                    console.log(`Error en la petición AJAX: ${error}`);
+                }
+            });
+        }
+
+        function eliminarProducto() {
+        const productoContainer = this.closest(".producto-container");
+        const productoId = productoContainer.getAttribute("data-product-id");
+
+        // Eliminar el contenedor del producto escaneado de la lista
+        productoContainer.remove();
+
+        // Eliminar el producto de la lista de productos escaneados
+        const index = productosEscaneados.findIndex((id) => id === productoId);
+        if (index > -1) {
+            productosEscaneados.splice(index, 1);
+        }
+
+        // Recalcular los subtotales
+        actualizarSumaSubtotales();
     }
-
-    function eliminarProducto() {
-    const productoContainer = this.closest(".producto-container");
-    const productoId = productoContainer.getAttribute("data-product-id");
-
-    // Eliminar el contenedor del producto escaneado de la lista
-    productoContainer.remove();
-
-    // Eliminar el producto de la lista de productos escaneados
-    const index = productosEscaneados.findIndex((id) => id === productoId);
-    if (index > -1) {
-        productosEscaneados.splice(index, 1);
-    }
-
-    // Recalcular los subtotales
-    actualizarSumaSubtotales();
-}
 
     function actualizarSumaSubtotales() {
         const subtotales = document.getElementsByName("subtotal[]");
@@ -682,21 +764,33 @@ const html5QrcodeScanner = new Html5QrcodeScanner(
 
         const dineroRecibido = parseFloat(dineroRecibidoInput.value);
 
+        const restanteContainer = document.getElementById('restanteContainer');
+        const cambioContainer = document.getElementById('cambioContainer');
+
         if (!isNaN(dineroRecibido)) {
-            // Calcular el cambio o la cantidad restante según la situación
-            if (dineroRecibido >= sumaSubtotales) {
+            if (dineroRecibido > sumaSubtotales) {
                 const cambio = dineroRecibido - sumaSubtotales;
                 cambioInput.value = cambio.toFixed(2);
                 restanteInput.value = "0.00";
+                restanteContainer.style.display = 'none';
+                cambioContainer.style.display = 'block';
+            } else if (dineroRecibido === sumaSubtotales) {
+                cambioInput.value = "0.00";
+                restanteInput.value = "0.00";
+                restanteContainer.style.display = 'none';
+                cambioContainer.style.display = 'none';
             } else {
                 const restante = sumaSubtotales - dineroRecibido;
                 cambioInput.value = "0.00";
                 restanteInput.value = restante.toFixed(2);
+                restanteContainer.style.display = 'block';
+                cambioContainer.style.display = 'none';
             }
         } else {
-            // Manejar el caso en que el dinero recibido no sea un número válido
             cambioInput.value = "0.00";
             restanteInput.value = "0.00";
+            restanteContainer.style.display = 'block';
+            cambioContainer.style.display = 'none';
         }
     }
 
