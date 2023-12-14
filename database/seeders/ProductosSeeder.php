@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Seeders;
-
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Faker\Factory as Faker;
 
 class ProductosSeeder extends Seeder
 {
@@ -14,6 +14,8 @@ class ProductosSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create();
+
         $categorias = DB::table('categorias')->pluck('id')->toArray();
         $subcategorias = DB::table('subcategorias')->pluck('id')->toArray();
 
@@ -21,6 +23,8 @@ class ProductosSeeder extends Seeder
 
         foreach ($categorias as $categoriaId) {
             foreach ($subcategorias as $subcategoriaId) {
+                $sku = 'SKU' . Str::random(6); // Genera una cadena aleatoria de 6 caracteres para el SKU
+
                 $productos[] = [
                     'nombre' => "Producto de Categoría {$categoriaId} y Subcategoría {$subcategoriaId}",
                     'descripcion' => 'Descripción del producto',
@@ -31,9 +35,9 @@ class ProductosSeeder extends Seeder
                     'codigo_proveedor' => '123ABC',
                     'unidad_venta' => 'Unidad',
                     'stock' => 10,
-                    'imagen_principal' => 'ruta/imagen.jpg',
+                    'imagen_principal' => $faker->imageUrl(), // Genera una URL de imagen aleatoria
                     'clave_sat' => '123456',
-                    'sku' => 'SKU123',
+                    'sku' => $sku, // Asigna el SKU generado
                     'costo' => '100.00',
                     'visibilidad_estatus' => 'visible',
                     'precio_normal' => '150.00',
