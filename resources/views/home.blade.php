@@ -6,31 +6,31 @@
 
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 my-auto">
 
-        <div class="border_card_header">
+        <div class="border_card_header ">
 
-            <div class="d-flex justify-content-center">
-                <h5 class="tittle_dash text-center mt-2 mb-3">
+            <div class="d-flex justify-content-center ">
+                <h5 class="tittle_dash text-center mt-2 mb-3 animation_card_header">
                     ¡BIENVENIDO!
                 </h5>
             </div>
 
-            <div class="d-flex justify-content-center">
-                <h6 class="ingresos_dash text-center mt-2 mb-3">
+            <div class="d-flex justify-content-center ">
+                <h6 class="ingresos_dash text-center mt-2 mb-3 animation_card_header">
                     Ingresos : $15,550.00
                 </h6>
             </div>
 
-            <div class="d-flex justify-content-center">
-                <p class="text-center mt-2 mb-3 subtiitle_dash">
+            <div class="d-flex justify-content-center ">
+                <p class="text-center mt-2 mb-3 subtiitle_dash animation_card_header">
                     Ordenes<br># 43
                 </p>
-                <p class="text-center mt-2 mb-3 subtiitle_dash">
+                <p class="text-center mt-2 mb-3 subtiitle_dash animation_card_header">
                     productos vendidos<br># 150
                 </p>
             </div>
 
             <div class="row">
-                <div class="col-4 d-flex justify-content-center">
+                <div class="col-4 d-flex justify-content-center animation_card_header">
                     <div class="card_header_dash mb-3">
                         <p class="text-center mt-3">
                             <img src="{{ asset('assets/media/icons/t debito.webp') }}" alt="" class="img_card_head_dash">
@@ -40,7 +40,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-4 d-flex justify-content-center">
+                <div class="col-4 d-flex justify-content-center animation_card_header">
                     <div class="card_header_dash mb-3">
                         <p class="text-center mt-3">
                             <img src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="" class="img_card_head_dash">
@@ -50,7 +50,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-4 d-flex justify-content-center">
+                <div class="col-4 d-flex justify-content-center animation_card_header">
                     <div class="card_header_dash mb-3">
                         <p class="text-center mt-3">
                             <img src="{{ asset('assets/media/icons/pago-movil.webp') }}" alt="" class="img_card_head_dash">
@@ -72,7 +72,8 @@
 
         <div class="section cards_dash row">
 
-            <div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center">
+            <div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center animation_card">
+
                 <div class="card_dashboard p-2">
 
                     <div class="card_img">
@@ -91,7 +92,7 @@
                 </div>
             </div>
 
-            <div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center">
+            <div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center animation_card">
                 <div class="card_dashboard p-2">
 
                     <div class="card_img">
@@ -113,7 +114,7 @@
                 </div>
             </div>
 
-            <div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center">
+            <div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center animation_card">
                 <div class="card_dashboard p-2">
 
                     <div class="card_img">
@@ -133,7 +134,7 @@
                 </div>
             </div>
 
-            <div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center">
+            <div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center animation_card">
                 <div class="card_dashboard p-2">
 
                     <div class="card_img">
@@ -152,7 +153,7 @@
                 </div>
             </div>
 
-            <div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center">
+            <div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center animation_card">
                 <div class="card_dashboard p-2">
 
                     <div class="card_img">
@@ -172,7 +173,7 @@
                 </div>
             </div>
 
-        <!--<div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center">
+        <!--<div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center animation_card">
                 <div class="card_dashboard p-2">
 
                     <div class="card_img">

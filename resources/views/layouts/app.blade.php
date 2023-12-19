@@ -23,6 +23,7 @@
 
     <!-- css custom -->
     <link rel="stylesheet" href="{{ asset('assets/css/estilos.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animations.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/inputs.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/navbar.css') }}">

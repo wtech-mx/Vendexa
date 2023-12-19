@@ -140,6 +140,11 @@
     border: solid 3px#fff;
 }
 
+.float:hover{
+    box-shadow: inset 1px 1px 6px #999; /* Cambia la sombra al pasar el mouse */
+	background-color: rgb(87 117 144 / 60%);
+}
+
 .my-float{
 	margin-top:16px;
 }
@@ -158,6 +163,7 @@
 .camscanner{
     width: 350px;
 }
+
 
 @media only screen and (max-width: 390px) {
 
