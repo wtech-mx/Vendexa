@@ -96,7 +96,15 @@
 <script>
 
 $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-    let html5Scanner = new Html5QrcodeScanner("reader_search", { fps: 15, qrbox: 200 , autostart: false });
+    let html5Scanner = new Html5QrcodeScanner("reader_search", {
+        fps: 15,
+        qrbox: 200,
+        autostart: false,
+        cameraDeviceId: {
+            exact: 'environment' // Esto intentará usar la cámara trasera
+        }
+    });
+
     html5Scanner.render(onScanSuccess);
 
     function onScanSuccess(result, decodedResult) {
