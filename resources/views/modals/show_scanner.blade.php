@@ -7,7 +7,7 @@
 
           <div class="modal-body modal_bg row">
 
-                  <div class="row" style="margin: 0!important;padding: 0!important;">
+                  <div class="row" style="margin: 0!important;padding: 0!important;z-index: 10;">
                       <div class="col-10">
                           <h2 class="tiitle_modal_dark text-center mt-3">Scanner</h2>
                       </div>
@@ -31,23 +31,34 @@
                                     </div>
                                 </button>
                               </h2>
+
                               <div id="collapseProducts" class="accordion-collapse collapse show" data-bs-parent="#accordionScanner">
-                                <div class="accordion-body" style="margin: 0!important;padding: 0!important;">
-                                    <div style="width: 500px" id="reader_search"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div id="servicio-data" class="">
+                                <div class="accordion-body row" style="margin: 0!important;padding: 0!important;">
+
+                                    <div class="d-flex justify-content-center mt-3 mb-3">
+                                        <div class="camscanner" style="" id="reader_search"></div>
+                                    </div>
+
+
+                                    <div class="d-flex justify-content-center">
+                                        <a id="resetScannerProduct" class="input-group-text span_custom_primary_warning mt-2 mb-2">
+                                            <img class="icon_span_form" src="{{ asset('assets/media/icons/reset.webp') }}" alt="" >
+                                        </a>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div id="servicio-data" class="">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div id="carrito-container" class="col-12">
-                                        <div id="result">
-                                            <div id="listaProductos"></div>
+                                        <div id="carrito-container" class="col-12">
+                                            <div id="result">
+                                                <div id="listaProductos"></div>
+                                            </div>
                                         </div>
+
                                     </div>
-                                    <div class="col-6">
-                                        <button id="resetScannerProduct" class="btn btn-danger no_aparece mt-3">Reiniciar escáner</button>
-                                    </div>
+
                                 </div>
                               </div>
                             </div>
@@ -85,7 +96,7 @@
 <script>
 
 $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-    let html5Scanner = new Html5QrcodeScanner("reader_search", { fps: 15, qrbox: 250 });
+    let html5Scanner = new Html5QrcodeScanner("reader_search", { fps: 15, qrbox: 200 });
     html5Scanner.render(onScanSuccess);
 
     function onScanSuccess(result, decodedResult) {
