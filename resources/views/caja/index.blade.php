@@ -439,12 +439,7 @@
         });
 
 
-    const html5QrcodeScanner = new Html5QrcodeScanner(
-            "reader",
-
-            { fps: 5, qrbox: {width: 250, height: 250} },
-            { facingMode: "environment" },
-            /* verbose= */ false);
+    const html5QrcodeScanner = new Html5QrcodeScanner("reader", { fps: 5, qrbox: {width: 250, height: 250, autostart: false} },{ facingMode: "environment" }, false);
 
         let escanerHabilitado = true;
         let productosEscaneados = [];

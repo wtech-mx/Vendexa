@@ -643,7 +643,7 @@
                 console.console.log(errorMessage);
             }
 
-            var html5QrcodeScanner = new Html5QrcodeScanner("reader", { fps: 15, qrbox: 200 });
+            var html5QrcodeScanner = new Html5QrcodeScanner("reader", { fps: 15, qrbox: 200, autostart: false });
             html5QrcodeScanner.render(onScanSuccess, onScanError);
 
             document.getElementById('resetScannerBtn').addEventListener('click', () => {
