@@ -1,8 +1,8 @@
 @section('css_custom')
 
-
 @endsection
 
+@if(isset($producto))
 <!-- Modal -->
 <div class="modal fade" id="editProduct-{{$producto->id}}" tabindex="-1" aria-labelledby="editProductLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -620,7 +620,8 @@
 
       </div>
     </div>
-  </div>
+</div>
+@endif
 
 @section('js_custom')
 
