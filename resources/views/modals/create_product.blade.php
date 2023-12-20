@@ -168,7 +168,7 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/camion.webp') }}" alt="" >
                                             </span>
-                                            <input id="" name="" type="text"  class="form-control input_custom_tab @error('') is-invalid @enderror"  value="{{ old('') }}" autocomplete="" autofocus>
+                                            <input id="" name="nombre_proveedor" type="text"  class="form-control input_custom_tab @error('nombre_proveedor') is-invalid @enderror"  value="{{ old('nombre_proveedor') }}" autocomplete="" autofocus>
                                         </div>
                                     </div>
 
@@ -217,12 +217,12 @@
 
                                         <div class="input-group d-flex justify-content-around mt-3">
                                               <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioSiMayo" value="Si">
+                                                <input class="form-check-input" type="radio" name="RadioMayo" id="radioSiMayo" value="Si">
                                                 <label class="form-check-label" for="">Si</label>
                                               </div>
 
                                               <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioNoMayo" value="No">
+                                                <input class="form-check-input" type="radio" name="RadioMayo" id="radioNoMayo" value="No">
                                                 <label class="form-check-label" for="">No</label>
                                               </div>
                                         </div>
@@ -243,12 +243,12 @@
 
                                         <div class="input-group d-flex justify-content-around mt-3">
                                               <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioSirebaja" value="Si">
+                                                <input class="form-check-input" type="radio" name="Radiorebaja" id="radioSirebaja" value="Si">
                                                 <label class="form-check-label" for="">Si</label>
                                               </div>
 
                                               <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioNorebaja" value="No">
+                                                <input class="form-check-input" type="radio" name="Radiorebaja" id="radioNorebaja" value="No">
                                                 <label class="form-check-label" for="">No</label>
                                               </div>
                                         </div>
@@ -623,6 +623,8 @@
 
                 // Asignar el número aleatorio al input correspondiente
                 $('#skuInput').val(skuNumber);
+                const audio = new Audio("{{ asset('assets/media/audio/sku_notification.mp3')}}");
+                audio.play();
             });
 
             var html5QrcodeScanner;
@@ -630,6 +632,9 @@
             function onScanSuccess(decodedText, decodedResult) {
                 // Manejar el éxito del escaneo y actualizar el valor del input
                 $('#skuInputScanner').val(decodedText);
+
+                const audio = new Audio("{{ asset('assets/media/audio/sku_notification.mp3')}}");
+                audio.play();
 
                 // Detener la cámara después de un escaneo exitoso
                 if (html5QrcodeScanner) {

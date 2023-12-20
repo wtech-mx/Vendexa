@@ -41,11 +41,15 @@ class ProductosController extends Controller
             'costo' => 'required',
             'precio_normal' => 'required',
             'visibilidad_estatus' => 'required',
-            'id_proveedor' => 'required',
+            'id_proveedor' => 'required_if:nombre_proveedor,null',
             'codigo_proveedor' => 'required',
-            'id_marca' => 'required',
-            'id_categoria' => 'required',
+            'id_marca' => 'required_if:nombre_marca,null',
+            'id_categoria' => 'required_if:nombre_categoria,null',
             'unidad_venta' => 'required',
+            'precio_mayo' => 'required_if:RadioMayo,Si',
+            'precio_descuento' => 'required_if:Radiorebaja,Si',
+            'fecha_inicio_desc' => 'required_if:Radiorebaja,Si',
+            'fecha_fin_desc' => 'required_if:Radiorebaja,Si',
         ]);
 
         if ($validator->fails()) {
@@ -58,6 +62,18 @@ class ProductosController extends Controller
             $sku = $request->get('sku_scanner');
         }else{
             $sku = $request->get('sku_generado');
+        }
+
+        if($request->get('nombre_proveedor') == NULL){
+            $proveedor = $request->get('id_proveedor');
+        }else{
+            $proveedor = new Proveedores;
+            $proveedor->nombre = $request->get('nombre_proveedor');
+            $proveedor->correo = '';
+            $proveedor->telefono = '';
+            $proveedor->id_empresa = $user->id_empresa;
+            $proveedor->save();
+            $proveedor = $proveedor->id;
         }
 
         if($request->get('nombre_marca') == NULL){
@@ -96,7 +112,13 @@ class ProductosController extends Controller
         $producto->nombre = $request->get('nombre');
         $producto->descripcion = $request->get('descripcion');
         $producto->sku = $sku.'_'.$user->id_empresa;
-        $producto->id_proveedor = $request->get('id_proveedor');
+
+        if($request->get('nombre_proveedor') == NULL){
+            $producto->id_proveedor = $request->get('id_proveedor');
+        }else{
+            $producto->id_proveedor = $proveedor;
+        }
+
         $producto->codigo_proveedor = $request->get('codigo_proveedor');
         $producto->stock = $request->get('stock');
         $producto->costo = $request->get('costo');
