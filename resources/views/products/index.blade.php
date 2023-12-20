@@ -21,11 +21,15 @@
 
     <div class="row z-1 position-relative px-3 px-md-4 px-xl-5">
 
-        <div class="col-12">
-            <h2 class="tiitle_modal_dark text-center mt-3 mb-3">Productos</h2>
+        <div class="col-12 mt-2 mb-3">
+            <div class="d-flex justify-content-center ">
+                <h5 class="tittle_dash text-center mt-2 mb-3 animation_card_header">
+                    PRODUCTOS
+                </h5>
+            </div>
         </div>
 
-        <div class="col-12 mb-5">
+        <div class="col-12 mt-2 mb-3">
             <div class="d-flex justify-content-center">
 
                 <form class="d-flex" role="search">
@@ -39,9 +43,10 @@
                     <img class="icon_search" src="{{ asset('assets/media/icons/filtrar.webp') }}" alt="">
                   </a>
             </div>
-              <div class="collapse" id="collapseFilter">
-                dfsdf
-              </div>
+
+            <div class="collapse" id="collapseFilter">
+              dfsdf
+            </div>
 
         </div>
 
@@ -77,7 +82,7 @@
 
                             <div class="col-12">
                                 <p class="text-center">
-                                    <img src="data:image/png;base64, {{DNS1D::getBarcodePNG($producto->sku, 'C128', 1.6, 35, array(255, 255, 255), true)}}" >
+                                    <img src="data:image/png;base64, {{DNS1D::getBarcodePNG($producto->sku, 'C128', 1.6, 35, array(0, 0, 0), true)}}" >
                                 </p>
                             </div>
 
@@ -109,7 +114,7 @@
 
                             <div class="col-6 mb-3">
                                 <h5 class="tiitle_products">
-                                    <img class="icon_product" src="{{ asset('assets/media/icons/code_barras.webp') }}" alt="">
+                                    <img class="icon_product" src="{{ asset('assets/media/icons/sku.webp') }}" alt="">
                                     Sku
                                 </h5>
                                 <p class="subtitle_products">{{$producto->sku}}</p>

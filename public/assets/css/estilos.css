@@ -26,6 +26,15 @@
     text-shadow: 1px 3px 11px rgba(0, 0, 0, 0.2);
  }
 
+ .tiitle_modal_darksm{
+    color: #162440 !important;
+    font-family: Lexend;
+    font-size:30px;
+	letter-spacing:0;
+    font-weight: 300;
+    text-shadow: 1px 3px 11px rgba(0, 0, 0, 0.2);
+ }
+
  .tiitle_modal_white{
     color: #fff !important;
     font-family: Lexend;

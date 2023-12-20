@@ -9,24 +9,25 @@
     left: 0;
     right: 0;
     bottom: 0px;
-    background-image: url(/assets/media/img/backgrounds/patter_sf.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom right;
-    opacity: 0.07;
+    background-image: url(/assets/media/img/backgrounds/fondo_cuadrado_completo.png);
+    background-repeat: repeat;
+    background-size: contain;
+    background-position: top;
+    opacity: 0.9;
     z-index: 1;
-    width: 100%;
-    }
+    width: 125%;
+}
 
 .card_prodcut{
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.25);
+    background-color: rgba(255, 255, 255, 1);
     border-radius: 16px;
-    background-color: #577590;
     width: 100%;
 
 }
 
 .card_container_img{
-    background-color: #fff;
+    background-color: #577590;
     border-radius: 9px;
 }
 
@@ -51,19 +52,19 @@
 
 
 .tiitle_products{
-    color: #fff!important;
+    color: #577590 !important;
     font-family: Lexend;
     font-weight: 500;
     font-size: 18px;
-    text-shadow: 3px 5px 10px rgb(2 2 2);
+    text-shadow: 1px 3px 11px rgba(0, 0, 0, 0.2);
 }
 
 .subtitle_products{
-    color: #fff!important;
+    color: #577590 !important;
     font-family: Lexend;
     font-weight: 300;
     font-size: 14px;
-    text-shadow: 3px 5px 10px rgb(2 2 2);
+    text-shadow: 1px 3px 11px rgba(0, 0, 0, 0.2);
 }
 
 .icon_product{
@@ -71,10 +72,20 @@
 }
 
 .btn_edit_prodcut{
-    box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
-	background-image:linear-gradient(0deg, rgba(255, 255, 255, 1) 0%,rgba(218.00000220537186, 218.00000220537186, 218.00000220537186, 1) 100%) ;
-	width:105.26315307617188px;
+    box-shadow: 1px 1px 6px #577590;
+    background-color: #577590;
     border-radius: 9px;
+    color: #fff;
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: Lexend;
+}
+
+.btn_edit_prodcut:hover{
+    color: #fff;
+    background-color: #577590;
+    box-shadow: inset 3px 3px 9px #33506d; /* Cambia la sombra al pasar el mouse */
 }
 
 .btn_edit_prodcut_warning{
@@ -107,7 +118,7 @@
 }
 
 .text_estatus_product{
-    color: #000!important;
+    color: #FFF!important;
     font-family: Lexend;
     font-weight: 400;
     font-size: 13px;
@@ -122,6 +133,7 @@
     background: #fff;
     border-radius: 16px;
     padding: 15px;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.25);
 }
 
 .bg_minicart_ventas{

@@ -156,7 +156,9 @@
     border-radius: 19px;
     background-color: #577590;
     padding: 20px 0px 13px 0px;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.25);
 }
+
 .tab_custom_icon{
     width: 20px;
     margin-right: 5px;
@@ -182,7 +184,7 @@
     font-family: Lexend;
     font-weight: 300;
     font-size: 16px;
-    text-shadow: 3px 5px 10px rgb(2 2 2);
+    text-shadow: 3px 5px 10px rgb(2 2 2 / 40%);
 }
 
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
@@ -215,9 +217,9 @@
 .input_search{
     border-radius: 13px 0 0 13px!important;
     color: #fff;
-    border-top: 4px solid #577590;
-    border-bottom: 4px solid #577590;
-    border-left: 4px solid #577590;
+    border-top: 4px solid #F0F0F0;
+    border-bottom: 4px solid #F0F0F0;
+    border-left: 4px solid #F0F0F0;
     background: #57759059;
 }
 
@@ -237,10 +239,10 @@
 .btn_search{
     background: #57759059;
     border-radius: 0 13px 13px 0!important;
-    border-right: 4px solid #577590;
-    border-top: 4px solid #577590;
-    border-bottom: 4px solid #577590;
-    border-left: 0px solid #577590;
+    border-right: 4px solid #F0F0F0;
+    border-top: 4px solid #F0F0F0;
+    border-bottom: 4px solid #F0F0F0;
+    border-left: 0px solid #F0F0F0;
 }
 
 .btn_filter{

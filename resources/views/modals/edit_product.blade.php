@@ -8,7 +8,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content" style="border: solid 1px transparent;">
 
-        <div class="modal-body modal_bg_edit_product row">
+        <div class="modal-body modal_bg row">
 
             <form method="POST" action="{{ route('productos.update', $producto->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="miFormulario2" style="border: solid 5px red;border-radius: 16px;">
                 @csrf
@@ -16,8 +16,8 @@
                 <div class="row">
 
                     <div class="col-10">
-                        <h5 class="subtittle_white mt-3 ms-2">Nombre: </h5>
-                        <h2 class="tiitle_modal_white text-left ms-2">{{$producto->nombre}}</h2>
+                        <h5 class="subtittle_dark mt-3 ms-2">Nombre: </h5>
+                        <h2 class="tiitle_modal_darksm text-left ms-2">{{$producto->nombre}}</h2>
                     </div>
 
                     <div class="col-2">
