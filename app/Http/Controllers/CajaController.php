@@ -28,6 +28,10 @@ class CajaController extends Controller
     public function agregarAlCarrito(Request $request)
     {
         $codigo = $request->input('codigo');
+        if (strpos($codigo, '_auth()->user()->id_empresa') === false) {
+            $codigo .= '_'.auth()->user()->id_empresa;
+        }
+
         $producto = Productos::where('sku', $codigo)->first();
 
         if ($producto) {
