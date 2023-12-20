@@ -57,17 +57,24 @@ class CajaController extends Controller
         if ($user) {
             // El valor de password_caja existe en la tabla users
             // Haz lo que necesites hacer aquí
-            $pass = [
-                "clave" => $request->get('password_caja'),
+
+            $key =  $user->id.'_'.$request->get('password_caja');
+
+            $pass_data = [
+                "clave" => $key,
             ];
 
-            return response()->json(['success' => true, 'pass' => $pass]);
+            return response()->json(['success' => true, 'pass' => $pass_data]);
 
         } else {
             // No se encontró el valor de password_caja en la tabla users
-            return response()->json(['errors' => 'Clave no encontrada'], 422);
+            // return response()->json(['errors' => 'Clave no encontrada'], 422);
+            return response()->json(['errors' => ['password_caja' => ['Clave no encontrada']]], 422);
         }
     }
+
+
+
 
     public function store(Request $request){
 
