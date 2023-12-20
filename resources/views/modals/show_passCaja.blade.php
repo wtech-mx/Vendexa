@@ -37,19 +37,22 @@
 
 <script>
 
-    $(document).ready(function() {
+$(document).ready(function() {
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+$.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+});
 
-        $("#FormularioCajaPass").on("submit", function (event) {
-            event.preventDefault(); // Evita el envío predeterminado del formulario
+$("#FormularioCajaPass").on("submit", function (event) {
 
-            // Realiza la solicitud POST usando AJAX
-            $.ajax({
+    event.preventDefault(); // Evita el envío predeterminado del formulario
+
+    // $(this).html('Sending..');
+
+    // Realiza la solicitud POST usando AJAX
+    $.ajax({
                 url: $(this).attr("action"),
                 type: "POST",
                 data: new FormData(this),
@@ -81,16 +84,18 @@
                 }
             });
 
-        });
+});
 
-        async function saveSuccess(response) {
+async function saveSuccess(response) {
+    const cliente_data = response.cliente_data;
 
-            const caja_pass = response.pass;
 
-            window.location.href = '/home/'caja_pass.calve;
-        }
+        window.location.href = '/home/';
 
-        });
+
+}
+
+});
 
 </script>
 
