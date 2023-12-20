@@ -37,6 +37,11 @@ return new class extends Migration
                 ->references('id')->on('users')
                 ->inDelete('set null');
 
+            $table->unsignedBigInteger('id_cajero');
+            $table->foreign('id_cajero')
+                ->references('id')->on('users')
+                ->inDelete('set null');
+
             $table->unsignedBigInteger('id_orden_woocommerce')->nullable();
             $table->timestamps();
         });

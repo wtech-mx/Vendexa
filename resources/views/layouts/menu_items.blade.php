@@ -5,13 +5,13 @@
     </li>
 </a>
 
-<a href="" class="enlace_sidebar">
+<a type="button" class="enlace_sidebar d-block" data-bs-toggle="modal" data-bs-target="#ModalPassCaja">
     <li class="li_navbar">
         Caja <img class="icon_navbar" src="{{ asset('assets/media/icons/puntoventa.webp') }}" alt="">
     </li>
 </a>
 
-<a type="button" class="enlace_sidebar" data-bs-toggle="modal" data-bs-target="#show_Scanner">
+<a type="button" class="enlace_sidebar d-block" data-bs-toggle="modal" data-bs-target="#show_Scanner">
     <li class="li_navbar">
         Scanner <img class="icon_navbar" src="{{ asset('assets/media/icons/scanner.webp') }}" alt="">
     </li>

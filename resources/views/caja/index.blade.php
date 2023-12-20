@@ -60,6 +60,15 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 col-xxl-6 z-1">
         <form id="miFormulario" class="row" method="POST" action="{{route('caja.store')}}" enctype="multipart/form-data" role="form" style="margin:0!important;margin-right: -1.5rem!important;">
             @csrf
+
+            @php
+                $currentURL = $_SERVER['REQUEST_URI'];
+                $parts = explode('/', rtrim($currentURL, '/'));
+                $lastPart = end($parts);
+            @endphp
+
+            <input type="hidden" name="id_cajero" value="{{ $lastPart }}">
+
             <div class="row">
 
                 <div class="form-group col-12 px-2 py-1">
@@ -423,7 +432,7 @@
                     showCloseButton: true,
                     showCancelButton: true,
                     focusConfirm: false,
-                    confirmButtonText: 'Ver Productos',
+                    confirmButtonText: 'Ver Recibo',
                     cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="/caja" >Cerrar</a>`,
                 }).then((result) => {
                     if (result.isConfirmed) {

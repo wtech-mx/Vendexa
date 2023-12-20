@@ -74,16 +74,26 @@ class CajaController extends Controller
     }
 
 
-
-
     public function store(Request $request){
 
         $validator = Validator::make($request->all(), [
             'nombre_cliente' => 'required_if:id_client,null',
             'apellido_cliente' => 'required_if:id_client,null',
             'whats_cliente' => 'required_if:id_client,null',
+            'id_cajero' => 'required',
             'dineroRecibido'=> 'required',
         ]);
+
+        $key = $request->get('id_cajero'); // Aquí tendrías tu última parte de la URL
+
+        // Dividir la cadena usando el guion bajo como delimitador
+        $parts_key = explode('_', $key);
+
+        // Obtener los elementos individuales
+        $firstKey = $parts_key[0]; // El número antes del guion
+        $secondKey = $parts_key[1]; // El número después del guion
+
+        $userkey = User::where('id', $firstKey)->where('password_caja', $secondKey)->first();
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
@@ -112,23 +122,30 @@ class CajaController extends Controller
             $orden->restante = $request->get('restante');
             $orden->tipo_desc = $request->get('tipoDescuento');
             $orden->descuento = $request->get('montoDescuento');
+
+            $orden->id_cajero = $userkey->id;
             $orden->id_user = auth()->user()->id;
+
             $orden->id_empresa = auth()->user()->id_empresa;
             $orden->factura = $request->get('inlineRadioOptions');
+
             $orden->save();
 
         // G U A R D A R  O R D E N  P A G O
             $orden_pagos = new OrdenesPagos;
             $orden_pagos->id_orden = $orden->id;
+
             if($request->get('cambio') > 0){
                 $monto = $request->get('dineroRecibido') - $request->get('cambio');
                 $orden_pagos->monto = $monto;
             }else{
                 $orden_pagos->monto = $request->get('dineroRecibido');
             }
+
             $orden_pagos->dinero_recibido = $request->get('dineroRecibido');
             $orden_pagos->cambio = $request->get('cambio');
             $orden_pagos->metodo_pago = $request->get('metodo_pago');
+
             if ($request->hasFile("comprobante")) {
                 $file = $request->file('comprobante');
                 $path = public_path() . '/comprobante/empresa'.auth()->user()->id_empresa;
@@ -136,6 +153,7 @@ class CajaController extends Controller
                 $file->move($path, $fileName);
                 $orden_pagos->comprobante = $fileName;
             }
+
             $orden_pagos->fecha = $fechaActual;
             $orden_pagos->save();
 
