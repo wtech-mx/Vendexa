@@ -5,7 +5,7 @@
     </li>
 </a>
 
-<a href="{{ route('caja.index') }}" class="enlace_sidebar">
+<a href="" class="enlace_sidebar">
     <li class="li_navbar">
         Caja <img class="icon_navbar" src="{{ asset('assets/media/icons/puntoventa.webp') }}" alt="">
     </li>

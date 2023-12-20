@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('correo')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('password_caja')->unique();
             $table->rememberToken();
 
             $table->unsignedBigInteger('id_direccion');

@@ -7,6 +7,8 @@ use App\Models\Ordenes;
 use App\Models\OrdenesPagos;
 use App\Models\OrdenesProductos;
 use App\Models\Productos;
+use App\Models\User;
+
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -33,6 +35,37 @@ class CajaController extends Controller
             return response()->json($datosProducto);
         } else {
             return response()->json(['nombre' => 'Producto no encontrado']);
+        }
+    }
+
+    public function validation_pass(Request $request){
+
+
+        $validator = Validator::make($request->all(), [
+            'password_caja' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        // Verificar si existe un registro con el valor proporcionado en password_caja
+        $passwordCaja = $request->input('password_caja');
+
+        $user = User::where('password_caja', $passwordCaja)->first();
+
+        if ($user) {
+            // El valor de password_caja existe en la tabla users
+            // Haz lo que necesites hacer aquí
+            $pass = [
+                "clave" => $request->get('password_caja'),
+            ];
+
+            return response()->json(['success' => true, 'pass' => $pass]);
+
+        } else {
+            // No se encontró el valor de password_caja en la tabla users
+            return response()->json(['errors' => 'Clave no encontrada'], 422);
         }
     }
 
