@@ -93,6 +93,7 @@ class CajaController extends Controller
         ]);
 
         $dominio = $request->getHost();
+        dd($dominio);
         if($dominio == 'wtech.com.mx'){
             $fotos_comprobante = base_path('../public_html/vendexa/comprobantes/empresa'.auth()->user()->id_empresa);
         }else{
