@@ -904,7 +904,7 @@
 
             // Realizar una petición AJAX para obtener los registros relacionados
             $.ajax({
-                url: '/obtener-registros-cliente/' + clienteId, // Ajusta la ruta según tu aplicación
+                url: '/vendexa/obtener-registros-cliente/' + clienteId, // Ajusta la ruta según tu aplicación
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {
