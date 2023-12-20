@@ -241,23 +241,76 @@
                     </div>
                 </div>
 
+                <div class="form-group col-12 px-2 py-1">
+                    <label for="name" class="label_custom_primary_product_white mb-2">¿Metodo de Pago 2? </label>
+
+                    <div class="input-group text-white d-flex justify-content-around mt-3">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input " type="radio" name="inlinePago"  id="radioSiPago" value="Si">
+                            <label class="form-check-label" for="">Si</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input " type="radio" name="inlinePago"  id="radioNoPago" value="No">
+                            <label class="form-check-label" for="">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="PagoContainer" style="display: none;">
+                    <div class="form-group col-6 px-2 py-1">
+                        <label for="name" class="label_custom_primary_product_white mb-2">Metodo de Pago 2:</label>
+                        <div class="input-group ">
+                            <span class="input-group-text span_custom_tab" >
+                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/metodo-de-pago.webp') }}" alt="" >
+                            </span>
+                            <select name="metodo_pago2" id="metodo_pago2" class="form-select d-inline-block input_custom_tab_dark">
+                                <option value="Efectivo" @if(old('unidad_venta') == 'Efectivo') selected @endif>Efectivo</option>
+                                <option value="Tarjeta Credito/Debito" @if(old('unidad_venta') == 'Tarjeta Credito/Debito') selected @endif>Tarjeta Credito/Debito</option>
+                                <option value="Transferencia" @if(old('unidad_venta') == 'Transferencia') selected @endif>Transferencia</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-6 px-2 py-1">
+                        <label for="name" class="label_custom_primary_product_white mb-2">Dinero recibido 2:</label>
+                        <div class="input-group ">
+                            <span class="input-group-text span_custom_tab" >
+                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="" >
+                            </span>
+                            <input id="dineroRecibido2" name="dineroRecibido2" type="number"  class="form-control input_custom_tab_dark @error('dineroRecibido2') is-invalid @enderror" onchange="actualizarSumaSubtotales()">
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group col-6 px-2 py-1">
                     <label for="name" class="label_custom_primary_product_white mb-2">Factura </label>
 
                     <div class="input-group text-white d-flex justify-content-around mt-3">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input " type="radio" name="inlineRadioOptions"  id="radioSiFact" value="Si">
+                            <input class="form-check-input " type="radio" name="inlineFact"  id="radioSiFact" value="Si">
                             <label class="form-check-label" for="">Si</label>
                         </div>
 
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input " type="radio" name="inlineRadioOptions"  id="radioNoFact" value="No">
+                            <input class="form-check-input " type="radio" name="inlineFact"  id="radioNoFact" value="No">
                             <label class="form-check-label" for="">No</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="row" id="FacturaContainer" style="display: none;">
+                    <div class="form-group col-6 px-2 py-1">
+                        <label for="name" class="label_custom_primary_product_white mb-2">Facturas Guardadas:</label>
+                        <div class="input-group ">
+                            <span class="input-group-text span_custom_tab" >
+                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/metodo-de-pago.webp') }}" alt="" >
+                            </span>
+                            <select name="id_factura" id="facturas" class="form-select d-inline-block input_custom_tab_dark facturas">
+                                <option value="">Seleccione Cliente </option>
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="form-group col-12 px-4 py-3" >
                         <label for="name" class="label_custom_primary_product_white mb-2">Nombre / Razon Social :</label>
@@ -366,6 +419,23 @@
                 // Personaliza la presentación de la opción con la imagen
                 return $('<span><img src="' + imageUrl + '" class="img-thumbnail" style="width: 40px; height: 40px;" /> ' + option.text + '</span>');
             }
+
+            const radioSiPago = document.getElementById('radioSiPago');
+            const radioNoPago = document.getElementById('radioNoPago');
+
+            const PagoContainer = document.getElementById('PagoContainer');
+
+            radioSiPago.addEventListener('change', function() {
+                if (radioSiPago.checked) {
+                    PagoContainer.style.display = 'contents';
+                }
+            });
+
+            radioNoPago.addEventListener('change', function() {
+                if (radioNoPago.checked) {
+                    PagoContainer.style.display = 'none';
+                }
+            });
 
             const radioSiFact = document.getElementById('radioSiFact');
             const radioNoFact = document.getElementById('radioNoFact');
@@ -758,16 +828,21 @@
             sumaSubtotales *= (1 - montoDescuento / 100);
         }
 
+        // Obtener los valores de dinero recibido
+        const dineroRecibidoInput = document.getElementById("dineroRecibido");
+        const dineroRecibidoInput2 = document.getElementById("dineroRecibido2");
+
+        const dineroRecibidoValue = parseFloat(dineroRecibidoInput.value);
+        const dineroRecibido2Value = parseFloat(dineroRecibidoInput2.value);
+
+        const dineroRecibido = (isNaN(dineroRecibidoValue) ? 0 : dineroRecibidoValue) + (isNaN(dineroRecibido2Value) ? 0 : dineroRecibido2Value);
+
         // Actualizar el valor del input de sumaSubtotales
         const sumaSubtotalesInput = document.getElementById("sumaSubtotales");
         sumaSubtotalesInput.value = sumaSubtotales.toFixed(2);
 
-        const dineroRecibidoInput = document.getElementById("dineroRecibido");
         const cambioInput = document.getElementById("cambio");
         const restanteInput = document.getElementById("restante");
-
-        const dineroRecibido = parseFloat(dineroRecibidoInput.value);
-
         const restanteContainer = document.getElementById('restanteContainer');
         const cambioContainer = document.getElementById('cambioContainer');
 
@@ -808,11 +883,45 @@
         actualizarSumaSubtotales();
     });
 
+    const dineroRecibidoInput2 = document.getElementById("dineroRecibido2");
+    dineroRecibidoInput2.addEventListener("input", function() {
+        actualizarSumaSubtotales();
+    });
+
     function productoYaEscaneado(codigo) {
         return productosEscaneados.includes(codigo);
     }
 
 
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Evento que se ejecuta cuando cambia la selección del primer select
+        $('.cliente').change(function () {
+            // Obtener el valor seleccionado del primer select
+            var clienteId = $(this).val();
+
+            // Realizar una petición AJAX para obtener los registros relacionados
+            $.ajax({
+                url: '/obtener-registros-cliente/' + clienteId, // Ajusta la ruta según tu aplicación
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // Limpiar el segundo select
+                    $('.facturas').empty();
+
+                    // Agregar la opción predeterminada
+                    $('.facturas').append('<option value="">Seleccione factura</option>');
+
+                    // Agregar las opciones basadas en los datos obtenidos
+                    $.each(data, function (key, value) {
+                        $('.facturas').append('<option value="' + value.id + '">' + value.razon_social + '</option>');
+                    });
+                }
+            });
+        });
+    });
 </script>
 @endsection
 

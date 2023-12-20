@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clientes;
+use App\Models\DatosFacturas;
 use App\Models\Ordenes;
 use App\Models\OrdenesPagos;
 use App\Models\OrdenesProductos;
@@ -73,6 +74,13 @@ class CajaController extends Controller
         }
     }
 
+    public function obtenerRegistrosCliente($id){
+        // Obtén los registros relacionados con el cliente
+        $facturas = DatosFacturas::where('id_cliente', $id)->get();
+
+        // Devuelve los datos en formato JSON
+        return response()->json($facturas);
+    }
 
     public function store(Request $request){
 
@@ -83,6 +91,13 @@ class CajaController extends Controller
             'id_cajero' => 'required',
             'dineroRecibido'=> 'required',
         ]);
+
+        $dominio = $request->getHost();
+        if($dominio == 'wtech.com.mx/vendexa'){
+            $fotos_comprobante = base_path('../public_html/vendexa/comprobantes/empresa'.auth()->user()->id_empresa);
+        }else{
+            $fotos_comprobante = public_path() . '/comprobantes/empresa'.auth()->user()->id_empresa;
+        }
 
         $key = $request->get('id_cajero'); // Aquí tendrías tu última parte de la URL
 
@@ -114,6 +129,23 @@ class CajaController extends Controller
                 $cliente = $request->get('id_client');
             }
 
+        // C R E A R  F A C T U R A
+            if($request->get('inlineFact') == 'Si'){
+                if($request->get('id_factura') != NULL){
+                    $factura = $request->get('id_factura');
+                }else{
+                    $factura = new DatosFacturas;
+                    $factura->id_cliente = $cliente;
+                    $factura->razon_social = $request->get('razon_cliente');
+                    $factura->rfc = $request->get('rfc_cliente');
+                    $factura->cfdi = $request->get('cfdi_cliente');
+                    $factura->direccion_factura = $request->get('direccion_cliente');
+                    $factura->save();
+
+                    $factura = $factura->id;
+                }
+            }
+
         // G U A R D A R  O R D E N  P R I N C I P A L
             $orden = new Ordenes;
             $orden->id_cliente = $cliente;
@@ -122,12 +154,15 @@ class CajaController extends Controller
             $orden->restante = $request->get('restante');
             $orden->tipo_desc = $request->get('tipoDescuento');
             $orden->descuento = $request->get('montoDescuento');
+            if($request->get('inlineFact') == 'Si'){
+                $orden->id_factura = $factura;
+            }
+            $orden->factura = $request->get('inlineFact');
 
             $orden->id_cajero = $userkey->id;
             $orden->id_user = auth()->user()->id;
 
             $orden->id_empresa = auth()->user()->id_empresa;
-            $orden->factura = $request->get('inlineRadioOptions');
 
             $orden->save();
 
@@ -136,19 +171,22 @@ class CajaController extends Controller
             $orden_pagos->id_orden = $orden->id;
 
             if($request->get('cambio') > 0){
-                $monto = $request->get('dineroRecibido') - $request->get('cambio');
+                $suma = $request->get('dineroRecibido') + $request->get('dineroRecibido2');
+                $monto = $suma - $request->get('cambio');
                 $orden_pagos->monto = $monto;
             }else{
                 $orden_pagos->monto = $request->get('dineroRecibido');
             }
 
             $orden_pagos->dinero_recibido = $request->get('dineroRecibido');
+            $orden_pagos->dinero_recibido2 = $request->get('dineroRecibido2');
             $orden_pagos->cambio = $request->get('cambio');
             $orden_pagos->metodo_pago = $request->get('metodo_pago');
+            $orden_pagos->metodo_pago2 = $request->get('metodo_pago2');
 
             if ($request->hasFile("comprobante")) {
                 $file = $request->file('comprobante');
-                $path = public_path() . '/comprobante/empresa'.auth()->user()->id_empresa;
+                $path = $fotos_comprobante;
                 $fileName = uniqid() . $file->getClientOriginalName();
                 $file->move($path, $fileName);
                 $orden_pagos->comprobante = $fileName;

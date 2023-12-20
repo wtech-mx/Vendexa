@@ -19,9 +19,11 @@ return new class extends Migration
                 ->inDelete('set null');
 
             $table->float('monto')->nullable();
-            $table->float('dinero_recibido');
-            $table->float('cambio');
             $table->text('metodo_pago');
+            $table->text('metodo_pago2')->nullable();
+            $table->float('dinero_recibido');
+            $table->float('dinero_recibido2')->nullable();
+            $table->float('cambio');
             $table->text('comprobante')->nullable();
             $table->date('fecha');
             $table->timestamps();

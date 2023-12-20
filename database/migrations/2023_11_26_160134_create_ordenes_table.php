@@ -27,6 +27,11 @@ return new class extends Migration
             $table->float('descuento')->nullable();
             $table->string('factura')->nullable();
 
+            $table->unsignedBigInteger('id_factura')->nullable();
+            $table->foreign('id_factura')
+                ->references('id')->on('datos_facturas')
+                ->inDelete('set null');
+
             $table->unsignedBigInteger('id_empresa');
             $table->foreign('id_empresa')
                 ->references('id')->on('empresas')

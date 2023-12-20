@@ -56,6 +56,8 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     Route::post('/caja/pass', 'CajaController@validation_pass')->name('caja_pass.store');
 
+    Route::get('/obtener-registros-cliente/{id}', 'CajaController@obtenerRegistrosCliente');
+
 
  });
 

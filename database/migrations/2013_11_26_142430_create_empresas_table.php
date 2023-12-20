@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('correo')->nullable();
             $table->string('referencia')->nullable();
             $table->string('giro')->nullable();
-            
+            $table->string('dominio')->nullable();
+
             $table->unsignedBigInteger('id_direccion');
             $table->foreign('id_direccion')
                 ->references('id')->on('direcciones')
