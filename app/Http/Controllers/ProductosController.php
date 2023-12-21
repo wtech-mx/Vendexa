@@ -20,10 +20,10 @@ class ProductosController extends Controller
     {
         $now = Carbon::now();
         $mesActual = $now->month;
-
-        $productos = Productos::orderBy('created_at', 'desc')->take(10)->get();
-        $modoficaciones_productos = ModificacionesProductos::whereMonth('fecha', $mesActual)->get();
         $user = auth()->user()->id_empresa;
+
+        $productos = Productos::where('id_empresa', $user)->orderBy('created_at', 'desc')->take(10)->get();
+        $modoficaciones_productos = ModificacionesProductos::whereMonth('fecha', $mesActual)->get();
         $proveedores = Proveedores::where('id_empresa', $user)->get();
         $marcas = Marcas::where('id_empresa', $user)->get();
         $categorias = Categorias::where('id_empresa', $user)->get();
