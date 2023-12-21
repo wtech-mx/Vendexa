@@ -63,7 +63,7 @@
 
         @include('modals.create_client')
         @include('modals.show_passCaja')
-        @include('modals.edit_product')
+        {{-- @include('modals.edit_product') --}}
         @include('modals.show_scanner')
 
         <!-- Bootstrap -->
