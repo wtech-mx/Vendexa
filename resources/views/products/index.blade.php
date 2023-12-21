@@ -82,7 +82,7 @@
 
                             <div class="col-12">
                                 <p class="text-center">
-                                    <img src="data:image/png;base64, {{DNS1D::getBarcodePNG($producto->sku, 'C128', 1.6, 35, array(0, 0, 0), true)}}" >
+                                    <img src="data:image/png;base64, {{DNS1D::getBarcodePNG(explode('_', $producto->sku)[0], 'C128', 1.6, 35, array(0, 0, 0), true)}}" >
                                 </p>
                             </div>
 
