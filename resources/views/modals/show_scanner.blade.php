@@ -39,24 +39,15 @@
                                         <div class="camscanner" style="" id="reader_search"></div>
                                     </div>
 
+                                    <div class="col-12">
+                                        <div id="servicio-data" class=""></div>
+
+                                    </div>
 
                                     <div class="d-flex justify-content-center">
                                         <a id="resetScannerProduct" class="input-group-text span_custom_primary_warning mt-2 mb-2">
                                             <img class="icon_span_form" src="{{ asset('assets/media/icons/reset.webp') }}" alt="" >
                                         </a>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div id="servicio-data" class="">
-                                            </div>
-                                        </div>
-                                        <div id="carrito-container" class="col-12">
-                                            <div id="result">
-                                                <div id="listaProductos"></div>
-                                            </div>
-                                        </div>
-
                                     </div>
 
                                 </div>
@@ -107,17 +98,9 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
                     url: '{{ route('scanner.index') }}',
                     data: { 'search': result },
                     success: function (data) {
-
-                    if (data && data.producto_data) {
-                        const productoData = data.producto_data;
-                        fillModal(productoData);
-                        $('#editProduct-' + productoData.id).modal('show');
-                    } else {
-                        console.log("Producto no encontrado");
-                    }
-
+                        console.log('Skus:', data);
+                        $('#servicio-data').html(data); // Actualiza la sección con los datos del servicio
                 },
-
                     error: function(error) {
                         console.log(error);
                     }
