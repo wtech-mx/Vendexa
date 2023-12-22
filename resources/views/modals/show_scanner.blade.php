@@ -87,11 +87,11 @@
 <script>
 
 $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-    let html5Scanner = new Html5QrcodeScanner("reader_search", { fps: 15, qrbox: 200 , autostart: false });
-    html5Scanner.render(onScanSuccess);
+    let html5ScannerProdcut = new Html5QrcodeScanner("reader_search", { fps: 15, qrbox: 200 , autostart: false });
+    html5ScannerProdcut.render(onScanSuccess);
 
     function onScanSuccess(result, decodedResult) {
-        html5Scanner.clear().then(_ => {
+        html5ScannerProdcut.clear().then(_ => {
 
                 $.ajax({
                     type: 'get',
@@ -129,8 +129,8 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
     });
 
     function resetScanner() {
-        html5Scanner.clear();
-        html5Scanner.render(onScanSuccess);
+        html5ScannerProdcut.clear();
+        html5ScannerProdcut.render(onScanSuccess);
         $('#servicio-data').empty();
     }
 
