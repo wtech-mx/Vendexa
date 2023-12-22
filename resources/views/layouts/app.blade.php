@@ -57,7 +57,6 @@
                     <img class="icon_float_scanner" src="{{ asset('assets/media/icons/scanner2.webp') }}" alt="">
                 </a>
         </div>
-
     </div>
 
 
@@ -90,6 +89,10 @@
 
         <!-- Scanner  -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <script>
+            var token = $('meta[name="csrf-token"]').attr('content');
+        </script>
 
         @yield('js_custom')
         @yield('js_caja_pass')

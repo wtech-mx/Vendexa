@@ -19,7 +19,9 @@
                       </div>
 
                       <div class="col-12"  style="margin: 0!important;padding: 0!important;">
+
                         <div class="accordion accoirdion_scanner px-4" id="accordionScanner">
+
                             <div class="accordion-item acoriden_items mb-2">
                               <h2 class="accordion-header accordeon_scanner_header">
                                 <button class="accordion-button accordion_scanner d-block" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProducts" aria-expanded="true" aria-controls="collapseProducts">
@@ -40,8 +42,7 @@
                                     </div>
 
                                     <div class="col-12">
-                                        <div id="servicio-data" class=""></div>
-
+                                        <div id="product_camera" class=""></div>
                                     </div>
 
                                     <div class="d-flex justify-content-center">
@@ -53,9 +54,62 @@
                                 </div>
                               </div>
                             </div>
+
+                            <div class="accordion-item acoriden_items mb-2">
+                                <h2 class="accordion-header accordeon_scanner_header">
+                                  <button class="accordion-button accordion_scanner d-block collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseManual" aria-expanded="false" aria-controls="collapseManual">
+                                      <div class="d-flex justify-content-between">
+                                          <p style="margin-bottom: 0;">Busqueda Manual</p>
+                                          <p style="margin-bottom: 0;">
+                                              <img class="img_scanner_dropdown" src="{{ asset('assets/media/icons/buscar.webp') }}" alt="">
+                                          </p>
+                                      </div>
+                                  </button>
+                                </h2>
+                                <div id="collapseManual" class="accordion-collapse collapse" data-bs-parent="#accordionScanner">
+                                  <div class="accordion-body row">
+                                    <div class="form-group col-12">
+                                        <label for="name" class="label_custom_primary_product mb-2">Ingresa SKU : *</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_primary_dark" >
+                                                <img class="icon_span_form" src="{{ asset('assets/media/icons/code_barras.webp') }}" alt="" >
+                                            </span>
+                                            <input id="buscar" name="buscar" type="text"  class="form-control input_custom_primary_dark" >
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-12">
+                                        <div class="d-flex justify-content-center">
+                                            <div class="spinner-border" role="status" id="loadingSpinner" style="display:none">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </div>
+
+
+                                        <p class="text-center">
+                                            <button type="button" id="btn-buscar" class="span_custom_primary_dark mt-3 text-white"> Buscar
+                                                <img class="img_scanner_dropdown" src="{{ asset('assets/media/icons/buscar.webp') }}" alt="">
+                                            </button>
+                                        </p>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div id="input_camera" class=""></div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center">
+                                        <a id="resetScannerProduct_input" class="input-group-text span_custom_primary_warning mt-2 mb-2">
+                                            <img class="icon_span_form" src="{{ asset('assets/media/icons/reset.webp') }}" alt="" >
+                                        </a>
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+
                             <div class="accordion-item acoriden_items mb-2">
                               <h2 class="accordion-header accordeon_scanner_header">
-                                <button class="accordion-button accordion_scanner d-block collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseServices" aria-expanded="false" aria-controls="collapseServices">
+                                <button class="accordion-button accordion_scanner d-block collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
                                     <div class="d-flex justify-content-between">
                                         <p style="margin-bottom: 0;">Busqueda avanzada</p>
                                         <p style="margin-bottom: 0;">
@@ -64,7 +118,7 @@
                                     </div>
                                 </button>
                               </h2>
-                              <div id="collapseServices" class="accordion-collapse collapse" data-bs-parent="#accordionScanner">
+                              <div id="collapseFilters" class="accordion-collapse collapse" data-bs-parent="#accordionScanner">
                                 <div class="accordion-body">
                                   <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                                 </div>
@@ -86,21 +140,37 @@
 
 <script>
 
-$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+$(document).ready(function() {
+
+
+    $('#btn-buscar').click(function() {
+            buscar();
+    });
+
+    $('#resetScannerProduct').click(function() {
+        resetScanner();
+    });
+
+    $('#resetScannerProduct_input').click(function() {
+        resetScannerInput();
+    });
+
     let html5ScannerProdcut = new Html5QrcodeScanner("reader_search", { fps: 15, qrbox: 200 , autostart: false });
     html5ScannerProdcut.render(onScanSuccess);
 
     function onScanSuccess(result, decodedResult) {
         html5ScannerProdcut.clear().then(_ => {
-
                 $.ajax({
                     type: 'get',
                     url: '{{ route('scanner.index') }}',
-                    data: { 'search': result },
+                    data: {
+                    'search': result,
+                    '_token': token // Agregar el token CSRF a los datos enviados
+                    },
                     success: function (data) {
                         console.log('Skus:', data);
-                        $('#servicio-data').html(data); // Actualiza la sección con los datos del servicio
-                },
+                        $('#product_camera').html(data); // Actualiza la sección con los datos del servicio
+                    },
                     error: function(error) {
                         console.log(error);
                     }
@@ -121,18 +191,60 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
         });
     }
 
-    function onScanFailure(error) {
+    function buscar() {
+        var result = $('#buscar').val();
+
+        $('#loadingSpinner').show();
+
+
+        $.ajax({
+            url: '{{ route('scanner.index') }}',
+            type: 'get',
+            data: {
+                'search': result,
+                '_token': token // Agregar el token CSRF a los datos enviados
+            },
+            success: function(data) {
+                console.log('Skus:', data);
+                $('#input_camera').html(data); // Actualiza la sección con los datos del servicio
+            },
+            error: function(error) {
+            console.log(error);
+        },
+            complete: function() {
+                // Ocultar el spinner cuando la búsqueda esté completa
+                $('#loadingSpinner').hide();
+
+                // Resto del código después de la búsqueda
+                console.log(`folio_Product: = ${result}`);
+                const audio = new Audio("{{ asset('assets/media/audio/barras.mp3')}}");
+                audio.play();
+                scanner.clear();
+                console.log(`clear = ${result}`);
+            }
+
+        });
+
     }
 
-    document.getElementById('resetScannerProduct').addEventListener('click', () => {
-        resetScanner();
-    });
+    function onScanFailure(error) {
+    }
 
     function resetScanner() {
         html5ScannerProdcut.clear();
         html5ScannerProdcut.render(onScanSuccess);
-        $('#servicio-data').empty();
+        $('#product_camera').empty();
     }
+
+    function resetScannerInput() {
+        html5ScannerProdcut.clear();
+        html5ScannerProdcut.render(onScanSuccess);
+        $('#input_camera').empty();
+        $('#buscar').val('');
+    }
+
+});
+
 
 </script>
 @endsection
