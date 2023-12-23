@@ -85,7 +85,6 @@
                                             </div>
                                         </div>
 
-
                                         <p class="text-center">
                                             <button type="button" id="btn-buscar" class="span_custom_primary_dark mt-3 text-white"> Buscar
                                                 <img class="img_scanner_dropdown" src="{{ asset('assets/media/icons/buscar.webp') }}" alt="">
@@ -144,7 +143,9 @@ $(document).ready(function() {
 
 
     $('#btn-buscar').click(function() {
-            buscar();
+        buscar();
+        const audio = new Audio("{{ asset('assets/media/audio/barras.mp3')}}");
+        audio.play();
     });
 
     $('#resetScannerProduct').click(function() {
@@ -176,16 +177,14 @@ $(document).ready(function() {
                     }
                 });
 
-                console.log(`folio_Product: = ${result}`);
                 document.getElementById('resetScannerProduct').classList.remove('no_aparece');
                 const audio = new Audio("{{ asset('assets/media/audio/barras.mp3')}}");
+
                 audio.play();
                 scanner.clear();
                 // Clears scanning instance
                 document.getElementById('reader_search').remove();
                 // Removes reader element from DOM since no longer needed
-
-            console.log(`clear = ${result}`);
 
         }).catch(error => {
         });
@@ -195,7 +194,6 @@ $(document).ready(function() {
         var result = $('#buscar').val();
 
         $('#loadingSpinner').show();
-
 
         $.ajax({
             url: '{{ route('scanner.index') }}',
@@ -214,11 +212,6 @@ $(document).ready(function() {
             complete: function() {
                 // Ocultar el spinner cuando la búsqueda esté completa
                 $('#loadingSpinner').hide();
-
-                // Resto del código después de la búsqueda
-                console.log(`folio_Product: = ${result}`);
-                const audio = new Audio("{{ asset('assets/media/audio/barras.mp3')}}");
-                audio.play();
                 scanner.clear();
                 console.log(`clear = ${result}`);
             }

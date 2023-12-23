@@ -153,7 +153,7 @@
                     <h2 class="tiitle_modal_white text-left">Datos de Pago</h2>
                 </div>
 
-                <div class="form-group col-6 px-2 py-1">
+                <div class="form-group col-6 px-2 py-3">
                     <label for="name" class="label_custom_primary_product_white mb-2">Tipo Descuento:</label>
                     <div class="input-group ">
                         <span class="input-group-text span_custom_tab" >
@@ -167,7 +167,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-1">
+                <div class="form-group col-6 px-2 py-3">
                     <label for="name" class="label_custom_primary_product_white mb-2">Descuento :</label>
                     <div class="input-group ">
                         <span class="input-group-text span_custom_tab" >
@@ -177,7 +177,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-1">
+                <div class="form-group col-6 px-2 py-3">
                     <label for="name" class="label_custom_primary_product_white mb-2">Metodo de Pago :</label>
                     <div class="input-group ">
                         <span class="input-group-text span_custom_tab" >
@@ -191,7 +191,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-1" id="comprobanteContainer">
+                <div class="form-group col-6 px-2 py-3" id="comprobanteContainer">
                     <label for="name" class="label_custom_primary_product_white mb-2">Comprobante :</label>
                     <div class="input-group ">
                         <span class="input-group-text span_custom_tab" >
@@ -201,17 +201,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-1">
-                    <label for="name" class="label_custom_primary_product_white mb-2">Total :</label>
-                    <div class="input-group ">
-                        <span class="input-group-text span_custom_tab" >
-                            <img class="icon_span_tab" src="{{ asset('assets/media/icons/bolsa-de-dinero.webp') }}" alt="" >
-                        </span>
-                        <input id="sumaSubtotales" name="sumaSubtotales" type="text"  class="form-control input_custom_tab_dark @error('sumaSubtotales') is-invalid @enderror"  value="{{ old('sumaSubtotales') }}" readonly>
-                    </div>
-                </div>
-
-                <div class="form-group col-6 px-2 py-1">
+                <div class="form-group col-6 px-2 py-3">
                     <label for="name" class="label_custom_primary_product_white mb-2">Dinero recibido :</label>
                     <div class="input-group ">
                         <span class="input-group-text span_custom_tab" >
@@ -221,27 +211,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-1" id="restanteContainer">
-                    <label for="name" class="label_custom_primary_product_white mb-2">Restante :</label>
-                    <div class="input-group ">
-                        <span class="input-group-text span_custom_tab" >
-                            <img class="icon_span_tab" src="{{ asset('assets/media/icons/monedas.webp') }}" alt="" >
-                        </span>
-                        <input id="restante" name="restante" type="number"  class="form-control input_custom_tab_dark @error('restante') is-invalid @enderror"  value="{{ old('restante') }}" readonly>
-                    </div>
-                </div>
-
-                <div class="form-group col-6 px-2 py-1" id="cambioContainer">
-                    <label for="name" class="label_custom_primary_product_white mb-2">Cambio :</label>
-                    <div class="input-group ">
-                        <span class="input-group-text span_custom_tab" >
-                            <img class="icon_span_tab" src="{{ asset('assets/media/icons/coins.webp') }}" alt="" >
-                        </span>
-                        <input id="cambio" name="cambio" type="number"  class="form-control input_custom_tab_dark @error('cambio') is-invalid @enderror"  value="{{ old('cambio') }}" readonly>
-                    </div>
-                </div>
-
-                <div class="form-group col-12 px-2 py-1">
+                <div class="form-group col-6 px-2 py-3">
                     <label for="name" class="label_custom_primary_product_white mb-2">¿Metodo de Pago 2? </label>
 
                     <div class="input-group text-white d-flex justify-content-around mt-3">
@@ -258,7 +228,7 @@
                 </div>
 
                 <div class="row" id="PagoContainer" style="display: none;">
-                    <div class="form-group col-6 px-2 py-1">
+                    <div class="form-group col-6 px-2 py-3">
                         <label for="name" class="label_custom_primary_product_white mb-2">Metodo de Pago 2:</label>
                         <div class="input-group ">
                             <span class="input-group-text span_custom_tab" >
@@ -272,7 +242,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group col-6 px-2 py-1">
+                    <div class="form-group col-6 px-2 py-3">
                         <label for="name" class="label_custom_primary_product_white mb-2">Dinero recibido 2:</label>
                         <div class="input-group ">
                             <span class="input-group-text span_custom_tab" >
@@ -283,7 +253,37 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-1">
+                <div class="form-group col-6 px-2 py-3">
+                    <label for="name" class="label_custom_primary_product_white mb-2">Total :</label>
+                    <div class="input-group ">
+                        <span class="input-group-text span_custom_tab" >
+                            <img class="icon_span_tab" src="{{ asset('assets/media/icons/bolsa-de-dinero.webp') }}" alt="" >
+                        </span>
+                        <input id="sumaSubtotales" name="sumaSubtotales" type="text"  class="form-control input_custom_tab_dark @error('sumaSubtotales') is-invalid @enderror"  value="{{ old('sumaSubtotales') }}" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group col-6 px-2 py-3" id="restanteContainer">
+                    <label for="name" class="label_custom_primary_product_white mb-2">Restante :</label>
+                    <div class="input-group ">
+                        <span class="input-group-text span_custom_tab" >
+                            <img class="icon_span_tab" src="{{ asset('assets/media/icons/monedas.webp') }}" alt="" >
+                        </span>
+                        <input id="restante" name="restante" type="number"  class="form-control input_custom_tab_dark @error('restante') is-invalid @enderror"  value="{{ old('restante') }}" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group col-6 px-2 py-3" id="cambioContainer">
+                    <label for="name" class="label_custom_primary_product_white mb-2">Cambio :</label>
+                    <div class="input-group ">
+                        <span class="input-group-text span_custom_tab" >
+                            <img class="icon_span_tab" src="{{ asset('assets/media/icons/coins.webp') }}" alt="" >
+                        </span>
+                        <input id="cambio" name="cambio" type="number"  class="form-control input_custom_tab_dark @error('cambio') is-invalid @enderror"  value="{{ old('cambio') }}" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group col-6 px-2 py-3">
                     <label for="name" class="label_custom_primary_product_white mb-2">Factura </label>
 
                     <div class="input-group text-white d-flex justify-content-around mt-3">
