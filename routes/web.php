@@ -45,6 +45,8 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::post('/productos/store', 'ProductosController@store')->name('productos.store');
     Route::patch('/productos/update/{id}', 'ProductosController@update')->name('productos.update');
 
+    Route::get('/productos/filtro', 'ProductosController@filtro')->name('productos.filtro');
+
     // =============== M O D U L O   C A J A ===============================
     //Route::get('/caja', 'CajaController@index')->name('caja.index');
 
