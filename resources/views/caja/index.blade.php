@@ -30,7 +30,7 @@
                     <select name="producto_id" id="producto_id" class="form-select d-inline-block producto">
                         <option value="">Seleccione producto</option>
                         @foreach ($productos as $producto)
-                        <option value="{{ $producto->sku }}" data-image="{{ asset('imagen_principal/empresa'.auth()->user()->id_empresa.'/'.$producto->imagen_principal) }}">{{ $producto->nombre }}</option>
+                        <option value="{{ explode('_', $producto->sku)[0] }}" data-image="{{ asset('imagen_principal/empresa'.auth()->user()->id_empresa.'/'.$producto->imagen_principal) }}">{{ $producto->nombre }}</option>
                         @endforeach
                     </select>
 
