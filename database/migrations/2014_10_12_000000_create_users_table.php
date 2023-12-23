@@ -19,9 +19,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('password_caja')->unique();
+            $table->text('foto')->nullable();
             $table->rememberToken();
 
-            $table->unsignedBigInteger('id_direccion');
+            $table->unsignedBigInteger('id_direccion')->nullable();
             $table->foreign('id_direccion')
                 ->references('id')->on('direcciones')
                 ->inDelete('set null');

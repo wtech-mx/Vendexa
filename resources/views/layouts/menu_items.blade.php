@@ -34,6 +34,12 @@
         Clientes <img class="icon_navbar" src="{{ asset('assets/media/icons/clientes.webp') }}" alt="">
     </li>
  </a>
+
+ <a href="{{ route('trabajadores.index') }}" class="enlace_sidebar">
+    <li class="li_navbar">
+        Trabajadores <img class="icon_navbar" src="{{ asset('assets/media/icons/distribuidor-imageonline.co-1952752.webp') }}" alt="">
+    </li>
+ </a>
 <!--
 <a href="" class="enlace_sidebar">
     <li class="li_navbar">
