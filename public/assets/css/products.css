@@ -187,3 +187,9 @@
 .img_subtittle_ventas{
     width: 16px;
 }
+
+.container_filter{
+    box-shadow: 1px 1px 6px #577590;
+    background-color: #F0F0F0!important;
+    border-radius: 9px;
+}

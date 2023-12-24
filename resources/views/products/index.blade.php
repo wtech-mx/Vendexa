@@ -44,32 +44,36 @@
                   </a>
             </div>
 
-            <div class="collapse" id="collapseFilter" style="background: #ffffff;">
-                <form action="{{ route('productos.filtro') }}" method="GET" >
-                    <h6>Filtros</h6>
-                    <div class="row">
+            <div class="collapse container_filter p-2 mt-3" id="collapseFilter" style="background: #ffffff;">
 
-                        <div class="col-3">
-                            <label class="form-label">Rango Stock</label>
+                <form class="row mt-3 mb-3" action="{{ route('productos.filtro') }}" method="GET" >
+
+                        <div class="col-12">
+                            <h6>Filtros</h6>
+                        </div>
+
+                        <div class="col-4 py-3">
+                            <label class="form-label tiitle_products">Rango Stock de</label>
                             <div class="input-group">
-                                <label class="form-label">De:</label>
                                 <span class="input-group-text span_custom_tab" >
-                                    <img class="icon_span_tab" src="{{ asset('assets/media/icons/camion.webp') }}" alt="" >
+                                    <img class="icon_span_tab" src="{{ asset('assets/media/icons/cero.webp') }}" alt="" >
                                 </span>
                                 <input id="stock_de" name="stock_de" type="number"  class="form-control input_custom_tab @error('stock_de') is-invalid @enderror"  value="{{ old('stock_de') }}" autocomplete="" autofocus>
                             </div>
+                        </div>
 
+                        <div class="col-4 py-3">
+                            <label class="form-label tiitle_products">hasta </label>
                             <div class="input-group">
-                                <label class="form-label">A :</label>
                                 <span class="input-group-text span_custom_tab" >
-                                    <img class="icon_span_tab" src="{{ asset('assets/media/icons/camion.webp') }}" alt="" >
+                                    <img class="icon_span_tab" src="{{ asset('assets/media/icons/9.webp') }}" alt="" >
                                 </span>
                                 <input id="stock_a" name="stock_a" type="number"  class="form-control input_custom_tab @error('stock_a') is-invalid @enderror"  value="{{ old('stock_a') }}" autocomplete="" autofocus>
                             </div>
                         </div>
 
-                        <div class="col-3">
-                            <label class="form-label">Marca</label>
+                        <div class="col-4 py-3">
+                            <label class="form-label tiitle_products">Marca</label>
                             <div class="input-group">
                                 <span class="input-group-text span_custom_tab" >
                                     <img class="icon_span_tab" src="{{ asset('assets/media/icons/marca.webp') }}" alt="" >
@@ -83,8 +87,8 @@
                             </div>
                         </div>
 
-                        <div class="col-3">
-                            <label class="form-label">Categoria</label>
+                        <div class="col-4 py-3">
+                            <label class="form-label tiitle_products">Categoria</label>
                             <div class="input-group">
                                 <span class="input-group-text span_custom_tab" >
                                     <img class="icon_span_tab" src="{{ asset('assets/media/icons/categorias.webp') }}" alt="" >
@@ -98,8 +102,8 @@
                             </div>
                         </div>
 
-                        <div class="col-3">
-                            <label class="form-label">Subcategoria</label>
+                        <div class="col-4 py-3">
+                            <label class="form-label tiitle_products">Subcategoria</label>
                             <div class="input-group">
                                 <span class="input-group-text span_custom_tab" >
                                     <img class="icon_span_tab" src="{{ asset('assets/media/icons/paquete.webp') }}" alt="" >
@@ -113,8 +117,8 @@
                             </div>
                         </div>
 
-                        <div class="col-3">
-                            <label class="form-label">Proveedor</label>
+                        <div class="col-4 py-3">
+                            <label class="form-label tiitle_products">Proveedor</label>
                             <div class="input-group">
                                 <span class="input-group-text span_custom_tab" >
                                     <img class="icon_span_tab" src="{{ asset('assets/media/icons/camion.webp') }}" alt="" >
@@ -128,11 +132,11 @@
                             </div>
                         </div>
 
-                        <div class="col-3">
-                            <label class="form-label">Estatus </label>
+                        <div class="col-4 py-3">
+                            <label class="form-label tiitle_products">Estatus </label>
                             <div class="input-group">
                                 <span class="input-group-text span_custom_tab" >
-                                    <img class="icon_span_tab" src="{{ asset('assets/media/icons/camion.webp') }}" alt="" >
+                                    <img class="icon_span_tab" src="{{ asset('assets/media/icons/semaforos.webp') }}" alt="" >
                                 </span>
                                 <select name="visibilidad_estatus" id="visibilidad_estatus" class="form-select d-inline-block input_custom_tab">
                                     <option value="" {{ old('') == '' ? 'selected' : '' }}>Selecionar </option>
@@ -142,11 +146,11 @@
                             </div>
                         </div>
 
-                        <div class="col-3">
-                            <label class="form-label">Descuento </label>
+                        <div class="col-4 py-3">
+                            <label class="form-label tiitle_products">Descuento </label>
                             <div class="input-group">
                                 <span class="input-group-text span_custom_tab" >
-                                    <img class="icon_span_tab" src="{{ asset('assets/media/icons/camion.webp') }}" alt="" >
+                                    <img class="icon_span_tab" src="{{ asset('assets/media/icons/descuento.webp') }}" alt="" >
                                 </span>
                                 <select name="descuento" id="descuento" class="form-select d-inline-block input_custom_tab">
                                     <option value="" {{ old('') == '' ? 'selected' : '' }}>Selecionar </option>
@@ -156,15 +160,18 @@
                             </div>
                         </div>
 
-                        <div class="col-3">
-                            <label class="form-label">-</label>
+                        <div class="col-4 py-3">
+                            <label class="form-label tiitle_products">-</label>
                             <div class="input-group">
-                                <button class="btn btn-sm bg-success mb-0 mt-sm-0 mt-1" type="submit" style="color: #ffffff;">Buscar</button>
+                                <button class="btn btn_filter text-white" type="submit" style="">Buscar
+                                    <img class="icon_span_tab" src="{{ asset('assets/media/icons/buscar.webp') }}" alt="" >
+
+                                </button>
                             </div>
 
                         </div>
-                    </div>
                 </form>
+
             </div>
 
         </div>

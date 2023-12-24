@@ -27,7 +27,7 @@
                         </p>
 
                         <div class="d-flex justify-content-around">
-                            <a href="{{route('imprimir_etiqueta.product',$producto->sku)}}" target="_blank" class="mt-2 span_custom_primary_dark">
+                            <a href="{{route('imprimir_etiqueta.product',$producto->sku)}}" target="_blank" class="btn mt-2 span_custom_primary_dark">
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/impresora_White.webp') }}" alt="" >
                             </a>
                         </div>
