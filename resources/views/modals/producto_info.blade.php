@@ -23,9 +23,16 @@
                         </p>
 
                         <p class="text-center">
-                            <img src="data:image/png;base64, {{DNS1D::getBarcodePNG($producto->sku, 'C128', 1.6, 35, array(0, 0, 0), true)}}" >
+                            <img src="data:image/png;base64, {{DNS1D::getBarcodePNG( explode('_', $producto->sku)[0], 'C128', 1.6, 35, array(0, 0, 0), true)}}" >
                         </p>
+
+                        <div class="d-flex justify-content-around">
+                            <a href="{{route('imprimir_etiqueta.product',$producto->sku)}}" target="_blank" class="mt-2 span_custom_primary_dark">
+                                <img class="icon_span_form" src="{{ asset('assets/media/icons/impresora_White.webp') }}" alt="" >
+                            </a>
+                        </div>
                     </div>
+
                 </div>
 
                 {{-- Tab para informacion de productos --}}

@@ -293,7 +293,7 @@
 }
 
 
-@media only screen and (max-width: 390px) {
+@media only screen and (max-width: 430px) {
 
     .label_custom_primary_product_white{
         font-size: 16px;
@@ -302,7 +302,6 @@
     .ul_nav_custom_white{
         margin: 0px;
         padding: 10px;
-
     }
 }
 

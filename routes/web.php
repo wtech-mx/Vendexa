@@ -46,7 +46,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::post('/productos/store', 'ProductosController@store')->name('productos.store');
     Route::patch('/productos/update/{id}', 'ProductosController@update')->name('productos.update');
     Route::get('/productos/filtro', 'ProductosController@filtro')->name('productos.filtro');
-
+    Route::get('/imprimir/etiqueta/{sku}', 'ImpresionController@imprimir_etiqueta')->name('imprimir_etiqueta.product');
 
     // ======================================= M O D U L O   C A J A =================================================
 
@@ -56,7 +56,6 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::post('/caja/store', 'CajaController@store')->name('caja.store');
     Route::post('/caja/pass', 'CajaController@validation_pass')->name('caja_pass.store');
     Route::get('/obtener-registros-cliente/{id}', 'CajaController@obtenerRegistrosCliente');
-
 
     // ======================================= M O D U L O   O R D E N E S ===========================================
 
