@@ -37,7 +37,7 @@
 
  <a href="{{ route('trabajadores.index') }}" class="enlace_sidebar">
     <li class="li_navbar">
-        Trabajadores <img class="icon_navbar" src="{{ asset('assets/media/icons/distribuidor-imageonline.co-1952752.webp') }}" alt="">
+        Empleados <img class="icon_navbar" src="{{ asset('assets/media/icons/empleados.webp') }}" alt="">
     </li>
  </a>
 <!--

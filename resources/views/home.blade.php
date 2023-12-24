@@ -180,11 +180,11 @@
 
                     <div class="card_img">
                         <a href="{{ route('clientes.index') }}">
-                            <img class="img_icon_dash" src="{{ asset('assets/media/icons/distribuidor-imageonline.co-1952752.webp') }}" alt="">
+                            <img class="img_icon_dash" src="{{ asset('assets/media/icons/empleados.webp') }}" alt="">
                         </a>
                     </div>
 
-                    <h6 class="tittle_card_dash text-center mt-3 mb-3">Trabajadores</h6>
+                    <h6 class="tittle_card_dash text-center mt-3 mb-3">Empleados</h6>
 
                     <a href="{{ route('trabajadores.index') }}" class="btn_primary_blue_dash">Acceder </a>
 

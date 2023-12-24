@@ -26,7 +26,8 @@ class TrabajadoresController extends Controller
             'name' => 'required',
             'apellido' => 'required',
             'email' => 'required',
-            'correo' => 'required',
+            'password' => 'required',
+            'pin' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -49,8 +50,9 @@ class TrabajadoresController extends Controller
         $trabajador = new User;
         $trabajador->name = $request->get('name') . ' ' . $request->get('apellido');
         $trabajador->email = $request->get('email');
-        $trabajador->password_caja = $request->get('password');
+        $trabajador->password_caja = $request->get('pin');
         $trabajador->password = Hash::make($request->get('password'));
+
         $trabajador->correo = $request->get('correo');
         if($request->get('codigo_postal') != NULL){
             $trabajador->id_direccion = $direccion->id;

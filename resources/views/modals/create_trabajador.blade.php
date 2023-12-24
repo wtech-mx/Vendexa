@@ -15,7 +15,7 @@
 
                 <div class="row">
                     <div class="col-10">
-                        <h2 class="tiitle_modal_dark text-center mt-3">Crear Trabajador</h2>
+                        <h2 class="tiitle_modal_dark text-center mt-3">Crear Empleado</h2>
                     </div>
 
                     <div class="col-2">
@@ -71,13 +71,23 @@
                         </div>
                     </div>
 
-                    <div class="form-group col-12 mb-3 p-2">
+                    <div class="form-group col-6 mb-3 p-2">
                         <label for="name" class="label_custom_primary_product mb-2">Contraseña *</label>
                         <div class="input-group ">
                             <span class="input-group-text span_custom_tab" >
-                                <img class="icon_span_form" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="" >
+                                <img class="icon_span_form" src="{{ asset('assets/media/icons/proteger.png.webp') }}" alt="" >
                             </span>
                             <input id="password" name="password" type="text"  class="form-control input_custom_tab_dark @error('password') is-invalid @enderror"  value="{{ old('password') }}"  autocomplete="" autofocus>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-6 mb-3 p-2">
+                        <label for="name" class="label_custom_primary_product mb-2">Pin de Seguridad *</label>
+                        <div class="input-group ">
+                            <span class="input-group-text span_custom_tab" >
+                                <img class="icon_span_form" src="{{ asset('assets/media/icons/restablecer-la-contrasena.webp') }}" alt="" >
+                            </span>
+                            <input id="pin" name="pin" type="number"  class="form-control input_custom_tab_dark @error('pin') is-invalid @enderror"  value="{{ old('pin') }}"  autocomplete="" autofocus>
                         </div>
                     </div>
 
