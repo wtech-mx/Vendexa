@@ -22,6 +22,7 @@ class Ordenes extends Model
         'id_empresa',
         'id_user',
         'id_orden_woocommerce',
+        'id_factura',
     ];
     public function Cliente()
     {
@@ -42,5 +43,9 @@ class Ordenes extends Model
     public function Pagos()
     {
         return $this->hasMany(OrdenesPagos::class, 'id_orden');
+    }
+    public function Factura()
+    {
+        return $this->belongsTo(DatosFacturas::class, 'id_factura');
     }
 }

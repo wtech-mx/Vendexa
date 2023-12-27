@@ -69,6 +69,12 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::get('/trabajadores', 'TrabajadoresController@index')->name('trabajadores.index');
     Route::post('/trabajadores/store', 'TrabajadoresController@store')->name('trabajadores.store');
 
+
+    // ======================================= M O D U L O  R O L E S  Y  P E R M I S O S ==================================
+
+    Route::get('/roles/permisos', 'RoleController@index')->name('roles.index');
+    Route::post('/roles/permisos/store', 'RoleController@store')->name('roles.store');
+
  });
 
 

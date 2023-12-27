@@ -8,6 +8,8 @@ use App\Models\Proveedores;
 use App\Models\SubCategorias;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('*', function ($view) {
+            $permission = Permission::get();
+
+            $view->with(['permission' => $permission]);
+        });
     }
 }

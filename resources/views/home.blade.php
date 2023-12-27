@@ -195,6 +195,26 @@
                 </div>
             </div>
 
+            <div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center animation_card">
+                <div class="card_dashboard p-2">
+
+                    <div class="card_img">
+                        <a href="{{ route('clientes.index') }}">
+                            <img class="img_icon_dash" src="{{ asset('assets/media/icons/referencia.webp') }}" alt="">
+                        </a>
+                    </div>
+
+                    <h6 class="tittle_card_dash text-center mt-3 mb-3">Roles</h6>
+
+                    <a href="{{ route('trabajadores.index') }}" class="btn_primary_blue_dash">Acceder </a>
+
+                    <a type="button" class="btn_plus_dash" data-bs-toggle="modal" data-bs-target="#creatRoles">
+                        <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
+                    </a>
+
+                </div>
+            </div>
+
         <!--<div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center animation_card">
                 <div class="card_dashboard p-2">
 
@@ -238,4 +258,5 @@
 </section>
 @include('modals.create_product')
 @include('modals.create_trabajador')
+@include('modals.create_role')
 @endsection
