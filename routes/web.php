@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::patch('/productos/update/{id}', 'ProductosController@update')->name('productos.update');
     Route::get('/productos/filtro', 'ProductosController@filtro')->name('productos.filtro');
     Route::get('/imprimir/etiqueta/{sku}', 'ImpresionController@imprimir_etiqueta')->name('imprimir_etiqueta.product');
+    Route::POST('/pdf/productos', 'ImpresionController@pdf_productos')->name('pdf.product');
 
     // ======================================= M O D U L O   C A J A =================================================
 

@@ -190,6 +190,9 @@
                 <a class="card_box_colores me-5 ms-5 outStock">
                     <p class="text_estatus_product">Sin Stock</p>
                 </a>
+
+                <button onclick="generarReporte()">Generar Reporte</button>
+
             </div>
         </div>
         @if(Route::currentRouteName() == 'productos.filtro')
@@ -272,7 +275,7 @@
             @foreach ($productos as $producto)
                 @include('modals.edit_product')
                 <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center px-3 py-3">
-                    <div class="card card_prodcut p-3">
+                    <div class="card card_prodcut p-3" onclick="seleccionarProducto({{ $producto->id }})">
 
                         <div class="card_prodcuto" style="border: solid 3px red;border-radius: 12px;">
                             <div class="card_container_img">
@@ -349,3 +352,46 @@
 </section>
 
 @endsection
+
+
+<script>
+
+let productosSeleccionados = [];
+
+function seleccionarProducto(id) {
+    console.log('selecionado');
+    // Verificar si el producto ya está seleccionado
+    const index = productosSeleccionados.indexOf(id);
+    if (index === -1) {
+        // Si no está seleccionado, agregarlo a la lista
+        productosSeleccionados.push(id);
+    } else {
+        // Si ya está seleccionado, quitarlo de la lista
+        productosSeleccionados.splice(index, 1);
+    }
+}
+
+function generarReporte() {
+    $.ajax({
+            url: '{{ route('pdf.product') }}',
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}' // Agregar el token CSRF a la solicitud
+            },
+            data: {
+                productos: productosSeleccionados
+            },
+            success: function(response) {
+                console.log('Informe generado:', response);
+                // Aquí puedes manejar la respuesta del servidor, si es necesario
+            },
+            error: function(error) {
+                console.error('Error al generar informe:', error);
+                // Manejar errores
+            }
+        });
+}
+
+
+
+</script>

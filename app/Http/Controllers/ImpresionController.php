@@ -23,4 +23,8 @@ class ImpresionController extends Controller
         return $pdf->download('etiqueta_'.$sku.'.pdf');
 
     }
+
+    public function pdf_productos(Request $request){
+        dd($request);
+    }
 }
