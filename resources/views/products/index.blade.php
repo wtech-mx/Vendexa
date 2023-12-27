@@ -382,9 +382,10 @@ function generarReporte() {
                 productos: productosSeleccionados
             },
             success: function(response) {
-                console.log('Informe generado:', response);
-                // Aquí puedes manejar la respuesta del servidor, si es necesario
+                console.log('URL del PDF:', response.url);
+                window.open(response.url, '_blank'); // Abre el PDF en una nueva ventana
             },
+
             error: function(error) {
                 console.error('Error al generar informe:', error);
                 // Manejar errores
