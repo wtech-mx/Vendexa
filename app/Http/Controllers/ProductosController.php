@@ -71,6 +71,40 @@ class ProductosController extends Controller
         return view('products.index', compact('productos','modoficaciones_productos','proveedores', 'marcas', 'categorias', 'subcategorias'));
     }
 
+    public function bukaction_pausar(Request $request){
+        $productosSeleccionados = $request->get('productos');
+
+        $products = []; // Inicializar un arreglo vacío para almacenar los productos
+
+        foreach ($productosSeleccionados as $producto) {
+            $product = Productos::find($producto); // Obtener el producto por SKU
+
+            if ($product) {
+                $product->visibilidad_estatus = 'No';
+                $product->update();
+            }
+        }
+
+        return response()->json(['success' => true]);
+    }
+
+    public function bukaction_publicar(Request $request){
+        $productosSeleccionados = $request->get('productos');
+
+        $products = []; // Inicializar un arreglo vacío para almacenar los productos
+
+        foreach ($productosSeleccionados as $producto) {
+            $product = Productos::find($producto); // Obtener el producto por SKU
+
+            if ($product) {
+                $product->visibilidad_estatus = 'Visible';
+                $product->update();
+            }
+        }
+
+        return response()->json(['success' => true]);
+    }
+
     public function store(Request $request){
 
         $validator = Validator::make($request->all(), [

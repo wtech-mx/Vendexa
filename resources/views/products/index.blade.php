@@ -52,7 +52,7 @@
                             <h6>Filtros</h6>
                         </div>
 
-                        <div class="col-4 py-3">
+                        <div class="col-6 col-md-4 col-lg-4 py-3">
                             <label class="form-label tiitle_products">Rango Stock de</label>
                             <div class="input-group">
                                 <span class="input-group-text span_custom_tab" >
@@ -62,7 +62,7 @@
                             </div>
                         </div>
 
-                        <div class="col-4 py-3">
+                        <div class="col-6 col-md-4 col-lg-4 py-3">
                             <label class="form-label tiitle_products">hasta </label>
                             <div class="input-group">
                                 <span class="input-group-text span_custom_tab" >
@@ -72,7 +72,7 @@
                             </div>
                         </div>
 
-                        <div class="col-4 py-3">
+                        <div class="col-6 col-md-4 col-lg-4 py-3">
                             <label class="form-label tiitle_products">Marca</label>
                             <div class="input-group">
                                 <span class="input-group-text span_custom_tab" >
@@ -87,7 +87,7 @@
                             </div>
                         </div>
 
-                        <div class="col-4 py-3">
+                        <div class="col-6 col-md-4 col-lg-4 py-3">
                             <label class="form-label tiitle_products">Categoria</label>
                             <div class="input-group">
                                 <span class="input-group-text span_custom_tab" >
@@ -102,7 +102,7 @@
                             </div>
                         </div>
 
-                        <div class="col-4 py-3">
+                        <div class="col-6 col-md-4 col-lg-4 py-3">
                             <label class="form-label tiitle_products">Subcategoria</label>
                             <div class="input-group">
                                 <span class="input-group-text span_custom_tab" >
@@ -117,7 +117,7 @@
                             </div>
                         </div>
 
-                        <div class="col-4 py-3">
+                        <div class="col-6 col-md-4 col-lg-4 py-3">
                             <label class="form-label tiitle_products">Proveedor</label>
                             <div class="input-group">
                                 <span class="input-group-text span_custom_tab" >
@@ -132,7 +132,7 @@
                             </div>
                         </div>
 
-                        <div class="col-4 py-3">
+                        <div class="col-6 col-md-4 col-lg-4 py-3">
                             <label class="form-label tiitle_products">Estatus </label>
                             <div class="input-group">
                                 <span class="input-group-text span_custom_tab" >
@@ -146,7 +146,7 @@
                             </div>
                         </div>
 
-                        <div class="col-4 py-3">
+                        <div class="col-6 col-md-4 col-lg-4 py-3">
                             <label class="form-label tiitle_products">Descuento </label>
                             <div class="input-group">
                                 <span class="input-group-text span_custom_tab" >
@@ -160,7 +160,7 @@
                             </div>
                         </div>
 
-                        <div class="col-4 py-3">
+                        <div class="col-6 col-md-4 col-lg-4 py-3">
                             <label class="form-label tiitle_products">-</label>
                             <div class="input-group">
                                 <button class="btn btn_filter text-white" type="submit" style="">Buscar
@@ -202,10 +202,10 @@
                     <img class="icon_span_tab" src="{{ asset('assets/media/icons/catalogo.webp') }}" alt="" >
                 </button>
 
-                <button class="btn btn-sm btn_generar_pdf ms-3" id="btnGenerarReporte" style="display: none;" onclick="generarReporte()">
-                    Generar Reporte
+                <a type="button" class="btn btn-sm btn_generar_pdf ms-3"  id="btnGenerarReporte" style="display: none;" data-bs-toggle="modal" data-bs-target="#bulkaction">
+                    Generar PDFs
                     <img class="icon_span_tab" src="{{ asset('assets/media/icons/catalogo.webp') }}" alt="">
-                </button>
+                </a>
 
             </div>
 
@@ -228,6 +228,8 @@
     </div>
 
 </section>
+
+@include('modals.bulk_action')
 
 @endsection
 
@@ -314,6 +316,70 @@ function generarReporte() {
             }
         });
 }
+
+function pusarProductos() {
+    $.ajax({
+            url: '{{ route('bulk_pausar.product') }}',
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}' // Agregar el token CSRF a la solicitud
+            },
+            data: {
+                productos: productosSeleccionados
+            },
+            success: function(response) {
+
+                Swal.fire({
+                        title: "Producto(s) Pusados <strong>¡Exitosamente!</strong>",
+                        icon: "success",
+                        html: "",
+                        showCloseButton: true,
+                        showCancelButton: true,
+                        focusConfirm: false,
+                        confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('productos.index') }}" >Ver Productos</a>',
+                        cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="#" >Cerrar</a>`,
+                    });
+
+            },
+
+            error: function(error) {
+                console.error('Error al generar informe:', error);
+                // Manejar errores
+            }
+        });
+}
+
+function publicarProductos() {
+    $.ajax({
+            url: '{{ route('bulk_publicar.product') }}',
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}' // Agregar el token CSRF a la solicitud
+            },
+            data: {
+                productos: productosSeleccionados
+            },
+            success: function(response) {
+
+                Swal.fire({
+                        title: "Producto(s) Publicado <strong>¡Exitosamente!</strong>",
+                        icon: "success",
+                        html: "",
+                        showCloseButton: true,
+                        showCancelButton: true,
+                        focusConfirm: false,
+                        confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('productos.index') }}" >Ver Productos</a>',
+                        cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="#" >Cerrar</a>`,
+                    });
+            },
+
+            error: function(error) {
+                console.error('Error al generar informe:', error);
+                // Manejar errores
+            }
+        });
+}
+
 
 </script>
 

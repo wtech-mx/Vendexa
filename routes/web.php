@@ -48,6 +48,8 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::get('/productos/filtro', 'ProductosController@filtro')->name('productos.filtro');
     Route::get('/imprimir/etiqueta/{sku}', 'ImpresionController@imprimir_etiqueta')->name('imprimir_etiqueta.product');
     Route::POST('/pdf/productos', 'ImpresionController@pdf_productos')->name('pdf.product');
+    Route::POST('bulk/productos/pausar', 'ProductosController@bukaction_pausar')->name('bulk_pausar.product');
+    Route::POST('bulk/productos/publicar', 'ProductosController@bukaction_publicar')->name('bulk_publicar.product');
 
     // ======================================= M O D U L O   C A J A =================================================
 

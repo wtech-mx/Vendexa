@@ -200,7 +200,7 @@
 
                     <div class="card_img">
                         <a href="{{ route('clientes.index') }}">
-                            <img class="img_icon_dash" src="{{ asset('assets/media/icons/referencia.webp') }}" alt="">
+                            <img class="img_icon_dash" src="{{ asset('assets/media/icons/roles_permisos.webp') }}" alt="">
                         </a>
                     </div>
 

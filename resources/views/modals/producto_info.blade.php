@@ -262,9 +262,9 @@
                                         <div class="input-group text-white d-flex justify-content-around mt-3">
                                               <div class="form-check form-check-inline">
                                                 @if ($producto->visibilidad_estatus == NULL)
-                                                    <input class="form-check-input " type="radio" name="visibilidad_estatus" id="" value="Si">
+                                                    <input class="form-check-input " type="radio" name="visibilidad_estatus" id="" value="visible">
                                                     @else
-                                                    <input class="form-check-input " type="radio" name="visibilidad_estatus" id="" value="Si" checked>
+                                                    <input class="form-check-input " type="radio" name="visibilidad_estatus" id="" value="visible" checked>
                                                 @endif
 
                                                 <label class="form-check-label" for="">Publicado</label>
