@@ -13,7 +13,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px;
-            background-color: #004d7a;
+            background-color: #577590;
             color: #ffffff;
         }
 
@@ -40,7 +40,7 @@
         th, td {
             text-align: center;
             padding: 10px;
-            border: 1px solid #004d7a;
+            border: 1px solid #577590;
         }
 
         img {
@@ -58,7 +58,7 @@
                     <img src="https://scontent.fmex28-1.fna.fbcdn.net/v/t39.30808-1/270423810_1957165624443123_3118909372186457774_n.png?stp=dst-png_p320x320&_nc_cat=107&cb=99be929b-3346023f&ccb=1-7&_nc_sid=c6021c&_nc_eui2=AeEq-_E2_BPGWHpdBOmu_cJ3vgYiDdkWP32-BiIN2RY_fQS0nBp0Ti0tVOuWt_hVM05Q5gKBsRSjTgntsM7oj2P-&_nc_ohc=zrBtm5FGDOgAX8BWwqM&_nc_ht=scontent.fmex28-1.fna&oh=00_AfDcPrCBVhGlaxX8TbohV9MSNuI6DN_LuxiDET4vKRd5kQ&oe=64ABE0F2" alt="Logo">
                 </td>
                 <td>
-                    <p style="color: #004d7a">---------------------------------------</p>
+                    <p style="color: #577590">---------------------------------------</p>
                 </td>
                 <td style="width: 350px">
                     <h1>- Maniabike Boutique</h1>
@@ -102,7 +102,7 @@
                     <img src="https://scontent.fmex28-1.fna.fbcdn.net/v/t39.30808-1/270423810_1957165624443123_3118909372186457774_n.png?stp=dst-png_p320x320&_nc_cat=107&cb=99be929b-3346023f&ccb=1-7&_nc_sid=c6021c&_nc_eui2=AeEq-_E2_BPGWHpdBOmu_cJ3vgYiDdkWP32-BiIN2RY_fQS0nBp0Ti0tVOuWt_hVM05Q5gKBsRSjTgntsM7oj2P-&_nc_ohc=zrBtm5FGDOgAX8BWwqM&_nc_ht=scontent.fmex28-1.fna&oh=00_AfDcPrCBVhGlaxX8TbohV9MSNuI6DN_LuxiDET4vKRd5kQ&oe=64ABE0F2" alt="Logo">
                 </td>
                 <td>
-                    <p style="color: #004d7a">---------------------------------------</p>
+                    <p style="color: #577590">---------------------------------------</p>
                 </td>
                 <td style="width: 350px">
                     <ul style="list-style: none;text-align:left">

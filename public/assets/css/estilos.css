@@ -173,6 +173,45 @@
     width: 350px;
 }
 
+.btn_generar_pdf{
+    border-radius: 13px;
+    background-color: #14213D;
+    color: #fff;
+    padding: 10px;
+    border: solid 3px#fff;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.25);
+}
+
+.btn_generar_pdf:hover{
+    border-radius: 13px;
+    background-color: #fff;
+    color: #14213D;
+    padding: 10px;
+    border: solid 3px#14213D;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.25);
+}
+
+.btn_generar_pdf_All{
+    border-radius: 13px;
+    background-color: #fff;
+    color: #14213D;
+    padding: 10px;
+    border: solid 3px#14213D;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.25);
+}
+
+.btn_generar_pdf_All:hover{
+    border-radius: 13px;
+    background-color: #14213D;
+    color: #fff;
+    padding: 10px;
+    border: solid 3px#fff;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.25);
+}
+
+.seleccionado_gridPdfProduct{
+    border: solid 3px #66e529;
+}
 
 @media only screen and (max-width: 390px) {
 
