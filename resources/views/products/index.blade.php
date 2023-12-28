@@ -193,9 +193,9 @@
             </div>
         </div>
 
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="col-12 ">
 
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-start">
 
                 <button class="btn btn-sm btn_generar_pdf_All" onclick="seleccionarTodos()">
                     Seleccionar Todos
@@ -211,7 +211,6 @@
 
         </div>
 
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6"></div>
 
         @if(Route::currentRouteName() == 'productos.filtro')
             @foreach ($productos as $producto)

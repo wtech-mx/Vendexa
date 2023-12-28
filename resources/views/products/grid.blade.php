@@ -1,4 +1,4 @@
-<div class="col-12 col-xs-6 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center px-3 py-3">
+<div class="col-12 col-xs-6 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center px-3 py-3 px-md-2">
     <div class="card card_prodcut p-3" onclick="seleccionarProducto({{ $producto->id }})" data-producto="{{ $producto->id }}">
 
         <div class="card_prodcuto" style="border: solid 3px red;border-radius: 12px;">
