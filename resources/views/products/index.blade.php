@@ -237,6 +237,25 @@
 
 <script>
 
+// Obtén los elementos por su ID
+const radioSi = document.getElementById('radioSiBulkpromo');
+const radioNo = document.getElementById('radioNoBulkpromo');
+
+const precioPromoBulkContainer = document.getElementById('precioPromoBulkContainer');
+
+// Agrega un listener para el cambio de los radios
+radioSi.addEventListener('change', function() {
+    if (this.checked) {
+        precioPromoBulkContainer.style.display = 'flex'; // Muestra el contenedor
+    }
+});
+
+radioNo.addEventListener('change', function() {
+    if (this.checked) {
+        precioPromoBulkContainer.style.display = 'none'; // Oculta el contenedor
+    }
+});
+
 let productosSeleccionados = [];
 
 function seleccionarProducto(id) {
@@ -293,7 +312,6 @@ function seleccionarTodos() {
     }
 
 }
-
 
 function generarReporte() {
     $.ajax({
@@ -379,6 +397,41 @@ function publicarProductos() {
             }
         });
 }
+
+            $("#miFormularioBulk").on("submit", function (event) {
+                event.preventDefault(); // Evita el envío predeterminado del formulario
+
+                // Obtenemos los datos del formulario
+                const formData = new FormData(this);
+
+                // Agregamos los productos seleccionados al objeto de datos
+                formData.append('productosSeleccionados', productosSeleccionados);
+
+                // Realiza la solicitud POST usando AJAX
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: "POST",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        Swal.fire({
+                                title: "Producto(s) Promocionados <strong>¡Exitosamente!</strong>",
+                                icon: "success",
+                                html: "",
+                                showCloseButton: true,
+                                showCancelButton: true,
+                                focusConfirm: false,
+                                confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('productos.index') }}" >Ver Productos</a>',
+                                cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="#" >Cerrar</a>`,
+                            });
+                        },
+                    error: function (xhr, status, error) {
+                        console.log(errorMessage);
+                    }
+                });
+
+            });
 
 
 </script>

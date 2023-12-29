@@ -105,6 +105,49 @@ class ProductosController extends Controller
         return response()->json(['success' => true]);
     }
 
+    public function bukaction_promocion(Request $request){
+        $productos = $request->get('productosSeleccionados');
+        $productosSeleccionados = explode(',', $productos);
+
+        $products = []; // Inicializar un arreglo vacío para almacenar los productos
+
+        foreach ($productosSeleccionados as $producto) {
+            $product = Productos::find($producto); // Obtener el producto por SKU
+
+            if ($product) {
+
+                $precioNormal = $product->precio_normal;
+
+                if ($request->get('tipo_bulk') == 'Porcentaje') {
+                    $porcentaje = $request->get('monto_bulk');
+                    // Convertir el porcentaje a decimal (por ejemplo, 20% -> 0.2)
+                    $porcentajeDecimal = $porcentaje / 100;
+
+                    // Calcular el descuento basado en el porcentaje
+                    $descuento = $precioNormal * $porcentajeDecimal;
+
+                    // Restar el descuento al precio normal
+                    $precioConDescuento = $precioNormal - $descuento;
+
+                    // Guardar $precioConDescuento o hacer lo que necesites con él
+                } elseif ($request->get('tipo_bulk') == 'Fijo') {
+                    $montoFijo = $request->get('monto_bulk');
+
+                    // Restar el monto fijo al precio normal
+                    $precioConDescuento = $precioNormal - $montoFijo;
+
+                    // Guardar $precioConDescuento o hacer lo que necesites con él
+                }
+
+                $product->precio_descuento = $precioConDescuento;
+                $product->fecha_inicio_desc = $request->get('fecha_inicio_desc_bulk') ;
+                $product->fecha_fin_desc = $request->get('fecha_fin_desc_bulk') ;
+
+                $product->update();
+            }
+        }
+    }
+
     public function store(Request $request){
 
         $validator = Validator::make($request->all(), [

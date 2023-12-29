@@ -198,9 +198,9 @@
     background: linear-gradient(white, white) padding-box,linear-gradient(to right, #13EB00, #0B8B00) border-box;
     border-radius: 16px!important;
     border: 4px solid transparent;
-    padding: 5px 30px 5px 30px;
+    padding: 5px 15px 5px 15px;
     color: #13EB00;
-    font-size: 30px;
+    font-size: 25px;
     font-family: Lexend;
     font-weight: 300;
     text-shadow: 3px 5px 10px rgb(2 2 2 / 20%);
