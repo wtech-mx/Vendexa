@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorias;
+use App\Models\Configuraciones;
 use App\Models\Marcas;
 use App\Models\Proveedores;
 use App\Models\SubCategorias;
@@ -27,12 +28,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = auth()->user()->id_empresa;
-        $proveedores = Proveedores::where('id_empresa', $user)->get();
-        $marcas = Marcas::where('id_empresa', $user)->get();
-        $categorias = Categorias::where('id_empresa', $user)->get();
-        $subcategorias = SubCategorias::where('id_empresa', $user)->get();
+        $user = auth()->user();
+        $proveedores = Proveedores::where('id_empresa', $user->id_empresa)->get();
+        $marcas = Marcas::where('id_empresa', $user->id_empresa)->get();
+        $categorias = Categorias::where('id_empresa', $user->id_empresa)->get();
+        $subcategorias = SubCategorias::where('id_empresa', $user->id_empresa)->get();
+        $configuracion = Configuraciones::where('id_empresa', $user->id_empresa)->first();
 
-        return view('home', compact('proveedores', 'marcas', 'categorias', 'subcategorias'));
+        return view('home', compact('proveedores', 'marcas', 'categorias', 'subcategorias', 'configuracion', 'user'));
     }
 }
