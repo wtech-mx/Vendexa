@@ -259,4 +259,133 @@
 @include('modals.create_product')
 @include('modals.create_trabajador')
 @include('modals.create_role')
+@include('modals.setting')
 @endsection
+
+@if($configuracion->estatus_config == 0)
+    @section('js_custom')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            {{-- mostrar modal configuracion inicial --}}
+        <script>
+            $(document).ready(function() {
+                // Llama a la función para mostrar el modal
+                mostrarModal();
+            });
+
+            function mostrarModal() {
+                // Muestra el modal
+                $("#configuracionInicial").css("display", "block");
+            }
+        </script>
+
+            {{-- mostrar/ocultar inputs Precio Mayorista --}}
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Obtener el checkbox principal y el div a mostrar/ocultar
+                var checkboxPrecioMayorista = document.getElementById('checkboxPrecioMayorista');
+                var divEncriptarMayo = document.querySelector('.encriptar-mayo-div');
+
+                // Obtener el segundo checkbox y los dos divs a mostrar/ocultar
+                var checkboxEncriptarMayo = document.getElementById('checkboxEncriptarMayo');
+                var divsEncriptacion = document.querySelectorAll('.div-encriptacion');
+
+                // Función para mostrar u ocultar el div según el estado del checkbox
+                function mostrarOcultarDiv(div, estado) {
+                    div.style.display = estado ? 'block' : 'none';
+                }
+
+                // Agregar un event listener al checkbox principal
+                checkboxPrecioMayorista.addEventListener('change', function () {
+                    // Mostrar u ocultar el divEncriptarMayo según el estado del checkbox
+                    mostrarOcultarDiv(divEncriptarMayo, checkboxPrecioMayorista.checked);
+
+                    // Si no se marca el checkbox principal, ocultar todos los divsEncriptacion
+                    if (!checkboxPrecioMayorista.checked) {
+                        divsEncriptacion.forEach(function (div) {
+                            mostrarOcultarDiv(div, false);
+                        });
+                    }
+                });
+
+                // Agregar un event listener al segundo checkbox
+                checkboxEncriptarMayo.addEventListener('change', function () {
+                    // Mostrar u ocultar los divsEncriptacion según el estado del checkbox
+                    divsEncriptacion.forEach(function (div) {
+                        mostrarOcultarDiv(div, checkboxEncriptarMayo.checked);
+                    });
+                });
+
+                // Mostrar u ocultar el divEncriptarMayo al cargar la página según el estado inicial del checkbox principal
+                mostrarOcultarDiv(divEncriptarMayo, checkboxPrecioMayorista.checked);
+
+                // Mostrar u ocultar los divsEncriptacion al cargar la página según el estado inicial del checkbox de encriptación
+                divsEncriptacion.forEach(function (div) {
+                    mostrarOcultarDiv(div, checkboxEncriptarMayo.checked);
+                });
+            });
+        </script>
+
+            {{-- Mensaje Guardado --}}
+        <script>
+            $(document).ready(function() {
+                $("#miFormularioConfiguracion").on("submit", function (event) {
+                    event.preventDefault(); // Evita el envío predeterminado del formulario
+
+                    // Realiza la solicitud POST usando AJAX
+                    $.ajax({
+                        url: $(this).attr("action"),
+                        type: "POST",
+                        data: new FormData(this),
+                        contentType: false,
+                        processData: false,
+                        success: async function(response) { // Agrega "async" aquí
+                            // El formulario se ha enviado correctamente, ahora realiza la impresión
+                            saveSuccess(response);
+
+                        },
+                        error: function (xhr, status, error) {
+                                var errors = xhr.responseJSON.errors;
+                                var errorMessage = '';
+
+                                // Itera a través de los errores y agrega cada mensaje de error al mensaje final
+                                for (var key in errors) {
+                                    if (errors.hasOwnProperty(key)) {
+                                        var errorMessages = errors[key].join('<br>'); // Usamos <br> para separar los mensajes
+                                        errorMessage += '<strong>' + key + ':</strong><br>' + errorMessages + '<br>';
+                                    }
+                                }
+                                console.log(errorMessage);
+                                // Muestra el mensaje de error en una SweetAlert
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Faltan Campos',
+                                    html: errorMessage, // Usa "html" para mostrar el mensaje con formato HTML
+                                });
+                        }
+                    });
+
+                });
+
+                async function saveSuccess(response) {
+                    const config_data = response.config_data;
+
+                    Swal.fire({
+                            title: "Configuracion Guardado <strong>¡Exitosamente!</strong>",
+                            icon: "success",
+                            html: "<div class='row'><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/fuente.webp') }}' ><p><strong>Nombre:</strong> <br>"+ config_data.nombre +"</p></div><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/en-stock.png.webp') }}' ><p><strong>Stock Alto:</strong><br>"+ config_data.stock_alto +" </p> </div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/monedas.webp') }}' ><p><strong>Stock Medio:</strong><br> "+ config_data.stock_medio +"</p></div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/sku.webp') }}'><p><strong>stock Bajo:</strong><br>"+ config_data.stock_bajo +" </p></div></div>",
+                            showCloseButton: true,
+                            showCancelButton: true,
+                            focusConfirm: false,
+                            confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('productos.index') }}" >Ver Configuracion</a>',
+                            cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="" >Cerrar</a>`,
+                        }).then(() => {
+                            // Recarga la página
+                        window.location.href = '/home/';
+                        });
+
+                }
+            });
+        </script>
+
+    @endsection
+@endif

@@ -33,6 +33,11 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/scanner', 'ScannerController@index')->name('scanner.index');
 
+    // ======================================= M O D U L O   C O N F I G U R A C I O N =====================================================
+
+    Route::get('/configuracion', 'ConfiguracionController@index')->name('index');
+    Route::patch('/configuracion/inicial/update/{id}', 'ConfiguracionController@inicial')->name('configuracion.inicial');
+
 
     // ======================================= M O D U L O   C L I E N T E S =========================================
 
