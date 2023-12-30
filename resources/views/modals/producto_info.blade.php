@@ -1,4 +1,4 @@
-            <form method="POST" action="{{ route('productos.update', $producto->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone miFormulario2 formularioProducto" id="miFormulario2-{{$producto->id}}" style="border: solid 5px red;border-radius: 16px;">
+            <form method="POST" action="{{ route('productos.update', $producto->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone formularioProducto" style="border: solid 5px red;border-radius: 16px;">
                 @csrf
                 <input type="hidden" name="_method" value="PATCH">
                 <div class="row">
@@ -126,7 +126,7 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/en-stock.png.webp') }}" alt="" >
                                             </span>
-                                            <input id="stock" name="stock" type="text"  class="form-control input_custom_tab_dark @error('stock') is-invalid @enderror"  value="{{ old('stock', $producto->stock) }}" autocomplete="" autofocus>
+                                            <input id="stock" name="stock" type="number"  class="form-control input_custom_tab_dark @error('stock') is-invalid @enderror"  value="{{ old('stock', $producto->stock) }}" autocomplete="" autofocus>
                                         </div>
                                     </div>
 
@@ -136,7 +136,7 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="" >
                                             </span>
-                                            <input id="costo" name="costo" type="text"  class="form-control input_custom_tab_dark @error('costo') is-invalid @enderror"  value="{{ old('costo', $producto->costo) }}" autocomplete="" autofocus>
+                                            <input id="costo" name="costo" type="number"  class="form-control input_custom_tab_dark @error('costo') is-invalid @enderror"  value="{{ old('costo', $producto->costo) }}" autocomplete="" autofocus>
                                         </div>
                                     </div>
 
@@ -146,7 +146,7 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/monedas.webp') }}" alt="" >
                                             </span>
-                                            <input id="precio_normal" name="precio_normal" type="text"  class="form-control input_custom_tab_dark @error('precio_normal') is-invalid @enderror"  value="{{ old('precio_normal', $producto->precio_normal) }}" autocomplete="" autofocus>
+                                            <input id="precio_normal" name="precio_normal" type="number"  class="form-control input_custom_tab_dark @error('precio_normal') is-invalid @enderror"  value="{{ old('precio_normal', $producto->precio_normal) }}" autocomplete="" autofocus>
                                         </div>
                                     </div>
 
