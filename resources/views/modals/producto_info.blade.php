@@ -1,4 +1,4 @@
-            <form method="POST" action="{{ route('productos.update', $producto->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="miFormulario2" style="border: solid 5px red;border-radius: 16px;">
+            <form method="POST" action="{{ route('productos.update', $producto->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone miFormulario2 formularioProducto" id="miFormulario2-{{$producto->id}}" style="border: solid 5px red;border-radius: 16px;">
                 @csrf
                 <input type="hidden" name="_method" value="PATCH">
                 <div class="row">
@@ -603,10 +603,10 @@
                     </div>
                 </div>
 
-                <div class="form-group col-12 mt-4 mb-4 ">
-                    <p class="text-center ">
-                        <button type="submit" class="btn btn-success btn_save_custom">Actualizar</button>
-                    </p>
-                </div>
+                    <div class="form-group col-12 mt-4 mb-4 ">
+                        <p class="text-center ">
+                            <button type="submit" class="btn btn-success btn_save_custom">Actualizar</button>
+                        </p>
+                    </div>
 
-            </form>
+                </form>
