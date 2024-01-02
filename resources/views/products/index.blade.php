@@ -42,6 +42,12 @@
                   <a class="btn btn_filter" data-bs-toggle="collapse" href="#collapseFilter" role="button" aria-expanded="false" aria-controls="collapseFilter">
                     <img class="icon_search" src="{{ asset('assets/media/icons/filtrar.webp') }}" alt="">
                   </a>
+
+                  @if(Route::currentRouteName() == 'productos.filtro')
+                  <a class="btn btn_filter" href="{{ route('productos.index') }}" role="button">
+                      <img class="icon_search" src="{{ asset('assets/media/icons/eraser.webp') }}" alt="">
+                  </a>
+                  @endif
             </div>
 
             <div class="collapse container_filter p-2 mt-3" id="collapseFilter" style="background: #ffffff;">

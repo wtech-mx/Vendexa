@@ -28,24 +28,24 @@ Route::get('/caja_old', function () {
 
 Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], function () {
 
-    // ======================================= G E N E R A L E S =====================================================
+    // ============================================= G E N E R A L E S =====================================================
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/scanner', 'ScannerController@index')->name('scanner.index');
 
-    // ======================================= M O D U L O   C O N F I G U R A C I O N =====================================================
+    // ============================================= M O D U L O   C O N F I G U R A C I O N ===============================
 
     Route::get('/configuracion', 'ConfiguracionController@index')->name('index');
     Route::patch('/configuracion/inicial/update/{id}', 'ConfiguracionController@inicial')->name('configuracion.inicial');
 
 
-    // ======================================= M O D U L O   C L I E N T E S =========================================
+    // ============================================= M O D U L O   C L I E N T E S =========================================
 
     Route::get('/clientes', 'ClienteController@index')->name('clientes.index');
     Route::post('/clientes/store', 'ClienteController@store')->name('clientes.store');
 
 
-    // ======================================= M O D U L O   P R O D U C T O S =======================================
+    // ============================================= M O D U L O   P R O D U C T O S =======================================
 
     Route::get('/productos', 'ProductosController@index')->name('productos.index');
     Route::post('/productos/store', 'ProductosController@store')->name('productos.store');
@@ -57,7 +57,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::POST('bulk/productos/publicar', 'ProductosController@bukaction_publicar')->name('bulk_publicar.product');
     Route::POST('bulk/productos/promocion', 'ProductosController@bukaction_promocion')->name('bulk_promocion.product');
 
-    // ======================================= M O D U L O   C A J A =================================================
+    // ============================================= M O D U L O   C A J A =================================================
 
     //Route::get('/caja', 'CajaController@index')->name('caja.index');
     Route::get('/caja/{id}', 'CajaController@index')->name('caja.index');
@@ -66,22 +66,29 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::post('/caja/pass', 'CajaController@validation_pass')->name('caja_pass.store');
     Route::get('/obtener-registros-cliente/{id}', 'CajaController@obtenerRegistrosCliente');
 
-    // ======================================= M O D U L O   O R D E N E S ===========================================
+    // ============================================= M O D U L O   O R D E N E S ===========================================
 
     Route::get('/orders', 'OrdersController@index')->name('orders.index');
     Route::get('/orders/ticket/{id}', 'OrdersController@show')->name('orders.show');
 
 
-    // ======================================= M O D U L O  T R A B A J A D O R E S ==================================
+    // ============================================= M O D U L O  T R A B A J A D O R E S ==================================
 
     Route::get('/trabajadores', 'TrabajadoresController@index')->name('trabajadores.index');
     Route::post('/trabajadores/store', 'TrabajadoresController@store')->name('trabajadores.store');
 
 
-    // ======================================= M O D U L O  R O L E S  Y  P E R M I S O S ==================================
+    // ============================================= M O D U L O  R O L E S  Y  P E R M I S O S ============================
 
     Route::get('/roles/permisos', 'RoleController@index')->name('roles.index');
     Route::post('/roles/permisos/store', 'RoleController@store')->name('roles.store');
+
+    // ============================================= M O D U L O  C O T I Z A C I O N E S ==================================
+
+    Route::get('/quotes', 'CotizacionesController@index')->name('quotes.index');
+    Route::post('/quotes/store', 'CotizacionesController@store')->name('quotes.store');
+    Route::patch('/quotes/update/{id}', 'CotizacionesController@update')->name('quotes.update');
+    Route::get('/quotes/filtro', 'CotizacionesController@filtro')->name('quotes.filtro');
 
  });
 
