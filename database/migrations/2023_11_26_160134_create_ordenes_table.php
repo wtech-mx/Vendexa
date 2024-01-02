@@ -18,6 +18,9 @@ return new class extends Migration
                 ->references('id')->on('clientes')
                 ->inDelete('set null');
 
+            $table->string('folio_venta')->nullable();
+            $table->string('folio_cotizacion')->nullable();
+            $table->string('cotizacion');
             $table->date('fecha')->nullable();
             $table->string('tipo')->nullable();
             $table->float('total')->nullable();

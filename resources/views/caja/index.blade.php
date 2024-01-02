@@ -149,6 +149,22 @@
                     </div>
                 <!--  search products -->
 
+                <div class="form-group col-6 px-2 py-3">
+                    <h2 class="tiitle_modal_white text-left">¿Generar cotización?</h2>
+
+                    <div class="input-group text-white d-flex justify-content-around mt-3">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input " type="radio" name="inlineCorizacion"  id="radioSiCotizacion" value="Si">
+                            <label class="form-check-label" for="">Si</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input " type="radio" name="inlineCorizacion"  id="radioNoCotizacion" value="No" checked>
+                            <label class="form-check-label" for="">No</label>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group col-12 px-2 py-1">
                     <h2 class="tiitle_modal_white text-left">Datos de Pago</h2>
                 </div>
@@ -177,7 +193,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-3">
+                <div class="form-group col-6 px-2 py-3 cotizacion-div">
                     <label for="name" class="label_custom_primary_product_white mb-2">Metodo de Pago :</label>
                     <div class="input-group ">
                         <span class="input-group-text span_custom_tab" >
@@ -201,7 +217,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-3">
+                <div class="form-group col-6 px-2 py-3 cotizacion-div">
                     <label for="name" class="label_custom_primary_product_white mb-2">Dinero recibido :</label>
                     <div class="input-group ">
                         <span class="input-group-text span_custom_tab" >
@@ -211,7 +227,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-3">
+                <div class="form-group col-6 px-2 py-3 cotizacion-div">
                     <label for="name" class="label_custom_primary_product_white mb-2">¿Metodo de Pago 2? </label>
 
                     <div class="input-group text-white d-flex justify-content-around mt-3">
@@ -263,7 +279,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-3" id="restanteContainer">
+                <div class="form-group col-6 px-2 py-3 cotizacion-div" id="restanteContainer">
                     <label for="name" class="label_custom_primary_product_white mb-2">Restante :</label>
                     <div class="input-group ">
                         <span class="input-group-text span_custom_tab" >
@@ -273,7 +289,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-3" id="cambioContainer">
+                <div class="form-group col-6 px-2 py-3 cotizacion-div" id="cambioContainer">
                     <label for="name" class="label_custom_primary_product_white mb-2">Cambio :</label>
                     <div class="input-group ">
                         <span class="input-group-text span_custom_tab" >
@@ -377,145 +393,152 @@
 
 <script type="text/javascript">
 
-        $(document).ready(function() {
+    $(document).ready(function() {
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('.cliente').select2();
+
+        $('.producto').select2({
+            templateResult: formatOption, // Utiliza la función formatOption para personalizar la presentación
+            templateSelection: formatOption, // Utiliza la función formatOption para personalizar la presentación en la selección
+        });
+
+                // Oculta el campo del comprobante al cargar la página
+            $('#comprobanteContainer').hide();
+
+            // Detecta el cambio en el select de Método de Pago
+            $('#metodo_pago').change(function() {
+                var selectedOption = $(this).val();
+
+                // Muestra u oculta el campo del comprobante según la opción seleccionada
+                if (selectedOption !== 'Efectivo') {
+                    $('#comprobanteContainer').show();
+                } else {
+                    $('#comprobanteContainer').hide();
                 }
             });
 
-            $('.cliente').select2();
-
-            $('.producto').select2({
-                templateResult: formatOption, // Utiliza la función formatOption para personalizar la presentación
-                templateSelection: formatOption, // Utiliza la función formatOption para personalizar la presentación en la selección
-            });
-
-                    // Oculta el campo del comprobante al cargar la página
-                $('#comprobanteContainer').hide();
-
-                // Detecta el cambio en el select de Método de Pago
-                $('#metodo_pago').change(function() {
-                    var selectedOption = $(this).val();
-
-                    // Muestra u oculta el campo del comprobante según la opción seleccionada
-                    if (selectedOption !== 'Efectivo') {
-                        $('#comprobanteContainer').show();
-                    } else {
-                        $('#comprobanteContainer').hide();
-                    }
-                });
-
-            // Función para personalizar la presentación de cada opción
-            function formatOption(option) {
-                if (!option.id) {
-                    return option.text;
-                }
-
-                // Puedes acceder a la imagen usando option.element.getAttribute('data-image')
-                var imageUrl = option.element.getAttribute('data-image');
-
-                // Personaliza la presentación de la opción con la imagen
-                return $('<span><img src="' + imageUrl + '" class="img-thumbnail" style="width: 40px; height: 40px;" /> ' + option.text + '</span>');
+        // Función para personalizar la presentación de cada opción
+        function formatOption(option) {
+            if (!option.id) {
+                return option.text;
             }
 
-            const radioSiPago = document.getElementById('radioSiPago');
-            const radioNoPago = document.getElementById('radioNoPago');
+            // Puedes acceder a la imagen usando option.element.getAttribute('data-image')
+            var imageUrl = option.element.getAttribute('data-image');
 
-            const PagoContainer = document.getElementById('PagoContainer');
+            // Personaliza la presentación de la opción con la imagen
+            return $('<span><img src="' + imageUrl + '" class="img-thumbnail" style="width: 40px; height: 40px;" /> ' + option.text + '</span>');
+        }
 
-            radioSiPago.addEventListener('change', function() {
-                if (radioSiPago.checked) {
-                    PagoContainer.style.display = 'contents';
-                }
-            });
+        const radioSiPago = document.getElementById('radioSiPago');
+        const radioNoPago = document.getElementById('radioNoPago');
 
-            radioNoPago.addEventListener('change', function() {
-                if (radioNoPago.checked) {
-                    PagoContainer.style.display = 'none';
-                }
-            });
+        const PagoContainer = document.getElementById('PagoContainer');
 
-            const radioSiFact = document.getElementById('radioSiFact');
-            const radioNoFact = document.getElementById('radioNoFact');
+        radioSiPago.addEventListener('change', function() {
+            if (radioSiPago.checked) {
+                PagoContainer.style.display = 'contents';
+            }
+        });
 
-            const FacturaContainer = document.getElementById('FacturaContainer');
+        radioNoPago.addEventListener('change', function() {
+            if (radioNoPago.checked) {
+                PagoContainer.style.display = 'none';
+            }
+        });
 
-            radioSiFact.addEventListener('change', function() {
-                if (radioSiFact.checked) {
-                    FacturaContainer.style.display = 'contents';
-                }
-            });
+        const radioSiFact = document.getElementById('radioSiFact');
+        const radioNoFact = document.getElementById('radioNoFact');
 
-            radioNoFact.addEventListener('change', function() {
-                if (radioNoFact.checked) {
-                    FacturaContainer.style.display = 'none';
-                }
-            });
+        const FacturaContainer = document.getElementById('FacturaContainer');
 
-            $("#miFormulario").on("submit", function (event) {
-                event.preventDefault(); // Evita el envío predeterminado del formulario
+        radioSiFact.addEventListener('change', function() {
+            if (radioSiFact.checked) {
+                FacturaContainer.style.display = 'contents';
+            }
+        });
 
-                // Realiza la solicitud POST usando AJAX
-                $.ajax({
-                    url: $(this).attr("action"),
-                    type: "POST",
-                    data: new FormData(this),
-                    contentType: false,
-                    processData: false,
-                    success: async function(response) { // Agrega "async" aquí
-                        // El formulario se ha enviado correctamente, ahora realiza la impresión
-                        saveSuccess(response);
+        radioNoFact.addEventListener('change', function() {
+            if (radioNoFact.checked) {
+                FacturaContainer.style.display = 'none';
+            }
+        });
 
-                    },
-                    error: function (xhr, status, error) {
-                            var errors = xhr.responseJSON.errors;
-                            var errorMessage = '';
+        $("#miFormulario").on("submit", function (event) {
+            event.preventDefault(); // Evita el envío predeterminado del formulario
 
-                            // Itera a través de los errores y agrega cada mensaje de error al mensaje final
-                            for (var key in errors) {
-                                if (errors.hasOwnProperty(key)) {
-                                    var errorMessages = errors[key].join('<br>'); // Usamos <br> para separar los mensajes
-                                    errorMessage += '<strong>' + key + ':</strong><br>' + errorMessages + '<br>';
-                                }
+            // Realiza la solicitud POST usando AJAX
+            $.ajax({
+                url: $(this).attr("action"),
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                processData: false,
+                success: async function(response) { // Agrega "async" aquí
+                    // El formulario se ha enviado correctamente, ahora realiza la impresión
+                    saveSuccess(response);
+
+                },
+                error: function (xhr, status, error) {
+                        var errors = xhr.responseJSON.errors;
+                        var errorMessage = '';
+
+                        // Itera a través de los errores y agrega cada mensaje de error al mensaje final
+                        for (var key in errors) {
+                            if (errors.hasOwnProperty(key)) {
+                                var errorMessages = errors[key].join('<br>'); // Usamos <br> para separar los mensajes
+                                errorMessage += '<strong>' + key + ':</strong><br>' + errorMessages + '<br>';
                             }
-                            console.log(errorMessage);
-                            // Muestra el mensaje de error en una SweetAlert
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Faltan Campos',
-                                html: errorMessage, // Usa "html" para mostrar el mensaje con formato HTML
-                            });
-                    }
-                });
-
+                        }
+                        console.log(errorMessage);
+                        // Muestra el mensaje de error en una SweetAlert
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Faltan Campos',
+                            html: errorMessage, // Usa "html" para mostrar el mensaje con formato HTML
+                        });
+                }
             });
-
-            async function saveSuccess(response) {
-                const ticket_data = response.ticket_data;
-
-                Swal.fire({
-                    title: "Orden Guardada <strong>¡Exitosamente!</strong>",
-                    icon: "success",
-                    html: `<div class='row'><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/gear.webp') }}'><p><strong>Descuento</strong><br>${ticket_data.tipo_desc}</p></div><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/bolsa-de-dinero.webp') }}'><p><strong>Total</strong><br>$ ${ticket_data.total}</p></div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/efectivo.webp') }}'><p><strong>Dinero Recibido</strong><br>$ ${ticket_data.recibido}</p></div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/monedas.webp') }}'><p><strong>Restante</strong><br>$ ${ticket_data.restante}</p></div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/coins.webp') }}'><p><strong>Cambio</strong><br>$ ${ticket_data.cambio}</p></div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/metodo-de-pago.webp') }}'><p><strong>Método de Pago</strong><br>${ticket_data.metodo_pago}</p></div></div>`,
-                    showCloseButton: true,
-                    showCancelButton: true,
-                    focusConfirm: false,
-                    confirmButtonText: 'Ver Recibo',
-                    cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="/caja" >Cerrar</a>`,
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Redirige a la ruta con el ticket_data.id
-                        window.open(`/orders/ticket/${ticket_data.id}`, '_blank');
-                         // Recarga la página actual
-                        location.reload();
-                    }
-                });
-
-            }
 
         });
+
+        async function saveSuccess(response) {
+            const ticket_data = response.ticket_data;
+            let contenidoHtml = `<div class='row'><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/gear.webp') }}'><p><strong>Descuento</strong><br>${ticket_data.tipo_desc}</p></div><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/bolsa-de-dinero.webp') }}'><p><strong>Total</strong><br>$ ${ticket_data.total}</p></div>`;
+
+            if (ticket_data.cotizacion === 'No') {
+                contenidoHtml += `<div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/efectivo.webp') }}'><p><strong>Dinero Recibido</strong><br>$ ${ticket_data.recibido}</p></div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/monedas.webp') }}'><p><strong>Restante</strong><br>$ ${ticket_data.restante}</p></div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/coins.webp') }}'><p><strong>Cambio</strong><br>$ ${ticket_data.cambio}</p></div>`;
+            }
+
+            contenidoHtml += `</div>`;
+
+            Swal.fire({
+                title: "Orden Guardada <strong>¡Exitosamente!</strong>",
+                icon: "success",
+                html: contenidoHtml,
+                showCloseButton: true,
+                showCancelButton: true,
+                focusConfirm: false,
+                confirmButtonText: 'Ver Recibo',
+                cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="/caja" >Cerrar</a>`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirige a la ruta con el ticket_data.id
+                    window.open(`/orders/ticket/${ticket_data.id}`, '_blank');
+                        // Recarga la página actual
+                    location.reload();
+                }
+            });
+
+        }
+
+    });
 
 
     const html5QrcodeScanner = new Html5QrcodeScanner("reader", { fps: 5, qrbox: {width: 250, height: 250, autostart: false} },{ facingMode: "environment" }, false);
@@ -893,6 +916,26 @@
     }
 
 
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Agregar un event listener al radio button
+        $('input[name="inlineCorizacion"]').change(function () {
+            // Obtener el valor seleccionado
+            var valorSeleccionado = $('input[name="inlineCorizacion"]:checked').val();
+
+            // Mostrar u ocultar el div según la opción seleccionada
+            if (valorSeleccionado === 'Si') {
+                $('.cotizacion-div').hide();
+            } else {
+                $('.cotizacion-div').show();
+            }
+        });
+
+        // Asegurarse de que el estado inicial esté configurado correctamente
+        $('input[name="inlineCorizacion"]:checked').change();
+    });
 </script>
 
 <script>

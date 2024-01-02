@@ -93,7 +93,7 @@ class CajaController extends Controller
             'apellido_cliente' => 'required_if:id_client,null',
             'whats_cliente' => 'required_if:id_client,null',
             'id_cajero' => 'required',
-            'dineroRecibido'=> 'required',
+            'dineroRecibido'=> 'required_if:inlineCorizacion,No',
         ]);
 
         $dominio = $request->getHost();
@@ -155,6 +155,7 @@ class CajaController extends Controller
             $orden->id_cliente = $cliente;
             $orden->fecha = $fechaActual;
             $orden->total = $request->get('sumaSubtotales');
+            $orden->cotizacion = $request->get('inlineCorizacion');
             $orden->restante = $request->get('restante');
             $orden->tipo_desc = $request->get('tipoDescuento');
             $orden->descuento = $request->get('montoDescuento');
@@ -171,6 +172,7 @@ class CajaController extends Controller
             $orden->save();
 
         // G U A R D A R  O R D E N  P A G O
+        if($request->get('inlineCorizacion') == 'No'){
             $orden_pagos = new OrdenesPagos;
             $orden_pagos->id_orden = $orden->id;
 
@@ -198,6 +200,7 @@ class CajaController extends Controller
 
             $orden_pagos->fecha = $fechaActual;
             $orden_pagos->save();
+        }
 
         // G U A R D A R  O R D E N  P R O D U C T O S
             $productos = $request->get('id');
@@ -219,15 +222,25 @@ class CajaController extends Controller
 
             OrdenesProductos::insert($insert_data);
 
-            $ticket_data = [
-                "id" => $orden->id,
-                "tipo_desc" => $orden->tipo_desc,
-                "total" => $orden->total,
-                "restante" => $orden->restante,
-                "cambio" =>  $orden_pagos->cambio,
-                "recibido" => $orden_pagos->dinero_recibido,
-                "metodo_pago" => $orden_pagos->metodo_pago,
-            ];
+            if($request->get('inlineCorizacion') == 'No'){
+                $ticket_data = [
+                    "id" => $orden->id,
+                    "cotizacion" => $orden->cotizacion,
+                    "tipo_desc" => $orden->tipo_desc,
+                    "total" => $orden->total,
+                    "restante" => $orden->restante,
+                    "cambio" =>  $orden_pagos->cambio,
+                    "recibido" => $orden_pagos->dinero_recibido,
+                    "metodo_pago" => $orden_pagos->metodo_pago,
+                ];
+            }else{
+                $ticket_data = [
+                    "id" => $orden->id,
+                    "cotizacion" => $orden->cotizacion,
+                    "tipo_desc" => $orden->tipo_desc,
+                    "total" => $orden->total,
+                ];
+            }
 
         return response()->json(['success' => true, 'ticket_data' => $ticket_data]);
 
