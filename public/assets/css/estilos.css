@@ -233,6 +233,19 @@
     border: solid 3px #66e529;
 }
 
+.img_slide_config{
+    width: 200px;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.slide_content_Setting{
+    background: #33506d;
+    border-radius: 42px;
+    padding: 10px;
+
+}
+
 @media only screen and (max-width: 390px) {
 
     .float {
