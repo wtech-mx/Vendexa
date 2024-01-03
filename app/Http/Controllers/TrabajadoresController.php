@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Direcciones;
+use App\Models\Ordenes;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
@@ -18,6 +19,16 @@ class TrabajadoresController extends Controller
         $trabajadores = User::where('id_empresa', $user)->get();
 
         return view('trabajadores.index', compact('trabajadores'));
+    }
+
+    public function show($id){
+
+        $trabajador = User::where('id', $id)->first();
+        $compras = Ordenes::where('id_user', $id)->where('cotizacion', '=', 'No')->get();
+        $adeudos = Ordenes::where('id_user', $id)->where('restante', '>', 0)->where('cotizacion', '=', 'No')->get();
+        $cotizaciones = Ordenes::where('id_user', $id)->where('cotizacion', '=', 'Si')->get();
+
+        return view('trabajadores.show', compact('trabajador','compras','cotizaciones', 'adeudos'));
     }
 
     public function store(Request $request){

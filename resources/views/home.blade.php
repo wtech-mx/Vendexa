@@ -22,10 +22,10 @@
 
             <div class="d-flex justify-content-center ">
                 <p class="text-center mt-2 mb-3 subtiitle_dash animation_card_header">
-                    Ordenes<br># 43
+                    Ordenes<br># {{$conteoCompras}}
                 </p>
                 <p class="text-center mt-2 mb-3 subtiitle_dash animation_card_header">
-                    productos vendidos<br># 150
+                    Cotizaciones<br># {{$conteoCotizaciones}}
                 </p>
             </div>
 
@@ -45,7 +45,7 @@
                         <p class="text-center mt-3">
                             <img src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="" class="img_card_head_dash">
                         </p>
-                        <p class="text_minicards text-center">Efectivo <br> <strong> $1,500.0 </strong>
+                        <p class="text_minicards text-center">Efectivo <br> <strong> ${{$sumaEfectivo}} </strong>
 
                         </p>
                     </div>

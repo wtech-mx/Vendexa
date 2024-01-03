@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Categorias;
 use App\Models\Configuraciones;
 use App\Models\Marcas;
+use App\Models\Ordenes;
+use App\Models\OrdenesPagos;
 use App\Models\Proveedores;
 use App\Models\SubCategorias;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -29,12 +32,29 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
+        $fechaActual = Carbon::now();
+        $mesActual = $fechaActual->month;
+        $anioActual = $fechaActual->year;
+
         $proveedores = Proveedores::where('id_empresa', $user->id_empresa)->get();
         $marcas = Marcas::where('id_empresa', $user->id_empresa)->get();
         $categorias = Categorias::where('id_empresa', $user->id_empresa)->get();
         $subcategorias = SubCategorias::where('id_empresa', $user->id_empresa)->get();
         $configuracion = Configuraciones::where('id_empresa', $user->id_empresa)->first();
 
-        return view('home', compact('proveedores', 'marcas', 'categorias', 'subcategorias', 'configuracion', 'user'));
+        $conteoCompras = Ordenes::where('id_empresa', $user->id_empresa)->where('cotizacion', '=', 'No')->whereMonth('fecha', $mesActual)->whereYear('fecha', $anioActual)->count();
+
+        $sumaEfectivo = OrdenesPagos::whereHas('ordenes', function ($query) use ($user, $mesActual, $anioActual) {
+            $query->where('id_empresa', $user->id_empresa)
+                ->where('cotizacion', '=', 'No')
+                ->whereMonth('fecha', $mesActual)
+                ->whereYear('fecha', $anioActual);
+        })
+        ->where('metodo_pago', 'Efectivo')
+        ->sum('monto');
+
+        $conteoCotizaciones = Ordenes::where('id_empresa', $user->id_empresa)->where('cotizacion', '=', 'Si')->whereMonth('fecha', $mesActual)->whereYear('fecha', $anioActual)->count();
+        
+        return view('home', compact('proveedores', 'marcas', 'categorias', 'subcategorias', 'configuracion', 'user', 'conteoCompras', 'conteoCotizaciones', 'sumaEfectivo'));
     }
 }

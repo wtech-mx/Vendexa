@@ -111,6 +111,9 @@
                                 <div class="d-flex justify-content-between  ">
                                     <P class="text_empleado_value text-start mt-2">
                                     </P>
+                                    <a type="button" class="btn btn-sm btn_edit_prodcut_warning" href="{{ route('trabajadores.show', $trabajador->id) }}">
+                                        Details <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/business-card-design.webp') }}" alt="">
+                                    </a>
                                     <a type="button"  class="btn btn-sm btn_edit_prodcut_warning" data-bs-toggle="modal" data-bs-target="#editProduct">
                                         Ver <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/editar.webp') }}" alt="">
                                     </a>

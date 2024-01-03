@@ -22,14 +22,14 @@
     <div class="row z-1 position-relative px-3 px-md-4 px-xl-5">
 
         <div class="col-12">
-            <h2 class="tiitle_modal_dark text-center mt-3 mb-3">Productos</h2>
+            <h2 class="tiitle_modal_dark text-center mt-3 mb-3">Clientes</h2>
         </div>
 
         <div class="col-12 mb-5">
             <div class="d-flex justify-content-center">
 
                 <form class="d-flex" role="search">
-                    <input class="form-control input_search" type="search" placeholder="Buscar productos" aria-label="Search">
+                    <input class="form-control input_search" type="search" placeholder="Buscar clientes" aria-label="Search">
                      <a class="btn btn_search me-5" type="submit">
                         <img class="icon_search" src="{{ asset('assets/media/icons/buscar.webp') }}" alt="">
                     </a>
@@ -128,6 +128,9 @@
                                 <div class="d-flex justify-content-between  ">
                                     <P class="text_empleado_value text-start mt-2">
                                     </P>
+                                    <a type="button" class="btn btn-sm btn_edit_prodcut_warning" href="{{ route('clientes.show', $item->id) }}">
+                                        Details <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/business-card-design.webp') }}" alt="">
+                                    </a>
                                     <a type="button"  class="btn btn-sm btn_edit_prodcut_warning" data-bs-toggle="modal" data-bs-target="#editProduct">
                                         Ver <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/editar.webp') }}" alt="">
                                     </a>

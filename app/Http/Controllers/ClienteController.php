@@ -27,6 +27,16 @@ class ClienteController extends Controller
         return view('clientes.index', compact('clientes'));
     }
 
+    public function show($id){
+
+        $cliente = Clientes::where('id', $id)->first();
+        $compras = Ordenes::where('id_cliente', $id)->where('cotizacion', '=', 'No')->get();
+        $adeudos = Ordenes::where('id_cliente', $id)->where('restante', '>', 0)->where('cotizacion', '=', 'No')->get();
+        $cotizaciones = Ordenes::where('id_cliente', $id)->where('cotizacion', '=', 'Si')->get();
+
+        return view('clientes.show', compact('cliente','compras','cotizaciones', 'adeudos'));
+    }
+
     public function store(Request $request){
 
         // Agregamos un dump para verificar los datos recibidos
