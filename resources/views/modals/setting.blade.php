@@ -1,6 +1,7 @@
 
 <div class="modal " id="configuracionInicial" tabindex="-1" aria-labelledby="configuracionInicialLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
+
       <div class="modal-content">
 
         <div class="modal-body modal_bg row">
@@ -16,7 +17,6 @@
                 <div class="row px-3">
 
                     <div class="col-12">
-
                         <div id="carouselExampleCaptions" class="carousel slide">
                             <div class="carousel-indicators">
                               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -25,7 +25,6 @@
                               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
                               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
                               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
-
                             </div>
 
                             <div class="carousel-inner">
@@ -165,7 +164,7 @@
                                             <h4 class="subtittle_clientes text-center">Factura</h4>
                                          </div>
 
-                                        <div class="form-group col-6 col-md-4 col-lg-4 mb-3">
+                                        <div class="form-group col-6  mb-3">
                                             <label for="name" class="label_custom_primary_product mb-2">Opcion factura</label>
                                             <div class="input-group mb-3">
                                                 <div class="form-check">
@@ -174,7 +173,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group col-6 col-md-4 col-lg-4 mb-3">
+                                        <div class="form-group col-6  mb-3">
                                             <label for="name" class="label_custom_primary_product mb-2">Porcentaje</label>
                                             <div class="input-group ">
                                                 <span class="input-group-text span_custom_tab" >
@@ -268,22 +267,27 @@
 
                             </div>
 
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Previous</span>
-                            </button>
-
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Next</span>
-                            </button>
                           </div>
                     </div>
 
                 </div>
+
             </form>
         </div>
 
+        <button class="carousel-control-prev setting_postion_arrow_left" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <p class="arrow_bg_setting">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </p>
+        </button>
+
+        <button class="carousel-control-next setting_postion_arrow_rigth" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next" >
+            <p class="arrow_bg_setting">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </p>
+        </button>
+
     </div>
+
   </div>
 </div>

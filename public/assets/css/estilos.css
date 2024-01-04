@@ -246,6 +246,30 @@
 
 }
 
+.setting_postion_arrow_left{
+    left: -50px!important;
+}
+
+.setting_postion_arrow_rigth{
+    right: -50px!important;
+}
+
+.arrow_bg_setting{
+    background: #000;
+    border-radius: 12px;
+    padding: 10px 7px 3px 7px;
+}
+
+@media only screen and (max-width: 575px) {
+    .setting_postion_arrow_left{
+        left: -15px!important;
+    }
+
+    .setting_postion_arrow_rigth{
+        right: -15px!important;
+    }
+}
+
 @media only screen and (max-width: 390px) {
 
     .float {
@@ -274,6 +298,8 @@
         left: 21%;
         top: 21%;
     }
+
+
 }
 
 
