@@ -91,7 +91,7 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/sku.webp') }}" alt="" >
                                             </span>
-                                            <input id="sku" name="sku" type="text"  class="form-control input_custom_tab_dark @error('sku') is-invalid @enderror"  value="{{old('sku', $producto->sku)}}" autocomplete="" autofocus>
+                                            <input id="sku" name="sku" type="text"  class="form-control input_custom_tab_dark @error('sku') is-invalid @enderror"  value="{{old('sku', explode('_', $producto->sku)[0])}}" autocomplete="" autofocus>
                                         </div>
                                     </div>
 

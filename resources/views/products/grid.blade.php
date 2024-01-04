@@ -47,7 +47,7 @@
                         <img class="icon_product" src="{{ asset('assets/media/icons/sku.webp') }}" alt="">
                         Sku
                     </h5>
-                    <p class="subtitle_products">{{$producto->sku}}</p>
+                    <p class="subtitle_products">{{explode('_', $producto->sku)[0]}}</p>
                 </div>
 
                 <div class="col-6 mb-3">
