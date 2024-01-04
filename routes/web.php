@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     Route::get('/configuracion/{code}', 'ConfiguracionController@index')->name('configuracion.index');
     Route::patch('/configuracion/empresa/update/{code}', 'ConfiguracionController@update')->name('configuracion_empresa.update');
+    Route::patch('/configuracion/caja/update/{code}', 'ConfiguracionController@update')->name('configuracion_caja.update');
 
 
 

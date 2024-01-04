@@ -30,27 +30,27 @@
 
                 <ul class="nav nav-pills d-flex justify-content-around ul_nav_custom mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="pills-empresa-tab" data-bs-toggle="pill" data-bs-target="#pills-empresa" type="button" role="tab" aria-controls="pills-empresa" aria-selected="true">
+                        <button class="nav-link active" id="pills-empresa-tab" data-bs-toggle="pill" data-bs-target="#pills-empresaTab" type="button" role="tab" aria-controls="pills-empresa" aria-selected="true" onclick="changeTab('pills-empresa')">
                             <img class="tab_custom_icon" src="{{ asset('assets/media/icons/opciones.webp') }}" alt="" > Empresa
                         </button>
                     </li>
 
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-caja-tab" data-bs-toggle="pill" data-bs-target="#pills-caja" type="button" role="tab" aria-controls="pills-caja" aria-selected="false">
+                        <button class="nav-link" id="pills-caja-tab" data-bs-toggle="pill" data-bs-target="#pills-cajaTab" type="button" role="tab" aria-controls="pills-caja" aria-selected="false" onclick="changeTab('pills-caja')">
                             <img class="tab_custom_icon" src="{{ asset('assets/media/icons/resultado.webp') }}" alt="" > Caja
                         </button>
                     </li>
 
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-generales-tab" data-bs-toggle="pill" data-bs-target="#pills-generales" type="button" role="tab" aria-controls="pills-generales" aria-selected="false">
+                        <button class="nav-link" id="pills-generales-tab" data-bs-toggle="pill" data-bs-target="#pills-generalesTab" type="button" role="tab" aria-controls="pills-generales" aria-selected="false" onclick="changeTab('pills-generales')">
                             <img class="tab_custom_icon" src="{{ asset('assets/media/icons/resultado.webp') }}" alt="" > Generales
                         </button>
                     </li>
                 </ul>
 
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-empresa" role="tabpanel" aria-labelledby="pills-empresa-tab" tabindex="0">
-                        <form method="POST" action="{{ route('configuracion_empresa.update', $empresa->code) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone formularioConfigEmpresa">
+                    <div class="tab-pane fade show active" id="pills-empresaTab" role="tabpanel" aria-labelledby="pills-empresa-tab" tabindex="0">
+                        <form method="POST" action="{{ route('configuracion_empresa.update', $empresa->code) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="empresaForm">
                             @csrf
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="row">
@@ -237,15 +237,15 @@
 
                                 <div class="form-group col-12 mt-4 mb-4 ">
                                     <p class="text-center ">
-                                        <button type="submit" class="btn btn-success btn_save_custom">Guardar</button>
+                                        <button type="submit" id="guardarEmpresa" class="btn btn-success btn_save_custom">Guardar</button>
                                     </p>
                                 </div>
 
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane fade" id="pills-caja" role="tabpanel" aria-labelledby="pills-caja-tab" tabindex="0">
-                        <form method="POST" action="{{ route('productos.update', $empresa->code) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone formularioProducto">
+                    <div class="tab-pane fade" id="pills-cajaTab" role="tabpanel" aria-labelledby="pills-caja-tab" tabindex="0">
+                        <form method="POST" action="{{ route('configuracion_caja.update', $empresa->code) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="cajaForm">
                             @csrf
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="row">
@@ -443,13 +443,13 @@
 
                                 <div class="form-group col-12 mt-4 mb-4 ">
                                     <p class="text-center ">
-                                        <button type="submit" class="btn btn-success btn_save_custom">Guardar</button>
+                                        <button type="submit" id="guardarCaja" class="btn btn-success btn_save_custom">Guardar</button>
                                     </p>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane fade" id="pills-generales" role="tabpanel" aria-labelledby="pills-generales-tab" tabindex="0">
+                    <div class="tab-pane fade" id="pills-generalesTab" role="tabpanel" aria-labelledby="pills-generales-tab" tabindex="0">
                         <div class="row">
                             <h1>Proximamente</h1>
                         </div>
@@ -465,4 +465,58 @@
 
 </section>
 
+@endsection
+
+@section('js_custom')
+<script>
+let cambiosNoGuardados = false;
+let currentTab = 'empresa';
+
+function changeTab(tab) {
+    if (cambiosNoGuardados) {
+        const confirmacion = confirm('Tienes cambios no guardados. ¿Seguro que quieres cambiar de pestaña?');
+        if (!confirmacion) {
+            return;
+        }
+    }
+
+    // Ocultar el contenido de la pestaña actual
+    document.getElementById(currentTab + 'Tab').classList.remove('active-tab');
+
+    // Cambiar la pestaña actual
+    currentTab = tab;
+
+    // Mostrar el contenido de la nueva pestaña
+    document.getElementById(currentTab + 'Tab').classList.add('active-tab');
+}
+
+// Event listener para los cambios en el formulario
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('empresaForm').addEventListener('change', function () {
+        cambiosNoGuardados = true;
+    });
+
+    document.getElementById('cajaForm').addEventListener('change', function () {
+        cambiosNoGuardados = true;
+    });
+
+    document.getElementById('generalesForm').addEventListener('change', function () {
+        cambiosNoGuardados = true;
+    });
+});
+
+// Event listener para el evento beforeunload
+window.addEventListener('beforeunload', function (event) {
+    if (cambiosNoGuardados) {
+        const mensaje = 'Tienes cambios no guardados. ¿Seguro que quieres salir?';
+        event.returnValue = mensaje;
+        return mensaje;
+    }
+});
+
+// Event listener para el clic en el botón de guardar
+document.getElementById('guardarEmpresa').addEventListener('click', function () {
+    cambiosNoGuardados = false;
+});
+</script>
 @endsection
