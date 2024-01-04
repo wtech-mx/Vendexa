@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clientes;
+use App\Models\Configuraciones;
 use App\Models\Ordenes;
+use App\Models\OrdenesProductos;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use League\Config\Configuration;
 
 class CotizacionesController extends Controller
 {
@@ -43,5 +47,18 @@ class CotizacionesController extends Controller
         }
         $cotizaciones = $cotizaciones->get();
         return view('quotes.index', compact('cotizaciones','clientes','trabajadores'));
+    }
+
+    public function pdf($id){
+        $now = Carbon::now();
+        $user = auth()->user()->id_empresa;
+        $configuracion = Configuraciones::where('id_empresa', $user)->first();
+        $productos = OrdenesProductos::where('id_orden', $id)->get();
+        $cotizacion = Ordenes::where('id', $id)->first();
+
+        $pdf = \PDF::loadView('pdf.cotizacion',compact('cotizacion', 'configuracion', 'productos'));
+        return $pdf->stream();
+        // return $pdf->download('Cotizacion '.$cotizacion->Cliente->nombre.'-'.$now.'.pdf');
+
     }
 }

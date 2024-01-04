@@ -116,13 +116,13 @@
             <div class="container">
                 <div class="row" style="padding: 20px 0px 0px 0px;">
                     <div style="width: 50%; float:left">
-                        <img alt="Bootstrap Image Preview" src="https://www.wtech.com.mx/landing-page/wp-content/uploads/2021/05/LogosinF.png" style="width:100px;">
+                        <img alt="Bootstrap Image Preview" src="{{ asset('logo/empresa'.auth()->user()->id_empresa.'/'.$cotizacion->Empresa->logo) }}" style="width:100px;">
                     </div>
                 </div>
 
                 <div class="padre">
                     <div class="hijo_uno">
-                        <h3 style="color: #577590;font-size: 40px;">Cotizacion </h3>
+                        <h3 style="color: #577590;font-size: 40px;">Cotización </h3>
                     </div>
                 </div>
 
@@ -134,19 +134,19 @@
                             </p>
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/edificios_ciudad.webp') }}" style="">
-                                Empresa:
+                                Empresa: {{$cotizacion->Empresa->nombre}}
                             </p>
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/telefono.png.webp') }}" style="">
-                                Telefeono:
+                                Telefeono: {{$cotizacion->Empresa->telefono}}
                             </p>
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/gps.webp') }}" style="">
-                                Direccion:
+                                Direccion: {{$configuracion->Direccion->calle_numero}}, {{$configuracion->Direccion->codigo_postal}}
                             </p>
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/sobre.png.webp') }}" style="">
-                                Correo:
+                                Correo: {{$cotizacion->Empresa->correo}}
                             </p>
                         </blockquote>
                     </div>
@@ -158,15 +158,15 @@
                             </p>
                             <p class="blockquote-footer text-white para" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/fuente.webp') }}" style="">
-                                Nombre:
+                                Nombre: {{$cotizacion->Cliente->nombre}}
                             </p>
                             <p class="blockquote-footer text-white para" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/telefono.png.webp') }}" style="">
-                                Telefono:
+                                Telefono: {{$cotizacion->Cliente->telefono}}
                             </p>
                             <p class="blockquote-footer text-white para" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/sobre.png.webp') }}" style="">
-                                Correo:
+                                Correo: {{$cotizacion->Cliente->correo}}
                             </p>
                             <p class="blockquote-footer text-white para" style="color: #000;font-size: 18px;">
                                 -
@@ -180,7 +180,7 @@
                     <div class="col-md-12">
                         <p style="color: #000;font-size: 25px; padding-left: 35px;">
                             <strong style="color: #577590"><img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/calendar-dar.webp') }}" style="">
-                                Fecha: </strong>
+                                Fecha: {{$cotizacion->fecha}}</strong>
                         </p>
 
                         <table id="ejemplo" class="table text-white tabla-completa" style="color: #000;width: 100%;padding: 30px;">
@@ -208,9 +208,20 @@
                                 </tr>
                             </thead>
 
-                            <tbody style="text-align: center;font-size: 120%;">
 
+                            <tbody style="text-align: center;font-size: 120%;">
+                                @foreach ($productos as $producto)
+                                    <tr>
+                                        <td></td>
+                                        <td>{{$producto->Productos->nombre}}</td>
+                                        <td>{{$producto->precio}}</td>
+                                        <td>{{$producto->cantidad}}</td>
+                                        <td>{{$producto->subtotal}}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
+
+
                         </table>
 
                         <div class="row" style="padding: 0px 0px 20px 0px;position: relative;">
