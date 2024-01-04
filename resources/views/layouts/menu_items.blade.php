@@ -46,6 +46,12 @@
         Empleados <img class="icon_navbar" src="{{ asset('assets/media/icons/empleados.webp') }}" alt="">
     </li>
  </a>
+
+ <a href="{{ route('configuracion.index', auth()->user()->Empresa->code) }}" class="enlace_sidebar">
+    <li class="li_navbar">
+        Ajustes <img class="icon_navbar" src="{{ asset('assets/media/icons/gear.webp') }}" alt="">
+    </li>
+ </a>
 <!--
 <a href="" class="enlace_sidebar">
     <li class="li_navbar">

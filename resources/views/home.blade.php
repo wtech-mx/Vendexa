@@ -120,7 +120,7 @@
                 <div class="card_dashboard p-2">
 
                     <div class="card_img">
-                        <a href="">
+                        <a href="{{ route('productos.index') }}">
                             <img class="img_icon_dash" src="{{ asset('assets/media/icons/carrito.webp') }}" alt="">
                         </a>
                     </div>
@@ -140,7 +140,7 @@
                 <div class="card_dashboard p-2">
 
                     <div class="card_img">
-                        <a href="">
+                        <a href="{{ route('orders.index') }}">
                             <img class="img_icon_dash" src="{{ asset('assets/media/icons/validando-billete.webp') }}" alt="">
                         </a>
                     </div>
@@ -159,7 +159,7 @@
                 <div class="card_dashboard p-2">
 
                     <div class="card_img">
-                        <a href="">
+                        <a href="{{ route('quotes.index') }}">
                             <img class="img_icon_dash" src="{{ asset('assets/media/icons/quotes.webp') }}" alt="">
                         </a>
                     </div>
@@ -198,7 +198,7 @@
                 <div class="card_dashboard p-2">
 
                     <div class="card_img">
-                        <a href="{{ route('clientes.index') }}">
+                        <a href="{{ route('trabajadores.index') }}">
                             <img class="img_icon_dash" src="{{ asset('assets/media/icons/empleados.webp') }}" alt="">
                         </a>
                     </div>
@@ -231,6 +231,23 @@
                         <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
                     </a>
 
+                </div>
+            </div>
+
+            <div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center animation_card">
+                <div class="card_dashboard p-2">
+
+                    <div class="card_img">
+                        <a href="{{ route('configuracion.index', $user->Empresa->code) }}">
+                            <img class="img_icon_dash" src="{{ asset('assets/media/icons/gear.webp') }}" alt="">
+                        </a>
+                    </div>
+
+                    <h6 class="tittle_card_dash text-center mt-3 mb-3">Ajustes</h6>
+                    
+                    <div class="d-flex justify-content-center">
+                        <a href="{{ route('configuracion.index', $user->Empresa->code) }}" class="btn_primary_blue_dash">Acceder </a>
+                    </div>
                 </div>
             </div>
 

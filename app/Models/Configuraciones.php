@@ -33,4 +33,9 @@ class Configuraciones extends Model
     {
         return $this->belongsTo(Empresas::class, 'id_empresa');
     }
+
+    public function Direccion()
+    {
+        return $this->belongsTo(Direcciones::class, 'id_direccion');
+    }
 }

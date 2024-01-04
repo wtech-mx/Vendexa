@@ -19,11 +19,9 @@ return new class extends Migration
             $table->string('referencia')->nullable();
             $table->string('giro')->nullable();
             $table->string('dominio')->nullable();
-
-            $table->unsignedBigInteger('id_direccion');
-            $table->foreign('id_direccion')
-                ->references('id')->on('direcciones')
-                ->inDelete('set null');
+            $table->string('code')->unique();
+            $table->text('logo')->nullable();
+            
             $table->timestamps();
         });
     }

@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\Validator;
 
 class ConfiguracionController extends Controller
 {
-    public function index(){
+    public function index($code){
         $user = auth()->user();
+        $empresa = Empresas::where('code', $code)->first();
         $configuracion = Configuraciones::where('id_empresa', $user->id_empresa)->first();
 
-        return view('settings.index', compact('configuracion'));
+        return view('settings.index', compact('configuracion', 'empresa'));
     }
 
     public function inicial($id, Request $request){
