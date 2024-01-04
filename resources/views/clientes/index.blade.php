@@ -62,7 +62,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row medidor_altura">
 
             @foreach ($clientes as $item)
 
@@ -72,7 +72,11 @@
 
                     <div class="col-3 my-auto">
                         <p class="text-center" style="margin: 0">
-                            <img class="img_portada_product_edit_ventas" src="" alt="">
+                            @if($item->imagen_principal == NULL)
+                                <img class="img_perfil_empleado" src="{{ asset('assets/media/icons/user_predeterminado.webp') }}" alt="">
+                            @else
+                                <img class="img_perfil_empleado" src="{{ asset('imagen_cliente/empresa'.auth()->user()->id_empresa.'/'.$trabajador->imagen_principal) }}" alt="">
+                            @endif
                         </p>
                     </div>
 
@@ -128,10 +132,12 @@
                                 <div class="d-flex justify-content-between  ">
                                     <P class="text_empleado_value text-start mt-2">
                                     </P>
+
                                     <a type="button" class="btn btn-sm btn_edit_prodcut_warning" href="{{ route('clientes.show', $item->id) }}">
                                         Details <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/business-card-design.webp') }}" alt="">
                                     </a>
-                                    <a type="button"  class="btn btn-sm btn_edit_prodcut_warning" data-bs-toggle="modal" data-bs-target="#editProduct">
+
+                                    <a type="button"  class="btn btn-sm btn_edit_prodcut_primary" data-bs-toggle="modal" data-bs-target="#editProduct">
                                         Ver <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/editar.webp') }}" alt="">
                                     </a>
                                 </div>

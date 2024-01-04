@@ -21,8 +21,12 @@
 
     <div class="row z-1 position-relative px-3 px-md-4 px-xl-5">
 
-        <div class="col-12">
-            <h2 class="tiitle_modal_dark text-center mt-3 mb-3">Trabajadores</h2>
+        <div class="col-12 mt-2 mb-3">
+            <div class="d-flex justify-content-center ">
+                <h5 class="tittle_dash text-center mt-2 mb-3 animation_card_header">
+                    EMPLEADOS
+                </h5>
+            </div>
         </div>
 
         <div class="col-12 mb-5">
@@ -45,7 +49,7 @@
 
         </div>
 
-        <div class="row">
+        <div class="row medidor_altura">
 
             @foreach ($trabajadores as $trabajador)
 
@@ -55,7 +59,11 @@
 
                     <div class="col-3 my-auto">
                         <p class="text-center" style="margin: 0">
-                            <img class="img_portada_product_edit_ventas" src="" alt="">
+                            @if($trabajador->foto == NULL)
+                                <img class="img_perfil_empleado" src="{{ asset('assets/media/icons/user_predeterminado.webp') }}" alt="">
+                            @else
+                                <img class="img_perfil_empleado" src="{{ asset('foto_trabajador/empresa'.auth()->user()->id_empresa.'/'.$trabajador->foto) }}" alt="">
+                            @endif
                         </p>
                     </div>
 
@@ -125,6 +133,7 @@
                     </div>
 
                 </div>
+
             </div>
 
             @endforeach
