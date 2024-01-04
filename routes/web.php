@@ -24,7 +24,9 @@ Route::get('/caja_old', function () {
     return view('caja.index_old');
 });
 
-
+Route::get('/coti', function () {
+    return view('pdf.cotizacion');
+});
 
 Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], function () {
 
