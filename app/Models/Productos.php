@@ -63,4 +63,11 @@ class Productos extends Model
     {
         return $this->belongsTo(Users::class, 'id_user');
     }
+    public function ordenesProductos()
+    {
+        return $this->hasMany(OrdenesProductos::class, 'id_producto');
+    }
+
+
+
 }

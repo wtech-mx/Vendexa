@@ -9,7 +9,7 @@
       <div class="modal-content" style="border: solid 1px transparent;">
 
         <div class="modal-body modal_bg row">
-            @include('modals.producto_info')
+            @include('components.producto_info')
         </div>
 
       </div>

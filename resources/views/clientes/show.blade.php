@@ -20,13 +20,17 @@
 
     <div class="row z-1 position-relative px-3 px-md-4 px-xl-5">
 
-        <div class="col-12">
-            <h2 class="tiitle_modal_dark text-center mt-3 mb-3">{{$cliente->nombre}}</h2>
+        <div class="col-12 mt-2 mb-3">
+            <div class="d-flex justify-content-center ">
+                <h5 class="tittle_dash text-center mt-2 mb-3 animation_card_header">
+                    {{$cliente->nombre}}
+                </h5>
+            </div>
         </div>
 
         <div class="row">
 
-            <div class="col-12 section_tab_bg">
+            <div class="col-12 section_tab_bg mb-5">
 
                 <ul class="nav nav-pills d-flex justify-content-around ul_nav_custom mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
@@ -51,67 +55,10 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-compras" role="tabpanel" aria-labelledby="pills-compras-tab" tabindex="0">
                         <div class="row">
-                            @foreach ($compras as $orden)
-                                <div class="col-6 px-4 py-1">
-                                    <div class="row bg_minicart_ventas">
-                                        <div class="col-12">
-
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <p class="text_empleado text-start">Empleado</p>
-                                                </div>
-
-                                                <div class="col-6">
-                                                    <p class="text_empleado text-end"><strong> #{{$orden->id}}</strong></p>
-                                                </div>
-
-                                                <div class="col-12 mb-2">
-                                                    <P class="text_empleado_value text-start">
-                                                        {{$orden->User->name}}
-                                                    </P>
-                                                </div>
-
-                                                <div class="col-4 mb-1">
-                                                    <p class="text_subtittle_ventas text-start">
-                                                        <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/etiqueta-del-precio.webp') }}" alt="">
-                                                        Telefono:
-                                                    </p>
-                                                    <p class="text_subtittle_ventas_sv text-center">
-                                                        <a  target="_blank"  href="https://api.whatsapp.com/send?phone=521{{$orden->Cliente->telefono}}&text=¡Hola!">{{$orden->Cliente->telefono}}</a>
-                                                    </p>
-                                                </div>
-
-                                                <div class="col-4 mb-1">
-                                                    <p class="text_subtittle_ventas text-start">
-                                                        <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/coins.webp') }}" alt="">
-                                                        Total :
-                                                    </p>
-                                                    <p class="text_subtittle_ventas_sv text-center">
-                                                        ${{$orden->total}}
-                                                    </p>
-                                                </div>
-
-                                                <div class="col-12 mb-2 mt-2">
-                                                    <div class="d-flex justify-content-between  ">
-                                                        <P class="text_empleado_value text-start mt-2">
-                                                            {{\Carbon\Carbon::createFromFormat('Y-m-d', $orden->fecha)->format('d \d\e F Y')}}
-
-                                                        </P>
-                                                        <a type="button" class="btn btn-sm btn_edit_prodcut_warning" href="{{ route('orders.show', $orden->id) }}">
-                                                            Ver <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/editar.webp') }}" alt="">
-                                                        </a>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            @endforeach
+                            @include('components.producto_ventas')
                         </div>
                     </div>
+
                     <div class="tab-pane fade" id="pills-adeudos" role="tabpanel" aria-labelledby="pills-adeudos-tab" tabindex="0">
                         <div class="row">
                             @if (empty($adeudos))

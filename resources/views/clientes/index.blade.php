@@ -21,8 +21,12 @@
 
     <div class="row z-1 position-relative px-3 px-md-4 px-xl-5">
 
-        <div class="col-12">
-            <h2 class="tiitle_modal_dark text-center mt-3 mb-3">Clientes</h2>
+        <div class="col-12 mt-2 mb-3">
+            <div class="d-flex justify-content-center ">
+                <h5 class="tittle_dash text-center mt-2 mb-3 animation_card_header">
+                    Clientes
+                </h5>
+            </div>
         </div>
 
         <div class="col-12 mb-5">
