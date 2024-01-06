@@ -20,9 +20,14 @@
 
     <div class="row z-1 position-relative px-3 px-md-4 px-xl-5">
 
-        <div class="col-12">
-            <h2 class="tiitle_modal_dark text-center mt-3 mb-3">{{$trabajador->name}}</h2>
+        <div class="col-12 mt-2 mb-3">
+            <div class="d-flex justify-content-center ">
+                <h5 class="tittle_dash text-center mt-2 mb-3 animation_card_header">
+                    {{$trabajador->name}}
+                </h5>
+            </div>
         </div>
+
 
         <div class="row">
 
@@ -31,7 +36,7 @@
                 <ul class="nav nav-pills d-flex justify-content-around ul_nav_custom mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="pills-compras-tab" data-bs-toggle="pill" data-bs-target="#pills-compras" type="button" role="tab" aria-controls="pills-compras" aria-selected="true">
-                            <img class="tab_custom_icon" src="{{ asset('assets/media/icons/opciones.webp') }}" alt="" > Compras
+                            <img class="tab_custom_icon" src="{{ asset('assets/media/icons/opciones.webp') }}" alt="" > Ventas
                         </button>
                     </li>
 
