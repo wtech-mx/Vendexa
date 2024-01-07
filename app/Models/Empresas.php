@@ -22,5 +22,11 @@ class Empresas extends Model
         'alcaldia',
         'calle_numero',
         'giro',
+        'id_direccion',
     ];
+
+    public function Direcion()
+    {
+        return $this->belongsTo(Direcciones::class, 'id_direccion');
+    }
 }
