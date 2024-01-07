@@ -257,15 +257,8 @@ $(document).ready(function() {
 
     }
 
-});
-
-
-</script>
-
-<script>
-    $(document).ready(function () {
-        // Función para actualizar la contraseña
-        function actualizarContrasena() {
+            // Función para actualizar la contraseña
+    function actualizarContrasena() {
             // Obtener los valores de los campos
             var nombre = $('#name').val().substring(0, 2);
             var apellido = $('#apellido').val().substring(0, 2);
@@ -282,7 +275,7 @@ $(document).ready(function() {
 
             // Actualizar el valor del campo de contraseña
             $('#password').val(contrasenaFinal);
-        }
+    }
 
         // Evento que se dispara cuando se ingresa algo en los campos de nombre, apellido, y correo electrónico
         $('#name, #apellido, #email').on('input', function () {
@@ -293,6 +286,8 @@ $(document).ready(function() {
         $('#password').on('input', function () {
             actualizarContrasena();
         });
-    });
+
+});
+
 </script>
 @endsection

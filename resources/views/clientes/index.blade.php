@@ -141,7 +141,7 @@
                                         Details <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/business-card-design.webp') }}" alt="">
                                     </a>
 
-                                    <a type="button"  class="btn btn-sm btn_edit_prodcut_primary" data-bs-toggle="modal" data-bs-target="#editProduct">
+                                    <a type="button"  class="btn btn-sm btn_edit_prodcut_primary" data-bs-toggle="modal" data-bs-target="#editCliente{{ $item->id }}">
                                         Ver <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/editar.webp') }}" alt="">
                                     </a>
                                 </div>
@@ -153,6 +153,8 @@
 
                 </div>
             </div>
+
+            @include('modals.edit_clientes')
 
             @endforeach
 

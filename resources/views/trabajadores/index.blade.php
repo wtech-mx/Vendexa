@@ -71,7 +71,7 @@
 
                         <div class="row">
                             <div class="col-6">
-                                <p class="text_empleado text-start">Trabajador</p>
+                                <p class="text_empleado text-start">Empleado</p>
                             </div>
 
                             <div class="col-6">
@@ -87,7 +87,7 @@
                             <div class="col-4 mb-1">
                                 <p class="text_subtittle_ventas text-start">
                                     <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/telefono.png.webp') }}" alt="">
-                                    Telefono
+                                    Tel
                                 </p>
                                 <p class="text_subtittle_ventas_sv text-center">
                                     {{$trabajador->email}}
@@ -119,10 +119,13 @@
                                 <div class="d-flex justify-content-between  ">
                                     <P class="text_empleado_value text-start mt-2">
                                     </P>
+
                                     <a type="button" class="btn btn-sm btn_edit_prodcut_warning" href="{{ route('trabajadores.show', $trabajador->id) }}">
                                         Details <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/business-card-design.webp') }}" alt="">
                                     </a>
-                                    <a type="button"  class="btn btn-sm btn_edit_prodcut_warning" data-bs-toggle="modal" data-bs-target="#editProduct">
+
+
+                                    <a type="button"  class="btn btn-sm btn_edit_prodcut_primary" data-bs-toggle="modal" data-bs-target="#editEmpleado{{ $trabajador->id }}">
                                         Ver <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/editar.webp') }}" alt="">
                                     </a>
                                 </div>
@@ -136,6 +139,7 @@
 
             </div>
 
+            @include('modals.edit_empleados')
             @endforeach
 
         </div>

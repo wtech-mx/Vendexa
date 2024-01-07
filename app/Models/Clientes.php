@@ -33,6 +33,10 @@ class Clientes extends Model
     }
     public function User()
     {
-        return $this->belongsTo(Users::class, 'id_user');
+        return $this->belongsTo(User::class, 'id_user');
+    }
+    public function Direcion()
+    {
+        return $this->belongsTo(Direcciones::class, 'id_direccion');
     }
 }
