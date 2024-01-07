@@ -115,7 +115,7 @@
 
             <div class="container">
                 <div class="row" style="padding: 20px 0px 0px 0px;">
-                    <div style="width: 50%; float:left">
+                    <div style="width: 50%; float:left; margin-left: 30px;">
                         <img alt="Bootstrap Image Preview" src="{{ asset('logo/empresa'.auth()->user()->id_empresa.'/'.$cotizacion->Empresa->logo) }}" style="width:100px;">
                     </div>
                 </div>
@@ -142,8 +142,7 @@
                             </p>
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/gps.webp') }}" style="">
-                                {{ dd($configuracion->Empresa->Direccion); }}
-                                Direccion: {{$configuracion->Empresa->Direccion->calle_numero}}, {{$configuracion->Direccion->codigo_postal}}
+                                Direccion: {{$configuracion->Direccion->calle_numero}}, {{$configuracion->Direccion->codigo_postal}}
                             </p>
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/sobre.png.webp') }}" style="">
@@ -230,47 +229,36 @@
                             </div>
                             <div class="col-4 mb-5">
                                 <p style="color: #000;font-size: 25px; padding-left: 35px;margin-bottom: 3rem;">
-                                    <strong style="color: #577590">Datos de Pago</strong>
+                                    <strong style="color: #577590">Total</strong>
                                 </p>
-                                <p style="color: #000;font-size: 18px; padding-left: 35px;">
-                                    <strong style="color: #577590">
-                                        <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/gear.webp') }}" style="">
-                                        Tipo Descuento</strong> Ninguno
-                                </p>
-                                <p style="color: #000;font-size: 18px; padding-left: 35px;">
-                                    <strong style="color: #577590">
-                                        <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/descuento.webp') }}" style="">
-                                        Descuento </strong> %
-                                </p>
+                                @if ($cotizacion->tipo_desc != 'Ninguno')
+                                    <p style="color: #000;font-size: 18px; padding-left: 35px;">
+                                        <strong style="color: #577590">
+                                            <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/gear.webp') }}" style="">
+                                            Tipo Descuento</strong> {{$cotizacion->tipo_desc}}
+                                    </p>
+                                    <p style="color: #000;font-size: 18px; padding-left: 35px;">
+                                        <strong style="color: #577590">
+                                            <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/descuento.webp') }}" style="">
+                                            Descuento </strong> @if ($cotizacion->tipo_desc == 'Porcentaje') {{$cotizacion->descuento}}% @else ${{$cotizacion->descuento}} @endif
+                                    </p>
+                                @endif
+
                                 <p style="color: #000;font-size: 18px; padding-left: 35px;">
                                     <strong style="color: #577590">
                                         <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/bolsa-de-dinero.webp') }}" style="">
-                                        Total </strong>$
+                                        Total </strong>${{$cotizacion->total}}
                                 </p>
                                 <p style="color: #000;font-size: 18px; padding-left: 35px;">
                                     <strong style="color: #577590">
                                         <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/validando-billete.webp') }}" style="">
-                                        Factura  </strong> No
+                                        Factura  </strong> {{$cotizacion->factura}}
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row mt-5">
-                    <div class="col-md-6">
-                        <address class="text-white datos-contacto" style="color: #000;font-size: 20px;text-decoration: none;">
-                            <p>
-                            <ul style="color: #000"><p><strong>Nota: estos precios no Incluyen IVA</strong></p>
-
-                                <li>Atentamente:</li>
-                                <li>Email: <a style="text-decoration: none;color:#fff" href="mailto:?subject=cotizacion" ></a></li>
-                                <li>Telefono:<a style="text-decoration: none;color:#fff" href="tel:" title=""></a></li>
-                            </ul>
-                            </p><br>
-                        </address>
-                    </div>
-                </div>
                 <div class="contenedor-azul"style="background-color:#577590;position: absolute;width: 60%;height:1%;left: 20%;right: 20%;">
                 </div>
 
