@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categorias;
 use App\Models\Marcas;
 use App\Models\ModificacionesProductos;
+use App\Models\Ordenes;
 use App\Models\Productos;
 use App\Models\Proveedores;
 use App\Models\SubCategorias;
@@ -27,8 +28,9 @@ class ProductosController extends Controller
         $marcas = Marcas::where('id_empresa', $user)->get();
         $categorias = Categorias::where('id_empresa', $user)->get();
         $subcategorias = SubCategorias::where('id_empresa', $user)->get();
+        $compras = Ordenes::where('id_empresa', $user)->where('cotizacion', '=', 'No')->get();
 
-        return view('products.index', compact('productos', 'modoficaciones_productos','proveedores', 'marcas', 'categorias', 'subcategorias'));
+        return view('products.index', compact('compras' ,'productos', 'modoficaciones_productos','proveedores', 'marcas', 'categorias', 'subcategorias'));
     }
 
     public function filtro(Request $request){
