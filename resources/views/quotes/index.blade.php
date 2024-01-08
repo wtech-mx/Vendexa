@@ -214,7 +214,7 @@
 
                                 <div class="col-12 mb-2 mt-3">
                                     <div class="d-flex justify-content-center">
-                                        <a type="button" target="_blank" class="btn btn-sm btn_edit_prodcut_warning" href="{{ route('quotes.pdf', $cotizacion->id) }}">
+                                        <a type="button" target="_blank" class="btn btn-sm btn_edit_prodcut_primary" href="{{ route('quotes.pdf', $cotizacion->id) }}">
                                             Ver cotizacion <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/validando-billete.webp') }}" alt="">
                                         </a>
                                     </div>

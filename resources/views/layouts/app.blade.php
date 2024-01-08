@@ -107,6 +107,7 @@
         </script>
 
         @yield('js_custom')
+        @yield('js_clientes')
         @yield('js_custom_pdf')
         @yield('js_caja_pass')
         @yield('js_scanner')

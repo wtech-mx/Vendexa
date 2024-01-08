@@ -24,7 +24,12 @@ class ClienteController extends Controller
 
         $clientes = Clientes::where('id_empresa', $user)->get();
 
-        return view('clientes.index', compact('clientes'));
+        $proveedores = Proveedores::where('id_empresa', $user)->get();
+        $marcas = Marcas::where('id_empresa', $user)->get();
+        $categorias = Categorias::where('id_empresa', $user)->get();
+        $subcategorias = SubCategorias::where('id_empresa', $user)->get();
+
+        return view('clientes.index', compact('clientes','marcas','categorias','subcategorias','proveedores'));
     }
 
     public function show($id){
@@ -97,6 +102,43 @@ class ClienteController extends Controller
 
     }
 
+    public function update($id, Request $request){
 
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required',
+            'telefono' => 'required',
+            'correo' => 'required',
+
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $client = Clientes::find($id);
+        $client->nombre = $request->get('nombre');
+        $client->telefono = $request->get('telefono');
+        $client->correo = $request->get('correo');
+        $client->tipo = $request->get('tipo');
+        $client->save();
+
+        $direccion = Direcciones::find($client->id_direccion);
+        $direccion->pais = $request->get('pais');
+        $direccion->estado = $request->get('estado');
+        $direccion->colonia = $request->get('colonia');
+        $direccion->codigo_postal = $request->get('codigo_postal');
+        $direccion->alcaldia = $request->get('alcaldia');
+        $direccion->calle_numero = $request->get('calle_numero');
+        $direccion->save();
+
+        $cliente_data = [
+            "nombre" => $client->nombre,
+            "telefono" => $client->telefono,
+            "correo" => $client->correo,
+        ];
+
+        return response()->json(['success' => true, 'cliente_data' => $cliente_data]);
+
+    }
 
 }

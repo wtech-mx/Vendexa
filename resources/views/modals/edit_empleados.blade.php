@@ -10,8 +10,10 @@
 
         <div class="modal-body modal_bg row">
 
-            <form method="POST" action="{{ route('trabajadores.store') }}" class="z-1"  id="miFormularioTrabajadores" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('empleados.update', $trabajador->id) }}" class="z-1 miFormularioEmpleadosEdit"  id="" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="_method" value="PATCH">
+
                 <div class="row">
                     <div class="col-10">
                         <h2 class="tiitle_modal_dark text-center mt-3">  {{$trabajador->name}}</h2>
@@ -76,7 +78,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/restablecer-la-contrasena.webp') }}" alt="" >
                             </span>
-                            <input id="pin" name="pin" type="number"  class="form-control input_custom_tab_dark"  value="{{$trabajador->password_caja}}">
+                            <input id="password_caja" name="password_caja" type="number"  class="form-control input_custom_tab_dark"  value="{{$trabajador->password_caja}}">
                         </div>
                     </div>
 
@@ -167,14 +169,57 @@
                 </div>
             </form>
 
-
         </div>
 
       </div>
     </div>
   </div>
 
-@section('js_custom2_clientes')
+  @section('js_custom')
 
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+
+        $(".miFormularioEmpleadosEdit").on("submit", function (event) {
+
+            event.preventDefault();
+            var formID = $(this).attr("id");
+
+            $.ajax({
+                url: $(this).attr("action"),
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                processData: false,
+                success: async function(response) {
+                    saveSuccessEditEmpleado(response);
+                },
+                error: function (xhr, status, error) {
+                    // Manejo de errores
+                }
+            });
+
+        });
+
+        async function saveSuccessEditEmpleado(response) {
+            const user_data = response.user_data;
+
+            Swal.fire({
+                title: "Empleado Actualizado <strong>¡Exitosamente!</strong>",
+                icon: "success",
+                html: "<div class='row'><div class='col-12 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/fuente.webp') }}' ><p><strong>Nombre:</strong> <br>"+ user_data.name +"</p></div>",
+                showCloseButton: true,
+                showCancelButton: false,
+                focusConfirm: false,
+                confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="#" >Cerrar</a>',
+                }).then(() => {
+                    // Cierra todos los modales abiertos
+                    $('.modal').modal('hide');
+                });
+        }
+    });
+
+  </script>
 
 @endsection

@@ -48,6 +48,8 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::get('/clientes', 'ClienteController@index')->name('clientes.index');
     Route::get('/clientes/show/{id}', 'ClienteController@show')->name('clientes.show');
     Route::post('/clientes/store', 'ClienteController@store')->name('clientes.store');
+    Route::patch('/clientes/update/{id}', 'ClienteController@update')->name('clientes.update');
+
 
     // ============================================= M O D U L O   P R O D U C T O S =======================================
 
@@ -80,6 +82,8 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::get('/trabajadores', 'TrabajadoresController@index')->name('trabajadores.index');
     Route::post('/trabajadores/store', 'TrabajadoresController@store')->name('trabajadores.store');
     Route::get('/trabajadores/show/{id}', 'TrabajadoresController@show')->name('trabajadores.show');
+    Route::patch('/empleados/update/{id}', 'TrabajadoresController@update')->name('empleados.update');
+
 
     // ============================================= M O D U L O  R O L E S  Y  P E R M I S O S ============================
 

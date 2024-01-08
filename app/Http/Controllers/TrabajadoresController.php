@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Direcciones;
 use App\Models\Ordenes;
 use App\Models\User;
+use App\Models\Proveedores;
+use App\Models\Categorias;
+use App\Models\Marcas;
+use App\Models\SubCategorias;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
@@ -18,7 +22,12 @@ class TrabajadoresController extends Controller
 
         $trabajadores = User::where('id_empresa', $user)->get();
 
-        return view('trabajadores.index', compact('trabajadores'));
+        $proveedores = Proveedores::where('id_empresa', $user)->get();
+        $marcas = Marcas::where('id_empresa', $user)->get();
+        $categorias = Categorias::where('id_empresa', $user)->get();
+        $subcategorias = SubCategorias::where('id_empresa', $user)->get();
+
+        return view('trabajadores.index', compact('trabajadores','marcas','categorias','subcategorias','proveedores'));
     }
 
     public function show($id){
@@ -86,6 +95,40 @@ class TrabajadoresController extends Controller
         ];
 
         return response()->json(['success' => true, 'trabajador_data' => $trabajador_data]);
+
+    }
+
+    public function update($id, Request $request){
+
+
+        $usuario = User::find($id);
+        $usuario->name = $request->get('name');
+        $usuario->email = $request->get('email');
+        $usuario->correo = $request->get('correo');
+
+        if($request->get('password') == NULL){
+
+        }else{
+            $usuario->password = Hash::make($request->get('password'));
+        }
+
+        $usuario->password_caja = $request->get('password_caja');
+        $usuario->save();
+
+        $direccion = Direcciones::find($usuario->id_direccion);
+        $direccion->pais = $request->get('pais');
+        $direccion->estado = $request->get('estado');
+        $direccion->colonia = $request->get('colonia');
+        $direccion->codigo_postal = $request->get('codigo_postal');
+        $direccion->alcaldia = $request->get('alcaldia');
+        $direccion->calle_numero = $request->get('calle_numero');
+        $direccion->save();
+
+        $user_data = [
+            "nombre" => $usuario->name,
+        ];
+
+        return response()->json(['success' => true, 'user_data' => $user_data]);
 
     }
 }

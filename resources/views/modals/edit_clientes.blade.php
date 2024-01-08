@@ -10,8 +10,11 @@
 
         <div class="modal-body modal_bg row">
 
-            <form method="POST" action="" class="z-1"  id="miFormularioTrabajadores" enctype="multipart/form-data">
+
+            <form method="POST" action="{{ route('clientes.update', $item->id) }}" class="z-1 miFormularioClientesEdit"  id="" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="_method" value="PATCH">
+
                 <div class="row">
                     <div class="col-10">
                         <h2 class="tiitle_modal_dark text-center mt-3">  {{$item->nombre}}</h2>
@@ -36,7 +39,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/fuente.webp') }}" alt="" >
                             </span>
-                            <input  name="name" id="name" type="text"  class="form-control input_custom_tab_dark"  value=" {{$item->nombre}}">
+                            <input  name="nombre" id="nombre" type="text"  class="form-control input_custom_tab_dark"  value=" {{$item->nombre}}">
                         </div>
                     </div>
 
@@ -46,7 +49,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="" >
                             </span>
-                            <input  name="email" id="number" type="number"  class="form-control input_custom_tab_dark"  value="{{$item->telefono}}">
+                            <input id="telefono" name="telefono" type="tel" minlength="10" maxlength="10" class="form-control input_custom_tab_dark" value="{{$item->telefono}}" >
                         </div>
                     </div>
 
@@ -67,7 +70,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/restablecer-la-contrasena.webp') }}" alt="" >
                             </span>
-                            <input id="" name="" type="text"  class="form-control input_custom_tab_dark"  value="{{$item->User->name}}">
+                            <input id="" name="" type="text"  class="form-control input_custom_tab_dark"  value="{{$item->User->name}}" disabled>
                         </div>
                     </div>
 
@@ -158,14 +161,57 @@
                 </div>
             </form>
 
-
         </div>
 
       </div>
     </div>
   </div>
 
-@section('js_custom2_clientes')
+@section('js_custom')
 
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+
+        $(".miFormularioClientesEdit").on("submit", function (event) {
+
+            event.preventDefault();
+            var formID = $(this).attr("id");
+
+            $.ajax({
+                url: $(this).attr("action"),
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                processData: false,
+                success: async function(response) {
+                    saveSuccessEditClient(response);
+                },
+                error: function (xhr, status, error) {
+                    // Manejo de errores
+                }
+            });
+
+        });
+
+        async function saveSuccessEditClient(response) {
+            const cliente_data = response.cliente_data;
+
+            Swal.fire({
+                title: "Cliente Actualizado <strong>¡Exitosamente!</strong>",
+                icon: "success",
+                html: "<div class='row'><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/fuente.webp') }}' ><p><strong>Nombre:</strong> <br>"+ cliente_data.nombre +"</p></div><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/en-stock.png.webp') }}' ><p><strong>Correo:</strong><br>"+ cliente_data.correo +" </p> </div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/monedas.webp') }}' ><p><strong>Telefono:</strong><br> "+ cliente_data.telefono +"</p></div></div>",
+                showCloseButton: true,
+                showCancelButton: false,
+                focusConfirm: false,
+                confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="#" >Cerrar</a>',
+                }).then(() => {
+                    // Cierra todos los modales abiertos
+                    $('.modal').modal('hide');
+                });
+        }
+    });
+
+  </script>
 
 @endsection
