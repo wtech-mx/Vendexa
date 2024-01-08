@@ -9,7 +9,7 @@
 
                   <div class="row" style="margin: 0!important;padding: 0!important;z-index: 10;">
                       <div class="col-10">
-                          <h2 class="tiitle_modal_dark text-center mt-3">Scanner</h2>
+                          <h2 class="tiitle_modal_dark text-center mt-3">Buscar Producto</h2>
                       </div>
 
                       <div class="col-2">
@@ -119,7 +119,9 @@
                               </h2>
                               <div id="collapseFilters" class="accordion-collapse collapse" data-bs-parent="#accordionScanner">
                                 <div class="accordion-body">
-                                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    <form class="row mt-3 mb-3" action="{{ route('productos.filtro') }}" method="GET" >
+                                        @include('components.producto_filtro')
+                                    </form>
                                 </div>
                               </div>
                             </div>

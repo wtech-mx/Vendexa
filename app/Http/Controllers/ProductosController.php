@@ -37,6 +37,7 @@ class ProductosController extends Controller
         $now = Carbon::now();
         $mesActual = $now->month;
         $user = auth()->user()->id_empresa;
+        $compras = Ordenes::where('id_empresa', $user)->where('cotizacion', '=', 'No')->get();
         $modoficaciones_productos = ModificacionesProductos::whereMonth('fecha', $mesActual)->get();
         $proveedores = Proveedores::where('id_empresa', $user)->get();
         $marcas = Marcas::where('id_empresa', $user)->get();
@@ -70,7 +71,7 @@ class ProductosController extends Controller
             $productos = $productos->where('descuento', 'LIKE', "%" . $request->descuento . "%");
         }
         $productos = $productos->get();
-        return view('products.index', compact('productos','modoficaciones_productos','proveedores', 'marcas', 'categorias', 'subcategorias'));
+        return view('products.index', compact('productos','modoficaciones_productos','proveedores', 'marcas', 'categorias', 'subcategorias', 'compras'));
     }
 
     public function bukaction_pausar(Request $request){
