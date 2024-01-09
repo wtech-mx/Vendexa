@@ -120,7 +120,7 @@
                               <div id="collapseFilters" class="accordion-collapse collapse" data-bs-parent="#accordionScanner">
                                 <div class="accordion-body">
                                     <form class="row mt-3 mb-3" action="{{ route('productos.filtro') }}" method="GET" >
-                                        @include('components.producto_filtro')
+                                        {{-- @include('components.producto_filtro') --}}
                                     </form>
                                 </div>
                               </div>
