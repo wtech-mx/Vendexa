@@ -26,21 +26,60 @@
                         <img class="icon_product" src="{{ asset('assets/media/icons/etiqueta-del-precio.webp') }}" alt="">
                         Precio
                     </h5>
-                    <p class="subtitle_products">${{number_format($producto->precio_normal, 2, '.', ',');}}</p>
-                </div>
 
-                <div class="col-6 mb-3">
-                    <h5 class="tiitle_products">
-                        <img class="icon_product" src="{{ asset('assets/media/icons/coins.webp') }}" alt="">
-                        Mayoreo
-                    </h5>
-                    @if ($producto->precio_mayo == NULL)
-                        <p class="subtitle_products"></p>
+                    @if($producto->precio_descuento == NULL)
+
+                        <p class="subtitle_products">
+                            ${{number_format($producto->precio_normal, 2, '.', ',');}} <br>
+                        </p>
                     @else
-                        <p class="subtitle_products">${{number_format($producto->precio_mayo, 2, '.', ',');}}</p>
+
+                        @if(strtotime($producto->fecha_fin_desc) >= strtotime(date('Y-m-d')))
+
+                            <p class="subtitle_products" style="text-decoration: line-through;margin-bottom: 0rem!important;">
+                                de: ${{number_format($producto->precio_normal, 2, '.', ',');}} <br>
+                            </p>
+
+                            <p class="subtitle_products" style="font-weight: 500;">
+                                <strong>a : ${{number_format($producto->precio_descuento, 2, '.', ',');}} </strong>
+                            </p>
+
+
+                            <h5 class="tiitle_products">
+                                <img class="icon_product" src="{{ asset('assets/media/icons/calendar-dar.webp') }}" alt="">
+                                Fechas
+                            </h5>
+
+                            <p class="subtitle_products" style="margin-bottom: 0rem!important;">
+                                <strong>{{ date('m/d/Y', strtotime($producto->fecha_inicio_desc)) }}</strong> al
+                            </p>
+
+                            <p class="subtitle_products">
+                                <strong>{{ date('m/d/Y', strtotime($producto->fecha_fin_desc)) }} </strong>
+                            </p>
+
+                        @else
+                            <p class="subtitle_products">
+                                ${{number_format($producto->precio_normal, 2, '.', ',');}} <br>
+                            </p>
+                        @endif
+
                     @endif
 
                 </div>
+
+
+                @if ($producto->precio_mayo == NULL)
+
+                @else
+                    <div class="col-6 mb-3">
+                        <h5 class="tiitle_products">
+                            <img class="icon_product" src="{{ asset('assets/media/icons/coins.webp') }}" alt="">
+                            Mayoreo
+                        </h5>
+                        <p class="subtitle_products">${{number_format($producto->precio_mayo, 2, '.', ',');}}</p>
+                    </div>
+                @endif
 
                 <div class="col-6 mb-3">
                     <h5 class="tiitle_products">

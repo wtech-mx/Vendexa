@@ -105,9 +105,13 @@
             @endforeach
         @endif
 
+
         @if(Route::currentRouteName() == 'productos.index')
             @foreach ($productos as $producto)
+                        {{-- {{ dd($productos);}} --}}
+
                 @include('modals.edit_product')
+
                 @include('products.grid')
             @endforeach
        @endif
