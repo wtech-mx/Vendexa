@@ -1,4 +1,5 @@
-            <form method="POST" action="{{ route('productos.update', $producto->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone formularioProducto" style="border: solid 5px red;border-radius: 16px;">
+            <form method="POST" action="{{ route('productos.update', $producto->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone formularioProductoEdit" style="border: solid 5px red;border-radius: 16px;">
+
                 @csrf
                 <input type="hidden" name="_method" value="PATCH">
                 <div class="row">

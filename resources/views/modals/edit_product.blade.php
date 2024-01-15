@@ -22,10 +22,13 @@
   <script>
 
 $(document).ready(function() {
-    $(".formularioProducto").on("submit", function (event) {
+
+    $(".formularioProductoEdit").on("submit", function (event) {
 
         event.preventDefault();
         var formID = $(this).attr("id");
+
+        console.log(formID);
 
         $.ajax({
             url: $(this).attr("action"),
@@ -44,12 +47,15 @@ $(document).ready(function() {
     });
 
     async function saveSuccessEdit(response) {
-        const producto_data = response.producto_data;
+
+        const producto_edit_data = response.producto_edit_data;
+
+        console.log(producto_edit_data);
 
         Swal.fire({
             title: "Producto Guardado <strong>¡Exitosamente!</strong>",
             icon: "success",
-            html: "<div class='row'><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/fuente.webp') }}' ><p><strong>Nombre:</strong> <br>"+ producto_data.nombre +"</p></div><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/en-stock.png.webp') }}' ><p><strong>Stock:</strong><br>"+ producto_data.stock +" </p> </div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/monedas.webp') }}' ><p><strong>Precio:</strong><br> "+ producto_data.precio +"</p></div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/sku.webp') }}'><p><strong>Sku:</strong><br>"+ explode('_', $producto_data.sku)[0] +" </p></div></div>",
+            html: "<div class='row'><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/fuente.webp') }}' ><p><strong>Nombre:</strong> <br>"+ producto_edit_data.nombre +"</p></div><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/en-stock.png.webp') }}' ><p><strong>Stock:</strong><br>"+ producto_edit_data.stock +" </p> </div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/monedas.webp') }}' ><p><strong>Precio:</strong><br> "+ producto_edit_data.precio +"</p></div></div>",
             showCloseButton: true,
             showCancelButton: false,
             focusConfirm: false,

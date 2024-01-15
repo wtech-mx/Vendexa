@@ -114,34 +114,6 @@
 
                 @include('products.grid')
 
-
-                @foreach ($productos as $producto)
-                <script>
-                    $(document).ready(function () {
-                        var precioMayoValue = "{{ $producto->precio_mayo }}";
-                        var precioDescuentoValue = "{{ $producto->precio_descuento }}";
-
-                        // Verificar y mostrar/ocultar contenedores según los valores de las variables
-                        if (precioMayoValue !== '') {
-                            $('#radioSiMayoEdit_{{ $producto->id }}').prop('checked', true);
-                            $('#precioMayoristaContainerEdit_{{ $producto->id }}').show();
-                        } else {
-                            $('#radioNoMayoEdit_{{ $producto->id }}').prop('checked', true);
-                            $('#precioMayoristaContainerEdit_{{ $producto->id }}').hide();
-                        }
-
-                        if (precioDescuentoValue !== '') {
-                            $('#radioSirebajaEdit_{{ $producto->id }}').prop('checked', true);
-                            $('#precioPromoContainerEdit_{{ $producto->id }}').show();
-                        } else {
-                            $('#radioNorebajaEdit_{{ $producto->id }}').prop('checked', true);
-                            $('#precioPromoContainerEdit_{{ $producto->id }}').hide();
-                        }
-                    });
-                </script>
-            @endforeach
-
-
             @endforeach
        @endif
     </div>

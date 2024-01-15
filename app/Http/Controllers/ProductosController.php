@@ -451,14 +451,14 @@ class ProductosController extends Controller
         $producto->id_user = $user->id;
         $producto->save();
 
-        $producto_data = [
+        $producto_edit_data = [
             "nombre" => $producto->nombre,
             "stock" => $producto->stock,
             "precio" => $producto->precio_normal,
             "sku" => $producto->sku,
         ];
 
-        return response()->json(['success' => true, 'producto_data' => $producto_data]);
+        return response()->json(['success' => true, 'producto_edit_data' => $producto_edit_data]);
 
     }
 }
