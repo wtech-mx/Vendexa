@@ -18,13 +18,17 @@
 
 <section class="products bg_product ">
 
-    <div class="row z-1 position-relative px-3 px-md-4 px-xl-5">
+    <div class="row z-1 position-relative">
 
         <div class="col-12">
-            <h2 class="tiitle_modal_dark text-center mt-3 mb-3">¡Ajustes!</h2>
+            <div class="d-flex justify-content-center ">
+                <h5 class="tittle_dash text-center mt-2 mb-3 animation_card_header">
+                    Ajustes
+                </h5>
+            </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-5" style="margin: 0 10px 0 0px;">
 
             <div class="col-12 section_tab_bg">
 
@@ -58,7 +62,7 @@
                                     <h6 class="subtittle_clientes">General</h6>
                                  </div>
 
-                                <div class="form-group col-6 px-5 py-3">
+                                <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-3 px-4 py-3">
                                     <label for="name" class="label_custom_primary_sm mb-2">Nombre Empresa : *</label>
                                     <div class="input-group ">
                                         <span class="input-group-text span_custom_tab" >
@@ -68,8 +72,8 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-6 px-4 py-3">
-                                    <label for="name" class="label_custom_primary_product mb-2">Logo Empresa : *</label>
+                                <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-3 px-4 py-3">
+                                    <label for="name" class="label_custom_primary_sm mb-2">Logo Empresa : *</label>
                                     <div class="input-group ">
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_tab" src="{{ asset('assets/media/icons/imagen.webp') }}" alt="" >
@@ -78,7 +82,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-3 px-5 py-3">
+                                <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-3 px-4 py-3">
                                     <label for="name" class="label_custom_primary_sm mb-2">Telefono : *</label>
                                     <div class="input-group ">
                                         <span class="input-group-text span_custom_tab" >
@@ -88,7 +92,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-3 px-5 py-3">
+                                <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-3 px-4 py-3">
                                     <label for="name" class="label_custom_primary_sm mb-2">Correo : *</label>
                                     <div class="input-group ">
                                         <span class="input-group-text span_custom_tab" >
@@ -104,12 +108,12 @@
                                     </p>
                                 </div>
 
-                                <div class="form-group text-left col-12 mt-4 p-2">
+                                {{-- <div class="form-group text-left col-12 mt-4 p-2">
                                     <h6 class="subtittle_clientes">Horario de Trabajo</h6>
                                  </div>
 
                                  <div class="form-group col-3 mb-3 p-2">
-                                    <label for="name" class="label_custom_primary_product mb-2">Lunes</label>
+                                    <label for="name" class="label_custom_primary_sm mb-2">Lunes</label>
                                     <div class="input-group d-flex justify-content-around mt-3">
                                           <input class="form-control" type="time" name="lunes_inicio" id="lunes_inicio">
 
@@ -118,7 +122,7 @@
                                 </div>
 
                                 <div class="form-group col-3 mb-3 p-2">
-                                    <label for="name" class="label_custom_primary_product mb-2">Martes</label>
+                                    <label for="name" class="label_custom_primary_sm mb-2">Martes</label>
                                     <div class="input-group d-flex justify-content-around mt-3">
                                           <input class="form-control" type="time" name="martes_inicio" id="martes_inicio">
 
@@ -127,7 +131,7 @@
                                 </div>
 
                                 <div class="form-group col-3 mb-3 p-2">
-                                    <label for="name" class="label_custom_primary_product mb-2">Miercoles</label>
+                                    <label for="name" class="label_custom_primary_sm mb-2">Miercoles</label>
                                     <div class="input-group d-flex justify-content-around mt-3">
                                           <input class="form-control" type="time" name="miercoles_inicio" id="miercoles_inicio">
 
@@ -136,7 +140,7 @@
                                 </div>
 
                                 <div class="form-group col-3 mb-3 p-2">
-                                    <label for="name" class="label_custom_primary_product mb-2">Jueves</label>
+                                    <label for="name" class="label_custom_primary_sm mb-2">Jueves</label>
                                     <div class="input-group d-flex justify-content-around mt-3">
                                           <input class="form-control" type="time" name="jueves_inicio" id="jueves_inicio">
 
@@ -145,7 +149,7 @@
                                 </div>
 
                                 <div class="form-group col-3 mb-3 p-2">
-                                    <label for="name" class="label_custom_primary_product mb-2">Viernes</label>
+                                    <label for="name" class="label_custom_primary_sm mb-2">Viernes</label>
                                     <div class="input-group d-flex justify-content-around mt-3">
                                           <input class="form-control" type="time" name="viernes_inicio" id="viernes_inicio">
 
@@ -154,7 +158,7 @@
                                 </div>
 
                                 <div class="form-group col-3 mb-3 p-2">
-                                    <label for="name" class="label_custom_primary_product mb-2">Sabado</label>
+                                    <label for="name" class="label_custom_primary_sm mb-2">Sabado</label>
                                     <div class="input-group d-flex justify-content-around mt-3">
                                           <input class="form-control" type="time" name="sabado_inicio" id="sabado_inicio">
 
@@ -163,20 +167,20 @@
                                 </div>
 
                                 <div class="form-group col-3 mb-3 p-2">
-                                    <label for="name" class="label_custom_primary_product mb-2">Domingo</label>
+                                    <label for="name" class="label_custom_primary_sm mb-2">Domingo</label>
                                     <div class="input-group d-flex justify-content-around mt-3">
                                           <input class="form-control" type="time" name="domingo_inicio" id="domingo_inicio">
 
                                           <input class="form-control" type="time" name="domingo_fin" id="domingo_fin">
                                   </div>
-                                </div>
+                                </div> --}}
 
-                                <div class="form-group text-left col-12 mt-4 p-2">
+                                <div class="form-group text-left col-12 mt-0 p-2">
                                     <h6 class="subtittle_clientes">Datos de Direccion</h6>
                                  </div>
 
-                                 <div class="form-group col-6 mb-3 p-2">
-                                    <label for="name" class="label_custom_primary_product mb-2">Codigo Postal</label>
+                                 <div class="form-group col-12 col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-4 py-3">
+                                    <label for="name" class="label_custom_primary_sm mb-2">Codigo Postal</label>
                                     <div class="input-group ">
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_form" src="{{ asset('assets/media/icons/cero.webp') }}" alt="" >
@@ -185,8 +189,8 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-6 mb-3 p-2">
-                                    <label for="name" class="label_custom_primary_product mb-2">Estado</label>
+                                <div class="form-group col-12 col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-4 py-3">
+                                    <label for="name" class="label_custom_primary_sm mb-2">Estado</label>
                                     <div class="input-group ">
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_form" src="{{ asset('assets/media/icons/independencia.webp') }}" alt="" >
@@ -195,8 +199,8 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-6 mb-3 p-2">
-                                    <label for="name" class="label_custom_primary_product mb-2">Alcaldia  / Municipio</label>
+                                <div class="form-group col-12 col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-4 py-3">
+                                    <label for="name" class="label_custom_primary_sm mb-2">Alcaldia  / Municipio</label>
                                     <div class="input-group ">
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_form" src="{{ asset('assets/media/icons/alcaldia.webp') }}" alt="" >
@@ -205,8 +209,8 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-6 mb-3 p-2">
-                                    <label for="name" class="label_custom_primary_product mb-2">Ciudad</label>
+                                <div class="form-group col-12 col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-4 py-3">
+                                    <label for="name" class="label_custom_primary_sm mb-2">Ciudad</label>
                                     <div class="input-group ">
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_form" src="{{ asset('assets/media/icons/edificios_ciudad.webp') }}" alt="" >
@@ -215,8 +219,8 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-6 mb-3 p-2">
-                                    <label for="name" class="label_custom_primary_product mb-2">Colonia</label>
+                                <div class="form-group col-12 col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-4 py-3">
+                                    <label for="name" class="label_custom_primary_sm mb-2">Colonia</label>
                                     <div class="input-group ">
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_form" src="{{ asset('assets/media/icons/poste_luz.webp') }}" alt="" >
@@ -225,8 +229,8 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-6 mb-3 p-2">
-                                    <label for="name" class="label_custom_primary_product mb-2">Calle y Numero</label>
+                                <div class="form-group col-12 col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-4 py-3">
+                                    <label for="name" class="label_custom_primary_sm mb-2">Calle y Numero</label>
                                     <div class="input-group ">
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_form" src="{{ asset('assets/media/icons/mapa-de-la-ciudad.webp') }}" alt="" >
@@ -244,16 +248,21 @@
                             </div>
                         </form>
                     </div>
+
                     <div class="tab-pane fade" id="pills-cajaTab" role="tabpanel" aria-labelledby="pills-caja-tab" tabindex="0">
                         <form method="POST" action="{{ route('configuracion_caja.update', $empresa->code) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="cajaForm">
                             @csrf
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="row">
 
-                                <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-6 px-4 py-3">
-                                    <label for="name" class="label_custom_primary_product mb-2">¿Solicitar codigo en caja?</label>
+                                <div class="form-group text-left col-12 mt-4 p-2">
+                                    <h6 class="subtittle_clientes">Caja</h6>
+                                 </div>
 
-                                    <div class="input-group d-flex justify-content-around mt-3">
+                                <div class="form-group col-12 col-xs-12 col-sm-6 col-md-6 col-xl-6 py-3">
+                                    <label for="name" class="label_custom_primary_sm mb-2">¿Solicitar codigo en caja?</label>
+
+                                    <div class="input-group d-flex justify-content-start mt-3">
                                           <div class="form-check form-check-inline">
                                             @if ($configuracion->codigo_caja == 1)
                                                 <input class="form-check-input" type="radio" name="codigo_caja" id="radioSicodigo_caja" value="1" checked>
@@ -274,12 +283,12 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group text-left col-12">
+                                <div class="form-group text-left col-12  mt-4 mb-4">
                                     <h4 class="subtittle_clientes">Metodos de pago</h4>
                                  </div>
 
-                                 <div class="form-group col-6 col-md-4 col-lg-3">
-                                     <label for="name" class="label_custom_primary_product mb-2">Tarjeta C/D</label>
+                                 <div  class="form-group col-6 col-xs-6 col-sm-3 col-md-3 col-xl-3 px-4 py-3">
+                                     <label for="name" class="label_custom_primary_sm mb-2">Tarjeta C/D</label>
                                      <div class="input-group mb-3">
                                          <div class="form-check">
                                             @if ($configuracion->tarjeta == 1)
@@ -291,8 +300,8 @@
                                      </div>
                                  </div>
 
-                                 <div class="form-group col-6 col-md-4 col-lg-3">
-                                     <label for="name" class="label_custom_primary_product mb-2">Efectivo</label>
+                                 <div  class="form-group col-6 col-xs-6 col-sm-3 col-md-3 col-xl-3 px-4 py-3">
+                                     <label for="name" class="label_custom_primary_sm mb-2">Efectivo</label>
                                      <div class="input-group mb-3">
                                          <div class="form-check">
                                             @if ($configuracion->efectivo == 1)
@@ -304,8 +313,8 @@
                                      </div>
                                  </div>
 
-                                 <div class="form-group col-6 col-md-4 col-lg-3">
-                                     <label for="name" class="label_custom_primary_product mb-2">Transferencia</label>
+                                 <div  class="form-group col-6 col-xs-6 col-sm-3 col-md-3 col-xl-3 px-4 py-3">
+                                     <label for="name" class="label_custom_primary_sm mb-2">Transferencia</label>
                                      <div class="input-group mb-3">
                                          <div class="form-check">
                                             @if ($configuracion->transferencia == 1)
@@ -317,8 +326,8 @@
                                      </div>
                                  </div>
 
-                                 <div class="form-group col-6 col-md-4 col-lg-3">
-                                     <label for="name" class="label_custom_primary_product mb-2">Mercado Pago</label>
+                                 <div  class="form-group col-6 col-xs-6 col-sm-3 col-md-3 col-xl-3 px-4 py-3">
+                                     <label for="name" class="label_custom_primary_sm mb-2">Mercado Pago</label>
                                      <div class="input-group mb-3">
                                          <div class="form-check">
                                             @if ($configuracion->mercado_pago == 1)
@@ -330,12 +339,12 @@
                                      </div>
                                 </div>
 
-                                <div class="form-group text-left col-12">
+                                <div class="form-group text-left col-12  mt-4 mb-4">
                                     <h4 class="subtittle_clientes">Medidor stock</h4>
                                  </div>
 
                                 <div class="form-group col-6 col-md-4 col-lg-4 mb-3">
-                                    <label for="name" class="label_custom_primary_product mb-2">Bajo : *</label>
+                                    <label for="name" class="label_custom_primary_sm mb-2">Bajo : *</label>
                                     <div class="input-group ">
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_form" src="{{ asset('assets/media/icons/out-of-stock.webp') }}" alt="" >
@@ -345,7 +354,7 @@
                                 </div>
 
                                 <div class="form-group col-6 col-md-4 col-lg-4 mb-3">
-                                    <label for="name" class="label_custom_primary_product mb-2">Medio : *</label>
+                                    <label for="name" class="label_custom_primary_sm mb-2">Medio : *</label>
                                     <div class="input-group ">
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_form" src="{{ asset('assets/media/icons/dead-stock.webp') }}" alt="" >
@@ -355,7 +364,7 @@
                                 </div>
 
                                 <div class="form-group col-6 col-md-4 col-lg-4 mb-3">
-                                    <label for="name" class="label_custom_primary_product mb-2">Alto : *</label>
+                                    <label for="name" class="label_custom_primary_sm mb-2">Alto : *</label>
                                     <div class="input-group ">
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_form" src="{{ asset('assets/media/icons/in-stock.webp') }}" alt="" >
@@ -364,12 +373,12 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group text-left col-12">
+                                <div class="form-group text-left col-12  mt-4 mb-4">
                                     <h4 class="subtittle_clientes">Precio Mayo</h4>
                                  </div>
 
-                                 <div class="form-group col-4 col-md-4 col-lg-4 mb-3">
-                                    <label for="name" class="label_custom_primary_product mb-2">¿Opción precio mayorista?</label>
+                                 <div class="form-group col-12 col-xs-6 col-sm-6 col-md-4 col-xl-4 px-4 py-1">
+                                    <label for="name" class="label_custom_primary_sm mb-2">¿Opción precio mayorista?</label>
                                     <div class="input-group mb-3">
                                         <div class="form-check">
                                             @if ($configuracion->precio_mayorista == 1)
@@ -381,8 +390,8 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-4 col-md-4 col-lg-4 mb-3 encriptar-mayo-div">
-                                    <label for="name" class="label_custom_primary_product mb-2">¿Encriptar precio mayorista?</label>
+                                <div class="form-group col-12 col-xs-6 col-sm-6 col-md-4 col-xl-4 px-4 py-1 encriptar-mayo-div">
+                                    <label for="name" class="label_custom_primary_sm mb-2">¿Encriptar precio mayorista?</label>
                                     <div class="input-group mb-3">
                                         <div class="form-check">
                                             @if ($configuracion->encriptar_mayo == 1)
@@ -394,8 +403,8 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-4 mb-3">
-                                        <label for="name" class="label_custom_primary_product mb-2">Palabra para encriptacion:</label>
+                                <div class="form-group col-12 col-xs-6 col-sm-6 col-md-4 col-xl-4 px-4 py-1">
+                                        <label for="name" class="label_custom_primary_sm mb-2">Palabra para encriptacion:</label>
                                         <div class="input-group ">
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/camion.webp') }}" alt="" >
@@ -414,12 +423,12 @@
                                         </div>
                                 </div>
 
-                                <div class="form-group text-left col-12">
+                                <div class="form-group text-left col-12  mt-4 mb-4">
                                     <h4 class="subtittle_clientes">Factura</h4>
                                  </div>
 
                                  <div class="form-group col-6 col-md-4 col-lg-4 mb-3 encriptar-mayo-div">
-                                    <label for="name" class="label_custom_primary_product mb-2">¿Opción factura?</label>
+                                    <label for="name" class="label_custom_primary_sm mb-2">¿Opción factura?</label>
                                     <div class="input-group mb-3">
                                         <div class="form-check">
                                             @if ($configuracion->opcion_factura == 1)
@@ -432,7 +441,7 @@
                                 </div>
 
                                 <div class="form-group col-6 col-md-4 col-lg-4 mb-3">
-                                    <label for="name" class="label_custom_primary_product mb-2">Porcentaje</label>
+                                    <label for="name" class="label_custom_primary_sm mb-2">Porcentaje</label>
                                     <div class="input-group ">
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_form" src="{{ asset('assets/media/icons/comisiones.webp') }}" alt="" >

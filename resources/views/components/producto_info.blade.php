@@ -85,7 +85,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-groupcol-6 col-xs-6 col-sm-6 col-md-6 col-xl-6 px-4 py-3">
+                                    <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-6 px-4 py-3">
                                         <label for="name" class="label_custom_primary_product_white mb-2">Sku :*</label>
                                         <div class="input-group ">
                                             <span class="input-group-text span_custom_tab" >
