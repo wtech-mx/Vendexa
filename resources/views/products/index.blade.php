@@ -89,7 +89,7 @@
                 </button>
 
                 <a type="button" class="btn btn-sm btn_generar_pdf ms-3"  id="btnGenerarReporte" style="display: none;" data-bs-toggle="modal" data-bs-target="#bulkaction">
-                    Generar PDFs
+                    Acciones
                     <img class="icon_span_tab" src="{{ asset('assets/media/icons/catalogo.webp') }}" alt="">
                 </a>
 
@@ -306,7 +306,7 @@ function publicarProductos() {
                     processData: false,
                     success: function(response) {
                         Swal.fire({
-                                title: "Producto(s) Promocionados <strong>¡Exitosamente!</strong>",
+                                title: "Producto(s) Actualizados <strong>¡Exitosamente!</strong>",
                                 icon: "success",
                                 html: "",
                                 showCloseButton: true,

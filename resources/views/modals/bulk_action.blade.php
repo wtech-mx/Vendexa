@@ -43,7 +43,7 @@
                     <div class="form-group col-12 " style="z-index: 10">
 
                         <div class="d-flex justify-content-center">
-                            <label for="name" class="label_custom_primary_product mb-2">Agregar Promocion </label>
+                            <label for="name" class="label_custom_primary_product mb-2">Agregar Promocion o Subir Precios</label>
                         </div>
 
                         <div class="d-flex justify-content-center">
@@ -63,13 +63,28 @@
                     </div>
 
                     <div class="row" id="precioPromoBulkContainer" style="display: none">
+
+                        <div class="form-group col-12 px-4 py-3">
+                            <label for="name" class="label_custom_primary_product mb-2">Seleciona la opcion *</label>
+                            <div class="input-group ">
+                                <span class="input-group-text span_custom_tab" >
+                                    <img class="icon_span_tab" src="{{ asset('assets/media/icons/megafono.webp') }}" alt="" >
+                                </span>
+                                <select name="tipo_opcion" id="tipo_opcion" class="form-select d-inline-block input_custom_tab" required>
+                                    <option value="">Selecionar </option>
+                                    <option value="Subir precios">Subir precios</option>
+                                    <option value="Agregar Promocion">Bajar precios</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group col-6 px-4 py-3">
                             <label for="name" class="label_custom_primary_product mb-2">Tipo</label>
                             <div class="input-group ">
                                 <span class="input-group-text span_custom_tab" >
                                     <img class="icon_span_tab" src="{{ asset('assets/media/icons/descuento.webp') }}" alt="" >
                                 </span>
-                                <select name="tipo_bulk" id="tipo_bulk" class="form-select d-inline-block input_custom_tab">
+                                <select name="tipo_bulk" id="tipo_bulk" class="form-select d-inline-block input_custom_tab" required>
                                     <option value="">Selecionar </option>
                                     <option value="Porcentaje">Porcentaje</option>
                                     <option value="Fijo">Fijo</option>
@@ -83,7 +98,7 @@
                                 <span class="input-group-text span_custom_tab" >
                                     <img class="icon_span_tab" src="{{ asset('assets/media/icons/coins.webp') }}" alt="" >
                                 </span>
-                                <input id="monto_bulk" name="monto_bulk" type="text"  class="form-control input_custom_tab">
+                                <input id="monto_bulk" name="monto_bulk" type="text"  class="form-control input_custom_tab" required>
                             </div>
                         </div>
 
@@ -93,7 +108,7 @@
                                 <span class="input-group-text span_custom_tab" >
                                     <img class="icon_span_tab" src="{{ asset('assets/media/icons/calendar-dar.webp') }}" alt="" >
                                 </span>
-                                <input id="fecha_inicio_desc_bulk" name="fecha_inicio_desc_bulk" type="date"  class="form-control input_custom_tab">
+                                <input id="fecha_inicio_desc_bulk" name="fecha_inicio_desc_bulk" type="date"  class="form-control input_custom_tab" >
                             </div>
                         </div>
 
@@ -109,7 +124,7 @@
 
                         <div class="form-group col-12 px-4 py-3">
                             <p class="text-center ">
-                                <button type="submit" class="btn btn-sm btn-success btn_save_custom">Promocionar</button>
+                                <button type="submit" class="btn btn-sm btn-success btn_save_custom">Actualizar</button>
                             </p>
                         </div>
 

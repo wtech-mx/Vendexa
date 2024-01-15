@@ -75,6 +75,7 @@ class ProductosController extends Controller
     }
 
     public function bukaction_pausar(Request $request){
+
         $productosSeleccionados = $request->get('productos');
 
         $products = []; // Inicializar un arreglo vacío para almacenar los productos
@@ -109,6 +110,17 @@ class ProductosController extends Controller
     }
 
     public function bukaction_promocion(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'tipo_opcion' => 'required',
+            'tipo_bulk' => 'required',
+            'monto_bulk' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
         $productos = $request->get('productosSeleccionados');
         $productosSeleccionados = explode(',', $productos);
 
@@ -121,32 +133,74 @@ class ProductosController extends Controller
 
                 $precioNormal = $product->precio_normal;
 
-                if ($request->get('tipo_bulk') == 'Porcentaje') {
-                    $porcentaje = $request->get('monto_bulk');
-                    // Convertir el porcentaje a decimal (por ejemplo, 20% -> 0.2)
-                    $porcentajeDecimal = $porcentaje / 100;
 
-                    // Calcular el descuento basado en el porcentaje
-                    $descuento = $precioNormal * $porcentajeDecimal;
+                if($request->get('tipo_opcion') == 'Agregar Promocion' ){
 
-                    // Restar el descuento al precio normal
-                    $precioConDescuento = $precioNormal - $descuento;
+                    if ($request->get('tipo_bulk') == 'Porcentaje') {
 
-                    // Guardar $precioConDescuento o hacer lo que necesites con él
-                } elseif ($request->get('tipo_bulk') == 'Fijo') {
-                    $montoFijo = $request->get('monto_bulk');
+                        $porcentaje = $request->get('monto_bulk');
+                        // Convertir el porcentaje a decimal (por ejemplo, 20% -> 0.2)
+                        $porcentajeDecimal = $porcentaje / 100;
 
-                    // Restar el monto fijo al precio normal
-                    $precioConDescuento = $precioNormal - $montoFijo;
+                        // Calcular el descuento basado en el porcentaje
+                        $descuento = $precioNormal * $porcentajeDecimal;
 
-                    // Guardar $precioConDescuento o hacer lo que necesites con él
+                        // Restar el descuento al precio normal
+                        $precioConDescuento = $precioNormal - $descuento;
+
+                        // Guardar $precioConDescuento o hacer lo que necesites con él
+                    } elseif ($request->get('tipo_bulk') == 'Fijo') {
+                        $montoFijo = $request->get('monto_bulk');
+
+                        // Restar el monto fijo al precio normal
+                        $precioConDescuento = $precioNormal - $montoFijo;
+
+                        // Guardar $precioConDescuento o hacer lo que necesites con él
+                    }
+
+                }else{
+
+                    if ($request->get('tipo_bulk') == 'Porcentaje') {
+
+                        $porcentaje = $request->get('monto_bulk');
+                        // Convertir el porcentaje a decimal (por ejemplo, 20% -> 0.2)
+                        $porcentajeDecimal = $porcentaje / 100;
+
+                        // Calcular el descuento basado en el porcentaje
+                        $descuento = $precioNormal * $porcentajeDecimal;
+
+                        // Sumar el descuento al precio normal
+                        $precioConDescuento = $precioNormal + $descuento;
+
+                        // Guardar $precioConDescuento o hacer lo que necesites con él
+                    } elseif ($request->get('tipo_bulk') == 'Fijo') {
+                        $montoFijo = $request->get('monto_bulk');
+
+                        // Sumar el monto fijo al precio normal
+                        $precioConDescuento = $precioNormal + $montoFijo;
+
+                        // Guardar $precioConDescuento o hacer lo que necesites con él
+                    }
+
                 }
 
-                $product->precio_descuento = $precioConDescuento;
-                $product->fecha_inicio_desc = $request->get('fecha_inicio_desc_bulk') ;
-                $product->fecha_fin_desc = $request->get('fecha_fin_desc_bulk') ;
+                if($request->get('fecha_inicio_desc_bulk') == null ){
 
-                $product->update();
+                    $product->precio_normal = $precioConDescuento;
+
+                    $product->update();
+
+                }else{
+
+                    $product->precio_descuento = $precioConDescuento;
+
+                    $product->fecha_inicio_desc = $request->get('fecha_inicio_desc_bulk') ;
+                    $product->fecha_fin_desc = $request->get('fecha_fin_desc_bulk') ;
+
+                    $product->update();
+
+                }
+
             }
         }
     }
