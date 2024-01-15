@@ -22,12 +22,7 @@ class TrabajadoresController extends Controller
 
         $trabajadores = User::where('id_empresa', $user)->get();
 
-        $proveedores = Proveedores::where('id_empresa', $user)->get();
-        $marcas = Marcas::where('id_empresa', $user)->get();
-        $categorias = Categorias::where('id_empresa', $user)->get();
-        $subcategorias = SubCategorias::where('id_empresa', $user)->get();
-
-        return view('trabajadores.index', compact('trabajadores','marcas','categorias','subcategorias','proveedores'));
+        return view('trabajadores.index', compact('trabajadores'));
     }
 
     public function show($id){

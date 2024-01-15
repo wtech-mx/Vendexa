@@ -36,12 +36,6 @@ class HomeController extends Controller
         $mesActual = $fechaActual->month;
         $anioActual = $fechaActual->year;
 
-        $proveedores = Proveedores::where('id_empresa', $user->id_empresa)->get();
-        $marcas = Marcas::where('id_empresa', $user->id_empresa)->get();
-        $categorias = Categorias::where('id_empresa', $user->id_empresa)->get();
-        $subcategorias = SubCategorias::where('id_empresa', $user->id_empresa)->get();
-        $configuracion = Configuraciones::where('id_empresa', $user->id_empresa)->first();
-
         $conteoCompras = Ordenes::where('id_empresa', $user->id_empresa)->where('cotizacion', '=', 'No')->whereMonth('fecha', $mesActual)->whereYear('fecha', $anioActual)->count();
 
         $sumaEfectivo = OrdenesPagos::whereHas('ordenes', function ($query) use ($user, $mesActual, $anioActual) {
@@ -54,7 +48,7 @@ class HomeController extends Controller
         ->sum('monto');
 
         $conteoCotizaciones = Ordenes::where('id_empresa', $user->id_empresa)->where('cotizacion', '=', 'Si')->whereMonth('fecha', $mesActual)->whereYear('fecha', $anioActual)->count();
-        
-        return view('home', compact('proveedores', 'marcas', 'categorias', 'subcategorias', 'configuracion', 'user', 'conteoCompras', 'conteoCotizaciones', 'sumaEfectivo'));
+
+        return view('home', compact('user', 'conteoCompras', 'conteoCotizaciones', 'sumaEfectivo'));
     }
 }

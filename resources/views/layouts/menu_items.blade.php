@@ -5,11 +5,21 @@
     </li>
 </a>
 
-<a type="button" class="enlace_sidebar d-block" data-bs-toggle="modal" data-bs-target="#ModalPassCaja">
-    <li class="li_navbar">
-        Caja <img class="icon_navbar" src="{{ asset('assets/media/icons/puntoventa.webp') }}" alt="">
-    </li>
-</a>
+@if ($configuracion->codigo_caja == 1)
+    <a type="button" class="enlace_sidebar d-block" data-bs-toggle="modal" data-bs-target="#ModalPassCaja">
+        <li class="li_navbar">
+            Caja <img class="icon_navbar" src="{{ asset('assets/media/icons/puntoventa.webp') }}" alt="">
+        </li>
+    </a>
+@else
+    <a href="{{ route('caja_sincodigo.index') }}" class="enlace_sidebar">
+        <li class="li_navbar">
+            Caja <img class="icon_navbar" src="{{ asset('assets/media/icons/puntoventa.webp') }}" alt="">
+        </li>
+    </a>
+@endif
+
+
 
 <a type="button" class="enlace_sidebar d-block" data-bs-toggle="modal" data-bs-target="#show_Scanner">
     <li class="li_navbar">

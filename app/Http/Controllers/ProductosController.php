@@ -24,13 +24,9 @@ class ProductosController extends Controller
 
         $productos = Productos::where('id_empresa', $user)->orderBy('created_at', 'desc')->take(10)->get();
         $modoficaciones_productos = ModificacionesProductos::whereMonth('fecha', $mesActual)->get();
-        $proveedores = Proveedores::where('id_empresa', $user)->get();
-        $marcas = Marcas::where('id_empresa', $user)->get();
-        $categorias = Categorias::where('id_empresa', $user)->get();
-        $subcategorias = SubCategorias::where('id_empresa', $user)->get();
         $compras = Ordenes::where('id_empresa', $user)->where('cotizacion', '=', 'No')->get();
 
-        return view('products.index', compact('compras' ,'productos', 'modoficaciones_productos','proveedores', 'marcas', 'categorias', 'subcategorias'));
+        return view('products.index', compact('compras' ,'productos', 'modoficaciones_productos'));
     }
 
     public function filtro(Request $request){
@@ -39,10 +35,6 @@ class ProductosController extends Controller
         $user = auth()->user()->id_empresa;
         $compras = Ordenes::where('id_empresa', $user)->where('cotizacion', '=', 'No')->get();
         $modoficaciones_productos = ModificacionesProductos::whereMonth('fecha', $mesActual)->get();
-        $proveedores = Proveedores::where('id_empresa', $user)->get();
-        $marcas = Marcas::where('id_empresa', $user)->get();
-        $categorias = Categorias::where('id_empresa', $user)->get();
-        $subcategorias = SubCategorias::where('id_empresa', $user)->get();
 
         $productos = Productos::where('id_empresa', $user);
         if( $request->nombre_producto){
@@ -71,7 +63,7 @@ class ProductosController extends Controller
             $productos = $productos->where('descuento', 'LIKE', "%" . $request->descuento . "%");
         }
         $productos = $productos->get();
-        return view('products.index', compact('productos','modoficaciones_productos','proveedores', 'marcas', 'categorias', 'subcategorias', 'compras'));
+        return view('products.index', compact('productos','modoficaciones_productos','compras'));
     }
 
     public function bukaction_pausar(Request $request){

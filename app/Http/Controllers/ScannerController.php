@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Proveedores;
 use Carbon\Carbon;
 use App\Models\ModificacionesProductos;
+use App\Models\Ordenes;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -28,11 +29,6 @@ class ScannerController extends Controller
                 $codigo .= '_'.$user;
             }
 
-            $proveedores = Proveedores::where('id_empresa', $user)->get();
-            $marcas = Marcas::where('id_empresa', $user)->get();
-            $categorias = Categorias::where('id_empresa', $user)->get();
-            $subcategorias = SubCategorias::where('id_empresa', $user)->get();
-
             $modoficaciones_productos = ModificacionesProductos::whereMonth('fecha', $mesActual)->get();
 
             $output = "";
@@ -49,7 +45,50 @@ class ScannerController extends Controller
                     'modoficaciones_productos',
                 ));
 
-                return view('modals.producto_info', ['producto' => $producto,'proveedores' => $proveedores,'marcas' => $marcas,'categorias' => $categorias,'subcategorias' => $subcategorias,'modoficaciones_productos' => $modoficaciones_productos]);
+                return view('modals.producto_info', ['producto' => $producto,'modoficaciones_productos' => $modoficaciones_productos]);
+        }
+    }
+
+    public function filtro(Request $request){
+        $now = Carbon::now();
+        $mesActual = $now->month;
+        $user = auth()->user()->id_empresa;
+        $compras = Ordenes::where('id_empresa', $user)->where('cotizacion', '=', 'No')->get();
+        $modoficaciones_productos = ModificacionesProductos::whereMonth('fecha', $mesActual)->get();
+
+        $productos = Productos::where('id_empresa', $user);
+        if( $request->nombre_producto){
+            $productos = $productos->where('nombre', 'LIKE', "%" . $request->nombre_producto . "%");
+        }
+        if( $request->stock_de && $request->stock_a ){
+            $productos = $productos->where('stock', '>=', $request->stock_de)
+                                     ->where('stock', '<=', $request->stock_a);
+        }
+        if( $request->id_marca){
+            $productos = $productos->where('id_marca', 'LIKE', "%" . $request->id_marca . "%");
+        }
+        if( $request->id_categoria){
+            $productos = $productos->where('id_categoria', 'LIKE', "%" . $request->id_categoria . "%");
+        }
+        if( $request->id_subcategoria){
+            $productos = $productos->where('id_subcategoria', 'LIKE', "%" . $request->id_subcategoria . "%");
+        }
+        if( $request->id_proveedor){
+            $productos = $productos->where('id_proveedor', 'LIKE', "%" . $request->id_proveedor . "%");
+        }
+        if( $request->visibilidad_estatus){
+            $productos = $productos->where('visibilidad_estatus', 'LIKE', "%" . $request->visibilidad_estatus . "%");
+        }
+        if( $request->descuento){
+            $productos = $productos->where('descuento', 'LIKE', "%" . $request->descuento . "%");
+        }
+        $productos = $productos->first();
+        if ($productos) {
+            $datosProducto = $productos->toArray();
+
+            return response()->json($datosProducto);
+        } else {
+            return response()->json(['nombre' => 'Producto no encontrado']);
         }
     }
 }

@@ -65,7 +65,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     // ============================================= M O D U L O   C A J A =================================================
 
-    //Route::get('/caja', 'CajaController@index')->name('caja.index');
+    Route::get('/caja', 'CajaController@index')->name('caja_sincodigo.index');
     Route::get('/caja/{id}', 'CajaController@index')->name('caja.index');
     Route::get('/agregar-al-carrito', 'CajaController@agregarAlCarrito')->name('agregar.al.carrito');
     Route::post('/caja/store', 'CajaController@store')->name('caja.store');
@@ -98,7 +98,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::get('/quotes/filtro', 'CotizacionesController@filtro')->name('quotes.filtro');
     Route::get('/quotes/pdf/{id}', 'CotizacionesController@pdf')->name('quotes.pdf');
 
- });
+});
 
 
 
