@@ -135,7 +135,7 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="" >
                                             </span>
-                                            <input id="costo" name="costo" type="number"  class="form-control input_custom_tab_dark @error('costo') is-invalid @enderror"  value="{{ old('costo', $producto->costo) }}" autocomplete="" autofocus>
+                                            <input id="costo" name="costo" type="number"  class="form-control input_custom_tab_dark"  value="{{ old('costo', $producto->costo) }}">
                                         </div>
                                     </div>
 
@@ -145,27 +145,11 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/monedas.webp') }}" alt="" >
                                             </span>
-                                            <input id="precio_normal" name="precio_normal" type="number"  class="form-control input_custom_tab_dark @error('precio_normal') is-invalid @enderror"  value="{{ old('precio_normal', $producto->precio_normal) }}" autocomplete="" autofocus>
+                                            <input id="precio_normal" name="precio_normal" type="number"  class="form-control input_custom_tab_dark"  value="{{ old('precio_normal', $producto->precio_normal) }}">
                                         </div>
                                     </div>
 
-                                    <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-6 px-4 py-3">
-                                        <label for="name" class="label_custom_primary_product_white mb-2">Precio Mayorista</label>
-
-                                        <div class="input-group text-white d-flex justify-content-around mt-3">
-                                              <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRMayo" id="radioSiMayoEdit" value="Si">
-                                                <label class="form-check-label" for="">Si</label>
-                                              </div>
-
-                                              <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRMayo" id="radioNoMayoEdit" value="No">
-                                                <label class="form-check-label" for="">No</label>
-                                              </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-6 px-4 py-3" id="precioMayoristaContainerEdit" style="display: none;">
+                                    <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-6 px-4 py-3" >
                                         <label for="name" class="label_custom_primary_product_white mb-2">Precio Mayorista :</label>
                                         <div class="input-group ">
                                             <span class="input-group-text span_custom_tab" >
@@ -175,55 +159,37 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-6 px-4 py-3">
-                                        <label for="name" class="label_custom_primary_product_white mb-2">Precio rebajado</label>
 
-                                        <div class="input-group text-white d-flex justify-content-around mt-3">
-                                              <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRebajado" id="radioSirebajaEdit" value="Si">
-                                                <label class="form-check-label" for="">Si</label>
-                                              </div>
-
-                                              <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRebajado" id="radioNorebajaEdit" value="No">
-                                                <label class="form-check-label" for="">No</label>
-                                              </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row" id="precioPromoContainerEdit" style="display: none;">
-
-                                        <div class="form-group col-6 px-4 py-3" >
+                                    <div class="form-group col-6 px-4 py-3" >
                                             <label for="name" class="label_custom_primary_product_white mb-2">Precio Rebajado :</label>
                                             <div class="input-group ">
                                                 <span class="input-group-text span_custom_tab" >
                                                     <img class="icon_span_tab" src="{{ asset('assets/media/icons/descuento.webp') }}" alt="" >
                                                 </span>
-                                                <input id="precio_descuento" name="precio_descuento" type="number"  class="form-control input_custom_tab_dark "  value="{{old('precio_descuento', $producto->precio_descuento)}}" autocomplete="" autofocus>
+                                                <input id="precio_descuento" name="precio_descuento" type="number"  class="form-control input_custom_tab_dark "  value="{{old('precio_descuento', $producto->precio_descuento)}}" >
                                             </div>
-                                        </div>
+                                    </div>
 
-                                        <div class="form-group col-6 px-4 py-3">
+                                    <div class="form-group col-6 px-4 py-3">
                                             <label for="name" class="label_custom_primary_product_white mb-2">Fecha de inicio :</label>
                                             <div class="input-group ">
                                                 <span class="input-group-text span_custom_tab" >
                                                     <img class="icon_span_tab" src="{{ asset('assets/media/icons/calendar-dar.webp') }}" alt="" >
                                                 </span>
-                                                <input id="fecha_inicio_desc" name="fecha_inicio_desc" type="date"  class="form-control input_custom_tab_dark"  value="{{old('fecha_inicio_desc', $producto->fecha_inicio_desc) }}" autocomplete="" autofocus>
+                                                <input id="fecha_inicio_desc" name="fecha_inicio_desc" type="date"  class="form-control input_custom_tab_dark"  value="{{old('fecha_inicio_desc', $producto->fecha_inicio_desc) }}" >
                                             </div>
-                                        </div>
+                                    </div>
 
-                                        <div class="form-group col-6 px-4 py-3" >
+                                    <div class="form-group col-6 px-4 py-3" >
                                             <label for="name" class="label_custom_primary_product_white mb-2">Fecha de Fin :</label>
                                             <div class="input-group ">
                                                 <span class="input-group-text span_custom_tab" >
                                                     <img class="icon_span_tab" src="{{ asset('assets/media/icons/calendar-dar.webp') }}" alt="" >
                                                 </span>
-                                                <input id="fecha_fin_desc" name="fecha_fin_desc type="date"  class="form-control input_custom_tab_dark @error('fecha_fin_desc') is-invalid @enderror"  value="{{old('fecha_fin_desc', $producto->fecha_fin_desc)}}" autocomplete="" autofocus>
+                                                <input id="fecha_fin_desc" name="fecha_fin_desc" type="date"  class="form-control input_custom_tab_dark"  value="{{old('fecha_fin_desc', $producto->fecha_fin_desc)}}" >
                                             </div>
-                                        </div>
-
                                     </div>
+
 
                                     <div class="form-group col-12 px-4 py-1">
                                         <h2 class="tiitle_modal_white text-left ms-2">Metadatos</h2>
@@ -301,18 +267,18 @@
 
                                     <div class="form-group col-3 px-4 py-3">
                                         <label for="name" class="label_custom_primary_product_white mb-4">Agregar</label>
-                                        <a class="btn_plus_dash" data-bs-toggle="collapse" href="#collapseMarca" role="button" aria-expanded="false" aria-controls="collapseMarca">
+                                        <a class="btn_plus_dash" data-bs-toggle="collapse" href="#collapseMarca_{{ $producto->id}}" role="button" aria-expanded="false" aria-controls="collapseMarca_{{ $producto->id}}">
                                             <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
                                         </a>
                                     </div>
 
-                                    <div class="form-group col-12 px-5 py-3 collapse"  id="collapseMarca">
+                                    <div class="form-group col-12 px-5 py-3 collapse"  id="collapseMarca_{{ $producto->id}}">
                                         <label for="name" class="label_custom_primary_sm_dark mb-2">Agregar Marca :</label>
                                         <div class="input-group ">
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/marca.webp') }}" alt="" >
                                             </span>
-                                            <input id="nombre_marca" name="nombre_marca" type="text"  class="form-control input_custom_tab_dark @error('nombre_marca') is-invalid @enderror"  value="{{ old('nombre_marca') }}" autocomplete="" autofocus>
+                                            <input id="nombre_marca" name="nombre_marca" type="text"  class="form-control input_custom_tab_dark"  value="{{ old('nombre_marca') }}" autocomplete="" autofocus>
                                         </div>
                                     </div>
 
@@ -333,12 +299,12 @@
 
                                     <div class="form-group col-3 px-4 py-3">
                                         <label for="name" class="label_custom_primary_product_white mb-4">Agregar</label>
-                                        <a class="btn_plus_dash" data-bs-toggle="collapse" href="#collapseCategoria" role="button" aria-expanded="false" aria-controls="collapseCategoria">
+                                        <a class="btn_plus_dash" data-bs-toggle="collapse" href="#collapseCategoria_{{ $producto->id}}" role="button" aria-expanded="false" aria-controls="collapseCategoria_{{ $producto->id}}">
                                             <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
                                         </a>
                                     </div>
 
-                                    <div class="form-group col-12 px-5 py-3 collapse"  id="collapseCategoria">
+                                    <div class="form-group col-12 px-5 py-3 collapse"  id="collapseCategoria_{{ $producto->id}}">
                                         <label for="name" class="label_custom_primary_sm_dark mb-2">Agregar Categoria :</label>
                                         <div class="input-group ">
                                             <span class="input-group-text span_custom_tab" >
@@ -370,12 +336,12 @@
 
                                     <div class="form-group col-3 px-4 py-3">
                                         <label for="name" class="label_custom_primary_product_white mb-4">Agregar </label>
-                                        <a class="btn_plus_dash" data-bs-toggle="collapse" href="#collapseSubcategoria" role="button" aria-expanded="false" aria-controls="collapseSubcategoria">
+                                        <a class="btn_plus_dash" data-bs-toggle="collapse" href="#collapseSubcategoria__{{ $producto->id}}" role="button" aria-expanded="false" aria-controls="collapseSubcategoria__{{ $producto->id}}">
                                             <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
                                         </a>
                                     </div>
 
-                                    <div class="form-group col-12 px-5 py-3 collapse"  id="collapseSubcategoria">
+                                    <div class="form-group col-12 px-5 py-3 collapse"  id="collapseSubcategoria__{{ $producto->id}}">
                                         <label for="name" class="label_custom_primary_sm_dark mb-2">Agregar Subcategoria :</label>
                                         <div class="input-group ">
                                             <span class="input-group-text span_custom_tab" >
