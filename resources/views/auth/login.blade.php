@@ -23,7 +23,7 @@
               </div>
 
               <div class="card-body px-3">
-                <form method="POST" action="{{ route('login') }}" class="row">
+                <form method="POST"  action="{{ route('login.custom') }}" class="row">
 
                   @csrf
 
@@ -33,9 +33,9 @@
                           <span class="input-group-text span_custom_primary_dark" id="basic-addon1">
                               <img class="icon_span_form" src="{{ asset('assets/media/icons/telefono-movil.webp') }}" alt="" width="35px">
                           </span>
-                          <input id="email" type="number" class="form-control input_custom_primary_dark @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                          <input id="telefono" type="number" class="form-control input_custom_primary_dark @error('telefono') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}" required autocomplete="telefono" autofocus>
 
-                          @error('email')
+                          @error('telefono')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                               </span>

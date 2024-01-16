@@ -40,7 +40,7 @@ class TrabajadoresController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'apellido' => 'required',
-            'email' => 'required',
+            'telefono' => 'required',
             'password' => 'required',
             'pin' => 'required',
         ]);
@@ -64,7 +64,7 @@ class TrabajadoresController extends Controller
 
         $trabajador = new User;
         $trabajador->name = $request->get('name') . ' ' . $request->get('apellido');
-        $trabajador->email = $request->get('email');
+        $trabajador->telefono = $request->get('telefono');
         $trabajador->password_caja = $request->get('pin');
         $trabajador->password = Hash::make($request->get('password'));
 
@@ -85,7 +85,7 @@ class TrabajadoresController extends Controller
 
         $trabajador_data = [
             "name" => $trabajador->name,
-            "email" => $trabajador->email,
+            "telefono" => $trabajador->telefono,
             "correo" => $trabajador->correo,
         ];
 
@@ -98,7 +98,7 @@ class TrabajadoresController extends Controller
 
         $usuario = User::find($id);
         $usuario->name = $request->get('name');
-        $usuario->email = $request->get('email');
+        $usuario->telefono = $request->get('telefono');
         $usuario->correo = $request->get('correo');
 
         if($request->get('password') == NULL){

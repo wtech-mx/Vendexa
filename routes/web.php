@@ -13,22 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ============================================= L O G I N =====================================================
 Auth::routes();
-
 
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/caja_old', function () {
-    return view('caja.index_old');
-});
+Route::post('custom-login', [App\Http\Controllers\CustomAuthController::class, 'customLogin'])->name('login.custom');
+Route::get('signout', [App\Http\Controllers\CustomAuthController::class, 'signOut'])->name('signout');
 
-Route::get('/coti', function () {
-    return view('pdf.cotizacion');
-});
+// ============================================= G E N E R A L E S =====================================================
 
 Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], function () {
+
+
+    Route::get('/coti', function () {
+        return view('pdf.cotizacion');
+    });
 
     // ============================================= G E N E R A L E S =====================================================
 

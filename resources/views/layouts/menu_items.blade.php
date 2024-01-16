@@ -62,6 +62,13 @@
         Ajustes <img class="icon_navbar" src="{{ asset('assets/media/icons/gear.webp') }}" alt="">
     </li>
  </a>
+
+ <a href="{{ route('signout') }}" class="enlace_sidebar">
+    <li class="li_navbar">
+        Salir <img class="icon_navbar" src="{{ asset('assets/media/icons/salida.webp') }}" alt="">
+    </li>
+ </a>
+
 <!--
 <a href="" class="enlace_sidebar">
     <li class="li_navbar">

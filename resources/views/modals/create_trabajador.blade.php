@@ -57,7 +57,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="" >
                             </span>
-                            <input  name="email" id="email" type="number"  class="form-control input_custom_tab_dark @error('email') is-invalid @enderror"  value="{{ old('email') }}"  autocomplete="" autofocus>
+                            <input name="telefono" id="telefono_input" type="tel" class="form-control input_custom_tab_dark @error('telefono') is-invalid @enderror" value="{{ old('telefono') }}" autocomplete="" autofocus>
                         </div>
                     </div>
 
@@ -286,6 +286,8 @@ $(document).ready(function() {
         $('#password').on('input', function () {
             actualizarContrasena();
         });
+
+
 
 });
 

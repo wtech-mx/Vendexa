@@ -104,6 +104,35 @@
 
         <script>
             var token = $('meta[name="csrf-token"]').attr('content');
+
+
+            var telefonoInput = document.getElementById('telefono_input');
+            var telefono_input_client = document.getElementById('telefono_input_client');
+
+
+            telefonoInput.addEventListener('input', function(event) {
+                // Eliminar caracteres no numéricos
+                var phoneNumber = event.target.value.replace(/\D/g, '');
+
+                // Limitar a 10 dígitos
+                phoneNumber = phoneNumber.slice(0, 10);
+
+                // Actualizar el valor del input
+                event.target.value = phoneNumber;
+            });
+
+
+            telefono_input_client.addEventListener('input', function(event) {
+                // Eliminar caracteres no numéricos
+                var phoneNumber = event.target.value.replace(/\D/g, '');
+
+                // Limitar a 10 dígitos
+                phoneNumber = phoneNumber.slice(0, 10);
+
+                // Actualizar el valor del input
+                event.target.value = phoneNumber;
+            });
+
         </script>
 
         @yield('js_custom')

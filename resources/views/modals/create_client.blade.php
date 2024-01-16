@@ -57,7 +57,9 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="" >
                             </span>
-                            <input  name="whats_cliente" type="text"  class="form-control input_custom_tab_dark @error('') is-invalid @enderror"  value="{{ old('') }}"  autocomplete="" autofocus>
+
+                            <input name="whats_cliente" id="telefono_input_client" type="tel" class="form-control input_custom_tab_dark @error('whats_cliente') is-invalid @enderror" value="{{ old('whats_cliente') }}" autocomplete="" autofocus>
+
                         </div>
                     </div>
 
