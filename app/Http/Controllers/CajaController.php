@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clientes;
+use App\Models\Configuraciones;
 use App\Models\DatosFacturas;
 use App\Models\Ordenes;
 use App\Models\OrdenesPagos;
@@ -103,16 +104,19 @@ class CajaController extends Controller
             $fotos_comprobante = public_path() . '/comprobantes/empresa'.auth()->user()->id_empresa;
         }
 
-        $key = $request->get('id_cajero'); // Aquí tendrías tu última parte de la URL
+        $configuracion = Configuraciones::where('id_empresa', auth()->user()->id_empresa)->first();
+        if($configuracion->codigo_caja == 1){
+            $key = $request->get('id_cajero'); // Aquí tendrías tu última parte de la URL
 
-        // Dividir la cadena usando el guion bajo como delimitador
-        $parts_key = explode('_', $key);
+            // Dividir la cadena usando el guion bajo como delimitador
+            $parts_key = explode('_', $key);
 
-        // Obtener los elementos individuales
-        $firstKey = $parts_key[0]; // El número antes del guion
-        $secondKey = $parts_key[1]; // El número después del guion
+            // Obtener los elementos individuales
+            $firstKey = $parts_key[0]; // El número antes del guion
+            $secondKey = $parts_key[1]; // El número después del guion
 
-        $userkey = User::where('id', $firstKey)->where('password_caja', $secondKey)->first();
+            $userkey = User::where('id', $firstKey)->where('password_caja', $secondKey)->first();
+        }
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
@@ -164,7 +168,11 @@ class CajaController extends Controller
             }
             $orden->factura = $request->get('inlineFact');
 
-            $orden->id_cajero = $userkey->id;
+            if($configuracion->codigo_caja == 1){
+                $orden->id_cajero = $userkey->id;
+            }else{
+                $orden->id_cajero = auth()->user()->id;
+            }
             $orden->id_user = auth()->user()->id;
 
             $orden->id_empresa = auth()->user()->id_empresa;

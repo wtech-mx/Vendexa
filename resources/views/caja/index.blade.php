@@ -200,9 +200,18 @@
                             <img class="icon_span_tab" src="{{ asset('assets/media/icons/metodo-de-pago.webp') }}" alt="" >
                         </span>
                         <select name="metodo_pago" id="metodo_pago" class="form-select d-inline-block input_custom_tab_dark">
-                            <option value="Efectivo" @if(old('unidad_venta') == 'Efectivo') selected @endif>Efectivo</option>
-                            <option value="Tarjeta Credito/Debito" @if(old('unidad_venta') == 'Tarjeta Credito/Debito') selected @endif>Tarjeta Credito/Debito</option>
-                            <option value="Transferencia" @if(old('unidad_venta') == 'Transferencia') selected @endif>Transferencia</option>
+                            @if ($configuracion->efectivo == 1)
+                                <option value="Efectivo" @if(old('unidad_venta') == 'Efectivo') selected @endif>Efectivo</option>
+                            @endif
+                            @if ($configuracion->tarjeta == 1)
+                                <option value="Tarjeta Credito/Debito" @if(old('unidad_venta') == 'Tarjeta Credito/Debito') selected @endif>Tarjeta Credito/Debito</option>
+                            @endif
+                            @if ($configuracion->transferencia == 1)
+                                <option value="Transferencia" @if(old('unidad_venta') == 'Transferencia') selected @endif>Transferencia</option>
+                            @endif
+                            @if ($configuracion->mercado_pago == 1)
+                                <option value="Mercado Pago" @if(old('unidad_venta') == 'Mercado Pago') selected @endif>Mercado Pago</option>
+                            @endif
                         </select>
                     </div>
                 </div>
@@ -251,9 +260,18 @@
                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/metodo-de-pago.webp') }}" alt="" >
                             </span>
                             <select name="metodo_pago2" id="metodo_pago2" class="form-select d-inline-block input_custom_tab_dark">
-                                <option value="Efectivo" @if(old('unidad_venta') == 'Efectivo') selected @endif>Efectivo</option>
-                                <option value="Tarjeta Credito/Debito" @if(old('unidad_venta') == 'Tarjeta Credito/Debito') selected @endif>Tarjeta Credito/Debito</option>
-                                <option value="Transferencia" @if(old('unidad_venta') == 'Transferencia') selected @endif>Transferencia</option>
+                                @if ($configuracion->efectivo == 1)
+                                    <option value="Efectivo" @if(old('unidad_venta') == 'Efectivo') selected @endif>Efectivo</option>
+                                @endif
+                                @if ($configuracion->tarjeta == 1)
+                                    <option value="Tarjeta Credito/Debito" @if(old('unidad_venta') == 'Tarjeta Credito/Debito') selected @endif>Tarjeta Credito/Debito</option>
+                                @endif
+                                @if ($configuracion->transferencia == 1)
+                                    <option value="Transferencia" @if(old('unidad_venta') == 'Transferencia') selected @endif>Transferencia</option>
+                                @endif
+                                @if ($configuracion->mercado_pago == 1)
+                                    <option value="Mercado Pago" @if(old('unidad_venta') == 'Mercado Pago') selected @endif>Mercado Pago</option>
+                                @endif
                             </select>
                         </div>
                     </div>
@@ -299,21 +317,23 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-3">
-                    <label for="name" class="label_custom_primary_product_white mb-2">Factura </label>
+                @if ($configuracion->opcion_factura == 1)
+                    <div class="form-group col-6 px-2 py-3">
+                        <label for="name" class="label_custom_primary_product_white mb-2">Factura </label>
 
-                    <div class="input-group text-white d-flex justify-content-around mt-3">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input " type="radio" name="inlineFact"  id="radioSiFact" value="Si">
-                            <label class="form-check-label" for="">Si</label>
-                        </div>
+                        <div class="input-group text-white d-flex justify-content-around mt-3">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input " type="radio" name="inlineFact"  id="radioSiFact" value="Si">
+                                <label class="form-check-label" for="">Si</label>
+                            </div>
 
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input " type="radio" name="inlineFact"  id="radioNoFact" value="No">
-                            <label class="form-check-label" for="">No</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input " type="radio" name="inlineFact"  id="radioNoFact" value="No">
+                                <label class="form-check-label" for="">No</label>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
 
                 <div class="row" id="FacturaContainer" style="display: none;">
                     <div class="form-group col-6 px-2 py-1">
@@ -605,6 +625,12 @@
                 data: data,
                 success: function (response) {
                     if (response.nombre) {
+                        const precio = parseFloat(response.precio_normal);
+                        const precioDescuento = parseFloat(response.precio_descuento);
+                        const fechaInicioDescuento = new Date(response.fecha_inicio_desc);
+                        const fechaFinDescuento = new Date(response.fecha_fin_desc);
+                        const fechaActual = new Date();
+
                         const productoContainer = document.createElement("div");
                         productoContainer.classList.add("producto-container");
                         productoContainer.setAttribute("data-product-id", response.id);
@@ -645,18 +671,35 @@
 
                         // =============== P R E C I O ===============================
                         const precioDiv = document.createElement("div");
-                        precioDiv.classList.add("col-4");
-                        precioDiv.classList.add("espaciosnullcols");
-                        precioDiv.innerHTML = `
-                            <label for="name" class="tiitle_search_caja_items mb-2">Precio</label>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text span_custom_tab" >
-                                    <img class="icon_caja_item" src="{{ asset('assets/media/icons/etiqueta-del-precio.webp') }}" alt="" >
-                                </span>
-                                <input class="form-control input_custom_tab_dark" type="number" name="precio[]" value="${response.precio_normal}" readonly>
-                            </div>
-                            <label for="name" class="tiitle_search_caja_items mb-2">Eliminar</label>
-                        `;
+                            precioDiv.classList.add("col-4");
+                            precioDiv.classList.add("espaciosnullcols");
+                            precioDiv.innerHTML = `
+                                <label for="name" class="tiitle_search_caja_items mb-2">Precio</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text span_custom_tab" >
+                                        <img class="icon_caja_item" src="{{ asset('assets/media/icons/etiqueta-del-precio.webp') }}" alt="" >
+                                    </span>
+                                    <input class="form-control input_custom_tab_dark" type="number" name="precio[]" value="${response.precio_normal}" readonly>
+                                </div>
+                                <label for="name" class="tiitle_search_caja_items mb-2">Eliminar</label>
+                            `;
+
+                        // =============== P R E C I O  C O N  D E S C ===============================
+                        const precioDescDiv = document.createElement("div");
+                        if (fechaActual >= fechaInicioDescuento && fechaActual <= fechaFinDescuento) {
+
+                            precioDescDiv.classList.add("col-4");
+                            precioDescDiv.classList.add("espaciosnullcols");
+                            precioDescDiv.innerHTML = `
+                                <label for="name" class="tiitle_search_caja_items mb-2">Precio Descuento</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text span_custom_tab" >
+                                        <img class="icon_caja_item" src="{{ asset('assets/media/icons/etiqueta-del-precio.webp') }}" alt="" >
+                                    </span>
+                                    <input class="form-control input_custom_tab_dark" type="number" name="precioDesc[]" value="${response.precio_descuento}" readonly>
+                                </div>
+                            `;
+                        }
 
                         // =============== C A N T I D A D ===============================
                         const cantidadDiv = document.createElement("div");
@@ -760,8 +803,11 @@
                         // Insertar cantidadInput después del span
                         spanElementsub.parentNode.insertBefore(subtotalInput, spanElementsub.nextSibling);
 
-                        const precio = parseFloat(response.precio_normal);
-                        subtotalInput.value = (precio * cantidadInput.value).toFixed(2);
+                        if (fechaActual >= fechaInicioDescuento && fechaActual <= fechaFinDescuento) {
+                            subtotalInput.value = (precioDescuento * cantidadInput.value).toFixed(2);
+                        } else {
+                            subtotalInput.value = (precio * cantidadInput.value).toFixed(2);
+                        }
 
                         // =============== E L I M I N A R ===============================
 
@@ -777,6 +823,9 @@
                         productoContainer.appendChild(nombreDiv);
                         productoContainer.appendChild(inputnombreDiv);
                         productoContainer.appendChild(precioDiv);
+                        if (fechaActual >= fechaInicioDescuento && fechaActual <= fechaFinDescuento) {
+                            productoContainer.appendChild(precioDescDiv);
+                        }
                         //productoContainer.appendChild(eliminarBtn);
                         productoContainer.appendChild(cantidadDiv);
                         productoContainer.appendChild(colEspaciador);
@@ -789,9 +838,16 @@
 
                         // =============== M U E S T R A  L O S  I N P U T S  (EL ORDEN ES IMPORTANTE) ===============================
                         function calcularSubtotal() {
-                            const precio = parseFloat(precioDiv.querySelector("input[name='precio[]']").value);
+                            let preciof;
+
+                            if (fechaActual >= fechaInicioDescuento && fechaActual <= fechaFinDescuento) {
+                                preciof = precioDescuento;
+                            } else {
+                                preciof = precio;
+                            }
+
                             const cantidad = parseFloat(cantidadInput.value);
-                            subtotalInput.value = (precio * cantidad).toFixed(2);
+                            subtotalInput.value = (preciof * cantidad).toFixed(2);
                             actualizarSumaSubtotales();
                         }
 
