@@ -246,7 +246,7 @@
                         </div>
 
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input " type="radio" name="inlinePago"  id="radioNoPago" value="No">
+                            <input class="form-check-input " type="radio" name="inlinePago"  id="radioNoPago" value="No" checked>
                             <label class="form-check-label" for="">No</label>
                         </div>
                     </div>
@@ -647,6 +647,13 @@
                         idDiv.classList.add("d-none");
                         idDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>id:</strong></p><input class="form-control" type="hidden" name="id[]" value="${response.id}">`;
 
+                        const sku = response.sku;
+                        const skuPart = sku.substring(0, sku.indexOf('_'));
+
+                        // Luego puedes usar skuPart en tu código
+                        console.log(skuPart);
+
+
                         // =============== D A T O S  P R O D U C T O ===============================
                         const nombreDiv = document.createElement("div");
                         nombreDiv.classList.add("col-4");
@@ -656,7 +663,7 @@
                                 <h6 class="subtittle_search_caja mb-3   ">${response.nombre}</h6>
                                 <p class="items_search_caja" style="margin:5px;">
                                     <img class="icon_item_Caja" src="{{ asset('assets/media/icons/code_barras.webp') }}" alt="">
-                                    <strong>Sku:</strong> ${response.sku}
+                                    <strong>Sku:</strong> ${skuPart}
                                 </p>
                                 <p class="items_search_caja">
                                     <img class="icon_item_Caja" src="{{ asset('assets/media/icons/en-stock.png.webp') }}" alt="">
@@ -668,6 +675,7 @@
                                     </p>
                                 </div>
                         `;
+
 
                         // =============== P R E C I O ===============================
                         const precioDiv = document.createElement("div");
@@ -681,7 +689,6 @@
                                     </span>
                                     <input class="form-control input_custom_tab_dark" type="number" name="precio[]" value="${response.precio_normal}" readonly>
                                 </div>
-                                <label for="name" class="tiitle_search_caja_items mb-2">Eliminar</label>
                             `;
 
                         // =============== P R E C I O  C O N  D E S C ===============================
@@ -692,11 +699,12 @@
                             precioDescDiv.classList.add("espaciosnullcols");
                             precioDescDiv.innerHTML = `
                                 <label for="name" class="tiitle_search_caja_items mb-2">Precio Descuento</label>
-                                <div class="input-group mb-3">
+                                <div class="input-group">
                                     <span class="input-group-text span_custom_tab" >
-                                        <img class="icon_caja_item" src="{{ asset('assets/media/icons/etiqueta-del-precio.webp') }}" alt="" >
+                                        <img class="icon_caja_item" src="{{ asset('assets/media/icons/descuento.webp') }}" alt="" >
                                     </span>
                                     <input class="form-control input_custom_tab_dark" type="number" name="precioDesc[]" value="${response.precio_descuento}" readonly>
+                                    <label for="name" class="tiitle_search_caja_items mb-2" style="text-decoration: line-through;margin-top: -2px;">$ ${response.precio_normal}.00</label>
                                 </div>
                             `;
                         }
@@ -708,7 +716,7 @@
 
                         cantidadDiv.innerHTML = `
                             <label for="name" class="tiitle_search_caja_items mb-2">Cantidad</label>
-                            <div class="input-group mb-3">
+                            <div class="input-group">
                                 <span class="input-group-text span_custom_tab" >
                                     <img class="icon_caja_item" src="{{ asset('assets/media/icons/retail.webp') }}" alt="" >
                                 </span>
@@ -812,19 +820,30 @@
                         // =============== E L I M I N A R ===============================
 
                         const eliminarBtn = document.createElement("a");
-                        eliminarBtn.classList.add("btn", "w-100", "btn_trash_caja", "mt-1");
+                        eliminarBtn.classList.add("btn", "w-100", "btn_trash_caja", "mt-3");
                         eliminarBtn.innerHTML = "<img class='icon_caja_item' src='{{ asset('assets/media/icons/borrar.webp') }}'>";
                         eliminarBtn.addEventListener("click", eliminarProducto);
-                        precioDiv.appendChild(eliminarBtn);
 
+                        const eliminarBtndesc = document.createElement("a");
+                        eliminarBtndesc.classList.add("btn", "w-100", "btn_trash_caja", "mt-1");
+                        eliminarBtndesc.innerHTML = "<img class='icon_caja_item' src='{{ asset('assets/media/icons/borrar.webp') }}'>";
+                        eliminarBtndesc.addEventListener("click", eliminarProducto);
+
+
+                        precioDiv.appendChild(eliminarBtn);
+                        precioDescDiv.appendChild(eliminarBtndesc);
 
                         // =============== M U E S T R A  L O S  I N P U T S  (EL ORDEN ES IMPORTANTE) ===============================
                         productoContainer.appendChild(idDiv);
                         productoContainer.appendChild(nombreDiv);
                         productoContainer.appendChild(inputnombreDiv);
-                        productoContainer.appendChild(precioDiv);
+
                         if (fechaActual >= fechaInicioDescuento && fechaActual <= fechaFinDescuento) {
                             productoContainer.appendChild(precioDescDiv);
+
+                        }else{
+                            productoContainer.appendChild(precioDiv);
+
                         }
                         //productoContainer.appendChild(eliminarBtn);
                         productoContainer.appendChild(cantidadDiv);
