@@ -132,18 +132,22 @@
                             <p class="display-4 from" style="color: #577590;font-size: 25px;">
                                 <strong>Datos de la empresa </strong>
                             </p>
+
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/edificios_ciudad.webp') }}" style="">
                                 Empresa: {{$cotizacion->Empresa->nombre}}
                             </p>
+
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/telefono.png.webp') }}" style="">
                                 Telefeono: {{$cotizacion->Empresa->telefono}}
                             </p>
+
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/gps.webp') }}" style="">
                                 Direccion: {{$configuracion->Direccion->calle_numero}}, {{$configuracion->Direccion->codigo_postal}}
                             </p>
+
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/sobre.png.webp') }}" style="">
                                 Correo: {{$cotizacion->Empresa->correo}}
@@ -187,7 +191,7 @@
                             <thead class="tabla-azul" style="padding: 100px;">
                                 <tr class="tr" style="background-color: #577590;height: 40px; color: #ffffff;">
                                     <th >
-                                        #
+                                        Sku
                                     </th>
 
                                     <th>
@@ -209,14 +213,23 @@
                             </thead>
 
 
-                            <tbody style="text-align: center;font-size: 120%;">
+                            <tbody style="text-align: left;font-size: 120%;">
                                 @foreach ($productos as $producto)
                                     <tr>
-                                        <td></td>
-                                        <td>{{$producto->Productos->nombre}}</td>
-                                        <td>{{$producto->precio}}</td>
-                                        <td>{{$producto->cantidad}}</td>
-                                        <td>{{$producto->subtotal}}</td>
+                                        <td style="text-align: left">
+                                            {{explode('_', $producto->Productos->sku)[0]}}
+                                        </td>
+
+                                        <td style="text-align: center">{{$producto->Productos->nombre}}</td>
+                                        <td style="text-align: center">
+                                            ${{number_format($producto->precio, 2, '.', ',');}}
+                                        </td>
+
+                                        <td style="text-align: center">{{$producto->cantidad}}</td>
+
+                                        <td style="text-align: center">
+                                            ${{number_format($producto->subtotal, 2, '.', ',');}}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
