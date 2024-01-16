@@ -211,22 +211,30 @@ class CajaController extends Controller
         }
 
         // G U A R D A R  O R D E N  P R O D U C T O S
-            $productos = $request->get('id');
-            $cantidad = $request->get('cantidad');
-            $subtotal = $request->get('subtotal');
-            $precio = $request->get('precio');
+        $productos = $request->get('id');
+        $cantidad = $request->get('cantidad');
+        $subtotal = $request->get('subtotal');
+        $precio = $request->get('precio');
 
-            for ($count = 0; $count < count($productos); $count++) {
-                $data = array(
-                    'id_orden' => $orden->id,
-                    'id_producto' => $productos[$count],
-                    'cantidad' => $cantidad[$count],
-                    'precio' => $precio[$count],
-                    'subtotal' => $subtotal[$count],
-                    'fecha' => $fechaActual,
-                );
-                $insert_data[] = $data;
+        $fechaActual = date('Y-m-d');
+        for ($count = 0; $count < count($productos); $count++) {
+            $producto = Productos::find($productos[$count]);
+            if ($fechaActual >= $producto->fecha_inicio_desc && $fechaActual <= $producto->fecha_fin_desc) {
+                $precioActual = $producto->precio_descuento;
+            }else{
+                $precioActual = $precio[$count];
             }
+            $data = array(
+                'id_orden' => $orden->id,
+                'id_producto' => $productos[$count],
+                'cantidad' => $cantidad[$count],
+                'precio' => $precioActual,
+                'subtotal' => $subtotal[$count],
+                'fecha' => $fechaActual,
+            );
+            $insert_data[] = $data;
+        }
+
 
             OrdenesProductos::insert($insert_data);
 
