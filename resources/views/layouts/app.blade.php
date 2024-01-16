@@ -67,7 +67,6 @@
     </div>
 
 
-        @include('modals.create_client')
         @include('modals.show_passCaja')
         {{-- @include('modals.edit_product') --}}
         @include('modals.show_scanner')
@@ -142,6 +141,7 @@
         @yield('js_scanner')
         @yield('js_custom_productos')
         @yield('js_custom2_clientes')
+        @yield('js_custom2_empleado')
 
 </body>
 

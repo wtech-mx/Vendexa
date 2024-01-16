@@ -185,7 +185,7 @@
     </div>
   </div>
 
-@section('js_custom2_clientes')
+@section('js_custom2_empleado')
 
 <script>
 
@@ -212,7 +212,7 @@ $(document).ready(function() {
                     processData: false,
                     success: async function(response) { // Agrega "async" aquí
                         // El formulario se ha enviado correctamente, ahora realiza la impresión
-                        saveSuccess(response);
+                        saveSuccessCreateEmpleado(response);
 
                     },
                     error: function (xhr, status, error) {
@@ -238,7 +238,7 @@ $(document).ready(function() {
 
     });
 
-    async function saveSuccess(response) {
+    async function saveSuccessCreateEmpleado(response) {
         const trabajador_data = response.trabajador_data;
 
         Swal.fire({

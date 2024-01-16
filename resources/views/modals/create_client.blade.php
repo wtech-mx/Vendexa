@@ -1,10 +1,9 @@
 @section('css_custom')
 
-
 @endsection
 
 <!-- Modal -->
-<div class="modal fade" id="creatClient" tabindex="-1" aria-labelledby="creatClientLabel" aria-hidden="true">
+  <div class="modal fade" id="creatClient" tabindex="-1" aria-labelledby="creatClientLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
 
@@ -58,7 +57,7 @@
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="" >
                             </span>
 
-                            <input name="whats_cliente" id="telefono_input_client" type="tel" class="form-control input_custom_tab_dark @error('whats_cliente') is-invalid @enderror" value="{{ old('whats_cliente') }}" autocomplete="" autofocus>
+                            <input name="telefono" id="telefono_input_client" type="tel" class="form-control input_custom_tab_dark @error('whats_cliente') is-invalid @enderror" value="{{ old('whats_cliente') }}" autocomplete="" autofocus>
 
                         </div>
                     </div>
@@ -189,6 +188,7 @@
     </div>
   </div>
 
+
 @section('js_custom2_clientes')
 
 <script>
@@ -216,7 +216,7 @@ $(document).ready(function() {
                     processData: false,
                     success: async function(response) { // Agrega "async" aquí
                         // El formulario se ha enviado correctamente, ahora realiza la impresión
-                        saveSuccess(response);
+                        saveSuccessClientCreate(response);
 
                     },
                     error: function (xhr, status, error) {
@@ -242,13 +242,12 @@ $(document).ready(function() {
 
     });
 
-    async function saveSuccess(response) {
+    async function saveSuccessClientCreate(response) {
         const cliente_data = response.cliente_data;
 
         Swal.fire({
                 title: "Cliente Guardado <strong>¡Exitosamente!</strong>",
                 icon: "success",
-                html: "<div class='row'><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/fuente.webp') }}' ><p><strong>Nombre:</strong> <br>"+ cliente_data.nombre +"</p></div><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/telefono.png.webp') }}' ><p><strong>Telefono:</strong><br>"+ cliente_data.telefono +" </p> </div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/sobre.png.webp') }}' ><p><strong>Correo:</strong><br> "+ cliente_data.correo +"</p></div><div class='col-6'></div></div>",
                 showCloseButton: true,
                 showCancelButton: true,
                 focusConfirm: false,

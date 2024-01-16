@@ -302,27 +302,24 @@
 @include('modals.create_trabajador')
 @include('modals.create_role')
 @include('modals.setting')
+@include('modals.create_client')
 @endsection
 
 @if($configuracion->estatus_config == 0)
     @section('js_custom')
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-            {{-- mostrar modal configuracion inicial --}}
+        {{-- mostrar modal configuracion inicial --}}
         <script>
+
             $(document).ready(function() {
-                // Llama a la función para mostrar el modal
-                mostrarModal();
-            });
+
+            // Llama a la función para mostrar el modal
+            mostrarModal();
 
             function mostrarModal() {
                 // Muestra el modal
                 $("#configuracionInicial").css("display", "block");
             }
-        </script>
 
-            {{-- mostrar/ocultar inputs Precio Mayorista --}}
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
                 // Obtener el checkbox principal y el div a mostrar/ocultar
                 var checkboxPrecioMayorista = document.getElementById('checkboxPrecioMayorista');
                 var divEncriptarMayo = document.querySelector('.encriptar-mayo-div');
@@ -364,12 +361,9 @@
                 divsEncriptacion.forEach(function (div) {
                     mostrarOcultarDiv(div, checkboxEncriptarMayo.checked);
                 });
-            });
-        </script>
 
-            {{-- Mensaje Guardado --}}
-        <script>
-            $(document).ready(function() {
+            // {{-- Mensaje Guardado --}}
+
                 $("#miFormularioConfiguracion").on("submit", function (event) {
                     event.preventDefault(); // Evita el envío predeterminado del formulario
 
@@ -382,7 +376,7 @@
                         processData: false,
                         success: async function(response) { // Agrega "async" aquí
                             // El formulario se ha enviado correctamente, ahora realiza la impresión
-                            saveSuccess(response);
+                            saveSuccessFormConfig(response);
 
                         },
                         error: function (xhr, status, error) {
@@ -408,7 +402,7 @@
 
                 });
 
-                async function saveSuccess(response) {
+                async function saveSuccessFormConfig(response) {
                     const config_data = response.config_data;
 
                     Swal.fire({
