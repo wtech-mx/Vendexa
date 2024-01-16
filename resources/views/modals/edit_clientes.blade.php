@@ -92,13 +92,15 @@
                         <h6 class="subtittle_clientes">Dirección</h6>
                      </div>
 
+                     @if($item->id_direccion == NULL)
+
                      <div class="form-group col-6 mb-3 p-2">
                         <label for="name" class="label_custom_primary_product mb-2">Codigo Postal</label>
                         <div class="input-group ">
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/cero.webp') }}" alt="" >
                             </span>
-                            <input  name="codigo_postal" type="text"  class="form-control input_custom_tab_dark"  value="{{$item->Direcion->codigo_postal}}">
+                            <input  name="codigo_postal" type="text"  class="form-control input_custom_tab_dark"  value="">
                         </div>
                     </div>
 
@@ -108,7 +110,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/independencia.webp') }}" alt="" >
                             </span>
-                            <input  name="estado" type="text"  class="form-control input_custom_tab_dark "  value="{{$item->Direcion->estado}}">
+                            <input  name="estado" type="text"  class="form-control input_custom_tab_dark "  value="">
                         </div>
                     </div>
 
@@ -118,7 +120,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/alcaldia.webp') }}" alt="" >
                             </span>
-                            <input  name="alcaldia" type="text"  class="form-control input_custom_tab_dark "  value="{{$item->Direcion->alcaldia}}">
+                            <input  name="alcaldia" type="text"  class="form-control input_custom_tab_dark " >
                         </div>
                     </div>
 
@@ -128,7 +130,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/edificios_ciudad.webp') }}" alt="" >
                             </span>
-                            <input  name="ciudad" type="text"  class="form-control input_custom_tab_dark "  value="">
+                            <input  name="ciudad" type="text"  class="form-control input_custom_tab_dark ">
                         </div>
                     </div>
 
@@ -138,7 +140,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/poste_luz.webp') }}" alt="" >
                             </span>
-                            <input  name="colonia" type="text"  class="form-control input_custom_tab_dark "  value="{{$item->Direcion->colonia}}">
+                            <input  name="colonia" type="text"  class="form-control input_custom_tab_dark " >
                         </div>
                     </div>
 
@@ -148,9 +150,75 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/mapa-de-la-ciudad.webp') }}" alt="" >
                             </span>
-                            <input  name="calle_numero" type="text"  class="form-control input_custom_tab_dark"  value="{{$item->Direcion->calle_numero}}">
+                            <input  name="calle_numero" type="text"  class="form-control input_custom_tab_dark" >
                         </div>
                     </div>
+
+                     @else
+
+                        <div class="form-group col-6 mb-3 p-2">
+                            <label for="name" class="label_custom_primary_product mb-2">Codigo Postal</label>
+                            <div class="input-group ">
+                                <span class="input-group-text span_custom_tab" >
+                                    <img class="icon_span_form" src="{{ asset('assets/media/icons/cero.webp') }}" alt="" >
+                                </span>
+                                <input  name="codigo_postal" type="text"  class="form-control input_custom_tab_dark"  value="{{$item->Direcion->codigo_postal}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3 p-2">
+                            <label for="name" class="label_custom_primary_product mb-2">Estado</label>
+                            <div class="input-group ">
+                                <span class="input-group-text span_custom_tab" >
+                                    <img class="icon_span_form" src="{{ asset('assets/media/icons/independencia.webp') }}" alt="" >
+                                </span>
+                                <input  name="estado" type="text"  class="form-control input_custom_tab_dark "  value="{{$item->Direcion->estado}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3 p-2">
+                            <label for="name" class="label_custom_primary_product mb-2">Alcaldia  / Municipio</label>
+                            <div class="input-group ">
+                                <span class="input-group-text span_custom_tab" >
+                                    <img class="icon_span_form" src="{{ asset('assets/media/icons/alcaldia.webp') }}" alt="" >
+                                </span>
+                                <input  name="alcaldia" type="text"  class="form-control input_custom_tab_dark "  value="{{$item->Direcion->alcaldia}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3 p-2">
+                            <label for="name" class="label_custom_primary_product mb-2">Ciudad</label>
+                            <div class="input-group ">
+                                <span class="input-group-text span_custom_tab" >
+                                    <img class="icon_span_form" src="{{ asset('assets/media/icons/edificios_ciudad.webp') }}" alt="" >
+                                </span>
+                                <input  name="ciudad" type="text"  class="form-control input_custom_tab_dark "  value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3 p-2">
+                            <label for="name" class="label_custom_primary_product mb-2">Colonia</label>
+                            <div class="input-group ">
+                                <span class="input-group-text span_custom_tab" >
+                                    <img class="icon_span_form" src="{{ asset('assets/media/icons/poste_luz.webp') }}" alt="" >
+                                </span>
+                                <input  name="colonia" type="text"  class="form-control input_custom_tab_dark "  value="{{$item->Direcion->colonia}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3 p-2">
+                            <label for="name" class="label_custom_primary_product mb-2">Calle y Numero</label>
+                            <div class="input-group ">
+                                <span class="input-group-text span_custom_tab" >
+                                    <img class="icon_span_form" src="{{ asset('assets/media/icons/mapa-de-la-ciudad.webp') }}" alt="" >
+                                </span>
+                                <input  name="calle_numero" type="text"  class="form-control input_custom_tab_dark"  value="{{$item->Direcion->calle_numero}}">
+                            </div>
+                        </div>
+
+                     @endif
+
+
 
                     <div class="form-group col-12 mt-4 mb-4 ">
                         <p class="text-center ">

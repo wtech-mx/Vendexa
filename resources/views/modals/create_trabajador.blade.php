@@ -57,7 +57,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="" >
                             </span>
-                            <input name="telefono" id="telefono_input" type="tel" class="form-control input_custom_tab_dark @error('telefono') is-invalid @enderror" value="{{ old('telefono') }}" autocomplete="" autofocus>
+                            <input name="telefono" id="telefono_input" type="tel" class="form-control input_custom_tab_dark telefono_input @error('telefono') is-invalid @enderror" value="{{ old('telefono') }}" autocomplete="" autofocus>
                         </div>
                     </div>
 
@@ -262,10 +262,10 @@ $(document).ready(function() {
             // Obtener los valores de los campos
             var nombre = $('#name').val().substring(0, 2);
             var apellido = $('#apellido').val().substring(0, 2);
-            var email = $('#email').val().slice(-3);
+            var telefono = $('.telefono_input').val().slice(-3);
 
             // Construir la contraseña
-            var contrasenaGenerada = nombre + apellido + email;
+            var contrasenaGenerada = nombre + apellido + telefono;
 
             // Obtener la parte editada por el usuario
             var contrasenaEditada = $('#password').val().slice(contrasenaGenerada.length);
@@ -278,7 +278,7 @@ $(document).ready(function() {
     }
 
         // Evento que se dispara cuando se ingresa algo en los campos de nombre, apellido, y correo electrónico
-        $('#name, #apellido, #email').on('input', function () {
+        $('#name, #apellido, .telefono_input').on('input', function () {
             actualizarContrasena();
         });
 

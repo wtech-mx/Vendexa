@@ -22,7 +22,7 @@ class ClienteController extends Controller
 
         $user = auth()->user()->id_empresa;
 
-        $clientes = Clientes::where('id_empresa', $user)->get();
+        $clientes = Clientes::where('id_empresa', $user)->Orderby('id','DESC')->get();
 
         return view('clientes.index', compact('clientes'));
     }
@@ -115,16 +115,36 @@ class ClienteController extends Controller
         $client->telefono = $request->get('telefono');
         $client->correo = $request->get('correo');
         $client->tipo = $request->get('tipo');
-        $client->save();
 
-        $direccion = Direcciones::find($client->id_direccion);
-        $direccion->pais = $request->get('pais');
-        $direccion->estado = $request->get('estado');
-        $direccion->colonia = $request->get('colonia');
-        $direccion->codigo_postal = $request->get('codigo_postal');
-        $direccion->alcaldia = $request->get('alcaldia');
-        $direccion->calle_numero = $request->get('calle_numero');
-        $direccion->save();
+        if($request->get('codigo_postal') != NULL){
+
+            $direccion = new Direcciones;
+            $direccion->pais = $request->get('ciudad');
+            $direccion->estado = $request->get('estado');
+            $direccion->colonia = $request->get('colonia');
+            $direccion->codigo_postal = $request->get('codigo_postal');
+            $direccion->alcaldia = $request->get('alcaldia');
+            $direccion->calle_numero = $request->get('calle_numero');
+            $direccion->save();
+
+        }else{
+            $direccion = Direcciones::find($client->id_direccion);
+            $direccion->pais = $request->get('pais');
+            $direccion->estado = $request->get('estado');
+            $direccion->colonia = $request->get('colonia');
+            $direccion->codigo_postal = $request->get('codigo_postal');
+            $direccion->alcaldia = $request->get('alcaldia');
+            $direccion->calle_numero = $request->get('calle_numero');
+            $direccion->save();
+        }
+
+        if($request->get('codigo_postal') != NULL){
+            $client->id_direccion = $direccion->id;
+            $client->save();
+
+        }else{
+            $client->save();
+        }
 
         $cliente_data = [
             "nombre" => $client->nombre,
