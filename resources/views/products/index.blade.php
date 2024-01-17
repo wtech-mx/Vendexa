@@ -239,7 +239,7 @@ function pusarProductos() {
             success: function(response) {
 
                 Swal.fire({
-                        title: "Producto(s) Pusados <strong>¡Exitosamente!</strong>",
+                        title: "Producto(s) Desactivados <strong>¡Exitosamente!</strong>",
                         icon: "success",
                         html: "",
                         showCloseButton: true,

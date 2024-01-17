@@ -5,7 +5,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="creatProduct" tabindex="-1" aria-labelledby="creatProductLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-md modal-lg modal-dialog-centered">
       <div class="modal-content">
 
         <div class="modal-body modal_bg row">
@@ -446,13 +446,7 @@
                                             </span>
                                             <select name="clave_sat" id="clave_sat" class="form-select d-inline-block input_custom_tab">
                                                 <option value="" @if(old('clave_sat') == '') selected @endif>Seleccionar</option>
-                                                <option value="10101500 - Animales vivos de granja" @if(old('clave_sat') == '10101500 - Animales vivos de granja') selected @endif>10101500 - Animales vivos de granja</option>
-                                                <option value="30151800 - Bicicletas y accesorios" @if(old('clave_sat') == '30151800 - Bicicletas y accesorios') selected @endif>30151800 - Bicicletas y accesorios</option>
-                                                <option value="50161500 - Vehículos terrestres" @if(old('clave_sat') == '50161500 - Vehículos terrestres') selected @endif>50161500 - Vehículos terrestres</option>
-                                                <option value="70171500 - Herramientas generales" @if(old('clave_sat') == '70171500 - Herramientas generales') selected @endif>70171500 - Herramientas generales</option>
-                                                <option value="90181600 - Productos farmacéuticos" @if(old('clave_sat') == '90181600 - Productos farmacéuticos') selected @endif>90181600 - Productos farmacéuticos</option>
-                                                <option value="11111700 - Confitería" @if(old('clave_sat') == '11111700 - Confitería') selected @endif>11111700 - Confitería</option>
-                                                <option value="12121800 - Equipos de audio y video" @if(old('clave_sat') == '12121800 - Equipos de audio y video') selected @endif>12121800 - Equipos de audio y video</option>
+                                                @include('components.claves_sat.options')
                                             </select>
                                         </div>
                                     </div>

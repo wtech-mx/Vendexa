@@ -301,6 +301,10 @@
     margin-left: initial;
 }
 
+.logo_empresa{
+    width: 190px;
+}
+
 @media only screen and (max-width: 575px) {
     .setting_postion_arrow_left{
         left: -15px!important;

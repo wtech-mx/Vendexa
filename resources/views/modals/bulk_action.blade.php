@@ -33,7 +33,7 @@
 
                 <div class="col-12 d-flex justify-content-center" style="z-index: 10">
                     <button class="btn btn-sm btn_generar_pdf_w80 mb-4"  onclick="pusarProductos()">
-                        Pusar productos
+                        Desactivar productos
                         <img class="icon_span_tab" src="{{ asset('assets/media/icons/boton-de-pausa.webp') }}" alt="">
                     </button>
                 </div>

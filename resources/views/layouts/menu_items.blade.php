@@ -1,3 +1,8 @@
+<a href="{{ route('home') }}" class="enlace_sidebar">
+        <p class="text-left mb-0">
+            <img class="logo_empresa" src="{{ asset('logo/empresa'.auth()->user()->id_empresa.'/'.$configuracion->logo) }}" alt="">
+        </p>
+</a>
 
 <a href="{{ route('home') }}" class="enlace_sidebar">
     <li class="li_navbar d-flex justify-content-around">

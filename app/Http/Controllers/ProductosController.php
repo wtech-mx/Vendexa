@@ -206,7 +206,7 @@ class ProductosController extends Controller
             'costo' => 'required',
             'precio_normal' => 'required',
             'visibilidad_estatus' => 'required',
-            'id_proveedor' => 'required_if:nombre_proveedor,null',
+            // 'id_proveedor' => 'required_if:nombre_proveedor,null',
             'codigo_proveedor' => 'required',
             'id_marca' => 'required_if:nombre_marca,null',
             'id_categoria' => 'required_if:nombre_categoria,null',
@@ -331,11 +331,6 @@ class ProductosController extends Controller
             'sku' => 'required',
             'costo' => 'required',
             'precio_normal' => 'required',
-            'visibilidad_estatus' => 'required',
-            'id_proveedor' => 'required',
-            'codigo_proveedor' => 'required',
-            'id_marca' => 'required',
-            'id_categoria' => 'required',
         ]);
 
         if ($validator->fails()) {

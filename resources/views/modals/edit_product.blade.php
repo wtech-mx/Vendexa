@@ -5,7 +5,7 @@
 @if(isset($producto))
 <!-- Modal -->
 <div class="modal fade" id="editProduct-{{$producto->id}}" tabindex="-1" aria-labelledby="editProductLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-md modal-lg modal-dialog-centered">
       <div class="modal-content" style="border: solid 1px transparent;">
 
         <div class="modal-body modal_bg row">

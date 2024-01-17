@@ -218,7 +218,10 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/sat.webp') }}" alt="" >
                                             </span>
-                                            <input id="clave_sat" name="clave_sat" type="text"  class="form-control input_custom_tab_dark @error('clave_sat') is-invalid @enderror"  value="{{ old('clave_sat', $producto->clave_sat) }}"  autocomplete="" autofocus>
+                                            <select name="clave_sat" id="clave_sat" class="form-select d-inline-block input_custom_tab">
+                                                <option selected value="{{$producto->clave_sat}}">{{$producto->clave_sat}}</option>
+                                                @include('components.claves_sat.options')
+                                            </select>
                                         </div>
                                     </div>
 
