@@ -39,9 +39,9 @@
     </li>
 </a>
 
-<a href="{{ route('quotes.index') }}" class="enlace_sidebar">
+<a href="{{ route('cotizaciones.index') }}" class="enlace_sidebar">
     <li class="li_navbar">
-        Cotizaciones  <img class="icon_navbar" src="{{ asset('assets/media/icons/quotes.webp') }}" alt="">
+        Cotizaciones  <img class="icon_navbar" src="{{ asset('assets/media/icons/cotizaciones.webp') }}" alt="">
     </li>
 </a>
 

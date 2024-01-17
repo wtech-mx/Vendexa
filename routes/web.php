@@ -94,11 +94,11 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     // ============================================= M O D U L O  C O T I Z A C I O N E S ==================================
 
-    Route::get('/quotes', 'CotizacionesController@index')->name('quotes.index');
-    Route::post('/quotes/store', 'CotizacionesController@store')->name('quotes.store');
-    Route::patch('/quotes/update/{id}', 'CotizacionesController@update')->name('quotes.update');
-    Route::get('/quotes/filtro', 'CotizacionesController@filtro')->name('quotes.filtro');
-    Route::get('/quotes/pdf/{id}', 'CotizacionesController@pdf')->name('quotes.pdf');
+    Route::get('/cotizaciones', 'CotizacionesController@index')->name('cotizaciones.index');
+    Route::post('/cotizaciones/store', 'CotizacionesController@store')->name('cotizaciones.store');
+    Route::patch('/cotizaciones/update/{id}', 'CotizacionesController@update')->name('cotizaciones.update');
+    Route::get('/cotizaciones/filtro', 'CotizacionesController@filtro')->name('cotizaciones.filtro');
+    Route::get('/cotizaciones/pdf/{id}', 'CotizacionesController@pdf')->name('cotizaciones.pdf');
 
 });
 

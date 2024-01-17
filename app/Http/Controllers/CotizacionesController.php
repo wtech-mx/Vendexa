@@ -21,7 +21,7 @@ class CotizacionesController extends Controller
         $clientes = Clientes::where('id_empresa', $user)->get();
         $trabajadores = User::where('id_empresa', $user)->get();
 
-        return view('quotes.index', compact('cotizaciones', 'clientes', 'trabajadores'));
+        return view('cotizaciones.index', compact('cotizaciones', 'clientes', 'trabajadores'));
     }
 
     public function filtro(Request $request){
@@ -46,7 +46,7 @@ class CotizacionesController extends Controller
             $cotizaciones = $cotizaciones->where('estatus_cotizacion', 'LIKE', "%" . $request->estatus_cotizacion . "%");
         }
         $cotizaciones = $cotizaciones->get();
-        return view('quotes.index', compact('cotizaciones','clientes','trabajadores'));
+        return view('cotizaciones.index', compact('cotizaciones','clientes','trabajadores'));
     }
 
     public function pdf($id){

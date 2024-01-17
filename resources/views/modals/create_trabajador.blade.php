@@ -115,7 +115,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/cero.webp') }}" alt="" >
                             </span>
-                            <input  name="codigo_postal" type="text"  class="form-control input_custom_tab_dark @error('codigo_postal') is-invalid @enderror"  value="{{ old('codigo_postal') }}"  autocomplete="" autofocus>
+                            <input  name="codigo_postal" type="number"  class="form-control input_custom_tab_dark @error('codigo_postal') is-invalid @enderror"  value="{{ old('codigo_postal') }}"  autocomplete="" autofocus>
                         </div>
                     </div>
 
@@ -242,13 +242,13 @@ $(document).ready(function() {
         const trabajador_data = response.trabajador_data;
 
         Swal.fire({
-                title: "Trabajador Guardado <strong>¡Exitosamente!</strong>",
+                title: "Empeado Guardado <strong>¡Exitosamente!</strong>",
                 icon: "success",
                 html: "<div class='row'><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/fuente.webp') }}' ><p><strong>Nombre:</strong> <br>"+ trabajador_data.name +"</p></div><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/telefono.png.webp') }}' ><p><strong>Telefono:</strong><br>"+ trabajador_data.email +" </p> </div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/sobre.png.webp') }}' ><p><strong>Correo:</strong><br> "+ trabajador_data.correo +"</p></div><div class='col-6'></div></div>",
                 showCloseButton: true,
                 showCancelButton: true,
                 focusConfirm: false,
-                confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('trabajadores.index') }}" >Ver Trabajadores</a>',
+                confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('trabajadores.index') }}" >Ver Empeados</a>',
                 cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="" >Cerrar</a>`,
             }).then(() => {
                 // Recarga la página
