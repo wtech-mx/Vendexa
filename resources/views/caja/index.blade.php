@@ -336,6 +336,10 @@
                 @endif
 
                 <div class="row" id="FacturaContainer" style="display: none;">
+                    <div class="form-group col-12 px-2 py-1">
+                        <h2 class="tiitle_modal_white text-left">Datos de facturación</h2>
+                    </div>
+
                     <div class="form-group col-6 px-2 py-1">
                         <label for="name" class="label_custom_primary_product_white mb-2">Facturas Guardadas:</label>
                         <div class="input-group ">
@@ -801,7 +805,7 @@
 
                         const subtotalInput = document.createElement("input");
                         subtotalInput.classList.add("form-control","input_custom_tab_dark");
-                        subtotalInput.type = "number";
+                        subtotalInput.type = "double";
                         subtotalInput.name = "subtotal[]";
                         subtotalDiv.appendChild(subtotalInput);
 
