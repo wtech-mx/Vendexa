@@ -59,7 +59,7 @@
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="row">
                                 <div class="form-group text-left col-12 mt-4 p-2">
-                                    <h6 class="subtittle_clientes">General</h6>
+                                    <h6 class="subtittle_clientes">Empresa</h6>
                                  </div>
 
                                 <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-3 px-4 py-3">
@@ -250,7 +250,7 @@
                     </div>
 
                     <div class="tab-pane fade" id="pills-cajaTab" role="tabpanel" aria-labelledby="pills-caja-tab" tabindex="0">
-                        <form method="POST" action="{{ route('configuracion_caja.update', $empresa->code) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="cajaForm">
+                        <form method="POST" action="{{ route('configuracion_caja.update', $empresa->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="cajaForm">
                             @csrf
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="row">
@@ -478,54 +478,44 @@
 
 @section('js_custom')
 <script>
-let cambiosNoGuardados = false;
-let currentTab = 'empresa';
+    $(document).ready(function() {
 
-function changeTab(tab) {
-    if (cambiosNoGuardados) {
-        const confirmacion = confirm('Tienes cambios no guardados. ¿Seguro que quieres cambiar de pestaña?');
-        if (!confirmacion) {
-            return;
+        $(".empresaForm").on("submit", function (event) {
+
+            event.preventDefault();
+            var formID = $(this).attr("id");
+
+            console.log(formID);
+
+            $.ajax({
+                url: $(this).attr("action"),
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                processData: false,
+                success: async function(response) {
+                    saveSuccessEdit(response);
+                },
+                error: function (xhr, status, error) {
+                    // Manejo de errores
+                }
+            });
+
+        });
+
+        async function saveSuccessEdit(response) {
+            Swal.fire({
+                title: "Guardado <strong>¡Exitosamente!</strong>",
+                icon: "success",
+                showCloseButton: true,
+                showCancelButton: false,
+                focusConfirm: false,
+                confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="#" >Cerrar</a>',
+                }).then(() => {
+                    // Cierra todos los modales abiertos
+                    $('.modal').modal('hide');
+                });
         }
-    }
-
-    // Ocultar el contenido de la pestaña actual
-    document.getElementById(currentTab + 'Tab').classList.remove('active-tab');
-
-    // Cambiar la pestaña actual
-    currentTab = tab;
-
-    // Mostrar el contenido de la nueva pestaña
-    document.getElementById(currentTab + 'Tab').classList.add('active-tab');
-}
-
-// Event listener para los cambios en el formulario
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('empresaForm').addEventListener('change', function () {
-        cambiosNoGuardados = true;
     });
-
-    document.getElementById('cajaForm').addEventListener('change', function () {
-        cambiosNoGuardados = true;
-    });
-
-    document.getElementById('generalesForm').addEventListener('change', function () {
-        cambiosNoGuardados = true;
-    });
-});
-
-// Event listener para el evento beforeunload
-window.addEventListener('beforeunload', function (event) {
-    if (cambiosNoGuardados) {
-        const mensaje = 'Tienes cambios no guardados. ¿Seguro que quieres salir?';
-        event.returnValue = mensaje;
-        return mensaje;
-    }
-});
-
-// Event listener para el clic en el botón de guardar
-document.getElementById('guardarEmpresa').addEventListener('click', function () {
-    cambiosNoGuardados = false;
-});
 </script>
 @endsection

@@ -109,6 +109,9 @@
                 padding: 0px 0px 0px 0px;
             }
 
+            .page-break {
+                page-break-before: always;
+            }
         </style>
 
         <body style="background-color: #ebf5ff ;">
@@ -275,16 +278,45 @@
                 <div class="contenedor-azul"style="background-color:#577590;position: absolute;width: 60%;height:1%;left: 20%;right: 20%;">
                 </div>
 
-                <div class="row footer">
-                    <div class="col-md-12">
-                        <h3 class="text-center text-white " style="color: #000">
-                            <a  class="text-center text-white pag" href="#" target="blank" title="pagina eago" style="position: absolute;text-decoration: none;color: #fff;left: 40%;display:block;">
-                               -
-                            </a>
-                        </h3>
+                @if ($cotizacion->factura == 'Si')
+                    <div class="page-break"></div>
+                    <div class="row" style="padding: 20px 0px 0px 0px;">
+                        <div style="width: 50%; float:left; margin-left: 30px;">
+                            <img alt="Bootstrap Image Preview" src="{{ asset('logo/empresa'.auth()->user()->id_empresa.'/'.$cotizacion->Empresa->logo) }}" style="width:100px;">
+                        </div>
                     </div>
-                </div>
 
+                    <div class="padre">
+                        <div class="hijo_uno">
+                            <h3 style="color: #577590;font-size: 40px;">Datos de Facturación</h3>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div style="width: 50%; float:left">
+                            <blockquote class="blockquote">
+                                <p class="text-right  text-white" style="color: #000;font-size: 18px;">
+                                    <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/edificios_ciudad.webp') }}" style="">
+                                    Razon social: {{$cotizacion->Factura->razon_social}}
+                                </p>
+
+                                <p class="text-right  text-white" style="color: #000;font-size: 18px;">
+                                    <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/telefono.png.webp') }}" style="">
+                                    RFC: {{$cotizacion->Factura->rfc}}
+                                </p>
+
+                                <p class="text-right  text-white" style="color: #000;font-size: 18px;">
+                                    <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/gps.webp') }}" style="">
+                                    CFDI: {{$cotizacion->Factura->cfdi}}
+                                </p>
+
+                                <p class="text-right  text-white" style="color: #000;font-size: 18px;">
+                                    <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/sobre.png.webp') }}" style="">
+                                    Dirección factura: {{$cotizacion->Factura->direccion_factura}}
+                                </p>
+                            </blockquote>
+                        </div>
+                    </div>
+                @endif
             </div>
         </body>
     </html>
