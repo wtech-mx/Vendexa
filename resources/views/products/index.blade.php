@@ -34,9 +34,9 @@
 
                 <form class="d-flex" role="search" action="{{ route('productos.filtro') }}" method="GET">
                     <input class="form-control input_search" type="search" placeholder="Buscar producto" aria-label="Search" name="nombre_producto">
-                     <a class="btn btn_search me-5" type="submit">
+                    <button class="btn btn_search me-0 me-md-3 me-lg-5 me-xl-5" type="submit">
                         <img class="icon_search" src="{{ asset('assets/media/icons/buscar.webp') }}" alt="">
-                    </a>
+                    </button>
                   </form>
 
                   <a class="btn btn_filter" data-bs-toggle="collapse" href="#collapseFilter" role="button" aria-expanded="false" aria-controls="collapseFilter">

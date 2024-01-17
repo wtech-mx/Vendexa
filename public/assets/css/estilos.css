@@ -298,6 +298,7 @@
 
 .medidor_altura{
     min-height: 80vh;
+    margin-left: initial;
 }
 
 @media only screen and (max-width: 575px) {
@@ -328,8 +329,8 @@
 
     .float {
         position: fixed;
-        width: 60px;
-        height: 60px;
+        width: 45px;
+        height: 45px;
         bottom: 30px;
         right: 30px;
         background-color: #577590;
@@ -349,10 +350,13 @@
     .icon_float_scanner{
         width: 20px;
         position: absolute;
-        left: 21%;
-        top: 21%;
+        left: 27%;
+        top: 23%;
     }
 
+    .img_perfil_empleado{
+        width: 50px;
+    }
 
 }
 

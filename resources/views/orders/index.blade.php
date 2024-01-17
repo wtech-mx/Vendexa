@@ -20,6 +20,26 @@
             </h5>
         </div>
 
+        <div class="col-12 mb-5">
+            <div class="d-flex justify-content-center">
+
+                <form class="d-flex" role="search">
+                    <input class="form-control input_search" type="search" placeholder="Buscar Orden" aria-label="Search">
+                    <button class="btn btn_search me-0 me-md-3 me-lg-5 me-xl-5" type="submit">
+                        <img class="icon_search" src="{{ asset('assets/media/icons/buscar.webp') }}" alt="">
+                    </button>
+                  </form>
+
+                  <a class="btn btn_filter" data-bs-toggle="collapse" href="#collapseFilter" role="button" aria-expanded="false" aria-controls="collapseFilter">
+                    <img class="icon_search" src="{{ asset('assets/media/icons/filtrar.webp') }}" alt="">
+                  </a>
+            </div>
+              <div class="collapse" id="collapseFilter">
+                Procimamente
+              </div>
+
+        </div>
+
         @foreach ($ordenes as $orden)
             <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center px-3 py-3">
                 <div class="row px-3">

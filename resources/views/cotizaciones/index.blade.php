@@ -8,7 +8,7 @@
 
 <section class="products bg_product ">
 
-    <div class="row z-1 position-relative px-3 px-md-4 px-xl-5 " style="">
+    <div class="row z-1 position-relative px-3 px-md-4 px-lg-5 px-xl-5 " style="">
 
         <div class="col-12 mt-2 mb-3">
             <div class="d-flex justify-content-center ">
@@ -23,9 +23,9 @@
 
                 <form class="d-flex" role="search">
                     <input class="form-control input_search" type="search" placeholder="Buscar Empleado" aria-label="Search">
-                     <a class="btn btn_search me-5" type="submit">
+                    <button class="btn btn_search me-0 me-md-3 me-lg-5 me-xl-5" type="submit">
                         <img class="icon_search" src="{{ asset('assets/media/icons/buscar.webp') }}" alt="">
-                    </a>
+                    </button>
                   </form>
 
                   <a class="btn btn_filter" data-bs-toggle="collapse" href="#collapseFilter" role="button" aria-expanded="false" aria-controls="collapseFilter">
@@ -126,6 +126,7 @@
               </div>
 
         </div>
+
 
         @foreach ($cotizaciones as $cotizacion)
             <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center px-3 py-3 ">

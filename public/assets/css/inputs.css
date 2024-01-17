@@ -274,6 +274,12 @@
     text-shadow: 3px 5px 10px rgb(2 2 2 / 19%);
 }
 
+.btn_search:hover{
+    color: #fff;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: inset 3px 3px 9px #33506d;
+}
+
 /* .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
     width: 80%!important;
     display: inline-block;

@@ -34,9 +34,9 @@
 
                 <form class="d-flex" role="search">
                     <input class="form-control input_search" type="search" placeholder="Buscar clientes" aria-label="Search">
-                     <a class="btn btn_search me-5" type="submit">
+                    <button class="btn btn_search me-0 me-md-3 me-lg-5 me-xl-5" type="submit">
                         <img class="icon_search" src="{{ asset('assets/media/icons/buscar.webp') }}" alt="">
-                    </a>
+                    </button>
                   </form>
 
                   <a class="btn btn_filter" data-bs-toggle="collapse" href="#collapseFilter" role="button" aria-expanded="false" aria-controls="collapseFilter">
@@ -70,8 +70,7 @@
 
             @foreach ($clientes as $item)
 
-            <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-xl-4  px-3 py-1">
-
+            <div class="col-12 col-sm-12 col-md-6 col-xl-4 px-2 px-md-4 px-lg-3 py-2 py-md-3 py-lg-1">
                 <div class="row bg_minicart_ventas">
 
                     <div class="col-3 my-auto">

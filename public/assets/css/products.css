@@ -211,3 +211,19 @@
     background-color: #F0F0F0!important;
     border-radius: 9px;
 }
+
+@media only screen and (max-width: 575px) {
+
+    .bg_minicart_ventas{
+        padding: 8px;
+    }
+
+}
+
+@media only screen and (max-width: 390px) {
+
+    .bg_minicart_ventas{
+        padding: 4px;
+    }
+
+}
