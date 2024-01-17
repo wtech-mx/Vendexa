@@ -33,7 +33,7 @@
             <div class="d-flex justify-content-center">
 
                 <form class="d-flex" role="search">
-                    <input class="form-control input_search" type="search" placeholder="Buscar trabajador" aria-label="Search">
+                    <input class="form-control input_search" type="search" placeholder="Buscar Empledo" aria-label="Search">
                      <a class="btn btn_search me-5" type="submit">
                         <img class="icon_search" src="{{ asset('assets/media/icons/buscar.webp') }}" alt="">
                     </a>

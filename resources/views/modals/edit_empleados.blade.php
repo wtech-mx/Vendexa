@@ -106,7 +106,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/cero.webp') }}" alt="" >
                             </span>
-                            <input  name="codigo_postal" type="text"  class="form-control input_custom_tab_dark"  value="{{ $trabajador->Direcion->codigo_postal }}">
+                            <input  name="codigo_postal" type="number"  class="form-control input_custom_tab_dark"  value="{{ $trabajador->Direcion->codigo_postal }}">
                         </div>
                     </div>
 

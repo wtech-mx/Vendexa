@@ -8,7 +8,7 @@
 
 <section class="products bg_product ">
 
-    <div class="row z-1 position-relative px-3 px-md-4 px-xl-5">
+    <div class="row z-1 position-relative px-3 px-md-4 px-xl-5 " style="">
 
         <div class="col-12 mt-2 mb-3">
             <div class="d-flex justify-content-center ">
@@ -22,7 +22,7 @@
             <div class="d-flex justify-content-center">
 
                 <form class="d-flex" role="search">
-                    <input class="form-control input_search" type="search" placeholder="Buscar trabajador" aria-label="Search">
+                    <input class="form-control input_search" type="search" placeholder="Buscar Empleado" aria-label="Search">
                      <a class="btn btn_search me-5" type="submit">
                         <img class="icon_search" src="{{ asset('assets/media/icons/buscar.webp') }}" alt="">
                     </a>
@@ -32,8 +32,8 @@
                     <img class="icon_search" src="{{ asset('assets/media/icons/filtrar.webp') }}" alt="">
                   </a>
 
-                  @if(Route::currentRouteName() == 'quotes.filtro')
-                  <a class="btn btn_filter" href="{{ route('quotes.index') }}" role="button">
+                  @if(Route::currentRouteName() == 'cotizaciones.filtro')
+                  <a class="btn btn_filter" href="{{ route('cotizaciones.index') }}" role="button">
                       <img class="icon_search" src="{{ asset('assets/media/icons/eraser.webp') }}" alt="">
                   </a>
                   @endif
@@ -41,7 +41,7 @@
 
               <div class="collapse container_filter p-2 mt-3" id="collapseFilter" style="background: #ffffff;">
 
-                <form class="row mt-3 mb-3" action="{{ route('quotes.filtro') }}" method="GET" >
+                <form class="row mt-3 mb-3" action="{{ route('cotizaciones.filtro') }}" method="GET" >
 
                         <div class="col-12">
                             <h6>Filtros</h6>
@@ -127,9 +127,8 @@
 
         </div>
 
-        <div class="row medidor_altura">
-            @foreach ($cotizaciones as $cotizacion)
-                <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center px-3 py-3">
+        @foreach ($cotizaciones as $cotizacion)
+            <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center px-3 py-3 ">
                     <div class="row px-3">
                         <div class="col-12 bg_minicart_ventas ">
                             <p class="text-center" style="margin: 0">
@@ -214,7 +213,7 @@
 
                                 <div class="col-12 mb-2 mt-3">
                                     <div class="d-flex justify-content-center">
-                                        <a type="button" target="_blank" class="btn btn-sm btn_edit_prodcut_primary" href="{{ route('quotes.pdf', $cotizacion->id) }}">
+                                        <a type="button" target="_blank" class="btn btn-sm btn_edit_prodcut_primary" href="{{ route('cotizaciones.pdf', $cotizacion->id) }}">
                                             Ver cotizacion <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/validando-billete.webp') }}" alt="">
                                         </a>
                                     </div>
@@ -225,9 +224,8 @@
 
                         </div>
                     </div>
-                </div>
-            @endforeach
-        </div>
+            </div>
+        @endforeach
 
     </div>
 
