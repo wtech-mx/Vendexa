@@ -33,6 +33,7 @@
                         <p class="subtitle_products">
                             ${{number_format($producto->precio_normal, 2, '.', ',');}} <br>
                         </p>
+
                     @else
 
                         @if(strtotime($producto->fecha_fin_desc) >= strtotime(date('Y-m-d')))
