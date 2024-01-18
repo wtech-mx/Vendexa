@@ -305,6 +305,18 @@
     width: 190px;
 }
 
+.borde_card_product_sin_stock{
+    border: solid 3px #FF6D6D;border-radius: 12px;
+}
+
+.borde_card_product_bajo_stock{
+    border: solid 3px #EAFF6D;border-radius: 12px;
+}
+
+.borde_card_product_stock{
+    border: solid 3px #6DFF73;border-radius: 12px;
+}
+
 @media only screen and (max-width: 575px) {
     .setting_postion_arrow_left{
         left: -15px!important;

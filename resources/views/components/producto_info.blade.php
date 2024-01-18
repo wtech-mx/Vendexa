@@ -1,4 +1,4 @@
-            <form method="POST" action="{{ route('productos.update', $producto->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone formularioProductoEdit" style="border: solid 5px red;border-radius: 16px;">
+            <form method="POST" action="{{ route('productos.update', $producto->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone formularioProductoEdit @if ($configuracion->stock_bajo >= $producto->stock)borde_card_product_sin_stock @elseif ($configuracion->stock_medio >= $producto->stock)borde_card_product_bajo_stock @elseif ($configuracion->stock_alto >= $producto->stock) borde_card_product_stock @endif" >
 
                 @csrf
                 <input type="hidden" name="_method" value="PATCH">
