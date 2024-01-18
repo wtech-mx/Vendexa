@@ -17,7 +17,7 @@ class CotizacionesController extends Controller
     public function index(){
         $user = auth()->user()->id_empresa;
 
-        $cotizaciones = Ordenes::where('id_empresa', $user)->where('cotizacion', '=', 'Si')->Orderby('id','DESC')->->get();
+        $cotizaciones = Ordenes::where('id_empresa', $user)->where('cotizacion', '=', 'Si')->Orderby('id','DESC')->take(100)->get();
         $clientes = Clientes::where('id_empresa', $user)->get();
         $trabajadores = User::where('id_empresa', $user)->get();
 

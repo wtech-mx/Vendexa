@@ -20,7 +20,8 @@ class TrabajadoresController extends Controller
     public function index(){
         $user = auth()->user()->id_empresa;
 
-        $trabajadores = User::where('id_empresa', $user)->Orderby('id','DESC')->->get();
+        $trabajadores = User::where('id_empresa', $user)->orderBy('id', 'DESC')->take(100)->get();
+
 
         return view('trabajadores.index', compact('trabajadores'));
     }

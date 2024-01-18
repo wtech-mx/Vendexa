@@ -21,7 +21,7 @@ class OrdersController extends Controller
     public function index(){
         $user = auth()->user()->id_empresa;
 
-        $ordenes = Ordenes::where('id_empresa', $user)->where('cotizacion', '=', 'No')->Orderby('id','DESC')->get();
+        $ordenes = Ordenes::where('id_empresa', $user)->where('cotizacion', '=', 'No')->Orderby('id','DESC')->take(100)->get();
 
         return view('orders.index', compact('ordenes'));
     }

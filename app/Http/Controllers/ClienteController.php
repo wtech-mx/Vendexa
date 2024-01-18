@@ -22,7 +22,7 @@ class ClienteController extends Controller
 
         $user = auth()->user()->id_empresa;
 
-        $clientes = Clientes::where('id_empresa', $user)->Orderby('id','DESC')->get();
+        $clientes = Clientes::where('id_empresa', $user)->Orderby('id','DESC')->take(100)->get();
 
         return view('clientes.index', compact('clientes'));
     }

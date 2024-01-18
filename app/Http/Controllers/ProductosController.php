@@ -22,7 +22,7 @@ class ProductosController extends Controller
         $mesActual = $now->month;
         $user = auth()->user()->id_empresa;
 
-        $productos = Productos::where('id_empresa', $user)->orderBy('created_at', 'desc')->take(10)->get();
+        $productos = Productos::where('id_empresa', $user)->orderBy('created_at', 'desc')->take(100)->get();
         $modoficaciones_productos = ModificacionesProductos::whereMonth('fecha', $mesActual)->get();
         $compras = Ordenes::where('id_empresa', $user)->where('cotizacion', '=', 'No')->get();
 
