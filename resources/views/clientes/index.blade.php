@@ -44,7 +44,7 @@
                   </a>
             </div>
               <div class="collapse" id="collapseFilter">
-                Procimamente
+                Proximamente
               </div>
 
         </div>

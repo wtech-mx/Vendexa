@@ -36,7 +36,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/fuente.webp') }}" alt="" >
                             </span>
-                            <input  name="nombre_cliente" type="text"  class="form-control input_custom_tab_dark @error('') is-invalid @enderror"  value="{{ old('') }}"  autocomplete="" autofocus>
+                            <input  name="nombre_cliente" type="text"  class="form-control input_custom_tab_dark @error('nombre_cliente') is-invalid @enderror"  value="{{ old('nombre_cliente') }}"  required>
                         </div>
                     </div>
 
@@ -46,7 +46,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/fuente.webp') }}" alt="" >
                             </span>
-                            <input  name="apellido_cliente" type="text"  class="form-control input_custom_tab_dark @error('') is-invalid @enderror"  value="{{ old('') }}"  autocomplete="" autofocus>
+                            <input  name="apellido_cliente" type="text"  class="form-control input_custom_tab_dark @error('apellido_cliente') is-invalid @enderror"  value="{{ old('apellido_cliente') }}" required>
                         </div>
                     </div>
 
@@ -57,7 +57,7 @@
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="" >
                             </span>
 
-                            <input name="telefono" id="telefono_input_client" type="tel" class="form-control input_custom_tab_dark @error('whats_cliente') is-invalid @enderror" value="{{ old('whats_cliente') }}" autocomplete="" autofocus>
+                            <input name="telefono" id="telefono_input_client" type="tel" class="form-control input_custom_tab_dark @error('whats_cliente') is-invalid @enderror" value="{{ old('whats_cliente') }}" required>
 
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/sobre.png.webp') }}" alt="" >
                             </span>
-                            <input  name="email_cliente" type="text"  class="form-control input_custom_tab_dark @error('') is-invalid @enderror"  value="{{ old('') }}"  autocomplete="" autofocus>
+                            <input  name="email_cliente" type="text"  class="form-control input_custom_tab_dark @error('email_cliente') is-invalid @enderror"  value="{{ old('email_cliente') }}" required>
                         </div>
                     </div>
 
@@ -78,7 +78,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/user_predeterminado.webp') }}" alt="" >
                             </span>
-                            <input  name="img_perfil" type="file"  class="form-control input_custom_tab_dark @error('') is-invalid @enderror"  value="{{ old('') }}"  autocomplete="" autofocus>
+                            <input  name="img_perfil" type="file"  class="form-control input_custom_tab_dark @error('') is-invalid @enderror"  value="{{ old('') }}">
                         </div>
                     </div>
 
@@ -190,79 +190,5 @@
 
 
 @section('js_custom2_clientes')
-
-<script>
-
-$(document).ready(function() {
-
-    $.ajaxSetup({
-          headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-    });
-
-    $("#miFormularioClientes").on("submit", function (event) {
-
-        event.preventDefault(); // Evita el envío predeterminado del formulario
-
-        // $(this).html('Sending..');
-
-        // Realiza la solicitud POST usando AJAX
-        $.ajax({
-                    url: $(this).attr("action"),
-                    type: "POST",
-                    data: new FormData(this),
-                    contentType: false,
-                    processData: false,
-                    success: async function(response) { // Agrega "async" aquí
-                        // El formulario se ha enviado correctamente, ahora realiza la impresión
-                        saveSuccessClientCreate(response);
-
-                    },
-                    error: function (xhr, status, error) {
-                            var errors = xhr.responseJSON.errors;
-                            var errorMessage = '';
-
-                            // Itera a través de los errores y agrega cada mensaje de error al mensaje final
-                            for (var key in errors) {
-                                if (errors.hasOwnProperty(key)) {
-                                    var errorMessages = errors[key].join('<br>'); // Usamos <br> para separar los mensajes
-                                    errorMessage += '<strong>' + key + ':</strong><br>' + errorMessages + '<br>';
-                                }
-                            }
-                            console.log(errorMessage);
-                            // Muestra el mensaje de error en una SweetAlert
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Faltan Campos',
-                                html: errorMessage, // Usa "html" para mostrar el mensaje con formato HTML
-                            });
-                    }
-                });
-
-    });
-
-    async function saveSuccessClientCreate(response) {
-        const cliente_data = response.cliente_data;
-
-        Swal.fire({
-                title: "Cliente Guardado <strong>¡Exitosamente!</strong>",
-                icon: "success",
-                showCloseButton: true,
-                showCancelButton: true,
-                focusConfirm: false,
-                confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('productos.index') }}" >Ver Clientes</a>',
-                cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="" >Cerrar</a>`,
-            }).then(() => {
-                // Recarga la página
-            window.location.href = '/home/';
-            });
-
-    }
-
-});
-
-
-</script>
 
 @endsection
