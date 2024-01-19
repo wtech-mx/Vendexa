@@ -217,21 +217,27 @@ class CajaController extends Controller
         $precio = $request->get('precio');
 
         $fechaActual = date('Y-m-d');
+
         for ($count = 0; $count < count($productos); $count++) {
             $producto = Productos::find($productos[$count]);
             if ($fechaActual >= $producto->fecha_inicio_desc && $fechaActual <= $producto->fecha_fin_desc) {
-                $precioActual = $producto->precio_descuento;
+                $precioDescuento = $producto->precio_descuento;
+                $precioPrecio = $producto->precio_normal;
             }else{
-                $precioActual = $precio[$count];
+                $precioDescuento = 0;
+                $precioPrecio = $precio[$count];
             }
+
             $data = array(
                 'id_orden' => $orden->id,
                 'id_producto' => $productos[$count],
                 'cantidad' => $cantidad[$count],
-                'precio' => $precioActual,
+                'precio' => $precioPrecio,
+                'precio_descuento' => $precioDescuento,
                 'subtotal' => $subtotal[$count],
                 'fecha' => $fechaActual,
             );
+
             $insert_data[] = $data;
         }
 

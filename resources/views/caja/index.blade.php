@@ -183,7 +183,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6 px-2 py-3">
+                <div class="form-group col-6 px-2 py-3" id="divDescuento" style="display: none;">
                     <label for="name" class="label_custom_primary_product_white mb-2">Descuento :</label>
                     <div class="input-group ">
                         <span class="input-group-text span_custom_tab" >
@@ -905,7 +905,17 @@
         actualizarSumaSubtotales();
     }
 
+    let facturaSeleccionada = false;
+    let porcentajeFactura = {{$configuracion->porcentaje_factura}};
+
     function actualizarSumaSubtotales() {
+        const tipoDescuentoSelect = document.getElementById("tipoDescuento");
+        const divDescuento = document.getElementById("divDescuento");
+
+        // Mostrar u ocultar el div de descuento según el tipo seleccionado
+        divDescuento.style.display = tipoDescuentoSelect.value === "Ninguno" ? "none" : "block";
+
+        // Obtener los subtotales y calcular la suma
         const subtotales = document.getElementsByName("subtotal[]");
         let sumaSubtotales = 0;
 
@@ -917,10 +927,8 @@
         }
 
         // Obtener los valores del descuento
-        const tipoDescuentoSelect = document.getElementById("tipoDescuento");
-        const montoDescuentoInput = document.getElementById("montoDescuento");
-
         const tipoDescuento = tipoDescuentoSelect.value;
+        const montoDescuentoInput = document.getElementById("montoDescuento");
         const montoDescuento = parseFloat(montoDescuentoInput.value);
 
         // Aplicar el descuento según el tipo seleccionado
@@ -928,6 +936,10 @@
             sumaSubtotales -= montoDescuento;
         } else if (tipoDescuento === "Porcentaje") {
             sumaSubtotales *= (1 - montoDescuento / 100);
+        }
+
+        if (facturaSeleccionada) {
+            sumaSubtotales *= (1 + porcentajeFactura / 100);
         }
 
         // Obtener los valores de dinero recibido
@@ -974,6 +986,19 @@
             cambioContainer.style.display = 'none';
         }
     }
+
+    // Función para actualizar el estado de la factura seleccionada
+    function actualizarFacturaSeleccionada() {
+        const radioSiFact = document.getElementById("radioSiFact");
+        facturaSeleccionada = radioSiFact.checked;
+
+        // Llamar a la función para actualizar la suma de subtotales cuando cambia la factura
+        actualizarSumaSubtotales();
+    }
+
+    // Asignar la función al evento change del radio de factura
+    document.getElementById("radioSiFact").addEventListener("change", actualizarFacturaSeleccionada);
+    document.getElementById("radioNoFact").addEventListener("change", actualizarFacturaSeleccionada);
 
     const montoDescuentoInput = document.getElementById("montoDescuento");
     montoDescuentoInput.addEventListener("input", function() {

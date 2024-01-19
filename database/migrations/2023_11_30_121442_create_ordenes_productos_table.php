@@ -26,6 +26,7 @@ return new class extends Migration
             $table->integer('id_woocommerce')->nullable();
             $table->float('cantidad');
             $table->float('precio');
+            $table->float('precio_descuento')->nullable();
             $table->float('subtotal');
             $table->date('fecha');
             $table->text('tipo_desc')->nullable();

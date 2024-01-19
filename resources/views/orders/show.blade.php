@@ -83,7 +83,7 @@
         <div class="col-3">
             <div class="item">
                 <span>Subtotal</span>
-                <p><strong>${{$producto->subtotal}}.00</strong></p>
+                <p><strong>${{$producto->subtotal}}</strong></p>
             </div>
         </div>
        @endforeach
