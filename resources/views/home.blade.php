@@ -16,7 +16,7 @@
 
             <div class="d-flex justify-content-center ">
                 <h6 class="ingresos_dash text-center mt-2 mb-3 animation_card_header">
-                    Ingresos : $15,550.00
+                    Ingresos : ${{number_format($sumaIngresos, 2, '.', ',')}}
                 </h6>
             </div>
 
@@ -30,36 +30,54 @@
             </div>
 
             <div class="row">
-                <div class="col-4 d-flex justify-content-center animation_card_header">
-                    <div class="card_header_dash mb-3">
-                        <p class="text-center mt-3">
-                            <img src="{{ asset('assets/media/icons/t debito.webp') }}" alt="" class="img_card_head_dash">
-                        </p>
-                        <p class="text_minicards text-center">Tarjeta <br> <strong> $1,500.0 </strong>
+                @if ($configuracion->tarjeta == 1)
+                    <div class="col-3 d-flex justify-content-center animation_card_header">
+                        <div class="card_header_dash mb-3">
+                            <p class="text-center mt-3">
+                                <img src="{{ asset('assets/media/icons/t debito.webp') }}" alt="" class="img_card_head_dash">
+                            </p>
+                            <p class="text_minicards text-center">Tarjeta <br> <strong> ${{number_format($sumaTarjeta, 2, '.', ',')}} </strong>
 
-                        </p>
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-4 d-flex justify-content-center animation_card_header">
-                    <div class="card_header_dash mb-3">
-                        <p class="text-center mt-3">
-                            <img src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="" class="img_card_head_dash">
-                        </p>
-                        <p class="text_minicards text-center">Efectivo <br> <strong> ${{$sumaEfectivo}} </strong>
+                @endif
+                @if ($configuracion->efectivo == 1)
+                    <div class="col-3 d-flex justify-content-center animation_card_header">
+                        <div class="card_header_dash mb-3">
+                            <p class="text-center mt-3">
+                                <img src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="" class="img_card_head_dash">
+                            </p>
+                            <p class="text_minicards text-center">Efectivo <br> <strong> ${{number_format($sumaEfectivo, 2, '.', ',')}} </strong>
 
-                        </p>
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-4 d-flex justify-content-center animation_card_header">
-                    <div class="card_header_dash mb-3">
-                        <p class="text-center mt-3">
-                            <img src="{{ asset('assets/media/icons/pago-movil.webp') }}" alt="" class="img_card_head_dash">
-                        </p>
-                        <p class="text_minicards text-center">Transferencias <br> <strong> $1,500.0 </strong>
+                @endif
+                @if ($configuracion->transferencia == 1)
+                    <div class="col-3 d-flex justify-content-center animation_card_header">
+                        <div class="card_header_dash mb-3">
+                            <p class="text-center mt-3">
+                                <img src="{{ asset('assets/media/icons/pago-movil.webp') }}" alt="" class="img_card_head_dash">
+                            </p>
+                            <p class="text_minicards text-center">Transferencias <br> <strong> ${{number_format($sumaTransferencia, 2, '.', ',')}} </strong>
 
-                        </p>
+                            </p>
+                        </div>
                     </div>
-                </div>
+                @endif
+                @if ($configuracion->mercado_pago == 1)
+                    <div class="col-3 d-flex justify-content-center animation_card_header">
+                        <div class="card_header_dash mb-3">
+                            <p class="text-center mt-3">
+                                <img src="{{ asset('assets/media/icons/t credito.png.webp') }}" alt="" class="img_card_head_dash">
+                            </p>
+                            <p class="text_minicards text-center">Mercado Pago <br> <strong> ${{number_format($sumaMercadoPago, 2, '.', ',')}} </strong>
+
+                            </p>
+                        </div>
+                    </div>
+                @endif
             </div>
 
         </div>

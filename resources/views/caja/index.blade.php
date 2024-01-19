@@ -232,7 +232,7 @@
                         <span class="input-group-text span_custom_tab" >
                             <img class="icon_span_tab" src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="" >
                         </span>
-                        <input id="dineroRecibido" name="dineroRecibido" type="number"  class="form-control input_custom_tab_dark @error('dineroRecibido') is-invalid @enderror" onchange="actualizarSumaSubtotales()">
+                        <input id="dineroRecibido" name="dineroRecibido" type="double"  class="form-control input_custom_tab_dark @error('dineroRecibido') is-invalid @enderror" onchange="actualizarSumaSubtotales()">
                     </div>
                 </div>
 
@@ -260,6 +260,7 @@
                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/metodo-de-pago.webp') }}" alt="" >
                             </span>
                             <select name="metodo_pago2" id="metodo_pago2" class="form-select d-inline-block input_custom_tab_dark">
+                                <option value="" @if(old('unidad_venta') == '') selected @endif>Elige una opcion</option>
                                 @if ($configuracion->efectivo == 1)
                                     <option value="Efectivo" @if(old('unidad_venta') == 'Efectivo') selected @endif>Efectivo</option>
                                 @endif
@@ -282,7 +283,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="" >
                             </span>
-                            <input id="dineroRecibido2" name="dineroRecibido2" type="number"  class="form-control input_custom_tab_dark @error('dineroRecibido2') is-invalid @enderror" onchange="actualizarSumaSubtotales()">
+                            <input id="dineroRecibido2" name="dineroRecibido2" type="double"  class="form-control input_custom_tab_dark @error('dineroRecibido2') is-invalid @enderror" onchange="actualizarSumaSubtotales()">
                         </div>
                     </div>
                 </div>
