@@ -57,8 +57,8 @@ class CotizacionesController extends Controller
         $cotizacion = Ordenes::where('id', $id)->first();
 
         $pdf = \PDF::loadView('pdf.cotizacion',compact('cotizacion', 'configuracion', 'productos'));
-        return $pdf->stream();
-        // return $pdf->download('Cotizacion '.$cotizacion->Cliente->nombre.'-'.$now.'.pdf');
+         return $pdf->stream();
+        //return $pdf->download('Cotizacion '.$cotizacion->Cliente->nombre.'-'.$now.'.pdf');
 
     }
 }

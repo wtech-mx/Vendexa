@@ -225,7 +225,13 @@
 
                                         <td style="text-align: center">{{$producto->Productos->nombre}}</td>
                                         <td style="text-align: center">
-                                            ${{number_format($producto->precio, 2, '.', ',');}}
+                                            @if ($producto->precio_descuento > 0)
+                                                <s>${{ number_format($producto->precio, 2, '.', ',') }}</s><br>
+                                                ${{number_format($producto->precio_descuento, 2, '.', ',');}}
+                                            @else
+                                                ${{number_format($producto->precio, 2, '.', ',');}}
+                                            @endif
+
                                         </td>
 
                                         <td style="text-align: center">{{$producto->cantidad}}</td>
@@ -265,11 +271,13 @@
                                         <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/bolsa-de-dinero.webp') }}" style="">
                                         Total </strong>${{$cotizacion->total}}
                                 </p>
-                                <p style="color: #000;font-size: 18px; padding-left: 35px;">
-                                    <strong style="color: #577590">
-                                        <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/validando-billete.webp') }}" style="">
-                                        Factura  </strong> {{$cotizacion->factura}}
-                                </p>
+                                @if ($cotizacion->factura == 'Si')
+                                    <p style="color: #000;font-size: 18px; padding-left: 35px;">
+                                        <strong style="color: #577590">
+                                            <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/validando-billete.webp') }}" style="">
+                                            Factura  </strong> {{$cotizacion->factura}}
+                                    </p>
+                                @endif
                             </div>
                         </div>
                     </div>

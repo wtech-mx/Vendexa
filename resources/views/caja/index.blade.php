@@ -189,7 +189,7 @@
                         <span class="input-group-text span_custom_tab" >
                             <img class="icon_span_tab" src="{{ asset('assets/media/icons/descuento.webp') }}" alt="" >
                         </span>
-                        <input id="montoDescuento" name="montoDescuento" type="number"  class="form-control input_custom_tab_dark @error('montoDescuento') is-invalid @enderror"  value="0" onchange="actualizarSumaSubtotales()">
+                        <input id="montoDescuento" name="montoDescuento" type="double"  class="form-control input_custom_tab_dark @error('montoDescuento') is-invalid @enderror"  value="0" onchange="actualizarSumaSubtotales()">
                     </div>
                 </div>
 
@@ -549,12 +549,17 @@
                 showCloseButton: true,
                 showCancelButton: true,
                 focusConfirm: false,
-                confirmButtonText: 'Ver Recibo',
+                confirmButtonText: ticket_data.cotizacion === 'Si' ? 'Ver Cotizacion' : 'Ver Recibo',
                 cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="/caja" >Cerrar</a>`,
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Redirige a la ruta con el ticket_data.id
-                    window.open(`/orders/ticket/${ticket_data.id}`, '_blank');
+
+                    if (ticket_data.cotizacion === 'Si') {
+                        window.open(`/cotizaciones/pdf/${ticket_data.id}`, '_blank');
+                    } else {
+                        // Redirige a la ruta con el ticket_data.id
+                        window.open(`/orders/ticket/${ticket_data.id}`, '_blank');
+                    }
                         // Recarga la página actual
                     location.reload();
                 }
