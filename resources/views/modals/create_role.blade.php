@@ -10,7 +10,7 @@
 
         <div class="modal-body modal_bg row">
 
-            <form method="POST" action="{{ route('roles.store') }}" class="z-1"  id="miFormularioTrabajadores" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('roles.store') }}" class="z-1"  id="miFormularioRoles" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row">

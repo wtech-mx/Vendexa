@@ -45,7 +45,7 @@
 
 <a href="{{ route('cotizaciones.index') }}" class="enlace_sidebar">
     <li class="li_navbar d-flex justify-content-around">
-        Cotizaciones  <img class="icon_navbar" src="{{ asset('assets/media/icons/cotizaciones.webp') }}" alt="">
+        Cotizaciones  <img class="icon_navbar" src="{{ asset('assets/media/icons/quotes.webp') }}" alt="">
     </li>
 </a>
 
