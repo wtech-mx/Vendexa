@@ -73,12 +73,10 @@
 
     </div>
 
-
-
     <div class="form-group col-12 px-4 py-3 mb-3">
         <h3 for="name" class="label_custom_primary_product mb-4"> <img src="{{ asset('assets/media/icons/retail.webp') }}" alt="" class="img_card_head_reportes"> Total <strong>500 Productos</strong> </h3>
 
         <a href="{{ route('orders.index') }}" class="btn_primary_blue_dash py-2">Generara Reporte  <img src="{{ asset('assets/media/icons/pdf.webp') }}" alt="" style="width: 23px"></a>
     </div>
 
-  </div>
+</div>
