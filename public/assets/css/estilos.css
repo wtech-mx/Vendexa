@@ -317,6 +317,11 @@
     border: solid 3px #6DFF73;border-radius: 12px;
 }
 
+.img_card_head_reportes{
+    width: 30px;
+    height: 30px;
+}
+
 @media only screen and (max-width: 575px) {
     .setting_postion_arrow_left{
         left: -15px!important;

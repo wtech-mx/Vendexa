@@ -35,9 +35,7 @@
                         </h2>
 
                         <div id="collapseCaja" class="accordion-collapse collapse show" data-bs-parent="#accordionScanner">
-                          <div class="accordion-body row" style="margin: 0!important;padding: 0!important;">
-                            dfs
-                          </div>
+                            @include('reportes.components.caja')
                         </div>
                     </div>
 
@@ -54,9 +52,7 @@
                         </h2>
 
                         <div id="collapseProducts" class="accordion-collapse collapse" data-bs-parent="#accordionScanner">
-                            <div class="accordion-body row">
-
-                            </div>
+                            @include('reportes.components.ventas_productos')
                         </div>
                     </div>
 
@@ -73,8 +69,7 @@
                         </h2>
 
                         <div id="collapseOrdener" class="accordion-collapse collapse" data-bs-parent="#accordionScanner">
-                          <div class="accordion-body">
-                          </div>
+                            @include('reportes.components.ordenes')
                         </div>
                     </div>
 
@@ -91,8 +86,7 @@
                         </h2>
 
                         <div id="collapseFact" class="accordion-collapse collapse" data-bs-parent="#accordionScanner">
-                          <div class="accordion-body">
-                          </div>
+                            @include('reportes.components.facturas')
                         </div>
                     </div>
 
@@ -109,8 +103,7 @@
                         </h2>
 
                         <div id="collapseCoti" class="accordion-collapse collapse" data-bs-parent="#accordionScanner">
-                          <div class="accordion-body">
-                          </div>
+                            @include('reportes.components.cotizaciones')
                         </div>
                     </div>
 
@@ -127,8 +120,7 @@
                         </h2>
 
                         <div id="collapseEmpleada" class="accordion-collapse collapse" data-bs-parent="#accordionScanner">
-                          <div class="accordion-body">
-                          </div>
+                            @include('reportes.components.ventas_empleados')
                         </div>
                     </div>
 
@@ -145,8 +137,7 @@
                         </h2>
 
                         <div id="collapseClientes" class="accordion-collapse collapse" data-bs-parent="#accordionScanner">
-                          <div class="accordion-body">
-                          </div>
+                            @include('reportes.components.clientes')
                         </div>
                     </div>
 

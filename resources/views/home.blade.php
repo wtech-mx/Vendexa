@@ -167,7 +167,6 @@
                         </a>
                     </div>
 
-
                     <h6 class="tittle_card_dash text-center mt-3 mb-3">Ordenes</h6>
 
                     <div class="d-flex justify-content-center">
