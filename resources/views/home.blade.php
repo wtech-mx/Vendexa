@@ -240,7 +240,7 @@
                 <div class="card_dashboard p-2">
 
                     <div class="card_img">
-                        <a href="{{ route('orders.index') }}">
+                        <a href="{{ route('reportes.index') }}">
                             <img class="img_icon_dash" src="{{ asset('assets/media/icons/charts-imageonline.co-6846928.webp') }}" alt="">
                         </a>
                     </div>
@@ -249,7 +249,7 @@
                     <h6 class="tittle_card_dash text-center mt-3 mb-3">Reportes</h6>
 
                     <div class="d-flex justify-content-center">
-                        <a href="{{ route('orders.index') }}" class="btn_primary_blue_dash">Acceder </a>
+                        <a href="{{ route('reportes.index') }}" class="btn_primary_blue_dash">Acceder </a>
                     </div>
 
                 </div>

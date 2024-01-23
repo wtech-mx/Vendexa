@@ -100,6 +100,10 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::get('/cotizaciones/filtro', 'CotizacionesController@filtro')->name('cotizaciones.filtro');
     Route::get('/cotizaciones/pdf/{id}', 'CotizacionesController@pdf')->name('cotizaciones.pdf');
 
+    // ============================================= M O D U L O  C O T I Z A C I O N E S ==================================
+
+    Route::get('/reportes', 'ReportesController@index')->name('reportes.index');
+
 });
 
 

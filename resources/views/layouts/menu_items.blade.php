@@ -24,12 +24,18 @@
     </a>
 @endif
 
+<a href="{{ route('caja_sincodigo.index') }}" class="enlace_sidebar">
+    <li class="li_navbar d-flex justify-content-around">
+        Corte <img class="icon_navbar" src="{{ asset('assets/media/icons/corte.webp') }}" alt="">
+    </li>
+</a>
 
-<a type="button" class="enlace_sidebar d-block" data-bs-toggle="modal" data-bs-target="#show_Scanner">
+
+{{-- <a type="button" class="enlace_sidebar d-block" data-bs-toggle="modal" data-bs-target="#show_Scanner">
     <li class="li_navbar d-flex justify-content-around">
         Scanner <img class="icon_navbar" src="{{ asset('assets/media/icons/scanner.webp') }}" alt="">
     </li>
- </a>
+ </a> --}}
 
 <a href="{{ route('productos.index') }}" class="enlace_sidebar">
     <li class="li_navbar d-flex justify-content-around">
@@ -60,6 +66,12 @@
         Empleados <img class="icon_navbar" src="{{ asset('assets/media/icons/empleados.webp') }}" alt="">
     </li>
  </a>
+
+ <a href="{{ route('reportes.index') }}" class="enlace_sidebar">
+    <li class="li_navbar d-flex justify-content-around">
+        Reportes <img class="icon_navbar" src="{{ asset('assets/media/icons/charts-imageonline.co-6846928.webp') }}" alt="">
+    </li>
+</a>
 
  <a href="{{ route('configuracion.index', auth()->user()->Empresa->code) }}" class="enlace_sidebar">
     <li class="li_navbar d-flex justify-content-around">
