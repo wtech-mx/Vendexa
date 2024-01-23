@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\CajaCorte;
 use App\Models\Configuraciones;
 use App\Models\Proveedores;
 use App\Models\SubCategorias;
@@ -31,7 +32,7 @@ class ConfiguracionMiddleware
             view()->share('categorias', $categorias);
             view()->share('subcategorias', $subcategorias);
         }
-
+        
         return $next($request);
     }
 }

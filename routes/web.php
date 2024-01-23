@@ -104,6 +104,12 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     Route::get('/reportes', 'ReportesController@index')->name('reportes.index');
 
+    // ============================================= M O D U L O  C O R T E =====================================================
+
+    Route::get('/corte/caja', 'CajaCorteController@index')->name('caja_corte.index');
+    Route::post('/corte/caja/store', 'CajaCorteController@store')->name('caja_corte.store');
+    Route::get('/corte/caja/pdf', 'CajaCorteController@pdf')->name('caja_corte.pdf');
+
 });
 
 
