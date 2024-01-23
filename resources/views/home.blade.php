@@ -361,6 +361,7 @@
 @include('modals.create_role')
 @include('modals.setting')
 @include('modals.create_client')
+@include('modals.create_registro_caja')
 @endsection
 
 @if($configuracion->estatus_config == 0)
