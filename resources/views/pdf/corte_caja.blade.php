@@ -137,22 +137,22 @@
                             </p>
 
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">
-                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/coins.webp') }}" style="">
+                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/fuente.webp') }}" style="">
                                 Empresa: {{$configuracion->Empresa->nombre}}
                             </p>
 
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">
-                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/efectivo.webp') }}" style="">
+                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/telefono.png.webp') }}" style="">
                                 Telefeono: {{$configuracion->Empresa->telefono}}
                             </p>
 
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">
-                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/gastos.png.webp') }}" style="">
+                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/sobre.png.webp') }}" style="">
                                 Direccion: {{$configuracion->Direccion->calle_numero}}, {{$configuracion->Direccion->codigo_postal}}
                             </p>
 
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">
-                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/bolsa-de-dinero.webp') }}" style="">
+                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/sobre.png.webp') }}" style="">
                                 Correo: {{$configuracion->Empresa->correo}}
                             </p>
                         </blockquote>
@@ -164,19 +164,19 @@
                                 <strong>Corte caja </strong>
                             </p>
                             <p class="blockquote-footer text-white para" style="color: #000;font-size: 18px;">
-                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/fuente.webp') }}" style="">
+                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/coins.webp') }}" style="">
                                 Inicio en caja: {{$caja_corte->inicio}}
                             </p>
                             <p class="blockquote-footer text-white para" style="color: #000;font-size: 18px;">
-                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/telefono.png.webp') }}" style="">
+                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/efectivo.webp') }}" style="">
                                 Cobros en efectivo: {{$caja_corte->ingresos}}
                             </p>
                             <p class="blockquote-footer text-white para" style="color: #000;font-size: 18px;">
-                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/sobre.png.webp') }}" style="">
+                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/gastos.png.webp') }}" style="">
                                 Retiros: {{$caja_corte->egresos}}
                             </p>
                             <p class="blockquote-footer text-white para" style="color: #000;font-size: 18px;">
-                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/sobre.png.webp') }}" style="">
+                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/bolsa-de-dinero.webp') }}" style="">
                                 Efectivo en caja: {{$caja_corte->total}}
                             </p>
                         </blockquote>
