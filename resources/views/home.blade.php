@@ -118,25 +118,27 @@
                 </div>
             </div>
 
-            <div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center animation_card">
-                <div class="card_dashboard p-2">
+            @if ($configuracion->caja_avanzada == 1)
+                <div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center animation_card">
+                    <div class="card_dashboard p-2">
 
-                    <div class="card_img">
-                        <a href="{{ route('productos.index') }}">
-                            <img class="img_icon_dash" src="{{ asset('assets/media/icons/corte.webp') }}" alt="">
+                        <div class="card_img">
+                            <a href="{{ route('productos.index') }}">
+                                <img class="img_icon_dash" src="{{ asset('assets/media/icons/corte.webp') }}" alt="">
+                            </a>
+                        </div>
+
+
+                        <h6 class="tittle_card_dash text-center mt-3 mb-3">Corte</h6>
+
+                        <a href="{{ route('caja_corte.index') }}" class="btn_primary_blue_dash">Acceder </a>
+
+                        <a type="button" class="btn_plus_dash" data-bs-toggle="modal" data-bs-target="#creatRegCaja">
+                            <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
                         </a>
                     </div>
-
-
-                    <h6 class="tittle_card_dash text-center mt-3 mb-3">Corte</h6>
-
-                    <a href="{{ route('productos.index') }}" class="btn_primary_blue_dash">Acceder </a>
-
-                    <a type="button" class="btn_plus_dash" data-bs-toggle="modal" data-bs-target="#creatProduct">
-                        <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
-                    </a>
                 </div>
-            </div>
+            @endif
 
             <div class="col-6 col-xs-6 col-sm-6 col-md-6-col-xl-4 mb-3 d-flex justify-content-center animation_card">
                 <div class="card_dashboard p-2">

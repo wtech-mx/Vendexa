@@ -30,6 +30,10 @@ return new class extends Migration
             $table->integer('opcion_factura')->nullable();
             $table->integer('porcentaje_factura')->nullable();
 
+            $table->integer('caja_avanzada')->nullable();
+            $table->integer('fondo_fijo')->nullable();
+            $table->double('fondo_caja')->nullable();
+
             $table->integer('stock_alto');
             $table->integer('stock_medio');
             $table->integer('stock_bajo');
