@@ -28,8 +28,8 @@ Route::get('signout', [App\Http\Controllers\CustomAuthController::class, 'signOu
 Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], function () {
 
 
-    Route::get('/coti', function () {
-        return view('pdf.cotizacion');
+    Route::get('/tarjeta_uno', function () {
+        return view('tarjetas_presentacion.diseno1');
     });
 
     // ============================================= G E N E R A L E S =====================================================
