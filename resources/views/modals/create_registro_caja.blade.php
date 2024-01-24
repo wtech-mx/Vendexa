@@ -27,7 +27,7 @@
 
                 <div class="row px-3">
 
-                    <div class="form-group col-6 px-4 py-3">
+                    <div class="form-group col-6 mb-3 p-2">
                         <label for="name" class="label_custom_primary_product mb-2">Tipo : *</label>
                         <div class="input-group ">
                             <span class="input-group-text span_custom_tab" >
@@ -44,23 +44,21 @@
                         <label for="name" class="label_custom_primary_product mb-2">Monto : *</label>
                         <div class="input-group ">
                             <span class="input-group-text span_custom_tab" >
-                                <img class="icon_span_form" src="{{ asset('assets/media/icons/fuente.webp') }}" alt="" >
+                                <img class="icon_span_form" src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="" >
                             </span>
-                            <input  name="monto" id="monto" type="double"  class="form-control input_custom_tab_dark @error('monto') is-invalid @enderror"  value="{{ old('monto') }}"  autocomplete="" autofocus>
+                            <input  name="monto" id="monto" type="number"  class="form-control input_custom_tab_dark @error('monto') is-invalid @enderror"  value="{{ old('monto') }}"  autocomplete="" autofocus>
                         </div>
                     </div>
 
                     <div class="form-group col-12 mb-3 p-2">
                         <label for="name" class="label_custom_primary_product mb-2">Concepto : *</label>
+
                         <div class="input-group ">
-                            <span class="input-group-text span_custom_tab" >
-                                <img class="icon_span_form" src="{{ asset('assets/media/icons/fuente.webp') }}" alt="" >
-                            </span>
                             <textarea class="form-control textarea_custom_primary_dark @error('concepto') is-invalid @enderror" id="concepto" name="concepto" value="{{ old('concepto') }}"></textarea>
                         </div>
                     </div>
 
-                    <div class="form-group col-12 px-4 py-3">
+                    <div class="form-group col-12 mb-3 p-2">
                         <label for="name" class="label_custom_primary_product mb-2">Comprobante: </label>
                         <div class="input-group ">
                             <span class="input-group-text span_custom_tab" >
@@ -70,7 +68,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group col-12 mt-4 mb-4 ">
+                    <div class="form-group col-12 mb-3 p-2">
                         <p class="text-center ">
                             <button type="submit" class="btn btn-success btn_save_custom">Guardar</button>
                         </p>
@@ -86,15 +84,10 @@
     </div>
   </div>
 
-@section('js_custom2_clientes')
+@section('js_custom_caja_reg')
 
 <script>
     $(document).ready(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
         $("#miFormularioRegCaja").on("submit", function (event) {
             event.preventDefault(); // Evita el envío predeterminado del formulario
@@ -108,7 +101,7 @@
                 processData: false,
                 success: async function(response) { // Agrega "async" aquí
                     // El formulario se ha enviado correctamente, ahora realiza la impresión
-                    saveSuccess(response);
+                    saveSuccessCajaReg(response);
 
                 },
                 error: function (xhr, status, error) {
@@ -134,17 +127,16 @@
 
         });
 
-        async function saveSuccess(response) {
+        async function saveSuccessCajaReg(response) {
             const caja_data = response.caja_data;
 
             Swal.fire({
                     title: "Producto Guardado <strong>¡Exitosamente!</strong>",
                     icon: "success",
-                    html: "<div class='row'><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/fuente.webp') }}' ><p><strong>Nombre:</strong> <br>"+ caja_data.monto +"</p></div><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/en-stock.png.webp') }}' ><p><strong>Stock:</strong><br>"+ caja_data.concepto +" </p> </div></div>",
+                    html: "<div class='row'><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/fuente.webp') }}' ><p><strong>Tipo:</strong> <br>"+ caja_data.Tipo +"</p></div><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/efectivo.webp') }}' ><p><strong>Monto:</strong><br>"+ caja_data.Monto +" </p> </div></div>",
                     showCloseButton: true,
                     showCancelButton: true,
                     focusConfirm: false,
-                    confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('caja_corte.index') }}" >Ver Productos</a>',
                     cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="" >Cerrar</a>`,
                 }).then(() => {
                     // Recarga la página

@@ -189,6 +189,72 @@
   </div>
 
 
-@section('js_custom2_clientes')
+@section('js_custom_cliente')
+<script>
 
+    $(document).ready(function() {
+
+        $("#miFormularioClientes").on("submit", function (event) {
+
+            event.preventDefault(); // Evita el envío predeterminado del formulario
+
+            // $(this).html('Sending..');
+
+            // Realiza la solicitud POST usando AJAX
+            $.ajax({
+                        url: $(this).attr("action"),
+                        type: "POST",
+                        data: new FormData(this),
+                        contentType: false,
+                        processData: false,
+                        success: async function(response) { // Agrega "async" aquí
+                            // El formulario se ha enviado correctamente, ahora realiza la impresión
+                            saveSuccessClientCreate(response);
+
+                        },
+                        error: function (xhr, status, error) {
+                                var errors = xhr.responseJSON.errors;
+                                var errorMessage = '';
+
+                                // Itera a través de los errores y agrega cada mensaje de error al mensaje final
+                                for (var key in errors) {
+                                    if (errors.hasOwnProperty(key)) {
+                                        var errorMessages = errors[key].join('<br>'); // Usamos <br> para separar los mensajes
+                                        errorMessage += '<strong>' + key + ':</strong><br>' + errorMessages + '<br>';
+                                    }
+                                }
+                                console.log(errorMessage);
+                                // Muestra el mensaje de error en una SweetAlert
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Faltan Campos',
+                                    html: errorMessage, // Usa "html" para mostrar el mensaje con formato HTML
+                                });
+                        }
+                    });
+
+        });
+
+        async function saveSuccessClientCreate(response) {
+            const cliente_data = response.cliente_data;
+
+            Swal.fire({
+                    title: "Cliente Guardado <strong>¡Exitosamente!</strong>",
+                    icon: "success",
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('clientes.index') }}" >Ver Clientes</a>',
+                    cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="" >Cerrar</a>`,
+                }).then(() => {
+                    // Recarga la página
+                window.location.href = '/home/';
+                });
+
+        }
+
+    });
+
+
+    </script>
 @endsection

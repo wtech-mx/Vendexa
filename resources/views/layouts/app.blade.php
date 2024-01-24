@@ -140,6 +140,9 @@
         @yield('js_custom_productos')
         @yield('js_custom2_clientes')
         @yield('js_custom2_empleado')
+        @yield('js_custom_caja_reg')
+        @yield('js_custom_cliente')
+
 
 </body>
 

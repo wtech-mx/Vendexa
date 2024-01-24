@@ -87,6 +87,14 @@ class ClienteController extends Controller
         $client->id_user = $user->id;
         $client->save();
 
+        $cliente_data = [
+            "nombre" => $client->nombre,
+            "telefono" => $client->telefono,
+            "correo" => $client->correo,
+        ];
+
+        return response()->json(['success' => true, 'cliente_data' => $cliente_data]);
+
         return redirect()->back()->with('success', 'Creado exitosamente.');
     }
 

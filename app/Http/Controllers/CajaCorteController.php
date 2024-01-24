@@ -40,6 +40,7 @@ class CajaCorteController extends Controller
 
         // Agregamos un dump para verificar los datos recibidos
         $validator = Validator::make($request->all(), [
+            'tipo' => 'required',
             'monto' => 'required',
             'concepto' => 'required',
         ]);
@@ -83,8 +84,8 @@ class CajaCorteController extends Controller
         }
 
         $caja_data = [
-            "monto" => $caja->monto,
-            "concepto" => $caja->concepto,
+            "Tipo" => $request->get('tipo'),
+            "Monto" => $caja->monto,
         ];
 
         return response()->json(['success' => true, 'caja_data' => $caja_data]);
