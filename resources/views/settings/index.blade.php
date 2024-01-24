@@ -476,7 +476,7 @@
 
 @endsection
 
-@section('js_custom')
+@section('js_custom_settings')
 <script>
     $(document).ready(function() {
 
@@ -494,7 +494,7 @@
                 contentType: false,
                 processData: false,
                 success: async function(response) {
-                    saveSuccessEdit(response);
+                    saveSuccessEditConfig(response);
                 },
                 error: function (xhr, status, error) {
                     // Manejo de errores
@@ -503,7 +503,7 @@
 
         });
 
-        async function saveSuccessEdit(response) {
+        async function saveSuccessEditConfig(response) {
             Swal.fire({
                 title: "Guardado <strong>¡Exitosamente!</strong>",
                 icon: "success",
