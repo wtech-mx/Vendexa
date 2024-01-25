@@ -64,8 +64,10 @@ class TrabajadoresController extends Controller
         $user = auth()->user();
 
         $trabajador = new User;
+        dd($request);
         $trabajador->name = $request->get('name') . ' ' . $request->get('apellido');
         $trabajador->telefono = $request->get('telefono');
+        $trabajador->email = $request->get('correo');
         $trabajador->password_caja = $request->get('pin');
         $trabajador->password = Hash::make($request->get('password'));
 

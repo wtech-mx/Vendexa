@@ -8,6 +8,7 @@ use App\Models\Proveedores;
 use App\Models\SubCategorias;
 use App\Models\Marcas;
 use App\Models\Categorias;
+use App\Models\Empresas;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,6 +24,7 @@ class ConfiguracionMiddleware
             $marcas = Marcas::where('id_empresa', auth()->user()->id_empresa)->get();
             $categorias = Categorias::where('id_empresa', auth()->user()->id_empresa)->get();
             $subcategorias = SubCategorias::where('id_empresa', auth()->user()->id_empresa)->get();
+            $empresa = Empresas::where('id', auth()->user()->id_empresa)->first();
 
 
             // Compartir la configuración con todas las vistas
@@ -31,8 +33,9 @@ class ConfiguracionMiddleware
             view()->share('marcas', $marcas);
             view()->share('categorias', $categorias);
             view()->share('subcategorias', $subcategorias);
+            view()->share('empresa', $empresa);
         }
-        
+
         return $next($request);
     }
 }

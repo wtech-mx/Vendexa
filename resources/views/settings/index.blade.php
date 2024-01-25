@@ -54,7 +54,7 @@
 
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-empresaTab" role="tabpanel" aria-labelledby="pills-empresa-tab" tabindex="0">
-                        <form method="POST" action="{{ route('configuracion_empresa.update', $empresa->code) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="empresaForm">
+                        <form method="POST" action="{{ route('configuracion_empresa.update', $empresa->code) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="empresaFormConfig">
                             @csrf
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="row">
@@ -250,7 +250,7 @@
                     </div>
 
                     <div class="tab-pane fade" id="pills-cajaTab" role="tabpanel" aria-labelledby="pills-caja-tab" tabindex="0">
-                        <form method="POST" action="{{ route('configuracion_caja.update', $empresa->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="cajaForm">
+                        <form method="POST" action="{{ route('configuracion_caja.update', $empresa->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="cajaForm_Config">
                             @csrf
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="row">
@@ -477,10 +477,11 @@
 @endsection
 
 @section('js_custom_settings')
+
 <script>
     $(document).ready(function() {
 
-        $(".empresaForm").on("submit", function (event) {
+        $(".empresaFormConfig").on("submit", function (event) {
 
             event.preventDefault();
             var formID = $(this).attr("id");
@@ -516,6 +517,44 @@
                     $('.modal').modal('hide');
                 });
         }
+
+        $(".empresaFormConfig").on("submit", function (event) {
+
+            event.preventDefault();
+            var formID = $(this).attr("id");
+
+            console.log(formID);
+
+            $.ajax({
+                url: $(this).attr("action"),
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                processData: false,
+                success: async function(response) {
+                    cajaForm_Config(response);
+                },
+                error: function (xhr, status, error) {
+                    // Manejo de errores
+                }
+            });
+
+        });
+
+        async function cajaForm_Config(response) {
+        Swal.fire({
+            title: "Guardado <strong>¡Exitosamente!</strong>",
+            icon: "success",
+            showCloseButton: true,
+            showCancelButton: false,
+            focusConfirm: false,
+            confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="#" >Cerrar</a>',
+            }).then(() => {
+                // Cierra todos los modales abiertos
+                $('.modal').modal('hide');
+            });
+        }
+
     });
 </script>
 @endsection
