@@ -54,7 +54,7 @@
 
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-empresaTab" role="tabpanel" aria-labelledby="pills-empresa-tab" tabindex="0">
-                        <form method="POST" action="{{ route('configuracion_empresa.update', $empresa->code) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="empresaFormConfig">
+                        <form method="POST" action="{{ route('configuracion_empresa.update', $empresa->code) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="empresaFormConfig_crea">
                             @csrf
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="row">
@@ -481,12 +481,16 @@
 <script>
     $(document).ready(function() {
 
-        $(".empresaFormConfig").on("submit", function (event) {
+        $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $("#empresaFormConfig_crea").on("submit", function (event) {
 
             event.preventDefault();
             var formID = $(this).attr("id");
-
-            console.log(formID);
 
             $.ajax({
                 url: $(this).attr("action"),
@@ -498,15 +502,31 @@
                     saveSuccessEditConfig(response);
                 },
                 error: function (xhr, status, error) {
-                    // Manejo de errores
-                }
+                            var errors = xhr.responseJSON.errors;
+                            var errorMessage = '';
+
+                            // Itera a través de los errores y agrega cada mensaje de error al mensaje final
+                            for (var key in errors) {
+                                if (errors.hasOwnProperty(key)) {
+                                    var errorMessages = errors[key].join('<br>'); // Usamos <br> para separar los mensajes
+                                    errorMessage += '<strong>' + key + ':</strong><br>' + errorMessages + '<br>';
+                                }
+                            }
+                            console.log(errorMessage);
+                            // Muestra el mensaje de error en una SweetAlert
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Faltan Campos',
+                                html: errorMessage, // Usa "html" para mostrar el mensaje con formato HTML
+                            });
+                    }
             });
 
         });
 
         async function saveSuccessEditConfig(response) {
             Swal.fire({
-                title: "Guardado <strong>¡Exitosamente!</strong>",
+                title: "Datos de Empresa Actualizado <br> <strong>¡Exitosamente!</strong>",
                 icon: "success",
                 showCloseButton: true,
                 showCancelButton: false,
@@ -518,12 +538,10 @@
                 });
         }
 
-        $(".empresaFormConfig").on("submit", function (event) {
+        $("#cajaForm_Config").on("submit", function (event) {
 
             event.preventDefault();
             var formID = $(this).attr("id");
-
-            console.log(formID);
 
             $.ajax({
                 url: $(this).attr("action"),
@@ -532,18 +550,34 @@
                 contentType: false,
                 processData: false,
                 success: async function(response) {
-                    cajaForm_Config(response);
+                    SavecajaForm_Config(response);
                 },
                 error: function (xhr, status, error) {
-                    // Manejo de errores
-                }
+                            var errors = xhr.responseJSON.errors;
+                            var errorMessage = '';
+
+                            // Itera a través de los errores y agrega cada mensaje de error al mensaje final
+                            for (var key in errors) {
+                                if (errors.hasOwnProperty(key)) {
+                                    var errorMessages = errors[key].join('<br>'); // Usamos <br> para separar los mensajes
+                                    errorMessage += '<strong>' + key + ':</strong><br>' + errorMessages + '<br>';
+                                }
+                            }
+                            console.log(errorMessage);
+                            // Muestra el mensaje de error en una SweetAlert
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Faltan Campos',
+                                html: errorMessage, // Usa "html" para mostrar el mensaje con formato HTML
+                            });
+                    }
             });
 
         });
 
-        async function cajaForm_Config(response) {
+        async function SavecajaForm_Config(response) {
         Swal.fire({
-            title: "Guardado <strong>¡Exitosamente!</strong>",
+            title: "Configuracion de Caja Actualizado <br><strong>¡Exitosamente!</strong>",
             icon: "success",
             showCloseButton: true,
             showCancelButton: false,
