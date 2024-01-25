@@ -24,7 +24,7 @@
     </a>
 @endif
 
-<a href="{{ route('caja_sincodigo.index') }}" class="enlace_sidebar">
+<a href="{{ route('caja_corte.index') }}" class="enlace_sidebar">
     <li class="li_navbar d-flex justify-content-around">
         Corte <img class="icon_navbar" src="{{ asset('assets/media/icons/corte.webp') }}" alt="">
     </li>

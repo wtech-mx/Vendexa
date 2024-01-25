@@ -28,9 +28,26 @@
         </div>
     </div>
 
-    <div class="form-group col-auto col-lg-6 px-0 py-3">
-
+    <div class="form-group col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 py-3">
+        <label for="name" class="label_custom_primary_sm mb-2">Nombre</label>
+        <div class="input-group ">
+            <span class="input-group-text span_custom_tab" >
+                <img class="icon_span_tab" src="{{ asset('assets/media/icons/calendar-dar.webp') }}" alt="" >
+            </span>
+            <input id="fecha_fin_desc_bulk" name="fecha_fin_desc_bulk" type="text"  class="form-control input_custom_tab">
+        </div>
     </div>
+
+    <div class="form-group col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 py-3">
+        <label for="name" class="label_custom_primary_sm mb-2">Numero de Ventas</label>
+        <div class="input-group ">
+            <span class="input-group-text span_custom_tab" >
+                <img class="icon_span_tab" src="{{ asset('assets/media/icons/calendar-dar.webp') }}" alt="" >
+            </span>
+            <input id="fecha_fin_desc_bulk" name="fecha_fin_desc_bulk" type="text"  class="form-control input_custom_tab">
+        </div>
+    </div>
+
 
     <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 px-4 py-3">
         <h3 for="name" class="label_custom_primary_product mb-4">Productos Mas vendidos</h3>
