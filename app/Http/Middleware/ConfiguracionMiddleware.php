@@ -9,6 +9,8 @@ use App\Models\SubCategorias;
 use App\Models\Marcas;
 use App\Models\Categorias;
 use App\Models\Empresas;
+use App\Models\Productos;
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,7 +27,8 @@ class ConfiguracionMiddleware
             $categorias = Categorias::where('id_empresa', auth()->user()->id_empresa)->get();
             $subcategorias = SubCategorias::where('id_empresa', auth()->user()->id_empresa)->get();
             $empresa = Empresas::where('id', auth()->user()->id_empresa)->first();
-
+            $empleados = User::where('id_empresa', auth()->user()->id_empresa)->get();
+            $productos_global = Productos::where('id_empresa', auth()->user()->id_empresa)->get();
 
             // Compartir la configuración con todas las vistas
             view()->share('configuracion', $configuracion);
@@ -34,6 +37,8 @@ class ConfiguracionMiddleware
             view()->share('categorias', $categorias);
             view()->share('subcategorias', $subcategorias);
             view()->share('empresa', $empresa);
+            view()->share('empleados', $empleados);
+            view()->share('productos_global', $productos_global);
         }
 
         return $next($request);

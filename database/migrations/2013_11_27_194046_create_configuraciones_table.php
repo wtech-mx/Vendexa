@@ -28,6 +28,7 @@ return new class extends Migration
             $table->integer('sat_productos')->nullable();
 
             $table->integer('opcion_factura')->nullable();
+            $table->text('tipo_factura')->nullable();
             $table->integer('porcentaje_factura')->nullable();
 
             $table->integer('caja_avanzada')->nullable();

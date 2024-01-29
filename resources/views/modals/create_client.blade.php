@@ -63,16 +63,6 @@
                     </div>
 
                     <div class="form-group col-6 mb-3 p-2">
-                        <label for="name" class="label_custom_primary_product mb-2">Correo Electronico *</label>
-                        <div class="input-group ">
-                            <span class="input-group-text span_custom_tab" >
-                                <img class="icon_span_form" src="{{ asset('assets/media/icons/sobre.png.webp') }}" alt="" >
-                            </span>
-                            <input  name="email_cliente" type="text"  class="form-control input_custom_tab_dark @error('email_cliente') is-invalid @enderror"  value="{{ old('email_cliente') }}" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group col-6 mb-3 p-2">
                         <label for="name" class="label_custom_primary_product mb-2">Imagen de perfil</label>
                         <div class="input-group ">
                             <span class="input-group-text span_custom_tab" >
@@ -82,9 +72,14 @@
                         </div>
                     </div>
 
-                    <div class="form-group col-6 mb-3 p-2">
-                        <label for="name" class="label_custom_primary_product mb-2">_</label>
-
+                    <div class="form-group col-12 mb-3 p-2">
+                        <label for="name" class="label_custom_primary_product mb-2">Correo Electronico *</label>
+                        <div class="input-group ">
+                            <span class="input-group-text span_custom_tab" >
+                                <img class="icon_span_form" src="{{ asset('assets/media/icons/sobre.png.webp') }}" alt="" >
+                            </span>
+                            <input  name="email_cliente" type="text"  class="form-control input_custom_tab_dark @error('email_cliente') is-invalid @enderror"  value="{{ old('email_cliente') }}" required>
+                        </div>
                     </div>
 
                     <div class="form-group col-6 mb-3 p-2">
@@ -163,6 +158,11 @@
                     </div>
 
                     <div class="form-group col-6 mb-3 p-2">
+                        <label for="name" class="label_custom_primary_product mb-2">_</label>
+
+                    </div>
+
+                    <div class="form-group col-12 mb-3 p-2">
                         <label for="name" class="label_custom_primary_product mb-2">Calle y Numero</label>
                         <div class="input-group ">
                             <span class="input-group-text span_custom_tab" >

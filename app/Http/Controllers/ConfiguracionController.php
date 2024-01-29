@@ -110,6 +110,7 @@ class ConfiguracionController extends Controller
         $configuracion->tarjeta = $request->get('tarjeta');
         $configuracion->efectivo = $request->get('efectivo');
         $configuracion->transferencia = $request->get('transferencia');
+        $configuracion->tipo_factura = $request->get('tipo_factura');
         $configuracion->mercado_pago = $request->get('mercado_pago');
         $configuracion->stock_bajo = $request->get('stock_bajo');
         $configuracion->stock_medio = $request->get('stock_medio');

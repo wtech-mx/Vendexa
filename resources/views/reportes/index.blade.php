@@ -153,6 +153,13 @@
 @endsection
 
 @section('js_custom')
-
+<script>
+    $(document).ready(function() {
+        $('.empleados-multiple').select2();
+    });
+    $(document).ready(function() {
+        $('.producto').select2();
+    });
+</script>
 @endsection
 

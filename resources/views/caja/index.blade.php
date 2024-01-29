@@ -913,6 +913,7 @@
 
     let facturaSeleccionada = false;
     let porcentajeFactura = {{$configuracion->porcentaje_factura}};
+    const tipoFacturaDB = "{{ $configuracion->tipo_factura ?? '' }}";
 
     function actualizarSumaSubtotales() {
         const tipoDescuentoSelect = document.getElementById("tipoDescuento");
@@ -993,13 +994,15 @@
         }
     }
 
-    // Función para actualizar el estado de la factura seleccionada
-    function actualizarFacturaSeleccionada() {
-        const radioSiFact = document.getElementById("radioSiFact");
-        facturaSeleccionada = radioSiFact.checked;
+    if(tipoFacturaDB === "Precio Desglosado"){
+        // Función para actualizar el estado de la factura seleccionada
+        function actualizarFacturaSeleccionada() {
+            const radioSiFact = document.getElementById("radioSiFact");
+            facturaSeleccionada = radioSiFact.checked;
 
-        // Llamar a la función para actualizar la suma de subtotales cuando cambia la factura
-        actualizarSumaSubtotales();
+            // Llamar a la función para actualizar la suma de subtotales cuando cambia la factura
+            actualizarSumaSubtotales();
+        }
     }
 
     // Asignar la función al evento change del radio de factura

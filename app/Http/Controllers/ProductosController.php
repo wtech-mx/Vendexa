@@ -44,6 +44,10 @@ class ProductosController extends Controller
             $productos = $productos->where('stock', '>=', $request->stock_de)
                                      ->where('stock', '<=', $request->stock_a);
         }
+        if( $request->precio_normal_de && $request->precio_normal_a ){
+            $productos = $productos->where('precio_normal', '>=', $request->precio_normal_de)
+                                     ->where('precio_normal', '<=', $request->precio_normal_a);
+        }
         if( $request->id_marca){
             $productos = $productos->where('id_marca', 'LIKE', "%" . $request->id_marca . "%");
         }
@@ -207,7 +211,6 @@ class ProductosController extends Controller
             'precio_normal' => 'required',
             'visibilidad_estatus' => 'required',
             // 'id_proveedor' => 'required_if:nombre_proveedor,null',
-            'codigo_proveedor' => 'required',
             'id_marca' => 'required_if:nombre_marca,null',
             'id_categoria' => 'required_if:nombre_categoria,null',
             'unidad_venta' => 'required',
@@ -417,7 +420,7 @@ class ProductosController extends Controller
 
         $producto->nombre = $request->get('nombre');
         $producto->descripcion = $request->get('descripcion');
-        $producto->sku = $request->get('sku');
+        $producto->sku = $request->get('sku').'_'.$user->id_empresa;
         $producto->id_proveedor = $request->get('id_proveedor');
         $producto->codigo_proveedor = $request->get('codigo_proveedor');
         $producto->stock = $request->get('stock');

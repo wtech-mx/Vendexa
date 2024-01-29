@@ -146,7 +146,7 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/monedas.webp') }}" alt="" >
                                             </span>
-                                            <input id="precio_normal" name="precio_normal" type="number"  class="form-control input_custom_tab_dark"  value="{{ old('precio_normal', $producto->precio_normal) }}">
+                                            <input id="precio_normal" name="precio_normal" type="double"  class="form-control input_custom_tab_dark"  value="{{ old('precio_normal', $producto->precio_normal) }}">
                                         </div>
                                     </div>
 

@@ -42,9 +42,64 @@
                   <a class="btn btn_filter" data-bs-toggle="collapse" href="#collapseFilter" role="button" aria-expanded="false" aria-controls="collapseFilter">
                     <img class="icon_search" src="{{ asset('assets/media/icons/filtrar.webp') }}" alt="">
                   </a>
+
+                  @if(Route::currentRouteName() == 'clientes.filtro')
+                  <a class="btn btn_filter" href="{{ route('clientes.index') }}" role="button">
+                      <img class="icon_search" src="{{ asset('assets/media/icons/eraser.webp') }}" alt="">
+                  </a>
+                  @endif
             </div>
               <div class="collapse" id="collapseFilter">
-                Proximamente
+                <form class="row mt-3 mb-3" action="{{ route('clientes.filtro') }}" method="GET" >
+                    <div class="col-12">
+                        <h6>Filtros</h6>
+                    </div>
+
+                    <div class="col-6 col-md-4 col-lg-4 py-3">
+                        <label class="form-label tiitle_products">Tipo cliente </label>
+                        <div class="input-group">
+                            <span class="input-group-text span_custom_tab" >
+                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/descuento.webp') }}" alt="" >
+                            </span>
+                            <select name="tipo_cliente" id="tipo_cliente" class="form-select d-inline-block input_custom_tab">
+                                <option value="" {{ old('') == '' ? 'selected' : '' }}>Selecionar </option>
+                                    <option value="Si" @if(old('tipo_cliente') == 'Si') selected @endif>Menudeo</option>
+                                    <option value="Mayorista" @if(old('tipo_cliente') == 'Mayorista') selected @endif>Mayoreo</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4 col-lg-4 py-3">
+                        <label class="form-label tiitle_products">Rango Cumpleaños de</label>
+                        <div class="input-group">
+                            <span class="input-group-text span_custom_tab" >
+                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/cero.webp') }}" alt="" >
+                            </span>
+                            <input id="cumpleaños_de" name="cumpleaños_de" type="date"  class="form-control input_custom_tab @error('stock_de') is-invalid @enderror"  value="{{ old('stock_de') }}" autocomplete="" autofocus>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4 col-lg-4 py-3">
+                        <label class="form-label tiitle_products">hasta </label>
+                        <div class="input-group">
+                            <span class="input-group-text span_custom_tab" >
+                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/9.webp') }}" alt="" >
+                            </span>
+                            <input id="cumpleaños_a" name="cumpleaños_a" type="date"  class="form-control input_custom_tab @error('stock_a') is-invalid @enderror"  value="{{ old('stock_a') }}" autocomplete="" autofocus>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4 col-lg-4 py-3">
+                        <label class="form-label tiitle_products">-</label>
+                        <div class="input-group">
+                            <button class="btn btn_filter text-white" type="submit" style="">Buscar
+                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/buscar.webp') }}" alt="" >
+
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
               </div>
 
         </div>

@@ -7,26 +7,36 @@
     <div class="form-group col-12 px-4 ">
         <h3 for="name" class="label_custom_primary_product ">Selecione las fecha :</h3>
     </div>
-
-    <div class="form-group col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 py-3">
-        <label for="name" class="label_custom_primary_sm mb-2">Fecha de inicio</label>
-        <div class="input-group ">
-            <span class="input-group-text span_custom_tab" >
-                <img class="icon_span_tab" src="{{ asset('assets/media/icons/calendar-dar.webp') }}" alt="" >
-            </span>
-            <input id="fecha_inicio_desc_bulk" name="fecha_inicio_desc_bulk" type="date"  class="form-control input_custom_tab" >
+    <form class="row mt-3 mb-3" action="{{ route('reportes.filtro') }}" method="GET" >
+        <div class="form-group col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 px-4 py-3">
+            <label for="name" class="label_custom_primary_sm mb-2">Fecha de inicio</label>
+            <div class="input-group ">
+                <span class="input-group-text span_custom_tab" >
+                    <img class="icon_span_tab" src="{{ asset('assets/media/icons/calendar-dar.webp') }}" alt="" >
+                </span>
+                <input id="fecha_inicio_caja" name="fecha_inicio_caja" type="date"  class="form-control input_custom_tab" >
+            </div>
         </div>
-    </div>
 
-    <div class="form-group col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 py-3">
-        <label for="name" class="label_custom_primary_sm mb-2">Fecha de Fin</label>
-        <div class="input-group ">
-            <span class="input-group-text span_custom_tab" >
-                <img class="icon_span_tab" src="{{ asset('assets/media/icons/calendar-dar.webp') }}" alt="" >
-            </span>
-            <input id="fecha_fin_desc_bulk" name="fecha_fin_desc_bulk" type="date"  class="form-control input_custom_tab">
+        <div class="form-group col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 px-4 py-3">
+            <label for="name" class="label_custom_primary_sm mb-2">Fecha de Fin</label>
+            <div class="input-group ">
+                <span class="input-group-text span_custom_tab" >
+                    <img class="icon_span_tab" src="{{ asset('assets/media/icons/calendar-dar.webp') }}" alt="" >
+                </span>
+                <input id="fecha_fin_caja" name="fecha_fin_caja" type="date"  class="form-control input_custom_tab">
+            </div>
         </div>
-    </div>
+
+        <div class="form-group col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 px-4 py-3">
+            <label for="name" class="label_custom_primary_sm mb-2">Buscar</label>
+            <div class="input-group ">
+                <button class="btn btn_filter text-white" type="submit" style="">Buscar
+                    <img class="icon_span_tab" src="{{ asset('assets/media/icons/buscar.webp') }}" alt="" >
+                </button>
+            </div>
+        </div>
+    </form>
 
     <div class="form-group col-0 col-sm-0 col-md-0 col-lg-6 col-xl-6 px-4 py-3">
 

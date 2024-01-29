@@ -427,20 +427,41 @@
                                     <h4 class="subtittle_clientes">Factura</h4>
                                  </div>
 
-                                 <div class="form-group col-6 col-md-4 col-lg-4 mb-3 encriptar-mayo-div">
+                                <div class="form-group col-6 col-md-4 col-lg-4 mb-3">
                                     <label for="name" class="label_custom_primary_sm mb-2">¿Opción factura?</label>
                                     <div class="input-group mb-3">
                                         <div class="form-check">
                                             @if ($configuracion->opcion_factura == 1)
-                                                <input class="form-check-input" id="checkboxEncriptarMayo" name="opcion_factura" type="checkbox" value="1" checked>
+                                                <input class="form-check-input" id="checkboxFactura" name="opcion_factura" type="checkbox" value="1" checked>
                                             @else
-                                                <input class="form-check-input" id="checkboxEncriptarMayo" name="opcion_factura" type="checkbox" value="1">
+                                                <input class="form-check-input" id="checkboxFactura" name="opcion_factura" type="checkbox" value="1">
                                             @endif
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="form-group col-6 col-md-4 col-lg-4 mb-3">
+
+                                 <div class="form-group col-6 col-md-4 col-lg-4 mb-3" id="mostrarDivFactura" @if ($configuracion->opcion_factura != 1) style="display: none;" @endif>
+                                    <label for="name" class="label_custom_primary_sm mb-2">Tipo Factura</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/camion.webp') }}" alt="" >
+                                            </span>
+                                            <select name="tipo_factura" id="tipo_factura" class="form-select d-inline-block input_custom_tab" >
+                                                @if ($configuracion->tipo_factura == NULL)
+                                                    <option value="">Seleccionar tipo</option>
+                                                @else
+                                                    <option value="{{$configuracion->tipo_factura}}">{{$configuracion->tipo_factura}}</option>
+                                                @endif
+                                                <option value="Precio Neto" @if(old('tipo_factura') == 'Precio Neto') selected @endif>Precio Neto</option>
+                                                <option value="Precio Desglosado" @if(old('tipo_factura') == 'Precio Desglosado') selected @endif>Precio Desglosado</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-6 col-md-4 col-lg-4 mb-3" id="mostrarDivPorcentaje" @if ($configuracion->tipo_factura != 'Precio Desglosado') style="display: none;" @endif>
                                     <label for="name" class="label_custom_primary_sm mb-2">Porcentaje</label>
                                     <div class="input-group ">
                                         <span class="input-group-text span_custom_tab" >
@@ -589,6 +610,26 @@
             });
         }
 
+    });
+
+    $(document).ready(function () {
+        $('#checkboxFactura').change(function () {
+            if (this.checked) {
+                $('#mostrarDivFactura').show();
+            } else {
+                $('#mostrarDivFactura').hide();
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $('#tipo_factura').change(function () {
+            if ($(this).val() === 'Precio Desglosado') {
+                $('#mostrarDivPorcentaje').show();
+            } else {
+                $('#mostrarDivPorcentaje').hide();
+            }
+        });
     });
 </script>
 @endsection

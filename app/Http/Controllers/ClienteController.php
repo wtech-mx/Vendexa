@@ -157,4 +157,22 @@ class ClienteController extends Controller
 
     }
 
+    public function filtro(Request $request){
+        $now = Carbon::now();
+        $mesActual = $now->month;
+        $user = auth()->user()->id_empresa;
+
+        $clientes = Clientes::where('id_empresa', $user);
+
+        if( $request->tipo_cliente){
+            $clientes = $clientes->where('tipo', 'LIKE', "%" . $request->tipo_cliente . "%");
+        }
+        if( $request->cumpleaños_de && $request->cumpleaños_a ){
+            $clientes = $clientes->where('cumpleaños', '>=', $request->cumpleaños_de)
+                                     ->where('cumpleaños', '<=', $request->cumpleaños_a);
+        }
+        $clientes = $clientes->get();
+
+        return view('clientes.index', compact('clientes'));
+    }
 }

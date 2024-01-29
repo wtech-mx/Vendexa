@@ -28,13 +28,18 @@
         </div>
     </div>
 
-    <div class="form-group col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 py-3">
-        <label for="name" class="label_custom_primary_sm mb-2">Nombre</label>
+    <div class="form-group col-auto col-lg-6 px-0 py-3">
+        <label for="name" class="label_custom_primary_sm mb-2">Reporte producto</label>
         <div class="input-group ">
             <span class="input-group-text span_custom_tab" >
-                <img class="icon_span_tab" src="{{ asset('assets/media/icons/calendar-dar.webp') }}" alt="" >
+                <img class="icon_span_tab" src="{{ asset('assets/media/icons/carrito.webp') }}" alt="" >
             </span>
-            <input id="fecha_fin_desc_bulk" name="fecha_fin_desc_bulk" type="text"  class="form-control input_custom_tab">
+            <select name="producto_id" id="producto_id" class="form-select d-inline-block producto">
+                <option value="">Seleccione producto</option>
+                @foreach ($productos_global as $producto)
+                <option value="{{$producto->id}}" data-image="{{ asset('imagen_principal/empresa'.auth()->user()->id_empresa.'/'.$producto->imagen_principal) }}">{{ $producto->nombre }}</option>
+                @endforeach
+            </select>
         </div>
     </div>
 

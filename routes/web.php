@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     // ============================================= M O D U L O   C L I E N T E S =========================================
 
     Route::get('/clientes', 'ClienteController@index')->name('clientes.index');
+    Route::get('/clientes/filtro', 'ClienteController@filtro')->name('clientes.filtro');
     Route::get('/clientes/show/{id}', 'ClienteController@show')->name('clientes.show');
     Route::post('/clientes/store', 'ClienteController@store')->name('clientes.store');
     Route::patch('/clientes/update/{id}', 'ClienteController@update')->name('clientes.update');
@@ -100,15 +101,18 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::get('/cotizaciones/filtro', 'CotizacionesController@filtro')->name('cotizaciones.filtro');
     Route::get('/cotizaciones/pdf/{id}', 'CotizacionesController@pdf')->name('cotizaciones.pdf');
 
-    // ============================================= M O D U L O  C O T I Z A C I O N E S ==================================
+    // ============================================= M O D U L O  R E P O R T E S ==================================
 
     Route::get('/reportes', 'ReportesController@index')->name('reportes.index');
+    Route::get('/reportes/filtro', 'ReportesController@filtro')->name('reportes.filtro');
 
     // ============================================= M O D U L O  C O R T E =====================================================
 
     Route::get('/corte/caja', 'CajaCorteController@index')->name('caja_corte.index');
     Route::post('/corte/caja/store', 'CajaCorteController@store')->name('caja_corte.store');
     Route::get('/corte/caja/pdf', 'CajaCorteController@pdf')->name('caja_corte.pdf');
+
+
 
 });
 

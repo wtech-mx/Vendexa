@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('telefono')->nullable();
             $table->string('correo')->nullable();
+            $table->date('cumpleaños')->nullable();
+            $table->text('img_principal')->nullable();
 
             $table->unsignedBigInteger('id_direccion')->nullable();
             $table->foreign('id_direccion')

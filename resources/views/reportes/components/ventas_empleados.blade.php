@@ -28,6 +28,22 @@
         </div>
     </div>
 
+    <div class="form-group col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 py-3">
+        <label for="name" class="label_custom_primary_sm mb-2">Reporte de uno o varios empleados</label>
+        <div class="input-group ">
+            <span class="input-group-text span_custom_tab" >
+                <img class="icon_span_tab" src="{{ asset('assets/media/icons/empleados.webp') }}" alt="" >
+            </span>
+            <select name="empleados_nombre[]" class="form-select empleados-multiple" style="width: 70%!important;" multiple="multiple">
+                @foreach ($empleados as $empleado)
+                    <option value="{{ $empleado->id }}" {{ in_array($empleado->id, old('empleados_nombre', [])) ? 'selected' : '' }}>
+                        {{$empleado->name}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
     <div class="form-group col-auto col-lg-6 px-0 py-3">
 
     </div>
