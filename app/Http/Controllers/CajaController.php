@@ -220,6 +220,11 @@ class CajaController extends Controller
 
         for ($count = 0; $count < count($productos); $count++) {
             $producto = Productos::find($productos[$count]);
+            if($request->get('inlineCorizacion') == 'No'){
+                $resta_stock = $producto->stock - $cantidad[$count];
+                $producto->stock = $resta_stock;
+                $producto->update();
+            }
             if ($fechaActual >= $producto->fecha_inicio_desc && $fechaActual <= $producto->fecha_fin_desc) {
                 $precioDescuento = $producto->precio_descuento;
                 $precioPrecio = $producto->precio_normal;

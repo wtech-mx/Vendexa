@@ -63,7 +63,7 @@
                             </span>
                             <select name="tipo_cliente" id="tipo_cliente" class="form-select d-inline-block input_custom_tab">
                                 <option value="" {{ old('') == '' ? 'selected' : '' }}>Selecionar </option>
-                                    <option value="Si" @if(old('tipo_cliente') == 'Si') selected @endif>Menudeo</option>
+                                    <option value="Menudeo" @if(old('tipo_cliente') == 'Menudeo') selected @endif>Menudeo</option>
                                     <option value="Mayorista" @if(old('tipo_cliente') == 'Mayorista') selected @endif>Mayoreo</option>
                             </select>
                         </div>

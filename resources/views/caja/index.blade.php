@@ -752,6 +752,7 @@
 
                         // =============== B O T O N E S  I N C R E   D E C R E ===============================
                         const incrementButton = document.createElement("button");
+                        const stockDisponible = response.stock;
                         incrementButton.classList.add("btn", "btn_push_cantidad_mas");
                         incrementButton.type = "button";
                         incrementButton.innerHTML = "<img class='img_plus_dash' src='{{ asset('assets/media/icons/anadir_white.webp') }}'>";
@@ -774,11 +775,15 @@
                         cantidadDiv.appendChild(decrementButton);
 
                         function increment(input) {
-                            input.stepUp();
+                            if (parseInt(input.value) < stockDisponible) {
+                                input.stepUp();
+                            }
                         }
 
                         function decrement(input) {
-                            input.stepDown();
+                            if (parseInt(input.value) > 0) {
+                                input.stepDown();
+                            }
                         }
 
                         // Espacios en blanco

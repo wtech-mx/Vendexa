@@ -68,6 +68,7 @@ class ClienteController extends Controller
         $client->nombre = $request->get('nombre_cliente') . ' ' . $request->get('apellido_cliente');
         $client->telefono = $request->get('whats_cliente');
         $client->correo = $request->get('email_cliente');
+        $client->tipo = $request->get('tipo');
         if($request->get('codigo_postal') != NULL){
             $client->id_direccion = $direccion->id;
         }

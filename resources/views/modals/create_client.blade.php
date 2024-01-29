@@ -102,6 +102,23 @@
                         </div>
                     </div>
 
+                    <div class="form-group col-6 mb-3 p-2">
+                        <label for="name" class="label_custom_primary_product mb-2">Tipo cliente</label>
+                        <div class="input-group ">
+                            <span class="input-group-text span_custom_tab" >
+                                <img class="icon_span_form" src="{{ asset('assets/media/icons/clientes.webp') }}" alt="" >
+                            </span>
+                            <select name="tipo" id="tipo" class="form-select d-inline-block input_custom_tab">
+                                    <option value="Menudeo" @if(old('tipo') == 'Menudeo') selected @endif>Menudeo</option>
+                                    <option value="Mayorista" @if(old('tipo') == 'Mayorista') selected @endif>Mayoreo</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-6 mb-3 p-2">
+                        <label for="name" class="label_custom_primary_product mb-2">_</label>
+
+                    </div>
 
                     <div class="form-group text-left col-12 mt-4 p-2">
                         <h6 class="subtittle_clientes">Datos de Direccion</h6>
