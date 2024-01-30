@@ -36,11 +36,13 @@
                 </button>
             </div>
         </div>
+
+        <div class="form-group col-0 col-sm-0 col-md-0 col-lg-6 col-xl-6 px-4 py-3">
+
+        </div>
     </form>
 
-    <div class="form-group col-0 col-sm-0 col-md-0 col-lg-6 col-xl-6 px-4 py-3">
 
-    </div>
 
     <div class="form-group col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 px-4 py-3">
         <p  class="label_custom_primary_sm mb-2">

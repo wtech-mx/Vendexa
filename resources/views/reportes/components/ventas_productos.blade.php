@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class="form-group col-auto col-lg-6 px-0 py-3">
+    <div class="form-group col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 py-3">
         <label for="name" class="label_custom_primary_sm mb-2">Reporte producto</label>
         <div class="input-group ">
             <span class="input-group-text span_custom_tab" >
@@ -49,14 +49,12 @@
             <span class="input-group-text span_custom_tab" >
                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/calendar-dar.webp') }}" alt="" >
             </span>
-            <input id="fecha_fin_desc_bulk" name="fecha_fin_desc_bulk" type="text"  class="form-control input_custom_tab">
+            <input id="fecha_fin_desc_bulk" name="fecha_fin_desc_bulk" type="number"  class="form-control input_custom_tab">
         </div>
     </div>
 
-
-    <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 px-4 py-3">
+    <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 px-4 py-3">
         <h3 for="name" class="label_custom_primary_product mb-4">Productos Mas vendidos</h3>
-
 
         <div class="comtainer_products_width row">
 
@@ -70,12 +68,10 @@
                 <h5 class="text_titlle_tab_reporte">100 Ventas</h5>
                 <h6 class="text_subtitlle_tab_reporte">STOCK : 55</h6>
             </div>
-
         </div>
-
     </div>
 
-    <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 px-4 py-3">
+    <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 px-4 py-3">
         <h3 for="name" class="label_custom_primary_product mb-4 ">Productos Menos vendidos</h3>
 
         <div class="comtainer_products_width row">
