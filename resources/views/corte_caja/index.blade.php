@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('template_title')
+    Corte caja
+@endsection
+
 @section('css_custom')
 
 <link rel="stylesheet" href="{{ asset('assets/css/orders.css') }}">

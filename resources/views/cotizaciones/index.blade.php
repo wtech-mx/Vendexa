@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('css_custom')
-
+@section('template_title')
+    Cotizaciones
 @endsection
 
 

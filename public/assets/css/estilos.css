@@ -410,6 +410,10 @@
         width: 50px;
     }
 
+    .container_desaparecer_movil{
+        display: none!important;
+    }
+
 }
 
 

@@ -1,4 +1,9 @@
 @extends('layouts.app')
+
+@section('template_title')
+    Empleados
+@endsection
+
 @section('css_custom')
 
 <link rel="stylesheet" href="{{ asset('assets/css/products.css') }}">

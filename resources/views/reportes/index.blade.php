@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('css_custom')
 
+@section('template_title')
+    Reportes
 @endsection
-
 
 @section('content')
 
