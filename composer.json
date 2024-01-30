@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "milon/barcode": "^10.0",
+        "silviolleite/laravelpwa": "^2.0",
         "spatie/laravel-permission": "^6.2"
     },
     "require-dev": {
