@@ -53,13 +53,11 @@
 </head>
 
 <body class="bg_dash">
-    {{-- <div id="preloader"></div> --}}
 
-    <div id="page-loader"><span class="preloader-interior"></span></div>
-
+    <div id="loader"></div>
+    {{-- <div id="page-loader"><span class="preloader-interior"></span></div> --}}
 
     <div id="mobile" class="demo1">
-
 
         <div id="burgerBtn"></div>
 
