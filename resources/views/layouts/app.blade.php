@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/acordeon.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/products.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}">
 
     <!-- Sweetalert2 -->
      <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.1/dist/sweetalert2.min.css">-->
@@ -52,7 +53,14 @@
 </head>
 
 <body class="bg_dash">
+    {{-- <div id="preloader"></div> --}}
+
+    <div id="page-loader"><span class="preloader-interior"></span></div>
+
+
     <div id="mobile" class="demo1">
+
+
         <div id="burgerBtn"></div>
 
         <ul id="nav">
@@ -95,6 +103,8 @@
 
         <!-- js custom -->
         <script type="text/javascript" src="{{ asset('assets/js/navbar.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/preloader.js') }}"></script>
+
 
         <!-- Sweetalert2 -->
          <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.1/dist/sweetalert2.all.min.js"></script>-->
