@@ -20,6 +20,7 @@ class ConfiguracionMiddleware
     public function handle($request, Closure $next)
     {
         if(auth()->check()) {
+            $fechaActual = date('Y-m-d');
             // Obtener la configuración y hacerla disponible en todas las vistas
             $configuracion = Configuraciones::where('id_empresa', auth()->user()->id_empresa)->first();
             $proveedores = Proveedores::where('id_empresa', auth()->user()->id_empresa)->get();
@@ -29,6 +30,7 @@ class ConfiguracionMiddleware
             $empresa = Empresas::where('id', auth()->user()->id_empresa)->first();
             $empleados = User::where('id_empresa', auth()->user()->id_empresa)->get();
             $productos_global = Productos::where('id_empresa', auth()->user()->id_empresa)->get();
+            $caja_corte_global = CajaCorte::where('fecha', '=', $fechaActual)->where('id_empresa', auth()->user()->id_empresa)->first();
 
             // Compartir la configuración con todas las vistas
             view()->share('configuracion', $configuracion);
@@ -39,6 +41,7 @@ class ConfiguracionMiddleware
             view()->share('empresa', $empresa);
             view()->share('empleados', $empleados);
             view()->share('productos_global', $productos_global);
+            view()->share('caja_corte_global', $caja_corte_global);
         }
 
         return $next($request);

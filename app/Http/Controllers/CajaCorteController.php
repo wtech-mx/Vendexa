@@ -15,7 +15,7 @@ class CajaCorteController extends Controller
         $user = auth()->user()->id_empresa;
         $fechaActual = date('Y-m-d');
 
-        $caja_corte = CajaCorte::where('fecha', '=', $fechaActual)->first();
+        $caja_corte = CajaCorte::where('id_empresa', $user)->where('fecha', '=', $fechaActual)->first();
 
         $sumaEfectivo = OrdenesPagos::where('fecha', $fechaActual)->whereHas('ordenes', function ($query) use ($user) {
             $query->where('id_empresa', $user)
@@ -33,16 +33,8 @@ class CajaCorteController extends Controller
         $registrosEgresos = CajaEgresos::where('fecha', '=', $fechaActual)->where('id_empresa', $user)->get();
         $registrosIngresos = CajaIngresos::where('fecha', '=', $fechaActual)->where('id_empresa', $user)->get();
 
-        $sumaEfectivo = OrdenesPagos::where('fecha', $fechaActual)->whereHas('ordenes', function ($query) use ($user, $fechaActual) {
-            $query->where('id_empresa',  $user = auth()->user()->id_empresa)
-                ->where('cotizacion', '=', 'No');
-        })
-        ->selectRaw('SUM(COALESCE(CASE WHEN metodo_pago = "Efectivo" THEN dinero_recibido ELSE 0 END, 0) + COALESCE(CASE WHEN metodo_pago2 = "Efectivo" THEN dinero_recibido2 ELSE 0 END, 0)) as suma_efectivo')
-        ->pluck('suma_efectivo')
-        ->first();
-
         $sumaTransferencia = OrdenesPagos::where('fecha', $fechaActual)->whereHas('ordenes', function ($query) use ($user, $fechaActual) {
-            $query->where('id_empresa',  $user = auth()->user()->id_empresa)
+            $query->where('id_empresa',  $user)
                 ->where('cotizacion', '=', 'No');
         })
         ->selectRaw('SUM(COALESCE(CASE WHEN metodo_pago = "Transferencia" THEN dinero_recibido ELSE 0 END, 0) + COALESCE(CASE WHEN metodo_pago2 = "Transferencia" THEN dinero_recibido2 ELSE 0 END, 0)) as suma_transferencia')
@@ -50,7 +42,7 @@ class CajaCorteController extends Controller
         ->first();
 
         $sumaTarjeta = OrdenesPagos::where('fecha', $fechaActual)->whereHas('ordenes', function ($query) use ($user, $fechaActual) {
-            $query->where('id_empresa',  $user = auth()->user()->id_empresa)
+            $query->where('id_empresa',  $user)
                 ->where('cotizacion', '=', 'No');
         })
         ->selectRaw('SUM(COALESCE(CASE WHEN metodo_pago = "Tarjeta Credito/Debito" THEN dinero_recibido ELSE 0 END, 0) + COALESCE(CASE WHEN metodo_pago2 = "Tarjeta Credito/Debito" THEN dinero_recibido2 ELSE 0 END, 0)) as suma_tarjeta')
@@ -58,7 +50,7 @@ class CajaCorteController extends Controller
         ->first();
 
         $sumaMercadoPago = OrdenesPagos::where('fecha', $fechaActual)->whereHas('ordenes', function ($query) use ($user, $fechaActual) {
-            $query->where('id_empresa',  $user = auth()->user()->id_empresa)
+            $query->where('id_empresa',  $user)
                 ->where('cotizacion', '=', 'No');
         })
         ->selectRaw('SUM(COALESCE(CASE WHEN metodo_pago = "Mercado Pago" THEN dinero_recibido ELSE 0 END, 0) + COALESCE(CASE WHEN metodo_pago2 = "Mercado Pago" THEN dinero_recibido2 ELSE 0 END, 0)) as suma_mercado')
@@ -124,12 +116,64 @@ class CajaCorteController extends Controller
 
         return response()->json(['success' => true, 'caja_data' => $caja_data]);
     }
-
     public function pdf(){
         $user = auth()->user()->id_empresa;
         $fechaActual = date('Y-m-d');
 
-        $caja_corte = CajaCorte::where('fecha', '=', $fechaActual)->first();
+        $caja_corte = CajaCorte::where('id_empresa', $user)->where('fecha', '=', $fechaActual)->first();
+
+        $sumaEfectivo = OrdenesPagos::where('fecha', $fechaActual)->whereHas('ordenes', function ($query) use ($user) {
+            $query->where('id_empresa', $user)
+                ->where('cotizacion', '=', 'No');
+        })
+        ->selectRaw('SUM(COALESCE(CASE WHEN metodo_pago = "Efectivo" THEN dinero_recibido ELSE 0 END, 0) + COALESCE(CASE WHEN metodo_pago2 = "Efectivo" THEN dinero_recibido2 ELSE 0 END, 0)) as suma_efectivo')
+        ->pluck('suma_efectivo')
+        ->first();
+
+        $registrosEgresos = CajaEgresos::where('fecha', '=', $fechaActual)->where('id_empresa', $user)->get();
+        $sumaIngresos = CajaIngresos::where('fecha', '=', $fechaActual)->where('id_empresa', $user)->sum('monto');
+        $registrosIngresos = CajaIngresos::where('fecha', '=', $fechaActual)->where('id_empresa', $user)->get();
+
+        $sumaTransferencia = OrdenesPagos::where('fecha', $fechaActual)->whereHas('ordenes', function ($query) use ($user, $fechaActual) {
+            $query->where('id_empresa',  $user)
+                ->where('cotizacion', '=', 'No');
+        })
+        ->selectRaw('SUM(COALESCE(CASE WHEN metodo_pago = "Transferencia" THEN dinero_recibido ELSE 0 END, 0) + COALESCE(CASE WHEN metodo_pago2 = "Transferencia" THEN dinero_recibido2 ELSE 0 END, 0)) as suma_transferencia')
+        ->pluck('suma_transferencia')
+        ->first();
+
+        $sumaTarjeta = OrdenesPagos::where('fecha', $fechaActual)->whereHas('ordenes', function ($query) use ($user, $fechaActual) {
+            $query->where('id_empresa',  $user)
+                ->where('cotizacion', '=', 'No');
+        })
+        ->selectRaw('SUM(COALESCE(CASE WHEN metodo_pago = "Tarjeta Credito/Debito" THEN dinero_recibido ELSE 0 END, 0) + COALESCE(CASE WHEN metodo_pago2 = "Tarjeta Credito/Debito" THEN dinero_recibido2 ELSE 0 END, 0)) as suma_tarjeta')
+        ->pluck('suma_tarjeta')
+        ->first();
+
+        $sumaMercadoPago = OrdenesPagos::where('fecha', $fechaActual)->whereHas('ordenes', function ($query) use ($user, $fechaActual) {
+            $query->where('id_empresa',  $user)
+                ->where('cotizacion', '=', 'No');
+        })
+        ->selectRaw('SUM(COALESCE(CASE WHEN metodo_pago = "Mercado Pago" THEN dinero_recibido ELSE 0 END, 0) + COALESCE(CASE WHEN metodo_pago2 = "Mercado Pago" THEN dinero_recibido2 ELSE 0 END, 0)) as suma_mercado')
+        ->pluck('suma_mercado')
+        ->first();
+
+        $registros = OrdenesPagos::where('fecha', $fechaActual)->whereHas('ordenes', function ($query) use ($user) {
+            $query->where('id_empresa', $user)
+                ->where('cotizacion', '=', 'No');
+        })
+        ->get();
+
+        $pdf = \PDF::loadView('pdf.corte_caja', compact('registros', 'sumaEfectivo', 'registrosEgresos','registrosIngresos','sumaEfectivo','sumaTransferencia', 'sumaTarjeta', 'sumaMercadoPago', 'caja_corte', 'sumaIngresos'));
+        // return $pdf->stream();
+        return $pdf->download('Corte '.$fechaActual.'.pdf');
+    }
+
+    public function cerrar(){
+        $user = auth()->user()->id_empresa;
+        $fechaActual = date('Y-m-d');
+
+        $caja_corte = CajaCorte::where('id_empresa', $user)->where('fecha', '=', $fechaActual)->first();
 
         $sumaEfectivo = OrdenesPagos::where('fecha', $fechaActual)->whereHas('ordenes', function ($query) use ($user) {
             $query->where('id_empresa', $user)
@@ -144,11 +188,20 @@ class CajaCorteController extends Controller
         $sumaCaja = $sumaEfectivo + $caja_corte->inicio + $sumaIngresos;
 
         $sumaEgresos = CajaEgresos::where('fecha', '=', $fechaActual)->where('id_empresa', $user)->sum('monto');
-        $registrosEgresos = CajaEgresos::where('fecha', '=', $fechaActual)->where('id_empresa', $user)->get();
+
         $restaCaja = $sumaCaja - $sumaEgresos;
 
-        $pdf = \PDF::loadView('pdf.corte_caja', compact('sumaCaja', 'sumaEfectivo', 'sumaEgresos', 'restaCaja', 'registrosEgresos', 'caja_corte'));
-        // return $pdf->stream();
-        return $pdf->download('Corte '.$fechaActual.'.pdf');
+        $caja_corte->ingresos = $sumaCaja;
+        $caja_corte->egresos = $sumaEgresos;
+        $caja_corte->total = $restaCaja;
+        $caja_corte->update();
+
+        $corte = [
+            "ingresos" => $caja_corte->sumaCaja,
+            "egresos" => $caja_corte->sumaEgresos,
+            "total" => $caja_corte->restaCaja,
+        ];
+
+        return response()->json(['success' => true, 'corte' => $corte]);
     }
 }

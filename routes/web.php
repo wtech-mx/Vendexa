@@ -87,7 +87,6 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::get('/trabajadores/show/{id}', 'TrabajadoresController@show')->name('trabajadores.show');
     Route::patch('/empleados/update/{id}', 'TrabajadoresController@update')->name('empleados.update');
 
-
     // ============================================= M O D U L O  R O L E S  Y  P E R M I S O S ============================
 
     Route::get('/roles/permisos', 'RoleController@index')->name('roles.index');
@@ -104,15 +103,16 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     // ============================================= M O D U L O  R E P O R T E S ==================================
 
     Route::get('/reportes', 'ReportesController@index')->name('reportes.index');
-    Route::get('/reportes/filtro', 'ReportesController@filtro')->name('reportes.filtro');
+    Route::get('/reportes/filtro/caja', 'ReportesController@filtro_caja')->name('reportes.filtro_caja');
+    Route::get('/reportes/filtro/producto', 'ReportesController@filtro_productos')->name('reportes.filtro_producto');
+    Route::get('/reportes/caja/pdf/{fechaInicio}/{fechaFin}', 'ReportesController@pdf_caja')->name('reportes_caja.pdf');
 
     // ============================================= M O D U L O  C O R T E =====================================================
 
     Route::get('/corte/caja', 'CajaCorteController@index')->name('caja_corte.index');
     Route::post('/corte/caja/store', 'CajaCorteController@store')->name('caja_corte.store');
     Route::get('/corte/caja/pdf', 'CajaCorteController@pdf')->name('caja_corte.pdf');
-
-
+    Route::post('/corte/caja/cerrar', 'CajaCorteController@cerrar')->name('caja_corte.cerrar');
 
 });
 

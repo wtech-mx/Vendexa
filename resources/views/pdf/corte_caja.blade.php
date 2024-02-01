@@ -132,55 +132,145 @@
                 <div class="row" >
                     <div style="width: 50%; float:left">
                         <blockquote class="blockquote">
-                            <p class="display-4 from" style="color: #577590;font-size: 25px;">
-                                <strong>Datos de la empresa </strong>
-                            </p>
-
-                            <p class="text-right  text-white" style="color: #000;font-size: 18px;">
-                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/fuente.webp') }}" style="">
-                                Empresa: {{$configuracion->Empresa->nombre}}
-                            </p>
-
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/telefono.png.webp') }}" style="">
                                 Telefeono: {{$configuracion->Empresa->telefono}}
                             </p>
-
-                            <p class="text-right  text-white" style="color: #000;font-size: 18px;">
-                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/sobre.png.webp') }}" style="">
-                                Direccion: {{$configuracion->Direccion->calle_numero}}, {{$configuracion->Direccion->codigo_postal}}
-                            </p>
-
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/sobre.png.webp') }}" style="">
                                 Correo: {{$configuracion->Empresa->correo}}
+                            </p>
+                            <p class="blockquote-footer text-white para" style="color: #000;font-size: 18px;">
+                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/coins.webp') }}" style="">
+                                Inicio en caja: ${{number_format($caja_corte->inicio, 2, '.', ',')}}
+                            </p>
+                            <p class="blockquote-footer text-white para" style="color: #000;font-size: 18px;">
+                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/efectivo.webp') }}" style="">
+                                Cobros en efectivo: ${{number_format($sumaEfectivo, 2, '.', ',')}}
                             </p>
                         </blockquote>
                     </div>
 
                     <div style="width: 50%; float:right">
                         <blockquote class="blockquote">
-                            <p class="display-4 from" style="color: #577590;font-size: 25px;">
-                                <strong>Corte caja </strong>
-                            </p>
                             <p class="blockquote-footer text-white para" style="color: #000;font-size: 18px;">
-                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/coins.webp') }}" style="">
-                                Inicio en caja: {{$caja_corte->inicio}}
-                            </p>
-                            <p class="blockquote-footer text-white para" style="color: #000;font-size: 18px;">
-                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/efectivo.webp') }}" style="">
-                                Cobros en efectivo: {{$caja_corte->ingresos}}
+                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/gastos.png.webp') }}" style="">
+                                Ingreso: ${{number_format($sumaIngresos, 2, '.', ',')}}
                             </p>
                             <p class="blockquote-footer text-white para" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/gastos.png.webp') }}" style="">
-                                Retiros: {{$caja_corte->egresos}}
+                                Total: ${{number_format($caja_corte->ingresos, 2, '.', ',')}}
+                            </p>
+                            <p class="blockquote-footer text-white para" style="color: #000;font-size: 18px;">
+                                <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/gasto.webp') }}" style="">
+                                Retiros: ${{number_format($caja_corte->egresos, 2, '.', ',')}}
                             </p>
                             <p class="blockquote-footer text-white para" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/bolsa-de-dinero.webp') }}" style="">
-                                Efectivo en caja: {{$caja_corte->total}}
+                                Efectivo en caja: ${{number_format($caja_corte->total, 2, '.', ',')}}
                             </p>
                         </blockquote>
                     </div>
+                </div>
+
+                <div class="row">
+
+                        <p class="hijo_uno" style="color: #577590;font-size: 25px;">
+                            <strong>Totales</strong>
+                        </p>
+                        @if ($configuracion->tarjeta == 1)
+                            <div class="col-3">
+                                    <a class="text-center mt-3">
+                                        <img src="{{ asset('assets/media/icons/t debito.webp') }}" alt="" class="img_icon_pdf">
+                                    </a>
+                                    <a class="text_minicards text-center">Tarjeta : <strong> ${{number_format($sumaTarjeta, 2, '.', ',')}} </strong></a>
+                            </div>
+                        @endif
+                        @if ($configuracion->efectivo == 1)
+                            <div class="col-3">
+                                    <a class="text-center mt-3">
+                                        <img src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="" class="img_icon_pdf">
+                                    </a>
+                                    <a class="text_minicards text-center">Efectivo : <strong> ${{number_format($sumaEfectivo, 2, '.', ',')}} </strong></a>
+                            </div>
+                        @endif
+                        @if ($configuracion->transferencia == 1)
+                            <div class="col-3">
+                                    <a class="text-center mt-3">
+                                        <img src="{{ asset('assets/media/icons/pago-movil.webp') }}" alt="" class="img_icon_pdf">
+                                    </a>
+                                    <a class="text_minicards text-center">Transferencias : <strong> ${{number_format($sumaTransferencia, 2, '.', ',')}} </strong></a>
+                            </div>
+                        @endif
+                        @if ($configuracion->mercado_pago == 1)
+                            <div class="col-3">
+                                    <a class="text-center mt-3">
+                                        <img src="{{ asset('assets/media/icons/t credito.png.webp') }}" alt="" class="img_icon_pdf">
+                                    </a>
+                                    <a class="text_minicards text-center">Mercado Pago : <strong> ${{number_format($sumaMercadoPago, 2, '.', ',')}} </strong> </a>
+                            </div>
+                        @endif
+
+                        <p class="hijo_uno" style="color: #577590;font-size: 25px;">
+                            <strong>Ingresos</strong>
+                        </p>
+                        @foreach ($registrosIngresos as $registroIngreso)
+                            <div class="col-12">
+                                <p style="color: #000;font-size: 18px;">
+                                    <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/ingresos.webp') }}" style="">
+                                    Concepto: {{$registroIngreso->concepto}}
+                                </p>
+                                <p style="color: #000;font-size: 18px;">
+                                    <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/efectivo.webp') }}" style="">
+                                    Monto:${{number_format($registroIngreso->monto, 2, '.', ',')}}
+                                </p>
+                            </div>
+                        @endforeach
+
+
+                        <p class="hijo_uno" style="color: #577590;font-size: 25px;">
+                            <strong>Retiros</strong>
+                        </p>
+                        @foreach ($registrosEgresos as $registroEgreso)
+                            <div class="col-12">
+                                <p style="color: #000;font-size: 18px;">
+                                    <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/gasto.webp') }}" style="">
+                                    Concepto: {{$registroEgreso->concepto}}
+                                </p>
+                                <p style="color: #000;font-size: 18px;">
+                                    <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/efectivo.webp') }}" style="">
+                                    Monto:${{number_format($registroEgreso->monto, 2, '.', ',')}}
+                                </p>
+                            </div>
+                        @endforeach
+
+
+                        <p class="hijo_uno" style="color: #577590;font-size: 25px;">
+                            <strong>Ventas</strong>
+                        </p>
+                        @foreach ($registros as $registro)
+                            <div class="col-12">
+                                <a style="color: #000;font-size: 18px;">
+                                    <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/gasto.webp') }}" style="">
+                                    No. nota: {{$registro->id_orden}}
+                                </a>
+                                <a style="color: #000;font-size: 18px;">
+                                    <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/efectivo.webp') }}" style="">
+                                    Metodo de pago:{{$registro->metodo_pago}} @if ($registro->metodo_pago2 != NULL) <br> {{$registro->metodo_pago2}} @endif
+                                </a>
+                                <a style="color: #000;font-size: 18px;">
+                                    <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/efectivo.webp') }}" style="">
+                                    Monto:${{number_format($registro->dinero_recibido, 2, '.', ',')}} @if ($registro->dinero_recibido2 != NULL) <br> ${{number_format($registro->dinero_recibido2, 2, '.', ',')}} @endif
+                                </a>
+                                @if ($registro->cambio > 0)
+                                    <a style="color: #000;font-size: 18px;">
+                                        <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/efectivo.webp') }}" style="">
+                                        Cambio:${{number_format($registro->cambio, 2, '.', ',')}} <br> ${{number_format($registro->dinero_recibido2, 2, '.', ',')}}
+                                    </a>
+                                @endif
+
+                            </div>
+                        @endforeach
 
                 </div>
 

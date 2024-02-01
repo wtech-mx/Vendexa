@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CajaEgresos;
 use App\Models\Clientes;
 use App\Models\Configuraciones;
 use App\Models\DatosFacturas;
@@ -183,13 +184,27 @@ class CajaController extends Controller
         if($request->get('inlineCorizacion') == 'No'){
             $orden_pagos = new OrdenesPagos;
             $orden_pagos->id_orden = $orden->id;
+            if($request->get('dineroRecibido2') == NULL){
+                $dineroRecibido2 = 0;
+            }else{
+                $dineroRecibido2 = $request->get('dineroRecibido2');
+            }
 
             if($request->get('cambio') > 0){
                 $suma = $request->get('dineroRecibido') + $request->get('dineroRecibido2');
                 $monto = $suma - $request->get('cambio');
                 $orden_pagos->monto = $monto;
+
+                $cambio = new CajaEgresos;
+                $cambio->id_user = auth()->user()->id;
+                $cambio->id_empresa = auth()->user()->id_empresa;
+                $cambio->concepto = 'Cambio nota: #'.$orden->id;
+                $cambio->monto = $request->get('cambio');
+                $cambio->fecha = $fechaActual;
+                $cambio->save();
+
             }else{
-                $orden_pagos->monto = $request->get('dineroRecibido');
+                $orden_pagos->monto = $request->get('dineroRecibido') + $dineroRecibido2;
             }
 
             $orden_pagos->dinero_recibido = $request->get('dineroRecibido');

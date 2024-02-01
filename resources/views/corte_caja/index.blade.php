@@ -22,23 +22,23 @@
             <h5 class="tittle_orders text-center mt-2 mb-3">
                 ¡ Corte Caja !
             </h5>
+
+            @if ($caja_corte_global->total == NULL)
+            <form class="d-flex" role="search" action="{{ route('caja_corte.cerrar') }}" method="GET" id="miFormularioCorte">
+                <button type="submit" class="btn btn_save_custom">Cerrar caja</button>
+            </form>
+            @endif
+
+            @if ($caja_corte_global->total != NULL)
+                <a href="{{ route('caja_corte.pdf') }}" class="btn btn_save_custom">Imprimir reporte</a>
+            @endif
+
         </div>
 
         <div class="col-12 mt-3">
 
 
             <div class="row justify-content-center">
-
-                <div class="col-3 d-flex justify-content-center animation_card_header">
-                    <div class="card_header_dash mb-3">
-                        <p class="text-center mt-3">
-                            <img src="{{ asset('assets/media/icons/gasto.webp') }}" alt="" class="img_card_head_dash">
-                        </p>
-                        <p class="text_minicards text-center">Egresos <br> <strong> ${{number_format($sumaEgresos, 2, '.', ',')}} </strong>
-                        </p>
-                    </div>
-                </div>
-
                 <div class="col-3 d-flex justify-content-center animation_card_header">
                     <div class="card_header_dash mb-3">
                         <p class="text-center mt-3">
@@ -46,6 +46,16 @@
                         </p>
                         <p class="text_minicards text-center">Ingresos <br> <strong> ${{number_format($sumaCaja, 2, '.', ',')}} </strong>
 
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-3 d-flex justify-content-center animation_card_header">
+                    <div class="card_header_dash mb-3">
+                        <p class="text-center mt-3">
+                            <img src="{{ asset('assets/media/icons/gasto.webp') }}" alt="" class="img_card_head_dash">
+                        </p>
+                        <p class="text_minicards text-center">Retiros <br> <strong> ${{number_format($sumaEgresos, 2, '.', ',')}} </strong>
                         </p>
                     </div>
                 </div>
@@ -168,4 +178,74 @@
 
 </section>
 
+@endsection
+@section('js_custom_cliente')
+<script>
+
+    $(document).ready(function() {
+
+        $("#miFormularioCorte").on("submit", function (event) {
+
+            event.preventDefault(); // Evita el envío predeterminado del formulario
+
+            // $(this).html('Sending..');
+
+            // Realiza la solicitud POST usando AJAX
+            $.ajax({
+                        url: $(this).attr("action"),
+                        type: "POST",
+                        data: new FormData(this),
+                        contentType: false,
+                        processData: false,
+                        success: async function(response) { // Agrega "async" aquí
+                            // El formulario se ha enviado correctamente, ahora realiza la impresión
+                            saveSuccessClientCreate(response);
+
+                        },
+                        error: function (xhr, status, error) {
+                                var errors = xhr.responseJSON.errors;
+                                var errorMessage = '';
+
+                                // Itera a través de los errores y agrega cada mensaje de error al mensaje final
+                                for (var key in errors) {
+                                    if (errors.hasOwnProperty(key)) {
+                                        var errorMessages = errors[key].join('<br>'); // Usamos <br> para separar los mensajes
+                                        errorMessage += '<strong>' + key + ':</strong><br>' + errorMessages + '<br>';
+                                    }
+                                }
+                                console.log(errorMessage);
+                                // Muestra el mensaje de error en una SweetAlert
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Faltan Campos',
+                                    html: errorMessage, // Usa "html" para mostrar el mensaje con formato HTML
+                                });
+                        }
+                    });
+
+        });
+
+        async function saveSuccessClientCreate(response) {
+            const cliente_data = response.cliente_data;
+
+            Swal.fire({
+                    title: "Corte realizado <strong>¡Exitosamente!</strong>",
+                    icon: "success",
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" >Descargar reporte</a>',
+                    cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="" >Cerrar</a>`,
+                }).then(() => {
+                    // Recarga la página
+                    window.open(`/corte/caja/pdf`, '_blank');
+                    location.reload();
+                });
+
+        }
+
+    });
+
+
+</script>
 @endsection
