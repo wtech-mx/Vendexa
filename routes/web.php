@@ -47,7 +47,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     // ============================================= M O D U L O   C L I E N T E S =========================================
 
-    Route::get('/clientes', 'ClienteController@index')->name('clientes.index');
+    Route::get('/clientes/{code}', 'ClienteController@index')->name('clientes.index');
     Route::get('/clientes/filtro', 'ClienteController@filtro')->name('clientes.filtro');
     Route::get('/clientes/show/{id}', 'ClienteController@show')->name('clientes.show');
     Route::post('/clientes/store', 'ClienteController@store')->name('clientes.store');
@@ -56,7 +56,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     // ============================================= M O D U L O   P R O D U C T O S =======================================
 
-    Route::get('/productos', 'ProductosController@index')->name('productos.index');
+    Route::get('/productos/{code}', 'ProductosController@index')->name('productos.index');
     Route::post('/productos/store', 'ProductosController@store')->name('productos.store');
     Route::patch('/productos/update/{id}', 'ProductosController@update')->name('productos.update');
     Route::get('/productos/filtro', 'ProductosController@filtro')->name('productos.filtro');
@@ -68,7 +68,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     // ============================================= M O D U L O   C A J A =================================================
 
-    Route::get('/caja', 'CajaController@index')->name('caja_sincodigo.index');
+    Route::get('/caja/{code}', 'CajaController@index')->name('caja_sincodigo.index');
     Route::get('/caja/{id}', 'CajaController@index')->name('caja.index');
     Route::get('/agregar-al-carrito', 'CajaController@agregarAlCarrito')->name('agregar.al.carrito');
     Route::post('/caja/store', 'CajaController@store')->name('caja.store');
@@ -77,12 +77,12 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     // ============================================= M O D U L O   O R D E N E S ===========================================
 
-    Route::get('/orders', 'OrdersController@index')->name('orders.index');
+    Route::get('/orders/{code}', 'OrdersController@index')->name('orders.index');
     Route::get('/orders/ticket/{id}', 'OrdersController@show')->name('orders.show');
 
     // ============================================= M O D U L O  T R A B A J A D O R E S ==================================
 
-    Route::get('/trabajadores', 'TrabajadoresController@index')->name('trabajadores.index');
+    Route::get('/trabajadores/{code}', 'TrabajadoresController@index')->name('trabajadores.index');
     Route::post('/trabajadores/store', 'TrabajadoresController@store')->name('trabajadores.store');
     Route::get('/trabajadores/show/{id}', 'TrabajadoresController@show')->name('trabajadores.show');
     Route::patch('/empleados/update/{id}', 'TrabajadoresController@update')->name('empleados.update');
@@ -94,7 +94,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     // ============================================= M O D U L O  C O T I Z A C I O N E S ==================================
 
-    Route::get('/cotizaciones', 'CotizacionesController@index')->name('cotizaciones.index');
+    Route::get('/cotizaciones/{code}', 'CotizacionesController@index')->name('cotizaciones.index');
     Route::post('/cotizaciones/store', 'CotizacionesController@store')->name('cotizaciones.store');
     Route::patch('/cotizaciones/update/{id}', 'CotizacionesController@update')->name('cotizaciones.update');
     Route::get('/cotizaciones/filtro', 'CotizacionesController@filtro')->name('cotizaciones.filtro');
@@ -102,14 +102,14 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     // ============================================= M O D U L O  R E P O R T E S ==================================
 
-    Route::get('/reportes', 'ReportesController@index')->name('reportes.index');
+    Route::get('/reportes/{code}', 'ReportesController@index')->name('reportes.index');
     Route::get('/reportes/filtro/caja', 'ReportesController@filtro_caja')->name('reportes.filtro_caja');
     Route::get('/reportes/filtro/producto', 'ReportesController@filtro_productos')->name('reportes.filtro_producto');
     Route::get('/reportes/caja/pdf/{fechaInicio}/{fechaFin}', 'ReportesController@pdf_caja')->name('reportes_caja.pdf');
 
     // ============================================= M O D U L O  C O R T E =====================================================
 
-    Route::get('/corte/caja', 'CajaCorteController@index')->name('caja_corte.index');
+    Route::get('/corte/caja/{code}', 'CajaCorteController@index')->name('caja_corte.index');
     Route::post('/corte/caja/store', 'CajaCorteController@store')->name('caja_corte.store');
     Route::get('/corte/caja/pdf', 'CajaCorteController@pdf')->name('caja_corte.pdf');
     Route::post('/corte/caja/cerrar', 'CajaCorteController@cerrar')->name('caja_corte.cerrar');

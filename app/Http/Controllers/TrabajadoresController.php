@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 
 class TrabajadoresController extends Controller
 {
-    public function index(){
+    public function index($code){
         $user = auth()->user()->id_empresa;
 
         $trabajadores = User::where('id_empresa', $user)->orderBy('id', 'DESC')->take(100)->get();

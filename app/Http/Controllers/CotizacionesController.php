@@ -14,7 +14,7 @@ use League\Config\Configuration;
 
 class CotizacionesController extends Controller
 {
-    public function index(){
+    public function index($code){
         $user = auth()->user()->id_empresa;
 
         $cotizaciones = Ordenes::where('id_empresa', $user)->where('cotizacion', '=', 'Si')->Orderby('id','DESC')->take(100)->get();

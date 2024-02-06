@@ -550,7 +550,7 @@
                         showCloseButton: true,
                         showCancelButton: true,
                         focusConfirm: false,
-                        confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('productos.index') }}" >Ver Productos</a>',
+                        confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('productos.index', auth()->user()->Empresa->code) }}" >Ver Productos</a>',
                         cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="" >Cerrar</a>`,
                     }).then(() => {
                         // Recarga la página

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Validator;
 class ClienteController extends Controller
 {
 
-    public function index(){
+    public function index($code){
 
         $user = auth()->user()->id_empresa;
 

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CajaController extends Controller
 {
-    public function index(){
+    public function index($code){
         $user = auth()->user()->id_empresa;
 
         $productos = Productos::where('id_empresa', $user)->get();

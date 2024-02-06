@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CajaCorteController extends Controller
 {
-    public function index(){
+    public function index($code){
         $user = auth()->user()->id_empresa;
         $fechaActual = date('Y-m-d');
 

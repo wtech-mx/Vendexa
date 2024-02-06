@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Validator;
 
 class OrdersController extends Controller
 {
-    public function index(){
+    public function index($code){
         $user = auth()->user()->id_empresa;
 
         $ordenes = Ordenes::where('id_empresa', $user)->where('cotizacion', '=', 'No')->Orderby('id','DESC')->take(100)->get();

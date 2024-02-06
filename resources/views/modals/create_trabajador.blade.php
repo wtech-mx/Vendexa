@@ -248,7 +248,7 @@ $(document).ready(function() {
                 showCloseButton: true,
                 showCancelButton: true,
                 focusConfirm: false,
-                confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('trabajadores.index') }}" >Ver Empeados</a>',
+                confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('trabajadores.index', auth()->user()->Empresa->code) }}" >Ver Empeados</a>',
                 cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="" >Cerrar</a>`,
             }).then(() => {
                 // Recarga la página

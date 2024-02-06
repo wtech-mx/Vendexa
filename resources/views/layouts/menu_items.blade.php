@@ -4,7 +4,7 @@
         </p>
 </a>
 
-<a href="{{ route('home') }}" class="enlace_sidebar">
+<a href="{{ route('home', auth()->user()->Empresa->code) }}" class="enlace_sidebar">
     <li class="li_navbar d-flex justify-content-around">
         Panel <img class="icon_navbar" src="{{ asset('assets/media/icons/home.webp') }}" alt="">
     </li>
@@ -17,14 +17,14 @@
         </li>
     </a>
 @else
-    <a href="{{ route('caja_sincodigo.index') }}" class="enlace_sidebar">
+    <a href="{{ route('caja_sincodigo.index', auth()->user()->Empresa->code) }}" class="enlace_sidebar">
         <li class="li_navbar d-flex justify-content-around">
             Caja <img class="icon_navbar" src="{{ asset('assets/media/icons/puntoventa.webp') }}" alt="">
         </li>
     </a>
 @endif
 
-<a href="{{ route('caja_corte.index') }}" class="enlace_sidebar">
+<a href="{{ route('caja_corte.index', auth()->user()->Empresa->code) }}" class="enlace_sidebar">
     <li class="li_navbar d-flex justify-content-around">
         Corte <img class="icon_navbar" src="{{ asset('assets/media/icons/corte.webp') }}" alt="">
     </li>
@@ -37,37 +37,37 @@
     </li>
  </a> --}}
 
-<a href="{{ route('productos.index') }}" class="enlace_sidebar">
+<a href="{{ route('productos.index', auth()->user()->Empresa->code) }}" class="enlace_sidebar">
     <li class="li_navbar d-flex justify-content-around">
         Productos  <img class="icon_navbar" src="{{ asset('assets/media/icons/carrito.webp') }}" alt="">
     </li>
 </a>
 
-<a href="{{ route('orders.index') }}" class="enlace_sidebar">
+<a href="{{ route('orders.index', auth()->user()->Empresa->code) }}" class="enlace_sidebar">
     <li class="li_navbar d-flex justify-content-around">
         Ordenes  <img class="icon_navbar" src="{{ asset('assets/media/icons/validando-billete.webp') }}" alt="">
     </li>
 </a>
 
-<a href="{{ route('cotizaciones.index') }}" class="enlace_sidebar">
+<a href="{{ route('cotizaciones.index', auth()->user()->Empresa->code) }}" class="enlace_sidebar">
     <li class="li_navbar d-flex justify-content-around">
         Cotizaciones  <img class="icon_navbar" src="{{ asset('assets/media/icons/quotes.webp') }}" alt="">
     </li>
 </a>
 
-<a href="{{ route('clientes.index') }}" class="enlace_sidebar">
+<a href="{{ route('clientes.index', auth()->user()->Empresa->code) }}" class="enlace_sidebar">
     <li class="li_navbar d-flex justify-content-around">
         Clientes <img class="icon_navbar" src="{{ asset('assets/media/icons/clientes.webp') }}" alt="">
     </li>
  </a>
 
- <a href="{{ route('trabajadores.index') }}" class="enlace_sidebar">
+ <a href="{{ route('trabajadores.index', auth()->user()->Empresa->code) }}" class="enlace_sidebar">
     <li class="li_navbar d-flex justify-content-around">
         Empleados <img class="icon_navbar" src="{{ asset('assets/media/icons/empleados.webp') }}" alt="">
     </li>
  </a>
 
- <a href="{{ route('reportes.index') }}" class="enlace_sidebar">
+ <a href="{{ route('reportes.index', auth()->user()->Empresa->code) }}" class="enlace_sidebar">
     <li class="li_navbar d-flex justify-content-around">
         Reportes <img class="icon_navbar" src="{{ asset('assets/media/icons/charts-imageonline.co-6846928.webp') }}" alt="">
     </li>

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductosController extends Controller
 {
-    public function index(){
+    public function index($code){
         $now = Carbon::now();
         $mesActual = $now->month;
         $user = auth()->user()->id_empresa;
