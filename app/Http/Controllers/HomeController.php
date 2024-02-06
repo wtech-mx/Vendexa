@@ -10,6 +10,8 @@ use App\Models\Ordenes;
 use App\Models\OrdenesPagos;
 use App\Models\Proveedores;
 use App\Models\SubCategorias;
+use App\Models\Empresas;
+use App\Models\Licencias;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DB;
@@ -133,6 +135,8 @@ class HomeController extends Controller
         $user = auth()->user();
         $fechaActual = date('Y-m-d');
 
-        return view('home_admin', compact('user'));
+        $empresas = Empresas::get();
+
+        return view('home_admin', compact('user','empresas'));
     }
 }

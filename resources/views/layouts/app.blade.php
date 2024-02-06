@@ -159,32 +159,7 @@ if (!isset($_COOKIE['mostrarModal'])) {
             var token = $('meta[name="csrf-token"]').attr('content');
 
 
-            var telefonoInput = document.getElementById('telefono_input');
-            var telefono_input_client = document.getElementById('telefono_input_client');
 
-
-            telefonoInput.addEventListener('input', function(event) {
-                // Eliminar caracteres no numéricos
-                var phoneNumber = event.target.value.replace(/\D/g, '');
-
-                // Limitar a 10 dígitos
-                phoneNumber = phoneNumber.slice(0, 10);
-
-                // Actualizar el valor del input
-                event.target.value = phoneNumber;
-            });
-
-
-            telefono_input_client.addEventListener('input', function(event) {
-                // Eliminar caracteres no numéricos
-                var phoneNumber = event.target.value.replace(/\D/g, '');
-
-                // Limitar a 10 dígitos
-                phoneNumber = phoneNumber.slice(0, 10);
-
-                // Actualizar el valor del input
-                event.target.value = phoneNumber;
-            });
 
         </script>
 
@@ -199,6 +174,7 @@ if (!isset($_COOKIE['mostrarModal'])) {
         @yield('js_custom_caja_reg')
         @yield('js_custom_cliente')
         @yield('js_custom_settings')
+        @yield('js_custom_licencias')
 
 
 </body>
