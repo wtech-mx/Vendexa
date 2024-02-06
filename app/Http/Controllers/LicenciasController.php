@@ -53,4 +53,29 @@ class LicenciasController extends Controller
 
     }
 
+    public function update(Request $request,$id){
+
+        $validator = Validator::make($request->all(), [
+            'membrecia' => 'required',
+            'codigo' => 'required',
+            'estatus' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $licencia = Licencias::find($id);
+        $licencia->codigo = $request->get('codigo');
+        $licencia->estatus = $request->get('estatus');
+        $licencia->vendedor = $request->get('vendedor');
+        $licencia->comentario = $request->get('comentario');
+        $licencia->membrecia = $request->get('membrecia');
+        $licencia->caducidad = $request->get('caducidad');
+        $licencia->update();
+
+        return response()->json(['success' => true]);
+
+    }
+
 }

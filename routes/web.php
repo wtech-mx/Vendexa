@@ -46,6 +46,8 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     Route::post('/licencias/crear', 'LicenciasController@store')->name('licencias.store');
 
+    Route::patch('/licencias/update/{id}', 'LicenciasController@update')->name('licencias.update');
+
 
     // ============================================= M O D U L O   C O N F I G U R A C I O N ===============================
 

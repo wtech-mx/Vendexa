@@ -45,96 +45,116 @@
 
         </div>
 
+        <div class="col-12 mb-5">
+            <div class="d-flex justify-content-center row ">
+
+                <a class="card_box_colores me-5 stock">
+                    <p class="text_estatus_product">Vigente</p>
+                </a>
+
+                <a class="card_box_colores me-5 ms-5 lowStock">
+                    <p class="text_estatus_product">Por vencer</p>
+                </a>
+
+                <a class="card_box_colores me-5 ms-5 outStock">
+                    <p class="text_estatus_product">Caducada</p>
+                </a>
+            </div>
+        </div>
+
         <div class="row medidor_altura">
 
             @foreach ($empresas as $item)
+                @foreach ($item->Licencias as $licencia)
 
-            <div class="col-12 col-sm-12 col-md-6 col-xl-4 px-2 px-md-4 px-lg-3 py-2 py-md-3 py-lg-1">
+                    <div class="col-12 col-sm-12 col-md-6 col-xl-4 px-2 px-md-4 px-lg-3 py-2 py-md-3 py-lg-1">
 
-                <div class="row bg_minicart_ventas">
+                        <div class="row bg_minicart_ventas">
 
-                    <div class="col-2 col-sm-3  col-md-3 col-lg-3 my-auto">
-                        <p class="text-center" style="margin: 0">
-                            @if($item->logo == NULL)
-                                <img class="img_perfil_empleado" src="{{ asset('assets/media/icons/user_predeterminado.webp') }}" alt="">
-                            @else
-                                <img class="img_perfil_empleado" src="{{ asset('logo/empresa'.$item->id.'/'.$item->logo) }}" alt="">
-                            @endif
-                        </p>
-                    </div>
-
-                    <div class="col-10 col-sm-9  col-md-9 col-lg-9">
-
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="text_empleado text-start">Empresa</p>
-                            </div>
-
-                            <div class="col-6">
-                                <p class="text_empleado text-end"><strong> #{{$item->id}}</strong></p>
-                            </div>
-
-                            <div class="col-12 mb-2">
-                                <P class="text_empleado_value text-start">
-                                    {{$item->nombre}}
-                                </P>
-                            </div>
-
-                            <div class="col-4 mb-1">
-                                <p class="text_subtittle_ventas text-start">
-                                    <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/telefono.png.webp') }}" alt="">
-                                    Tel
-                                </p>
-                                <p class="text_subtittle_ventas_sv text-center">
-                                    {{$item->telefono}}
+                            <div class="col-2 col-sm-3  col-md-3 col-lg-3 my-auto">
+                                <p class="text-center" style="margin: 0">
+                                    @if($item->logo == NULL)
+                                        <img class="img_perfil_empleado" src="{{ asset('assets/media/icons/user_predeterminado.webp') }}" alt="">
+                                    @else
+                                        <img class="img_perfil_empleado" src="{{ asset('logo/empresa'.$item->id.'/'.$item->logo) }}" alt="">
+                                    @endif
                                 </p>
                             </div>
 
+                            <div class="col-10 col-sm-9  col-md-9 col-lg-9">
 
-                            <div class="col-4 mb-1">
-                                <p class="text_subtittle_ventas text-start">
-                                    <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/sobre.png.webp') }}" alt="">
-                                    Correo
-                                </p>
-                                <p class="text_subtittle_ventas_sv text-center">
-                                    {{$item->correo}}
-                                </p>
-                            </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p class="text_empleado text-start">Empresa</p>
+                                    </div>
 
-                            <div class="col-4 mb-1">
-                                <p class="text_subtittle_ventas text-start">
-                                    <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/carrito.webp') }}" alt="">
-                                    Arts
-                                </p>
-                                <p class="text_subtittle_ventas_sv text-center">
-                                    #
-                                </p>
-                            </div>
+                                    <div class="col-6">
+                                        <p class="text_empleado text-end"><strong> #{{$item->id}}</strong></p>
+                                    </div>
 
-                            <div class="col-12 mb-2 mt-2">
-                                <div class="d-flex justify-content-between  ">
-                                    <P class="text_empleado_value text-start mt-2">
-                                    </P>
+                                    <div class="col-12 mb-2">
+                                        <P class="text_empleado_value text-start">
+                                            {{$item->nombre}}
+                                        </P>
+                                    </div>
 
-                                    {{-- <a type="button" class="btn btn-sm btn_edit_prodcut_primary" href="{{ route('home',auth()->user()->Empresa->code) }}">
-                                        Details <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/business-card-design.webp') }}" alt="">
-                                    </a> --}}
+                                    <div class="col-4 mb-1">
+                                        <p class="text_subtittle_ventas text-start">
+                                            <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/telefono.png.webp') }}" alt="">
+                                            Tel
+                                        </p>
+                                        <p class="text_subtittle_ventas_sv text-center">
+                                            {{$item->telefono}}
+                                        </p>
+                                    </div>
 
-                                    <a type="button" class="btn btn-sm btn_edit_prodcut_primary" href="{{ route('home',$item->code) }}">
-                                        Ver <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/editar.webp') }}" alt="">
-                                    </a>
+
+                                    <div class="col-4 mb-1">
+                                        <p class="text_subtittle_ventas text-start">
+                                            <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/sobre.png.webp') }}" alt="">
+                                            Correo
+                                        </p>
+                                        <p class="text_subtittle_ventas_sv text-center">
+                                            {{$item->correo}}
+                                        </p>
+                                    </div>
+
+                                    <div class="col-4 mb-1">
+                                        <p class="text_subtittle_ventas text-start">
+                                            <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/carrito.webp') }}" alt="">
+                                            Arts
+                                        </p>
+                                        <p class="text_subtittle_ventas_sv text-center">
+                                            #
+                                        </p>
+                                    </div>
+
+                                    <div class="col-12 mb-2 mt-2">
+                                        <div class="d-flex justify-content-between  ">
+                                            <P class="text_empleado_value text-start mt-2">
+                                            </P>
+
+                                            <a type="button" class="btn btn-sm btn_edit_prodcut_warning" data-bs-toggle="modal" data-bs-target="#editLiceincia_{{ $item->id }}">
+                                                Licencia <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/business-card-design.webp') }}" alt="">
+                                            </a>
+
+                                            <a type="button" class="btn btn-sm btn_edit_prodcut_primary" href="{{ route('home',$item->code) }}">
+                                                Ver <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/editar.webp') }}" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+
                                 </div>
+
                             </div>
 
                         </div>
 
                     </div>
 
-                </div>
+                    @include('modals.edit_licencias')
 
-            </div>
-
-
+                @endforeach
             @endforeach
 
         </div>

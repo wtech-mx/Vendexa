@@ -29,4 +29,10 @@ class Empresas extends Model
     {
         return $this->belongsTo(Direcciones::class, 'id_direccion');
     }
+
+    public function Licencias()
+    {
+        return $this->hasMany(Licencias::class, 'id_empresa');
+    }
+
 }
