@@ -34,9 +34,10 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     // ============================================= G E N E R A L E S =====================================================
 
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home/{code}', 'HomeController@index')->name('home');
 
     Route::get('/home_admin/{id}', 'HomeController@index_admin')->name('home_admin');
+
     Route::get('/empresas', 'EmpresasContoller@index')->name('empresas.index');
 
     Route::get('/scanner', 'ScannerController@index')->name('scanner.index');

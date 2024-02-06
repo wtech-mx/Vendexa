@@ -37,9 +37,10 @@ class CustomAuthController extends Controller
                     return redirect()->route('home_admin', $id)->withSuccess('Sesión iniciada');
 
                 }else{
-                    // return redirect('/home');
-                    return redirect()->route('home');
-                }
+
+                    $code = auth()->user()->Empresa->code;
+
+                    return redirect()->route('home', $code)->withSuccess('Sesión iniciada');                }
 
         }else{
             return redirect()->back()->with('warning', 'Telefono incorrecto.');

@@ -89,7 +89,16 @@ if (!isset($_COOKIE['mostrarModal'])) {
             @include('layouts.menu_items')
         </ul>
 
-        <div id="mobileBodyContent">
+        @if(auth()->user()->estatus_rol == 'Superadmin_root')
+            <div id="mobileBodyContent" style="border: solid 6px #2fff02;border-radius: 9px;">
+
+            @else
+
+            <div id="mobileBodyContent no_ad" style="">
+
+        @endif
+
+
                 <main class="">
                     @yield('content')
                 </main>

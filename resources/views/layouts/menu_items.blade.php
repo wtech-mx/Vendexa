@@ -1,4 +1,4 @@
-<a href="{{ route('home') }}" class="enlace_sidebar">
+<a href="{{ route('home',auth()->user()->Empresa->code) }}" class="enlace_sidebar">
         <p class="text-left mb-0">
             <img class="logo_empresa" src="{{ asset('logo/empresa'.auth()->user()->id_empresa.'/'.$configuracion->logo) }}" alt="">
         </p>

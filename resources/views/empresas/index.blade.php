@@ -116,11 +116,11 @@
                                     <P class="text_empleado_value text-start mt-2">
                                     </P>
 
-                                    {{-- <a type="button" class="btn btn-sm btn_edit_prodcut_warning" href="{{ route('empresasa.show', $item->id) }}">
+                                    {{-- <a type="button" class="btn btn-sm btn_edit_prodcut_primary" href="{{ route('home',auth()->user()->Empresa->code) }}">
                                         Details <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/business-card-design.webp') }}" alt="">
                                     </a> --}}
 
-                                    <a type="button"  class="btn btn-sm btn_edit_prodcut_primary" data-bs-toggle="modal" data-bs-target="#editEmpleado{{ $item->id }}">
+                                    <a type="button" class="btn btn-sm btn_edit_prodcut_primary" href="{{ route('home',$item->code) }}">
                                         Ver <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/editar.webp') }}" alt="">
                                     </a>
                                 </div>
