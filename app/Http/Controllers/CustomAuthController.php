@@ -30,13 +30,20 @@ class CustomAuthController extends Controller
 
         if(auth()->attempt(array($fieldType => $input['telefono'], 'password' => $input['password']))){
 
-            return redirect('/home');
+                if(Auth::user()->estatus_rol == 'Superadmin_root'){
+
+                    $id = Auth::user()->id;
+
+                    return redirect()->route('home_admin', $id)->withSuccess('Sesión iniciada');
+
+                }else{
+                    // return redirect('/home');
+                    return redirect()->route('home');
+                }
 
         }else{
-            return redirect()->back()
-            ->with('warning', 'Telefono incorrecto.');;
+            return redirect()->back()->with('warning', 'Telefono incorrecto.');
         }
-
     }
 
     public function signOut() {

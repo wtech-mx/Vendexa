@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('password_caja')->unique();
             $table->text('foto')->nullable();
+            $table->string('estatus_rol')->nullable();
             $table->rememberToken();
 
             $table->unsignedBigInteger('id_direccion')->nullable();

@@ -127,4 +127,12 @@ class HomeController extends Controller
 
         return view('home', compact('user', 'conteoCompras', 'conteoCotizaciones', 'sumaEfectivo', 'sumaIngresos', 'sumaTransferencia', 'sumaTarjeta', 'sumaMercadoPago'));
     }
+
+    public function index_admin($id)
+    {
+        $user = auth()->user();
+        $fechaActual = date('Y-m-d');
+
+        return view('home_admin', compact('user'));
+    }
 }
