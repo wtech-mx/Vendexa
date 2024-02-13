@@ -78,4 +78,33 @@ class LicenciasController extends Controller
 
     }
 
+    public function update_key(Request $request, $id){
+
+        $validator = Validator::make($request->all(), [
+            'key' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $licencia_global = Licencias::where('id_empresa', auth()->user()->id_empresa)->orderby('id','DESC')->first();
+        if($request->get('key') == $licencia_global->codigo){
+            $licencia = Licencias::find($id);
+            $licencia->estatus = 'Activado';
+            $licencia->update();
+
+            $licencia_data = [
+                "membrecia" => $licencia->membrecia,
+                "estatus" => $licencia->estatus,
+                "caducidad" => $licencia->caducidad,
+            ];
+            return response()->json(['success' => true, 'licencia_data' => $licencia_data]);
+        }else{
+
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+    }
+
 }

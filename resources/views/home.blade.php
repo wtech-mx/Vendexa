@@ -356,6 +356,7 @@
     </div>
 
 </section>
+@include('modals.key_licencia')
 @include('modals.create_product')
 @include('modals.create_trabajador')
 @include('modals.create_role')
@@ -482,5 +483,84 @@
             });
         </script>
 
+    @endsection
+@endif
+
+@if($fechaActual_global > $licencia_global->caducidad || $licencia_global->estatus == 'Desactivado')
+    @section('js_custom')
+        {{-- mostrar modal configuracion inicial --}}
+        <script>
+
+            $(document).ready(function() {
+
+                // Llama a la función para mostrar el modal
+                mostrarModal();
+
+                function mostrarModal() {
+                    // Muestra el modal
+                    $("#key_licencia").css("display", "block");
+                }
+
+            });
+
+            $(document).ready(function() {
+                // {{-- Mensaje Guardado --}}
+                $("#miFormularioKeylicencia").on("submit", function (event) {
+                    event.preventDefault(); // Evita el envío predeterminado del formulario
+
+                    // Realiza la solicitud POST usando AJAX
+                    $.ajax({
+                        url: $(this).attr("action"),
+                        type: "POST",
+                        data: new FormData(this),
+                        contentType: false,
+                        processData: false,
+                        success: async function(response) { // Agrega "async" aquí
+                            // El formulario se ha enviado correctamente, ahora realiza la impresión
+                            saveSuccessFormConfig(response);
+
+                        },
+                        error: function (xhr, status, error) {
+                                var errors = xhr.responseJSON.errors;
+                                var errorMessage = '';
+
+                                // Itera a través de los errores y agrega cada mensaje de error al mensaje final
+                                for (var key in errors) {
+                                    if (errors.hasOwnProperty(key)) {
+                                        var errorMessages = errors[key].join('<br>'); // Usamos <br> para separar los mensajes
+                                        errorMessage += '<strong>' + key + ':</strong><br>' + errorMessages + '<br>';
+                                    }
+                                }
+                                console.log(errorMessage);
+                                // Muestra el mensaje de error en una SweetAlert
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Licencia Erronea',
+                                    html: errorMessage, // Usa "html" para mostrar el mensaje con formato HTML
+                                });
+                        }
+                    });
+
+                });
+
+                async function saveSuccessFormConfig(response) {
+                    const licencia_data = response.licencia_data;
+
+                    Swal.fire({
+                        title: "Licencia Activada <strong>¡Exitosamente!</strong>",
+                        icon: "success",
+                        html: "<div class='row'><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/business-card-design.webp') }}' ><p><strong>Membrecia:</strong> <br>"+ licencia_data.membrecia +"</p></div><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/semaforos.webp') }}' ><p><strong>Estatus:</strong><br>"+ licencia_data.estatus +" </p> </div><div class='col-6'><img class='icon_span_tab' src='{{ asset('assets/media/icons/calendar-dar.webp') }}' ><p><strong>Caducidad:</strong><br> "+ licencia_data.caducidad +"</p></div></div>",
+                        showCloseButton: true,
+                        showCancelButton: true,
+                        focusConfirm: false,
+                        cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="" >Cerrar</a>`,
+                    }).then(() => {
+                        // Recarga la página
+                        window.location.href = '/home/$code_global';
+                    });
+
+                }
+            });
+        </script>
     @endsection
 @endif

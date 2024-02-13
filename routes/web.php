@@ -40,6 +40,8 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     Route::get('/scanner', 'ScannerController@index')->name('scanner.index');
 
+    Route::patch('/key/update/{id}', 'LicenciasController@update_key')->name('key.update');
+
     // ============================================= M O D U L O   E M P R E S A S =====================================================
 
     Route::get('/empresas', 'EmpresasContoller@index')->name('empresas.index');

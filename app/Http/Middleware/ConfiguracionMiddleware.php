@@ -9,6 +9,7 @@ use App\Models\SubCategorias;
 use App\Models\Marcas;
 use App\Models\Categorias;
 use App\Models\Empresas;
+use App\Models\Licencias;
 use App\Models\Productos;
 use App\Models\User;
 use Closure;
@@ -20,7 +21,7 @@ class ConfiguracionMiddleware
     public function handle($request, Closure $next)
     {
         if(auth()->check()) {
-            $fechaActual = date('Y-m-d');
+            $fechaActual_global = date('Y-m-d');
             // Obtener la configuración y hacerla disponible en todas las vistas
             $configuracion = Configuraciones::where('id_empresa', auth()->user()->id_empresa)->first();
             $proveedores = Proveedores::where('id_empresa', auth()->user()->id_empresa)->get();
@@ -30,7 +31,8 @@ class ConfiguracionMiddleware
             $empresa = Empresas::where('id', auth()->user()->id_empresa)->first();
             $empleados = User::where('id_empresa', auth()->user()->id_empresa)->get();
             $productos_global = Productos::where('id_empresa', auth()->user()->id_empresa)->get();
-            $caja_corte_global = CajaCorte::where('fecha', '=', $fechaActual)->where('id_empresa', auth()->user()->id_empresa)->first();
+            $caja_corte_global = CajaCorte::where('fecha', '=', $fechaActual_global)->where('id_empresa', auth()->user()->id_empresa)->first();
+            $licencia_global = Licencias::where('id_empresa', auth()->user()->id_empresa)->orderby('id','DESC')->first();
 
             if(auth()->user()->estatus_rol == 'Superadmin_root'){
                 $code_global = $empresa->id;
@@ -39,6 +41,8 @@ class ConfiguracionMiddleware
             }
 
             // Compartir la configuración con todas las vistas
+            view()->share('fechaActual_global', $fechaActual_global);
+            view()->share('licencia_global', $licencia_global);
             view()->share('code_global', $code_global);
             view()->share('configuracion', $configuracion);
             view()->share('proveedores', $proveedores);
