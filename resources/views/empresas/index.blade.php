@@ -40,7 +40,7 @@
                   </a>
             </div>
               <div class="collapse" id="collapseFilter">
-                Procimamente
+                Proximamente
               </div>
 
         </div>
@@ -65,8 +65,6 @@
         <div class="row medidor_altura">
 
             @foreach ($empresas as $item)
-                @foreach ($item->Licencias as $licencia)
-
                     <div class="col-12 col-sm-12 col-md-6 col-xl-4 px-2 px-md-4 px-lg-3 py-2 py-md-3 py-lg-1">
 
                         <div class="row bg_minicart_ventas">
@@ -122,10 +120,10 @@
                                     <div class="col-4 mb-1">
                                         <p class="text_subtittle_ventas text-start">
                                             <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/carrito.webp') }}" alt="">
-                                            Arts
+                                            Dias Fal.
                                         </p>
                                         <p class="text_subtittle_ventas_sv text-center">
-                                            #
+                                            #0
                                         </p>
                                     </div>
 
@@ -150,11 +148,13 @@
 
                         </div>
 
+                        @foreach ($licencias as $licencia)
+                            @if ($licencia->id_empresa == $item->id)
+                                @include('modals.edit_licencias')
+                            @endif
+                        @endforeach
+
                     </div>
-
-                    @include('modals.edit_licencias')
-
-                @endforeach
             @endforeach
 
         </div>

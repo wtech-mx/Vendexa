@@ -140,7 +140,7 @@
                     cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="" >Cerrar</a>`,
                 }).then(() => {
                     // Recarga la página
-                window.location.href = '/home/';
+                window.location.href = '/home/$code_global';
                 });
 
         }

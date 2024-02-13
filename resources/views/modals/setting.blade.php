@@ -42,7 +42,7 @@
                                                 <span class="input-group-text span_custom_tab" >
                                                     <img class="icon_span_form" src="{{ asset('assets/media/icons/in-stock.webp') }}" alt="" >
                                                 </span>
-                                                <input  name="nombre_empresa" id="nombre_empresa" type="text"  class="form-control input_custom_tab_dark @error('nombre_empresa') is-invalid @enderror"  value="{{ old('nombre_empresa') }}" autocomplete="" autofocus>
+                                                <input  name="nombre_empresa" id="nombre_empresa" type="text"  class="form-control input_custom_tab_dark @error('nombre_empresa') is-invalid @enderror"  value="{{ old('nombre_empresa', $empresa->nombre) }}" autocomplete="" autofocus>
                                              </div>
                                          </div>
 
@@ -125,7 +125,7 @@
                                                 <span class="input-group-text span_custom_tab" >
                                                     <img class="icon_span_form" src="{{ asset('assets/media/icons/out-of-stock.webp') }}" alt="" >
                                                 </span>
-                                                <input  name="stock_bajo" id="stock_bajo" type="number"  class="form-control input_custom_tab_dark @error('stock_bajo') is-invalid @enderror"  value="{{ old('stock_bajo') }}"  autocomplete="" autofocus required>
+                                                <input  name="stock_bajo" id="stock_bajo" type="number"  class="form-control input_custom_tab_dark @error('stock_bajo') is-invalid @enderror"  value="{{ old('stock_bajo', $configuracion->stock_bajo) }}"  autocomplete="" autofocus required>
                                             </div>
                                         </div>
 
@@ -135,7 +135,7 @@
                                                 <span class="input-group-text span_custom_tab" >
                                                     <img class="icon_span_form" src="{{ asset('assets/media/icons/dead-stock.webp') }}" alt="" >
                                                 </span>
-                                                <input  name="stock_medio" id="stock_medio" type="number"  class="form-control input_custom_tab_dark @error('stock_medio') is-invalid @enderror"  value="{{ old('stock_medio') }}"  autocomplete="" autofocus required>
+                                                <input  name="stock_medio" id="stock_medio" type="number"  class="form-control input_custom_tab_dark @error('stock_medio') is-invalid @enderror"  value="{{ old('stock_medio', $configuracion->stock_medio) }}"  autocomplete="" autofocus required>
                                             </div>
                                         </div>
 
@@ -145,7 +145,7 @@
                                                 <span class="input-group-text span_custom_tab" >
                                                     <img class="icon_span_form" src="{{ asset('assets/media/icons/in-stock.webp') }}" alt="" >
                                                 </span>
-                                                <input  name="stock_alto" id="stock_alto" type="number"  class="form-control input_custom_tab_dark @error('stock_alto') is-invalid @enderror"  value="{{ old('stock_alto') }}"  autocomplete="" autofocus required>
+                                                <input  name="stock_alto" id="stock_alto" type="number"  class="form-control input_custom_tab_dark @error('stock_alto') is-invalid @enderror"  value="{{ old('stock_alto', $configuracion->stock_alto) }}"  autocomplete="" autofocus required>
                                             </div>
                                         </div>
 

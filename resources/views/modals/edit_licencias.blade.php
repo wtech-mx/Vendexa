@@ -88,6 +88,16 @@
                     </div>
 
                     <div class="form-group col-12 mb-3 p-2">
+                        <label for="name" class="label_custom_primary_product mb-2">Codigo : *</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text span_custom_primary_dark" >
+                                <img class="icon_span_form" src="{{ asset('assets/media/icons/gear.webp') }}" alt="" >
+                            </span>
+                            <input id="code" name="code" type="text" class="form-control input_custom_primary_dark" value="{{ $item->code }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 mb-3 p-2">
                         <label for="name" class="label_custom_primary_product mb-2">Estatus : *</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text span_custom_primary_dark" >

@@ -32,7 +32,14 @@ class ConfiguracionMiddleware
             $productos_global = Productos::where('id_empresa', auth()->user()->id_empresa)->get();
             $caja_corte_global = CajaCorte::where('fecha', '=', $fechaActual)->where('id_empresa', auth()->user()->id_empresa)->first();
 
+            if(auth()->user()->estatus_rol == 'Superadmin_root'){
+                $code_global = $empresa->id;
+            }else{
+                $code_global = $empresa->code;
+            }
+
             // Compartir la configuración con todas las vistas
+            view()->share('code_global', $code_global);
             view()->share('configuracion', $configuracion);
             view()->share('proveedores', $proveedores);
             view()->share('marcas', $marcas);

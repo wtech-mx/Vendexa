@@ -38,14 +38,18 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     Route::get('/home_admin/{id}', 'HomeController@index_admin')->name('home_admin');
 
-    Route::get('/empresas', 'EmpresasContoller@index')->name('empresas.index');
-
     Route::get('/scanner', 'ScannerController@index')->name('scanner.index');
 
+    // ============================================= M O D U L O   E M P R E S A S =====================================================
+
+    Route::get('/empresas', 'EmpresasContoller@index')->name('empresas.index');
+    Route::post('/empresas/crear', 'EmpresasContoller@store')->name('empresas.store');
+
+
+    // ============================================= M O D U L O   L I C E N C I A S =====================================================
+
     Route::get('/licencias', 'LicenciasController@index')->name('licencias.index');
-
     Route::post('/licencias/crear', 'LicenciasController@store')->name('licencias.store');
-
     Route::patch('/licencias/update/{id}', 'LicenciasController@update')->name('licencias.update');
 
 

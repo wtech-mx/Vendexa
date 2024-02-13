@@ -261,11 +261,11 @@
                     showCloseButton: true,
                     showCancelButton: true,
                     focusConfirm: false,
-                    confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('clientes.index', auth()->user()->Empresa->code) }}" >Ver Clientes</a>',
+                    confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('clientes.index', $code_global) }}" >Ver Clientes</a>',
                     cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="" >Cerrar</a>`,
                 }).then(() => {
                     // Recarga la página
-                window.location.href = '/home/';
+                window.location.href = '/home/$code_global';
                 });
 
         }
