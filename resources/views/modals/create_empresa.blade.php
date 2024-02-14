@@ -137,7 +137,7 @@
                     <div class="form-group col-3 mb-3 " >
                         <label for="name" class="label_custom_primary_product mb-2">Generar</label>
                         <div class="input-group ">
-                            <a id="generar_codigo" class="input-group-text span_custom_primary_dark" >
+                            <a id="generar_codigo2" class="input-group-text span_custom_primary_dark" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/sincronizando.webp') }}" alt="" >
                             </a>
                         </div>
@@ -149,7 +149,7 @@
                             <span class="input-group-text span_custom_primary_dark" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/keys.webp') }}" alt="" >
                             </span>
-                            <input id="codigo_licencia" name="codigo" type="text" class="form-control input_custom_primary_dark" value="{{ old('codigo_licencia') }}" autocomplete="" autofocus>
+                            <input id="codigo_licencia2" name="codigo" type="text" class="form-control input_custom_primary_dark" value="{{ old('codigo_licencia2') }}" autocomplete="" autofocus>
                         </div>
                     </div>
 
@@ -243,7 +243,7 @@
             });
 
         });
-        
+
         async function saveSuccessLicencia(response) {
             Swal.fire({
                 title: "Empresa Creada <strong>¡Exitosamente!</strong>",
@@ -259,6 +259,24 @@
             });
 
         }
+
+            // Manejar clic en el botón para generar SKU
+            $('#generar_codigo2').click(function() {
+                // Definir caracteres permitidos
+                var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+                // Generar un SKU alfanumérico de longitud 6
+                var skuAlfanumerico = '';
+                for (var i = 0; i < 9; i++) {
+                    skuAlfanumerico += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+
+                // Asignar el SKU alfanumérico al input correspondiente
+                $('#codigo_licencia2').val(skuAlfanumerico);
+
+                const audio = new Audio("{{ asset('assets/media/audio/sku_notification.mp3')}}");
+                audio.play();
+            });
 
         // Función para actualizar la contraseña
         function actualizarContrasena() {

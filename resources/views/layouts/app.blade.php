@@ -175,7 +175,8 @@ if (!isset($_COOKIE['mostrarModal'])) {
         @yield('js_custom_cliente')
         @yield('js_custom_settings')
         @yield('js_custom_licencias')
-
+        @yield('js_alert_key')
+        @yield('js_alert_key_aprov')
 
 </body>
 
