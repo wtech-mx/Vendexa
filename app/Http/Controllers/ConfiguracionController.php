@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Configuraciones;
 use App\Models\Direcciones;
-use App\Models\Empresas;
+use App\Models\Admin\Empresas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 

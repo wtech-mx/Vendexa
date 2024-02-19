@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Configuraciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Empresas;
-use App\Models\Licencias;
+use App\Models\Admin\Empresas;
+use App\Models\Admin\Licencias;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Hash;

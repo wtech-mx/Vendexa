@@ -1,6 +1,11 @@
 @extends('layouts.app_login')
 
 @section('login')
+<style>
+    .page-header {
+        background-image: url('{{ $ImagenLogin }}');
+    }
+</style>
 
 <div class="page-header min-vh-100" style="">
 

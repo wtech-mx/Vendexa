@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -27,7 +27,7 @@ class Empresas extends Model
 
     public function Direcion()
     {
-        return $this->belongsTo(Direcciones::class, 'id_direccion');
+        return $this->belongsTo(\App\Models\Direcciones::class, 'id_direccion');
     }
 
     public function Licencias()

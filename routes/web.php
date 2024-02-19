@@ -23,8 +23,33 @@ Route::get('/', function () {
 Route::post('custom-login', [App\Http\Controllers\CustomAuthController::class, 'customLogin'])->name('login.custom');
 Route::get('signout', [App\Http\Controllers\CustomAuthController::class, 'signOut'])->name('signout');
 
-// ============================================= G E N E R A L E S =====================================================
+// ============================================= A D M I N I S T R A D O R =====================================================
 
+Route::group(['prefix' => 'wtech', 'middleware' => 'web', 'namespace' => 'App\Http\Controllers'], function ()  {
+
+    // ============================================= G E N E R A L E S =====================================================
+    Route::get('/home_admin/{id}', 'HomeController@index_admin')->name('home_admin');
+
+    // ============================================= M O D U L O   E M P R E S A S =====================================================
+
+    Route::get('/configuracion/admin', 'Admin\ConfiguracionController@index')->name('configuracion_admin.index');
+   // Route::post('/configuracion/update/{id}', 'ConfiguracionContoller@store')->name('configuracion.store');
+
+    // ============================================= M O D U L O   E M P R E S A S =====================================================
+
+    Route::get('/empresas', 'Admin\EmpresasContoller@index')->name('empresas.index');
+    Route::post('/empresas/crear', 'Admin\EmpresasContoller@store')->name('empresas.store');
+
+
+    // ============================================= M O D U L O   L I C E N C I A S =====================================================
+
+    Route::get('/licencias', 'Admin\LicenciasController@index')->name('licencias.index');
+    Route::post('/licencias/crear', 'Admin\LicenciasController@store')->name('licencias.store');
+    Route::patch('/licencias/update/{id}', 'Admin\LicenciasController@update')->name('licencias.update');
+
+});
+
+// ============================================= C L I E N T E S =====================================================
 Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], function () {
 
 
@@ -36,24 +61,9 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     Route::get('/home/{code}', 'HomeController@index')->name('home');
 
-    Route::get('/home_admin/{id}', 'HomeController@index_admin')->name('home_admin');
-
     Route::get('/scanner', 'ScannerController@index')->name('scanner.index');
 
     Route::patch('/key/update/{id}', 'LicenciasController@update_key')->name('key.update');
-
-    // ============================================= M O D U L O   E M P R E S A S =====================================================
-
-    Route::get('/empresas', 'EmpresasContoller@index')->name('empresas.index');
-    Route::post('/empresas/crear', 'EmpresasContoller@store')->name('empresas.store');
-
-
-    // ============================================= M O D U L O   L I C E N C I A S =====================================================
-
-    Route::get('/licencias', 'LicenciasController@index')->name('licencias.index');
-    Route::post('/licencias/crear', 'LicenciasController@store')->name('licencias.store');
-    Route::patch('/licencias/update/{id}', 'LicenciasController@update')->name('licencias.update');
-
 
     // ============================================= M O D U L O   C O N F I G U R A C I O N ===============================
 
