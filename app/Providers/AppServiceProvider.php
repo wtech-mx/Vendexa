@@ -34,40 +34,40 @@ class AppServiceProvider extends ServiceProvider
             $nombreMes = date('F');
             switch ($nombreMes) {
                 case 'January':
-                    $ImagenLogin = '/assets/media/img/login/'.$configuracion_app->img_enero;
+                    $ImagenLogin = asset('/assets/media/img/login/'.$configuracion_app->img_enero);
                     break;
                 case 'February':
-                    $ImagenLogin = '/assets/media/img/login/'.$configuracion_app->img_febrero;
+                    $ImagenLogin = asset('/assets/media/img/login/'.$configuracion_app->img_febrero);
                     break;
                 case 'March':
-                    $ImagenLogin = '/assets/media/img/login/'.$configuracion_app->img_marzo;
+                    $ImagenLogin = asset('/assets/media/img/login/'.$configuracion_app->img_marzo);
                     break;
                 case 'April':
-                    $ImagenLogin = '/assets/media/img/login/'.$configuracion_app->img_abril;
+                    $ImagenLogin = asset('/assets/media/img/login/'.$configuracion_app->img_abril);
                     break;
                 case 'May':
-                    $ImagenLogin = '/assets/media/img/login/'.$configuracion_app->img_mayo;
+                    $ImagenLogin = asset('/assets/media/img/login/'.$configuracion_app->img_mayo);
                     break;
                 case 'June':
-                    $ImagenLogin = '/assets/media/img/login/'.$configuracion_app->img_junio;
+                    $ImagenLogin = asset('/assets/media/img/login/'.$configuracion_app->img_junio);
                     break;
                 case 'July':
-                    $ImagenLogin = '/assets/media/img/login/'.$configuracion_app->img_julio;
+                    $ImagenLogin = asset('/assets/media/img/login/'.$configuracion_app->img_julio);
                     break;
                 case 'August':
-                    $ImagenLogin = '/assets/media/img/login/'.$configuracion_app->img_agosto;
+                    $ImagenLogin = asset('/assets/media/img/login/'.$configuracion_app->img_agosto);
                     break;
                 case 'September':
-                    $ImagenLogin = '/assets/media/img/login/'.$configuracion_app->img_septiembre;
+                    $ImagenLogin = asset('/assets/media/img/login/'.$configuracion_app->img_septiembre);
                     break;
                 case 'October':
-                    $ImagenLogin = '/assets/media/img/login/'.$configuracion_app->img_octubre;
+                    $ImagenLogin = asset('/assets/media/img/login/'.$configuracion_app->img_octubre);
                     break;
                 case 'November':
-                    $ImagenLogin = '/assets/media/img/login/'.$configuracion_app->img_noviembre;
+                    $ImagenLogin = asset('/assets/media/img/login/'.$configuracion_app->img_noviembre);
                     break;
                 case 'December':
-                    $ImagenLogin = '/assets/media/img/login/'.$configuracion_app->img_diciembre;
+                    $ImagenLogin = asset('/assets/media/img/login/'.$configuracion_app->img_diciembre);
                     break;
             }
 
