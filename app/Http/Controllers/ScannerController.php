@@ -30,9 +30,15 @@ class ScannerController extends Controller
             }
 
             $modoficaciones_productos = ModificacionesProductos::whereMonth('fecha', $mesActual)->get();
+            $compras = Ordenes::where('id_empresa', $user)->where('cotizacion', '=', 'No')->get();
 
             $output = "";
             $producto = Productos::where('sku', $codigo)->first();
+
+            $proveedores = Proveedores::get();
+            $marcas = Marcas::get();
+            $categorias = Categorias::get();
+            $subcategorias = SubCategorias::get();
 
                 // Build the HTML response for each product
                 $output .= view('layouts.app', compact(
@@ -43,9 +49,10 @@ class ScannerController extends Controller
                     'categorias',
                     'subcategorias',
                     'modoficaciones_productos',
+                    'compras',
                 ));
 
-                return view('modals.producto_info', ['producto' => $producto,'modoficaciones_productos' => $modoficaciones_productos]);
+                return view('components.producto_info', ['producto' => $producto,'modoficaciones_productos' => $modoficaciones_productos,'compras' => $compras]);
         }
     }
 
