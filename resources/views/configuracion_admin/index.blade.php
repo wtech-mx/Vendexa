@@ -38,7 +38,7 @@
             <div class="col-12 section_tab_bg">
 
                 <div class="tab-content" id="pills-tabContent">
-                    <form method="POST" action="{{ route('configuracion_empresa.update', $configuracion->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="empresaFormConfig_crea">
+                    <form method="POST" action="{{ route('configuracion_admin.update', $configuracion->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="update_js_update_img_portada">
                         @csrf
                         <input type="hidden" name="_method" value="PATCH">
                         <div class="row">
@@ -258,7 +258,7 @@
 
 @endsection
 
-@section('js_custom_settings')
+@section('js_update_img_portada')
 
 <script>
     $(document).ready(function() {
@@ -269,7 +269,7 @@
             }
         });
 
-        $("#cajaForm_Config").on("submit", function (event) {
+        $("#update_js_update_img_portada").on("submit", function (event) {
 
             event.preventDefault();
             var formID = $(this).attr("id");
@@ -281,7 +281,7 @@
                 contentType: false,
                 processData: false,
                 success: async function(response) {
-                    SavecajaForm_Config(response);
+                    UpdateimgPortada(response);
                 },
                 error: function (xhr, status, error) {
                             var errors = xhr.responseJSON.errors;
@@ -306,9 +306,9 @@
 
         });
 
-        async function SavecajaForm_Config(response) {
+        async function UpdateimgPortada(response) {
         Swal.fire({
-            title: "Configuracion de Caja Actualizado <br><strong>¡Exitosamente!</strong>",
+            title: "Configuracio Actualizado <br><strong>¡Exitosamente!</strong>",
             icon: "success",
             showCloseButton: true,
             showCancelButton: false,

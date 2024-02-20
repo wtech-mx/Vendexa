@@ -33,6 +33,8 @@ Route::group(['prefix' => 'wtech', 'middleware' => 'web', 'namespace' => 'App\Ht
     // ============================================= M O D U L O   E M P R E S A S =====================================================
 
     Route::get('/configuracion/admin', 'Admin\ConfiguracionController@index')->name('configuracion_admin.index');
+    Route::patch('/configuracion/admin/update/{id}', 'Admin\ConfiguracionController@update_ajustes_admin')->name('configuracion_admin.update');
+
    // Route::post('/configuracion/update/{id}', 'ConfiguracionContoller@store')->name('configuracion.store');
 
     // ============================================= M O D U L O   E M P R E S A S =====================================================
