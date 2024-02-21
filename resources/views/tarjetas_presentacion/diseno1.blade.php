@@ -19,46 +19,46 @@
               <h4 class="fw-bold mb-0 text-center tittle_vendexa_tarjeta">VENDEXA</h4>
 
               <h2 class="text-center mt-3 mb-3">
-                <img src="{{ asset('assets/media/icons/email.webp') }}" class="logo_desgin_tarjetas">
+                <img class="logo_desgin_tarjetas" src="{{ asset('logo/empresa'.auth()->user()->id_empresa.'/'.$configuracion->logo) }}" alt="">
               </h2>
 
               <h2 class="fw-bold mt-4 mb-4 text-center subtittle_vendexa_tarjeta">
-                Nombre de Empresa
+                {{ $empresa->nombre }}
               </h2>
 
               <div class="row mb-3">
 
                 <div class="col-4">
-                    <a class="d-flex justify-content-center" href="https://api.whatsapp.com/send?phone=5215555555555" target="_blank">
+                    <a class="d-flex justify-content-center" href="https://api.whatsapp.com/send?phone=52{{ $empresa->telefono }}" target="_blank">
                         <img src="{{ asset('assets/media/icons/whatsap.webp') }}" class="icon_desgin_tarjetas">
                     </a>
 
                     <p class="text-center mt-3">
-                        <a class="link_redirecionamiento_tp " href="https://api.whatsapp.com/send?phone=5215555555555" target="_blank">
+                        <a class="d-flex justify-content-center link_redirecionamiento_tp" href="https://api.whatsapp.com/send?phone=52{{ $empresa->telefono }}" target="_blank" style="text-decoration: none">
                             WhatsApp
                         </a>
                     </p>
                 </div>
 
                 <div class="col-4">
-                    <a class="d-flex justify-content-center" href="mailto:cuenta@deemail.com" target="_blank">
+                    <a class="d-flex justify-content-center" href="mailto:{{ $empresa->correo }}" target="_blank">
                         <img src="{{ asset('assets/media/icons/email.webp') }}" class="icon_desgin_tarjetas">
                     </a>
 
                     <p class="text-center mt-3">
-                        <a class="link_redirecionamiento_tp" href="mailto:cuenta@deemail.com">
+                        <a class="link_redirecionamiento_tp" href="mailto:{{ $empresa->correo }}">
                             Email
                         </a>
                     </p>
                 </div>
 
                 <div class="col-4">
-                    <a class="d-flex justify-content-center" href="tel:+555555555" target="_blank">
+                    <a class="d-flex justify-content-center" href="tel:+{{ $empresa->telefono }}" target="_blank">
                         <img src="{{ asset('assets/media/icons/phone.webp') }}" class="icon_desgin_tarjetas">
                     </a>
 
                     <p class="text-center mt-3">
-                        <a class="link_redirecionamiento_tp" href="tel:+555555555" target="_blank">
+                        <a class="link_redirecionamiento_tp" href="tel:+{{ $empresa->telefono }}" target="_blank">
                             Teléfono
                         </a>
                     </p>
@@ -70,7 +70,7 @@
                     </a>
 
                     <p class="text-center mt-3">
-                        <a class="link_redirecionamiento_tp" href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3AJohn%20Doe%0ATEL%3A%2B1234567890%0AEMAIL%3Ajohn.doe%40example.com%0AEND%3AVCARD">
+                        <a class="link_redirecionamiento_tp" href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%{{ $empresa->nombre }}%0ATEL%3A%{{ $empresa->telefono }}%0AEMAIL%3A{{ $empresa->correo }}%0AEND%3AVCARD">
                             Guardar contacto
                         </a>
                     </p>
