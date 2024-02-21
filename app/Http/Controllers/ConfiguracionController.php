@@ -125,4 +125,12 @@ class ConfiguracionController extends Controller
         return response()->json(['success' => true]);
 
     }
+
+    public function tarjeta_presentacion($id, Request $request){
+
+        
+
+        return view('tarjetas_presentacion.diseno1');
+
+    }
 }

@@ -94,8 +94,7 @@ if (!isset($_COOKIE['mostrarModal'])) {
 
             @else
 
-            <div id="mobileBodyContent no_ad" style="">
-
+            <div id="mobileBodyContent" style="border: solid 0px  transparent;border-radius: 9px;">
         @endif
 
 
