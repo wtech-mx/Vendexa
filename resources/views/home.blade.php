@@ -22,7 +22,7 @@
 
 
             <div class="d-flex justify-content-center ">
-                <a class="ingresos_dash text-center mt-2 mb-3 animation_card_header" target="_black" href="">
+                <a href="{{ route('tarjeta_digital.index', $user->Empresa->code) }}" class="ingresos_dash text-center mt-2 mb-3 animation_card_header" target="_black">
                     <img src="{{ asset('assets/media/icons/compartir.webp') }}" alt="" style="width:30px;">
                     Tarjeta de presentacion.
                 </a>

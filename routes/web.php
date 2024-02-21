@@ -55,9 +55,11 @@ Route::group(['prefix' => 'wtech', 'middleware' => 'web', 'namespace' => 'App\Ht
 Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], function () {
 
 
-    Route::get('/tarjeta_uno', function () {
-        return view('tarjetas_presentacion.diseno1');
-    });
+    // Route::get('/tarjeta_uno', function () {
+    //     return view('tarjetas_presentacion.diseno1');
+    // });
+
+    Route::get('/tarjeta_digital/{code}', 'ConfiguracionController@tarjeta_presentacion')->name('tarjeta_digital.index');
 
     // ============================================= G E N E R A L E S =====================================================
 

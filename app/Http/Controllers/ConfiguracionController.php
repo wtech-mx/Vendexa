@@ -126,11 +126,11 @@ class ConfiguracionController extends Controller
 
     }
 
-    public function tarjeta_presentacion($id, Request $request){
+    public function tarjeta_presentacion($code){
 
-        
+        $empresa = Empresas::where('code', $code)->first();
 
-        return view('tarjetas_presentacion.diseno1');
+        return view('tarjetas_presentacion.diseno1',compact( 'empresa'));
 
     }
 }
