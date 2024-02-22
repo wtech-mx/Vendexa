@@ -137,6 +137,12 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::get('/reportes/{code}', 'ReportesController@index')->name('reportes.index');
     Route::get('/reportes/filtro/caja', 'ReportesController@filtro_caja')->name('reportes.filtro_caja');
     Route::get('/reportes/filtro/producto', 'ReportesController@filtro_productos')->name('reportes.filtro_producto');
+    Route::get('/reportes/filtro/order', 'ReportesController@filtro_orders')->name('reportes.filtro_order');
+    Route::get('/reportes/filtro/factura', 'ReportesController@filtro_facturas')->name('reportes.filtro_factura');
+    Route::get('/reportes/filtro/cotizacion', 'ReportesController@filtro_cotizaciones')->name('reportes.filtro_cotizacion');
+    Route::get('/reportes/filtro/empleados', 'ReportesController@filtro_empleados')->name('reportes.filtro_empleados');
+    Route::get('/reportes/filtro/clientes', 'ReportesController@filtro_clientes')->name('reportes.filtro_clientes');
+
     Route::get('/reportes/caja/pdf/{fechaInicio}/{fechaFin}', 'ReportesController@pdf_caja')->name('reportes_caja.pdf');
 
     // ============================================= M O D U L O  C O R T E =====================================================

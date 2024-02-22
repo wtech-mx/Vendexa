@@ -34,7 +34,7 @@ class Ordenes extends Model
     }
     public function Empresa()
     {
-        return $this->belongsTo(Empresas::class, 'id_empresa');
+        return $this->belongsTo(\App\Models\Admin\Empresas::class, 'id_empresa');
     }
     public function Productos()
     {

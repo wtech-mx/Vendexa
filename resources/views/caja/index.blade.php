@@ -555,7 +555,7 @@
                 showCancelButton: true,
                 focusConfirm: false,
                 confirmButtonText: ticket_data.cotizacion === 'Si' ? 'Ver Cotizacion' : 'Ver Recibo',
-                cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="/caja" >Cerrar</a>`,
+                cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="/caja/$code_global" >Cerrar</a>`,
             }).then((result) => {
                 if (result.isConfirmed) {
 
