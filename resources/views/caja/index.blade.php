@@ -85,10 +85,10 @@
                         <span class="input-group-text span_custom_tab" >
                             <img class="icon_span_tab" src="{{ asset('assets/media/icons/user_predeterminado.webp') }}" alt="" >
                         </span>
-                        <select name="id_client" id="selectCliente" class="form-select d-inline-block cliente">
+                        <select name="id_client" class="form-select d-inline-block cliente">
                             <option value="">Seleccione cliente</option>
                             @foreach ($clientes as $cliente)
-                            <option value="{{ $cliente->id }}" data-tipo="{{ $cliente->tipo }}">{{ $cliente->nombre }} - {{ $cliente->telefono }}</option>
+                            <option value="{{ $cliente->id }}">{{ $cliente->nombre }} - {{ $cliente->telefono }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -644,7 +644,6 @@
                         const fechaInicioDescuento = new Date(response.fecha_inicio_desc);
                         const fechaFinDescuento = new Date(response.fecha_fin_desc);
                         const fechaActual = new Date();
-                        const clienteSelect = document.getElementById('selectCliente');
 
                         const productoContainer = document.createElement("div");
                         productoContainer.classList.add("producto-container");
