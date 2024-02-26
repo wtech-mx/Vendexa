@@ -6,6 +6,7 @@ use App\Models\Categorias;
 use App\Models\Marcas;
 use App\Models\ModificacionesProductos;
 use App\Models\Ordenes;
+use App\Models\OrdenesProductos;
 use App\Models\Productos;
 use App\Models\Proveedores;
 use App\Models\SubCategorias;
@@ -25,8 +26,9 @@ class ProductosController extends Controller
         $productos = Productos::where('id_empresa', $user)->orderBy('created_at', 'desc')->take(100)->get();
         $modoficaciones_productos = ModificacionesProductos::whereMonth('fecha', $mesActual)->get();
         $compras = Ordenes::where('id_empresa', $user)->where('cotizacion', '=', 'No')->get();
+        $ordesprodcutos = OrdenesProductos::get();
 
-        return view('products.index', compact('compras' ,'productos', 'modoficaciones_productos'));
+        return view('products.index', compact('compras' ,'productos', 'modoficaciones_productos','ordesprodcutos'));
     }
 
     public function filtro(Request $request){

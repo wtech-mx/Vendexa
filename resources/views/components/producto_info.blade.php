@@ -381,7 +381,7 @@
 
 
                             <div class="tab-pane fade" id="pills-Ventas{{$producto->id}}" role="tabpanel" aria-labelledby="pills-Ventas-tab{{$producto->id}}" tabindex="0">
-                                <div class="row">
+                                <div class="row p-2">
 
                                     <div class="col-12 px-4 py-1">
                                         <h2 class="tiitle_modal_white text-left ms-2">Ventas</h2>
