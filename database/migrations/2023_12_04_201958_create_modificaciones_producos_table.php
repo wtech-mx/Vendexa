@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('modificaciones_producos', function (Blueprint $table) {
             $table->id();
+
             $table->text('nombre')->nullable();
             $table->text('costo')->nullable();
             $table->text('precio_normal')->nullable();
@@ -20,6 +21,15 @@ return new class extends Migration
             $table->text('stock')->nullable();
             $table->text('unidad_venta')->nullable();
             $table->text('visibilidad_estatus')->nullable();
+
+            $table->string('codigo_proveedor')->nullable();
+            $table->text('clave_sat')->nullable();
+            $table->float('precio_mayo')->nullable();
+            $table->string('descuento')->nullable();
+
+            $table->float('precio_descuento')->nullable();
+            $table->date('fecha_inicio_desc')->nullable();
+            $table->date('fecha_fin_desc')->nullable();
 
             $table->date('fecha');
             $table->unsignedBigInteger('id_producto');

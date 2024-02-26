@@ -400,84 +400,8 @@
                                         <h2 class="tiitle_modal_white text-left ms-2">Modificaciones</h2>
                                     </div>
 
-                                    @foreach ($modoficaciones_productos as $modoficacion_producto)
-                                        @if ($producto->id == $modoficacion_producto->id_producto)
-                                            <div class="col-12 px-4 py-1">
-                                                <div class="row bg_minicart_ventas">
+                                    @include('components.producto_modificaciones')
 
-                                                    <div class="col-4 my-auto">
-                                                        <p class="text-center" style="margin: 0">
-                                                            <img class="img_portada_product_edit_ventas" src="{{ asset('imagen_principal/'.$producto->imagen_principal) }}" alt="">
-                                                        </p>
-                                                    </div>
-
-                                                    <div class="col-8 ">
-
-                                                        <div class="row">
-                                                            <div class="col-6">
-                                                                <p class="text_empleado text-start">Empleado</p>
-                                                            </div>
-
-                                                            <div class="col-6">
-                                                                <p class="text_empleado text-end"><strong> #{{$producto->id}}</strong></p>
-                                                            </div>
-
-                                                            <div class="col-12 mb-2">
-                                                                <P class="text_empleado_value text-start">
-                                                                    {{$modoficacion_producto->User->name}}
-                                                                </P>
-                                                            </div>
-
-                                                            <div class="col-4 mb-1">
-                                                                <p class="text_subtittle_ventas text-start">
-                                                                    <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/etiqueta-del-precio.webp') }}" alt="">
-                                                                    Precio :
-                                                                </p>
-                                                                <p class="text_subtittle_ventas_sv text-center">
-                                                                    {{$modoficacion_producto->precio_normal}}
-                                                                </p>
-                                                            </div>
-
-                                                            <div class="col-4 mb-1">
-                                                                <p class="text_subtittle_ventas text-start">
-                                                                    <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/en-stock.png.webp') }}" alt="">
-                                                                    {{$producto->unidad_venta}} :
-                                                                </p>
-                                                                <p class="text_subtittle_ventas_sv text-center">
-                                                                    {{$modoficacion_producto->unidad_venta}}
-                                                                </p>
-                                                            </div>
-
-                                                            <div class="col-4 mb-1">
-                                                                <p class="text_subtittle_ventas text-start">
-                                                                    <img class="img_subtittle_ventas" src="{{ asset('assets/media/icons/coins.webp') }}" alt="">
-                                                                    Costo :
-                                                                </p>
-                                                                <p class="text_subtittle_ventas_sv text-center">
-                                                                    {{$modoficacion_producto->costo}}
-                                                                </p>
-                                                            </div>
-
-                                                            <div class="col-12 mb-2 mt-2">
-                                                                <div class="d-flex justify-content-between  ">
-                                                                    <P class="text_empleado_value text-start mt-2">
-                                                                        {{\Carbon\Carbon::createFromFormat('Y-m-d', $modoficacion_producto->fecha)->format('d \d\e F Y')}}
-
-                                                                    </P>
-                                                                    <a type="button"  class="btn btn-sm btn_edit_prodcut_warning" data-bs-toggle="modal" data-bs-target="#editProduct">
-                                                                        Ver <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/editar.webp') }}" alt="">
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
                                 </div>
                             </div>
 

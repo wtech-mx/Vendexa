@@ -393,6 +393,12 @@ class ProductosController extends Controller
             'stock' => 'Stock',
             'unidad_venta' => 'Unidad de Venta',
             'visibilidad_estatus' => 'Visibilidad',
+            'codigo_proveedor' => 'Codigo Proveedor',
+            'clave_sat' => 'Calve SAT',
+            'precio_mayo' => 'Precio Mayoreo',
+            'precio_descuento' => 'Precio Descuento',
+            'fecha_inicio_desc' => 'Fecha Inicio desc',
+            'fecha_fin_desc' => 'Fecha Fin desc',
         ];
 
         foreach ($fields as $field => $label) {
@@ -449,7 +455,7 @@ class ProductosController extends Controller
 
         $producto->id_empresa = $user->id_empresa;
         $producto->id_user = $user->id;
-        $producto->save();
+        $producto->update();
 
         $producto_edit_data = [
             "nombre" => $producto->nombre,

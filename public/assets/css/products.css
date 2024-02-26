@@ -212,6 +212,18 @@
     border-radius: 9px;
 }
 
+
+
+@media only screen and (max-width: 991px) {
+
+    .img_portada_product_edit_ventas{
+        width: 50px;
+        height: auto;
+        padding: 0px;
+    }
+
+}
+
 @media only screen and (max-width: 575px) {
 
     .bg_minicart_ventas{
