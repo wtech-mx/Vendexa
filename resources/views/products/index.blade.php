@@ -49,6 +49,10 @@
                     <img class="icon_search" src="{{ asset('assets/media/icons/filtrar.webp') }}" alt="">
                   </a>
 
+                  <a class="btn btn_filter" data-bs-toggle="modal" data-bs-target="#creatProduct" style="margin-left: 1rem">
+                    <img class="icon_search" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
+                  </a>
+
                   @if(Route::currentRouteName() == 'productos.filtro')
                   <a class="btn btn_filter" href="{{ route('productos.index') }}" role="button">
                       <img class="icon_search" src="{{ asset('assets/media/icons/eraser.webp') }}" alt="">
@@ -63,6 +67,7 @@
                     </div>
 
                     @include('components.producto_filtro')
+
                 </form>
             </div>
 
@@ -127,6 +132,7 @@
 </section>
 
 @include('modals.bulk_action')
+@include('modals.create_product')
 
 @endsection
 
