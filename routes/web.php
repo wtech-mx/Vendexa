@@ -61,6 +61,9 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     Route::get('/tarjeta_digital/{code}', 'ConfiguracionController@tarjeta_presentacion')->name('tarjeta_digital.index');
 
+    Route::get('/tienda_online/{code}', 'TiendaController@index')->name('tienda_online.index');
+
+
     // ============================================= G E N E R A L E S =====================================================
 
     Route::get('/home/{code}', 'HomeController@index')->name('home');
