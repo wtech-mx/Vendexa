@@ -24,7 +24,7 @@ class ProductosController extends Controller
         $user = auth()->user()->id_empresa;
 
         $productos = Productos::where('id_empresa', $user)->orderBy('created_at', 'desc')->take(100)->get();
-        $modoficaciones_productos = ModificacionesProductos::whereMonth('fecha', $mesActual)->get();
+        $modoficaciones_productos = ModificacionesProductos::whereMonth('fecha', $mesActual)->orderby('id','DESC')->get();
         $compras = Ordenes::where('id_empresa', $user)->where('cotizacion', '=', 'No')->get();
         $ordesprodcutos = OrdenesProductos::get();
 
@@ -68,7 +68,9 @@ class ProductosController extends Controller
         if( $request->descuento){
             $productos = $productos->where('descuento', 'LIKE', "%" . $request->descuento . "%");
         }
+
         $productos = $productos->get();
+
         return view('products.index', compact('productos','modoficaciones_productos','compras'));
     }
 
@@ -84,6 +86,38 @@ class ProductosController extends Controller
             if ($product) {
                 $product->visibilidad_estatus = 'No';
                 $product->update();
+
+                $changes = [];
+
+                $fields = [
+                    'visibilidad_estatus' => 'No',
+                ];
+
+                foreach ($fields as $field => $label) {
+                    $oldValue = $product->{$field};
+                    $newValue = $request->input($field);
+
+                    if ($oldValue != $newValue) {
+                        $changes[$field] = "De {$oldValue} A {$product->visibilidad_estatus}";
+                        $product->{$field} = $newValue;
+                    }
+                }
+
+                if (!empty($changes)) {
+                    $historial = new ModificacionesProductos;
+                    $historial->id_producto = $product->id;
+                    $historial->id_user = auth()->user()->id;
+                    $historial->id_empresa = auth()->user()->id_empresa;
+                    $historial->fecha = Carbon::now();
+
+                    // Asigna cada cambio a su propia columna
+                    foreach ($changes as $column => $change) {
+                        $historial->{$column} = $change;
+                    }
+
+                    $historial->save();
+                }
+
             }
         }
 
@@ -102,6 +136,38 @@ class ProductosController extends Controller
                 $product->visibilidad_estatus = 'Visible';
                 $product->update();
             }
+
+            $changes = [];
+
+            $fields = [
+                'visibilidad_estatus' => 'Visible',
+            ];
+
+            foreach ($fields as $field => $label) {
+                $oldValue = $product->{$field};
+                $newValue = $request->input($field);
+
+                if ($oldValue != $newValue) {
+                    $changes[$field] = "De {$oldValue} A {$product->visibilidad_estatus}";
+                    $product->{$field} = $newValue;
+                }
+            }
+
+            if (!empty($changes)) {
+                $historial = new ModificacionesProductos;
+                $historial->id_producto = $product->id;
+                $historial->id_user = auth()->user()->id;
+                $historial->id_empresa = auth()->user()->id_empresa;
+                $historial->fecha = Carbon::now();
+
+                // Asigna cada cambio a su propia columna
+                foreach ($changes as $column => $change) {
+                    $historial->{$column} = $change;
+                }
+
+                $historial->save();
+            }
+
         }
 
         return response()->json(['success' => true]);
