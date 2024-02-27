@@ -129,6 +129,7 @@
 
         async function saveSuccessCajaReg(response) {
             const caja_data = response.caja_data;
+            const code = "{{ $code_global }}";
 
             Swal.fire({
                     title: "Producto Guardado <strong>¡Exitosamente!</strong>",
@@ -140,7 +141,7 @@
                     cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="" >Cerrar</a>`,
                 }).then(() => {
                     // Recarga la página
-                window.location.href = '/home/$code_global';
+                    window.location.href = '/home/'+ code;
                 });
 
         }

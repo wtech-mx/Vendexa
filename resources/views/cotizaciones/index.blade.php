@@ -33,7 +33,7 @@
                   </a>
 
                   @if(Route::currentRouteName() == 'cotizaciones.filtro')
-                  <a class="btn btn_filter" href="{{ route('cotizaciones.index') }}" role="button">
+                  <a class="btn btn_filter" href="{{ route('cotizaciones.index', $code_global) }}" role="button">
                       <img class="icon_search" src="{{ asset('assets/media/icons/eraser.webp') }}" alt="">
                   </a>
                   @endif
@@ -41,7 +41,7 @@
 
               <div class="collapse container_filter p-2 mt-3" id="collapseFilter" style="background: #ffffff;">
 
-                <form class="row mt-3 mb-3" action="{{ route('cotizaciones.filtro') }}" method="GET" >
+                <form class="row mt-3 mb-3" action="{{ route('cotizaciones.filtro', $code_global) }}" method="GET" >
 
                         <div class="col-12">
                             <h6>Filtros</h6>

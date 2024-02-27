@@ -24,12 +24,12 @@ return new class extends Migration
 
             $table->string('codigo_proveedor')->nullable();
             $table->text('clave_sat')->nullable();
-            $table->float('precio_mayo')->nullable();
+            $table->string('precio_mayo')->nullable();
             $table->string('descuento')->nullable();
 
-            $table->float('precio_descuento')->nullable();
-            $table->date('fecha_inicio_desc')->nullable();
-            $table->date('fecha_fin_desc')->nullable();
+            $table->string('precio_descuento')->nullable();
+            $table->string('fecha_inicio_desc')->nullable();
+            $table->string('fecha_fin_desc')->nullable();
 
             $table->date('fecha');
             $table->unsignedBigInteger('id_producto');

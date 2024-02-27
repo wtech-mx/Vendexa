@@ -80,7 +80,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     // ============================================= M O D U L O   C L I E N T E S =========================================
 
     Route::get('/clientes/{code}', 'ClienteController@index')->name('clientes.index');
-    Route::get('/clientes/filtro', 'ClienteController@filtro')->name('clientes.filtro');
+    Route::get('/clientes/filtro/{code}', 'ClienteController@filtro')->name('clientes.filtro');
     Route::get('/clientes/show/{id}', 'ClienteController@show')->name('clientes.show');
     Route::post('/clientes/store', 'ClienteController@store')->name('clientes.store');
     Route::patch('/clientes/update/{id}', 'ClienteController@update')->name('clientes.update');
@@ -91,7 +91,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::get('/productos/{code}', 'ProductosController@index')->name('productos.index');
     Route::post('/productos/store', 'ProductosController@store')->name('productos.store');
     Route::patch('/productos/update/{id}', 'ProductosController@update')->name('productos.update');
-    Route::get('/productos/filtro', 'ProductosController@filtro')->name('productos.filtro');
+    Route::get('/productos/filtro/{code}', 'ProductosController@filtro')->name('productos.filtro');
     Route::get('/imprimir/etiqueta/{sku}', 'ImpresionController@imprimir_etiqueta')->name('imprimir_etiqueta.product');
     Route::POST('/pdf/productos', 'ImpresionController@pdf_productos')->name('pdf.product');
     Route::POST('bulk/productos/pausar', 'ProductosController@bukaction_pausar')->name('bulk_pausar.product');
@@ -129,7 +129,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::get('/cotizaciones/{code}', 'CotizacionesController@index')->name('cotizaciones.index');
     Route::post('/cotizaciones/store', 'CotizacionesController@store')->name('cotizaciones.store');
     Route::patch('/cotizaciones/update/{id}', 'CotizacionesController@update')->name('cotizaciones.update');
-    Route::get('/cotizaciones/filtro', 'CotizacionesController@filtro')->name('cotizaciones.filtro');
+    Route::get('/cotizaciones/filtro/{code}', 'CotizacionesController@filtro')->name('cotizaciones.filtro');
     Route::get('/cotizaciones/pdf/{id}', 'CotizacionesController@pdf')->name('cotizaciones.pdf');
 
     // ============================================= M O D U L O  R E P O R T E S ==================================

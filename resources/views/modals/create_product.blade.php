@@ -542,7 +542,8 @@
 
             async function saveSuccess(response) {
                 const producto_data = response.producto_data;
-
+                const code = "{{ $code_global }}";
+                
                 Swal.fire({
                         title: "Producto Guardado <strong>¡Exitosamente!</strong>",
                         icon: "success",
@@ -554,7 +555,7 @@
                         cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="" >Cerrar</a>`,
                     }).then(() => {
                         // Recarga la página
-                       window.location.href = '/home/$code_global';
+                       window.location.href = '/home/'+ code;
                     });
 
             }

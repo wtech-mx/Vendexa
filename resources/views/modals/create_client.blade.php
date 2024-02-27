@@ -254,6 +254,7 @@
 
         async function saveSuccessClientCreate(response) {
             const cliente_data = response.cliente_data;
+            const code = "{{ $code_global }}";
 
             Swal.fire({
                     title: "Cliente Guardado <strong>¡Exitosamente!</strong>",
@@ -265,7 +266,7 @@
                     cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="" >Cerrar</a>`,
                 }).then(() => {
                     // Recarga la página
-                window.location.href = '/home/$code_global';
+                window.location.href = '/home/'+ code;
                 });
 
         }

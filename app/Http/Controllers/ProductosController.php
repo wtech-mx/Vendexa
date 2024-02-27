@@ -31,12 +31,13 @@ class ProductosController extends Controller
         return view('products.index', compact('compras' ,'productos', 'modoficaciones_productos','ordesprodcutos'));
     }
 
-    public function filtro(Request $request){
+    public function filtro(Request $request, $code){
         $now = Carbon::now();
         $mesActual = $now->month;
         $user = auth()->user()->id_empresa;
         $compras = Ordenes::where('id_empresa', $user)->where('cotizacion', '=', 'No')->get();
         $modoficaciones_productos = ModificacionesProductos::whereMonth('fecha', $mesActual)->get();
+        $ordesprodcutos = OrdenesProductos::get();
 
         $productos = Productos::where('id_empresa', $user);
         if( $request->nombre_producto){
@@ -71,7 +72,7 @@ class ProductosController extends Controller
 
         $productos = $productos->get();
 
-        return view('products.index', compact('productos','modoficaciones_productos','compras'));
+        return view('products.index', compact('productos','modoficaciones_productos','compras', 'ordesprodcutos'));
     }
 
     public function bukaction_pausar(Request $request){

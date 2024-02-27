@@ -24,7 +24,7 @@ class CotizacionesController extends Controller
         return view('cotizaciones.index', compact('cotizaciones', 'clientes', 'trabajadores'));
     }
 
-    public function filtro(Request $request){
+    public function filtro(Request $request, $code){
 
         $user = auth()->user()->id_empresa;
 

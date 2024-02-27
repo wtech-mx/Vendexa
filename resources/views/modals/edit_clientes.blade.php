@@ -264,6 +264,7 @@
 
         async function saveSuccessEditClient(response) {
             const cliente_data = response.cliente_data;
+            const code = "{{ $code_global }}";
 
             Swal.fire({
                 title: "Cliente Actualizado <strong>¡Exitosamente!</strong>",
@@ -275,7 +276,7 @@
                 confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="#" >Cerrar</a>',
                 }).then(() => {
                     // Cierra todos los modales abiertos
-                    $('.modal').modal('hide');
+                    window.location.href = '/clientes/'+ code;
                 });
         }
     });

@@ -38,7 +38,7 @@
         <div class="col-12 mt-2 mb-3">
             <div class="d-flex justify-content-center">
 
-                <form class="d-flex" role="search" action="{{ route('productos.filtro') }}" method="GET">
+                <form class="d-flex" role="search" action="{{ route('productos.filtro', $code_global) }}" method="GET">
                     <input class="form-control input_search" type="search" placeholder="Buscar producto" aria-label="Search" name="nombre_producto">
                     <button class="btn btn_search me-0 me-md-3 me-lg-5 me-xl-5" type="submit">
                         <img class="icon_search" src="{{ asset('assets/media/icons/buscar.webp') }}" alt="">
@@ -54,14 +54,14 @@
                   </a>
 
                   @if(Route::currentRouteName() == 'productos.filtro')
-                  <a class="btn btn_filter" href="{{ route('productos.index') }}" role="button">
+                  <a class="btn btn_filter" href="{{ route('productos.index', $code_global) }}" role="button">
                       <img class="icon_search" src="{{ asset('assets/media/icons/eraser.webp') }}" alt="">
                   </a>
                   @endif
             </div>
 
             <div class="collapse container_filter p-2 mt-3" id="collapseFilter" style="background: #ffffff;">
-                <form class="row mt-3 mb-3" action="{{ route('productos.filtro') }}" method="GET" >
+                <form class="row mt-3 mb-3" action="{{ route('productos.filtro', $code_global) }}" method="GET" >
                     <div class="col-12">
                         <h6>Filtros</h6>
                     </div>
@@ -257,7 +257,7 @@ function pusarProductos() {
                         showCloseButton: true,
                         showCancelButton: true,
                         focusConfirm: false,
-                        confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('productos.index', auth()->user()->Empresa->code) }}" >Ver Productos</a>',
+                        confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('productos.index', $code_global) }}" >Ver Productos</a>',
                         cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="#" >Cerrar</a>`,
                     });
 
@@ -289,7 +289,7 @@ function publicarProductos() {
                         showCloseButton: true,
                         showCancelButton: true,
                         focusConfirm: false,
-                        confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('productos.index', auth()->user()->Empresa->code) }}" >Ver Productos</a>',
+                        confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('productos.index', $code_global) }}" >Ver Productos</a>',
                         cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="#" >Cerrar</a>`,
                     });
             },
@@ -325,7 +325,7 @@ function publicarProductos() {
                                 showCloseButton: true,
                                 showCancelButton: true,
                                 focusConfirm: false,
-                                confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('productos.index', auth()->user()->Empresa->code) }}" >Ver Productos</a>',
+                                confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="{{ route('productos.index', $code_global) }}" >Ver Productos</a>',
                                 cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="#" >Cerrar</a>`,
                             });
                         },

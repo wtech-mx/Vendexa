@@ -267,7 +267,8 @@ $(document).ready(function() {
 
     async function saveSuccessCreateEmpleado(response) {
         const trabajador_data = response.trabajador_data;
-
+        const code = "{{ $code_global }}";
+        
         Swal.fire({
                 title: "Empeado Guardado <strong>¡Exitosamente!</strong>",
                 icon: "success",
@@ -279,7 +280,7 @@ $(document).ready(function() {
                 cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="" >Cerrar</a>`,
             }).then(() => {
                 // Recarga la página
-            window.location.href = '/home/$code_global';
+            window.location.href = '/home/'+ code;
             });
 
     }

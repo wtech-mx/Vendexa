@@ -49,14 +49,14 @@
                   </a>
 
                   @if(Route::currentRouteName() == 'clientes.filtro')
-                  <a class="btn btn_filter" href="{{ route('clientes.index') }}" role="button">
+                  <a class="btn btn_filter" href="{{ route('clientes.index', $code_global) }}" role="button">
                       <img class="icon_search" src="{{ asset('assets/media/icons/eraser.webp') }}" alt="">
                   </a>
                   @endif
             </div>
                 <div class="collapse container_filter p-2 mt-3" id="collapseFilter" style="background: #ffffff;">
 
-                <form class="row mt-3 mb-3" action="{{ route('clientes.filtro') }}" method="GET" >
+                <form class="row mt-3 mb-3" action="{{ route('clientes.filtro', $code_global) }}" method="GET" >
                     <div class="col-12">
                         <h6>Filtros</h6>
                     </div>

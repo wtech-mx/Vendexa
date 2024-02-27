@@ -51,6 +51,7 @@ $(document).ready(function() {
         const producto_edit_data = response.producto_edit_data;
 
         console.log(producto_edit_data);
+        const code = "{{ $code_global }}";
 
         Swal.fire({
             title: "Producto Guardado <strong>¡Exitosamente!</strong>",
@@ -59,10 +60,10 @@ $(document).ready(function() {
             showCloseButton: true,
             showCancelButton: false,
             focusConfirm: false,
-            confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="#" >Cerrar</a>',
+            confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="" >Cerrar</a>',
             }).then(() => {
                 // Cierra todos los modales abiertos
-                $('.modal').modal('hide');
+                window.location.href = '/productos/'+ code;
             });
     }
 });

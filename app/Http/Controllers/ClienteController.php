@@ -158,7 +158,7 @@ class ClienteController extends Controller
 
     }
 
-    public function filtro(Request $request){
+    public function filtro(Request $request, $code){
         $now = Carbon::now();
         $mesActual = $now->month;
         $user = auth()->user()->id_empresa;
