@@ -539,6 +539,8 @@
 
         async function saveSuccess(response) {
             const ticket_data = response.ticket_data;
+            const id = ticket_data.id;
+            const code = "{{ $code_global }}";
             let contenidoHtml = `<div class='row'><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/gear.webp') }}'><p><strong>Descuento</strong><br>${ticket_data.tipo_desc}</p></div><div class='col-6 mt-3'><img class='icon_span_tab' src='{{ asset('assets/media/icons/bolsa-de-dinero.webp') }}'><p><strong>Total</strong><br>$ ${ticket_data.total}</p></div>`;
 
             if (ticket_data.cotizacion === 'No') {
@@ -555,15 +557,15 @@
                 showCancelButton: true,
                 focusConfirm: false,
                 confirmButtonText: ticket_data.cotizacion === 'Si' ? 'Ver Cotizacion' : 'Ver Recibo',
-                cancelButtonText: `<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="/caja/$code_global" >Cerrar</a>`,
+                cancelButtonText: '<a  class="btn_swalater_cancel" style="text-decoration: none;color: #fff;" href="{{ route('caja_sincodigo.index', $code_global) }}" >Cerrar</a>',
             }).then((result) => {
                 if (result.isConfirmed) {
 
                     if (ticket_data.cotizacion === 'Si') {
-                        window.open(`/cotizaciones/pdf/${ticket_data.id}`, '_blank');
+                        window.open(`/cotizaciones/pdf/`+ id +`/` + code, '_blank');
                     } else {
                         // Redirige a la ruta con el ticket_data.id
-                        window.open(`/orders/ticket/${ticket_data.id}`, '_blank');
+                        window.open(`/orders/ticket/`+ id +`/` + code, '_blank');
                     }
                         // Recarga la página actual
                     location.reload();

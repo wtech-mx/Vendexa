@@ -98,11 +98,12 @@ $(document).ready(function() {
             });
 
             async function saveSuccess(response) {
+                const code = "{{ $code_global }}";
 
                 const pass_data = response.pass; // Accede al objeto 'pass' enviado desde el servidor
                 const clave = pass_data.clave; // Accede a la propiedad 'clave' dentro del objeto 'pass'
                 // alert(`/caja/index/${clave}`);
-                window.location.href = `/caja/${clave}`;
+                window.location.href = `/caja/`+ code +`/`+ clave;
             }
 
 });

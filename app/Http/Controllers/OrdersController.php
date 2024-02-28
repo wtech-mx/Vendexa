@@ -26,8 +26,16 @@ class OrdersController extends Controller
         return view('orders.index', compact('ordenes'));
     }
 
-    public function show($id){
+    public function show($id,$code){
+        $user = auth()->user()->id_empresa;
         $orden = Ordenes::find($id);
+
+        // Check if the order exists and belongs to the user's company
+        if ($orden && $orden->id_empresa === $user) {
+            return view('orders.show', compact('orden'));
+        } else {
+            abort(403, 'Acción no autorizada.');
+        }
 
         return view('orders.show', compact('orden'));
     }

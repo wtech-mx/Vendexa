@@ -7,6 +7,7 @@ use App\Models\Categorias;
 use App\Models\Direcciones;
 use App\Models\Marcas;
 use App\Models\Ordenes;
+use App\Models\OrdenesProductos;
 use App\Models\Productos;
 use App\Models\Proveedores;
 use App\Models\SubCategorias;
@@ -33,8 +34,10 @@ class ClienteController extends Controller
         $compras = Ordenes::where('id_cliente', $id)->where('cotizacion', '=', 'No')->get();
         $adeudos = Ordenes::where('id_cliente', $id)->where('restante', '>', 0)->where('cotizacion', '=', 'No')->get();
         $cotizaciones = Ordenes::where('id_cliente', $id)->where('cotizacion', '=', 'Si')->get();
+        $productos = Productos::where('id_empresa', auth()->user()->id_empresa)->orderBy('created_at', 'desc')->take(100)->get();
+        $ordesprodcutos = OrdenesProductos::get();
 
-        return view('clientes.show', compact('cliente','compras','cotizaciones', 'adeudos'));
+        return view('clientes.show', compact('cliente','compras','cotizaciones', 'adeudos', 'ordesprodcutos'));
     }
 
     public function store(Request $request){

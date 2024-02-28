@@ -47,7 +47,7 @@
                                         {{\Carbon\Carbon::createFromFormat('Y-m-d', $item->Ordenes->fecha)->format('d \d\e F Y')}}
 
                                     </P>
-                                    <a type="button" class="btn btn-sm btn_edit_prodcut_warning" href="{{ route('orders.show', $item->Ordenes->id) }}">
+                                    <a type="button" class="btn btn-sm btn_edit_prodcut_warning" href="{{ route('orders.show', ['id' => $item->Ordenes->id, 'code' => $code_global]) }}">
                                         Ver <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/editar.webp') }}" alt="">
                                     </a>
                                 </div>

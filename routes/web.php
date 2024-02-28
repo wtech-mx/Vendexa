@@ -104,7 +104,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     // ============================================= M O D U L O   C A J A =================================================
 
     Route::get('/caja/{code}', 'CajaController@index')->name('caja_sincodigo.index');
-    Route::get('/caja/{id}', 'CajaController@index')->name('caja.index');
+    Route::get('/caja/{code}/{id}', 'CajaController@index')->name('caja.index');
     Route::get('/agregar-al-carrito', 'CajaController@agregarAlCarrito')->name('agregar.al.carrito');
     Route::post('/caja/store', 'CajaController@store')->name('caja.store');
     Route::post('/caja/pass', 'CajaController@validation_pass')->name('caja_pass.store');
@@ -113,7 +113,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     // ============================================= M O D U L O   O R D E N E S ===========================================
 
     Route::get('/orders/{code}', 'OrdersController@index')->name('orders.index');
-    Route::get('/orders/ticket/{id}', 'OrdersController@show')->name('orders.show');
+    Route::get('/orders/ticket/{id}/{code}', 'OrdersController@show')->name('orders.show');
 
     // ============================================= M O D U L O  T R A B A J A D O R E S ==================================
 
@@ -133,7 +133,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::post('/cotizaciones/store', 'CotizacionesController@store')->name('cotizaciones.store');
     Route::patch('/cotizaciones/update/{id}', 'CotizacionesController@update')->name('cotizaciones.update');
     Route::get('/cotizaciones/filtro/{code}', 'CotizacionesController@filtro')->name('cotizaciones.filtro');
-    Route::get('/cotizaciones/pdf/{id}', 'CotizacionesController@pdf')->name('cotizaciones.pdf');
+    Route::get('/cotizaciones/pdf/{id}/{code}', 'CotizacionesController@pdf')->name('cotizaciones.pdf');
 
     // ============================================= M O D U L O  R E P O R T E S ==================================
 

@@ -49,16 +49,22 @@ class CotizacionesController extends Controller
         return view('cotizaciones.index', compact('cotizaciones','clientes','trabajadores'));
     }
 
-    public function pdf($id){
+    public function pdf($code, $id){
         $now = Carbon::now();
         $user = auth()->user()->id_empresa;
         $configuracion = Configuraciones::where('id_empresa', $user)->first();
-        $productos = OrdenesProductos::where('id_orden', $id)->get();
-        $cotizacion = Ordenes::where('id', $id)->first();
+        $productos = OrdenesProductos::where('id_orden', $code)->get();
+        $cotizacion = Ordenes::where('id', $code)->first();
 
-        $pdf = \PDF::loadView('pdf.cotizacion',compact('cotizacion', 'configuracion', 'productos'));
-         return $pdf->stream();
-        //return $pdf->download('Cotizacion '.$cotizacion->Cliente->nombre.'-'.$now.'.pdf');
+        // Check if the order exists and belongs to the user's company
+        if ($cotizacion && $cotizacion->id_empresa === $user) {
+            $pdf = \PDF::loadView('pdf.cotizacion', compact('cotizacion', 'configuracion', 'productos'));
+            return $pdf->download('Cotizacion '.$cotizacion->Cliente->nombre.'-'.$now.'.pdf');
+            //return $pdf->stream();
+        } else {
+            // Order doesn't exist or doesn't belong to the user's company
+            abort(403, 'Acción no autorizada.');
+        }
 
     }
 }
