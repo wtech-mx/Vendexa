@@ -25,7 +25,7 @@ class CustomAuthController extends Controller
             'telefono' => 'required',
             'password' => 'required',
         ]);
-
+    
         $fieldType = filter_var($request->telefono, FILTER_VALIDATE_EMAIL) ? 'email' : 'telefono';
 
         if(auth()->attempt(array($fieldType => $input['telefono'], 'password' => $input['password']))){
@@ -34,13 +34,25 @@ class CustomAuthController extends Controller
 
                     $id = Auth::user()->id;
 
+
+                    dd( $id);
+
                     return redirect()->route('home_admin', $id)->withSuccess('Sesión iniciada');
 
                 }else{
 
                     $code = auth()->user()->Empresa->code;
 
-                    return redirect()->route('home', $code)->withSuccess('Sesión iniciada');                }
+                    // Obtén el nombre de la empresa desde la solicitud
+                    $empresaNombre = auth()->user()->Empresa->nombre;
+
+                    // Elimina espacios y caracteres no permitidos en los subdominios
+                    $subdomain = str_slug($empresaNombre);
+
+                    // return redirect()->route('home', ['code' => $code])->withSuccess('Sesión iniciada');
+                    return redirect()->route('subdomain.home', ['subdomain' => $subdomain, 'code' => $code])->withSuccess('Sesión iniciada');
+
+                }
 
         }else{
             return redirect()->back()->with('warning', 'Telefono incorrecto.');
