@@ -25,7 +25,7 @@ class CustomAuthController extends Controller
             'telefono' => 'required',
             'password' => 'required',
         ]);
-    
+
         $fieldType = filter_var($request->telefono, FILTER_VALIDATE_EMAIL) ? 'email' : 'telefono';
 
         if(auth()->attempt(array($fieldType => $input['telefono'], 'password' => $input['password']))){
@@ -33,9 +33,6 @@ class CustomAuthController extends Controller
                 if(Auth::user()->estatus_rol == 'Superadmin_root'){
 
                     $id = Auth::user()->id;
-
-
-                    dd( $id);
 
                     return redirect()->route('home_admin', $id)->withSuccess('Sesión iniciada');
 
