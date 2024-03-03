@@ -66,12 +66,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     // ============================================= G E N E R A L E S =====================================================
 
-    Route::group(['domain' => '{subdomain}.' . config('app.url'), 'middleware' => ['subdomain']], function () {
-        Route::get('/home/{code}', 'HomeController@index')->name('subdomain.home');
-        // Otras rutas específicas del subdominio van aquí
-    });
-
-    // Route::get('/home/{code}', 'HomeController@index')->name('home');
+    Route::get('/home/{code}', 'HomeController@index')->name('home');
 
     Route::get('/scanner', 'ScannerController@index')->name('scanner.index');
 

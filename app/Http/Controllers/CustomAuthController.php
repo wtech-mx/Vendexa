@@ -40,16 +40,7 @@ class CustomAuthController extends Controller
 
                     $code = auth()->user()->Empresa->code;
 
-                    // Obtén el nombre de la empresa desde la solicitud
-                    $empresaNombre = auth()->user()->Empresa->nombre;
-
-                    // Elimina espacios y caracteres no permitidos en los subdominios
-                    $subdomain = str_slug($empresaNombre);
-
-                    // return redirect()->route('home', ['code' => $code])->withSuccess('Sesión iniciada');
-                    return redirect()->route('subdomain.home', ['subdomain' => $subdomain, 'code' => $code])->withSuccess('Sesión iniciada');
-
-                }
+                    return redirect()->route('home', $code)->withSuccess('Sesión iniciada');                }
 
         }else{
             return redirect()->back()->with('warning', 'Telefono incorrecto.');
