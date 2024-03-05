@@ -156,8 +156,3 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::post('/corte/caja/cerrar', 'CajaCorteController@cerrar')->name('caja_corte.cerrar');
 
 });
-
-
-
-
-
