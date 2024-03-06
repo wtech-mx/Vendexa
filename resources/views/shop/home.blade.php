@@ -15,10 +15,10 @@
 
         <div class="container_herder_shop p-3">
             <div class="d-flex justify-content-around">
-                <a href="" class="icons_rs_header"><img class="img_shop_icon_rs" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="">Instagram</a>
-                <a href="" class="icons_rs_header"><img class="img_shop_icon_rs" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="">Tiktok</a>
-                <a href="" class="icons_rs_header"><img class="img_shop_icon_rs" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="">Facebook</a>
-                <a href="" class="icons_rs_header"><img class="img_shop_icon_rs" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="">Atencion via WhatsApp</a>
+                <a href="{{$configuracion->instagram}}" class="icons_rs_header"><img class="img_shop_icon_rs" src="{{ asset('assets/media/icons/instagram.webp') }}" alt="">Instagram</a>
+                <a href="{{$configuracion->tiktok}}" class="icons_rs_header"><img class="img_shop_icon_rs" src="{{ asset('assets/media/icons/tik-tok.webp') }}" alt="">Tiktok</a>
+                <a href="{{$configuracion->facebook}}" class="icons_rs_header"><img class="img_shop_icon_rs" src="{{ asset('assets/media/icons/facebook.webp') }}" alt="">Facebook</a>
+                <a href="{{$configuracion->whatsapp}}" class="icons_rs_header"><img class="img_shop_icon_rs" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="">Atencion via WhatsApp</a>
             </div>
         </div>
     </div>
@@ -34,7 +34,7 @@
 <div class="row mt-3">
     <div class="col-3">
         <h2 class="text-center">Categorias</h2>
-        <a href="" class="ms-5 li_categoria">Cascos Hax</a>
+        <a href="" class="ms-5 li_categoria">{{$empresa->nombre}}</a>
     </div>
 
     <div class="col-9">
@@ -49,118 +49,54 @@
                 </div>
 
                 <div class="col-3">
-                    <img class="img_logo_shop" src="{{ asset('assets/media/img/logos/LogosinF.png ') }}" alt="">
+                    @if ($empresa->logo == NULL)
+                        <img class="img_logo_shop" src="{{ asset('assets/media/img/logos/LogosinF.png ') }}" alt="">
+                    @else
+                        <img class="img_logo_shop" src="{{ asset('assets/media/img/logos/'. $empresa->logo) }}" alt="">
+                    @endif
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
+                @foreach ($productos as $producto)
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
 
-                    <div class="container_product_shop">
+                        <div class="container_product_shop">
 
-                        <div class="img_container_shop">
-                            <img class="img_prodcut_shop" src="{{ asset('assets/media/img/ilustraciones/img_product.jpg ') }}" alt="">
-                        </div>
+                            <div class="img_container_shop">
+                                @if ($producto->imagen_principal == NULL)
+                                    <img class="img_prodcut_shop" src="{{ asset('assets/media/img/logos/LogosinF.png') }}" alt="">
+                                @else
+                                    <img class="img_prodcut_shop" src="{{ asset('imagen_principal/empresa'.$empresa->id.'/'.$producto->imagen_principal) }}" alt="">
+                                @endif
+                            </div>
 
-                        <div class="information_shop_card">
+                            <div class="information_shop_card">
 
-                        <h4 class="product_title__11Ti1">Maletero NOSS SOLID plata 45 L </h4>
+                            <h4 class="product_title__11Ti1">{{$producto->nombre}}</h4>
 
-                        <div class="d-flex justify-content-between">
-                                <p class="product_category_shop">Accesorios</p>
-                                <p class="product_category_shop">Sku: 3214328123</p>
-                        </div>
+                            <div class="d-flex justify-content-between">
+                                    <p class="product_category_shop">{{$producto->Categoria->nombre}}</p>
+                                    <p class="product_category_shop">Sku: {{$producto->sku}}</p>
+                            </div>
 
-                        <h3 class="precio_rpduct_shop"><strong>$3,500.00</strong></h3>
+                            <h3 class="precio_rpduct_shop">
+                                @if ($fechaActual_global >= $producto->fecha_inicio_desc && $fechaActual_global <= $producto->fecha_fin_desc)
+                                    <strong>${{$producto->precio_descuento}}</strong> <del>${{ $producto->precio_normal }}</del>
+                                @else
+                                    <strong>${{$producto->precio_normal}}</strong>
+                                @endif
+                            </h3>
 
-                        <p class="prodct_description">-Materiales de ABS-Capacidad de 45 litros </p>
+                            <p class="prodct_description">{{$producto->descripcion}}</p>
 
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
-
-                    <div class="container_product_shop">
-
-                        <div class="img_container_shop">
-                            <img class="img_prodcut_shop" src="{{ asset('assets/media/img/ilustraciones/img_product.jpg ') }}" alt="">
-                        </div>
-
-                        <div class="information_shop_card">
-
-                        <h4 class="product_title__11Ti1">Maletero NOSS SOLID plata 45 L </h4>
-
-                        <div class="d-flex justify-content-between">
-                                <p class="product_category_shop">Accesorios</p>
-                                <p class="product_category_shop">Sku: 3214328123</p>
-                        </div>
-
-                        <h3 class="precio_rpduct_shop"><strong>$3,500.00</strong></h3>
-
-                        <p class="prodct_description">-Materiales de ABS-Capacidad de 45 litros </p>
+                            </div>
 
                         </div>
 
                     </div>
+                @endforeach
 
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
-
-                    <div class="container_product_shop">
-
-                        <div class="img_container_shop">
-                            <img class="img_prodcut_shop" src="{{ asset('assets/media/img/ilustraciones/img_product.jpg ') }}" alt="">
-                        </div>
-
-                        <div class="information_shop_card">
-
-                        <h4 class="product_title__11Ti1">Maletero NOSS SOLID plata 45 L </h4>
-
-                        <div class="d-flex justify-content-between">
-                                <p class="product_category_shop">Accesorios</p>
-                                <p class="product_category_shop">Sku: 3214328123</p>
-                        </div>
-
-                        <h3 class="precio_rpduct_shop"><strong>$3,500.00</strong></h3>
-
-                        <p class="prodct_description">-Materiales de ABS-Capacidad de 45 litros </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
-
-                    <div class="container_product_shop">
-
-                        <div class="img_container_shop">
-                            <img class="img_prodcut_shop" src="{{ asset('assets/media/img/ilustraciones/img_product.jpg ') }}" alt="">
-                        </div>
-
-                        <div class="information_shop_card">
-
-                        <h4 class="product_title__11Ti1">Maletero NOSS SOLID plata 45 L </h4>
-
-                        <div class="d-flex justify-content-between">
-                                <p class="product_category_shop">Accesorios</p>
-                                <p class="product_category_shop">Sku: 3214328123</p>
-                        </div>
-
-                        <h3 class="precio_rpduct_shop"><strong>$3,500.00</strong></h3>
-
-                        <p class="prodct_description">-Materiales de ABS-Capacidad de 45 litros </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
             </div>
         </div>
     </div>

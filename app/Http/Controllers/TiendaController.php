@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin\Configuracion;
 use App\Models\Configuraciones;
 use App\Models\Direcciones;
 use App\Models\Admin\Empresas;
@@ -17,8 +18,10 @@ class TiendaController extends Controller
         $user = auth()->user()->id_empresa;
 
         $productos = Productos::where('id_empresa', $user)->orderBy('created_at', 'desc')->take(100)->get();
+        $empresa = Empresas::where('id', $user)->first();
+        $configuracion = Configuraciones::where('id_empresa', $user)->first();
 
-        return view('shop.home', compact('productos'));
+        return view('shop.home', compact('productos', 'empresa', 'configuracion'));
 
     }
 }

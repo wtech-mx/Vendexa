@@ -52,7 +52,7 @@
 
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-generales-tab" data-bs-toggle="pill" data-bs-target="#pills-generalesTab" type="button" role="tab" aria-controls="pills-generales" aria-selected="false" onclick="changeTab('pills-generales')">
-                            <img class="tab_custom_icon" src="{{ asset('assets/media/icons/resultado.webp') }}" alt="" > Generales
+                            <img class="tab_custom_icon" src="{{ asset('assets/media/icons/carrito.webp') }}" alt="" > Tienda Online
                         </button>
                     </li>
                 </ul>
@@ -486,7 +486,107 @@
                     </div>
                     <div class="tab-pane fade" id="pills-generalesTab" role="tabpanel" aria-labelledby="pills-generales-tab" tabindex="0">
                         <div class="row">
-                            <h1>Proximamente</h1>
+                            <form method="POST" action="{{ route('configuracion_tienda.update', $empresa->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="empresaFormConfig_tienda">
+                                @csrf
+                                <input type="hidden" name="_method" value="PATCH">
+                                <div class="row">
+                                    <div class="form-group text-left col-12 mt-0 p-2">
+                                        <h6 class="subtittle_clientes">Redes Sociales</h6>
+                                    </div>
+
+                                    <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-3 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_sm mb-2">Instagram : *</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/instagram.webp') }}" alt="" >
+                                            </span>
+                                            <input id="instagram" name="instagram" type="text"  class="form-control input_custom_tab @error('instagram') is-invalid @enderror"  value="{{ $configuracion->instagram }}" autocomplete="" autofocus>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-3 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_sm mb-2">Facebook : *</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/facebook.webp') }}" alt="" >
+                                            </span>
+                                            <input id="facebook" name="facebook" type="text"  class="form-control input_custom_tab @error('facebook') is-invalid @enderror"  value="{{ $configuracion->facebook }}" autocomplete="" autofocus>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-3 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_sm mb-2">TikTok : *</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/tik-tok.webp') }}" alt="" >
+                                            </span>
+                                            <input id="tiktok" name="tiktok" type="text"  class="form-control input_custom_tab @error('tiktok') is-invalid @enderror"  value="{{ $configuracion->tiktok }}" autocomplete="" autofocus>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-3 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_sm mb-2">WhatsApp : *</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="" >
+                                            </span>
+                                            <input id="whatsapp" name="whatsapp" type="text"  class="form-control input_custom_tab @error('whatsapp') is-invalid @enderror"  value="{{ $configuracion->whatsapp }}" autocomplete="" autofocus>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group text-left col-12 mt-0 p-2">
+                                        <h6 class="subtittle_clientes">Baner Tienda</h6>
+                                    </div>
+
+                                    <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-3 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_sm mb-2">Imagen : *</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/imagen.webp') }}" alt="" >
+                                            </span>
+                                            <input id="imagen_banner" name="imagen_banner" type="file"  class="form-control input_custom_tab @error('imagen_banner') is-invalid @enderror"  autocomplete="" autofocus>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-3 px-4 py-3">
+                                        <label for="name" class="label_custom_primary_sm mb-2">Orden : *</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/tik-tok.webp') }}" alt="" >
+                                            </span>
+                                            <input id="orden_banner" name="orden_banner" type="text"  class="form-control input_custom_tab @error('orden_banner') is-invalid @enderror" autocomplete="" autofocus>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-12 col-xs-6 col-sm-6 col-md-4 col-xl-4 px-4 py-1">
+                                        <label for="name" class="label_custom_primary_sm mb-2">Estatus:</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_tab" >
+                                                <img class="icon_span_tab" src="{{ asset('assets/media/icons/camion.webp') }}" alt="" >
+                                            </span>
+                                            <select name="estatus_banner" id="estatus_banner" class="form-select d-inline-block input_custom_tab" >
+                                                <option value="Activado">Activado</option>
+                                                <option value="Desactivado">Desactivado</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-12 mt-4 mb-4 ">
+                                        <p class="text-center ">
+                                            <button type="submit" id="guardarCaja" class="btn btn-success btn_save_custom">Guardar</button>
+                                        </p>
+                                    </div>
+                                </div>
+                            </form>
+                            <div id="sortable-list">
+                                @foreach ($banners as $banner)
+                                    <div class="sortable-item" data-id="{{ $banner->id }}">
+                                        <img class="" src="{{ asset('banners/empresa'.auth()->user()->id_empresa.'/'.$banner->imagen) }}" style="height: 30px;">
+                                        <label for="name" class="label_custom_primary_sm mb-2">{{ $banner->orden }}</label>
+                                        <label for="name" class="label_custom_primary_sm mb-2">{{ $banner->estatus }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -503,6 +603,41 @@
 @endsection
 
 @section('js_custom_settings')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+<script>
+    const sortableList = document.getElementById('sortable-list');
+
+    const sortable = new Sortable(sortableList, {
+        animation: 150, // Duración de la animación en milisegundos
+        onUpdate: function (evt) {
+            // Se ejecuta después de que se ha realizado el cambio de orden
+            const items = evt.from.getElementsByClassName('sortable-item');
+            const orderArray = Array.from(items).map((item, index) => ({
+                id: item.dataset.id,
+                order: index + 1,
+            }));
+
+            // Obtén el token CSRF desde la etiqueta meta
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+            // Agrega el token CSRF al encabezado de la solicitud
+            const headers = new Headers({
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken,
+            });
+
+            // Ejemplo usando fetch:
+            fetch('/actualizar-orden', {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify({ orderArray }),
+            })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
+        },
+    });
+</script>
 
 <script>
     $(document).ready(function() {
@@ -609,6 +744,57 @@
             showCancelButton: false,
             focusConfirm: false,
             confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="#" >Cerrar</a>',
+            }).then(() => {
+                // Cierra todos los modales abiertos
+                $('.modal').modal('hide');
+            });
+        }
+
+
+        $("#empresaFormConfig_tienda").on("submit", function (event) {
+            event.preventDefault();
+            var formID = $(this).attr("id");
+
+            $.ajax({
+                url: $(this).attr("action"),
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                processData: false,
+                success: async function(response) {
+                    saveSuccessEditConfig(response);
+                },
+                error: function (xhr, status, error) {
+                    var errors = xhr.responseJSON.errors;
+                    var errorMessage = '';
+
+                    // Itera a través de los errores y agrega cada mensaje de error al mensaje final
+                    for (var key in errors) {
+                        if (errors.hasOwnProperty(key)) {
+                            var errorMessages = errors[key].join('<br>'); // Usamos <br> para separar los mensajes
+                            errorMessage += '<strong>' + key + ':</strong><br>' + errorMessages + '<br>';
+                        }
+                    }
+                    console.log(errorMessage);
+                    // Muestra el mensaje de error en una SweetAlert
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Faltan Campos',
+                        html: errorMessage, // Usa "html" para mostrar el mensaje con formato HTML
+                    });
+                }
+            });
+
+        });
+
+        async function saveSuccessEditConfig(response) {
+            Swal.fire({
+                title: "Datos de Empresa Actualizado <br> <strong>¡Exitosamente!</strong>",
+                icon: "success",
+                showCloseButton: true,
+                showCancelButton: false,
+                focusConfirm: false,
+                confirmButtonText: '<a class="btn_swalater_confirm"  style="text-decoration: none;color: #fff;" href="#" >Cerrar</a>',
             }).then(() => {
                 // Cierra todos los modales abiertos
                 $('.modal').modal('hide');

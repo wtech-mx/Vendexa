@@ -79,6 +79,9 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     Route::get('/configuracion/{code}', 'ConfiguracionController@index')->name('configuracion.index');
     Route::patch('/configuracion/empresa/update/{code}', 'ConfiguracionController@configuracion_empresa')->name('configuracion_empresa.update');
     Route::patch('/configuracion/caja/update/{id}', 'ConfiguracionController@configuracion_caja')->name('configuracion_caja.update');
+    Route::patch('/configuracion/tienda/update/{id}', 'ConfiguracionController@configuracion_tienda')->name('configuracion_tienda.update');
+
+    Route::post('/actualizar-orden', 'ConfiguracionController@actualizarOrden');
 
     // ============================================= M O D U L O   C L I E N T E S =========================================
 

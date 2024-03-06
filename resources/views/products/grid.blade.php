@@ -1,7 +1,7 @@
 <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center px-3 py-3 px-md-2">
     <div class="card card_prodcut p-3" onclick="seleccionarProducto({{ $producto->id }})" data-producto="{{ $producto->id }}">
 
-        <div class="card_prodcuto @if ($configuracion->stock_bajo >= $producto->stock)borde_card_product_sin_stock @elseif ($configuracion->stock_medio >= $producto->stock)borde_card_product_bajo_stock @elseif ($configuracion->stock_alto >= $producto->stock) borde_card_product_stock @endif" style="">
+        <div class="card_prodcuto @if ($producto->stock <= $configuracion->stock_bajo)borde_card_product_sin_stock @elseif ($producto->stock <= $configuracion->stock_medio)borde_card_product_bajo_stock @elseif ($producto->stock >= $configuracion->stock_alto) borde_card_product_stock @endif" style="">
 
             <div class="card_container_img">
                 <p class="text-center mb-0">

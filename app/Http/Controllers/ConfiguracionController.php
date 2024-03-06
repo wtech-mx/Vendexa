@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Configuraciones;
 use App\Models\Direcciones;
 use App\Models\Admin\Empresas;
+use App\Models\BannersTienda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,8 +15,9 @@ class ConfiguracionController extends Controller
         $user = auth()->user();
         $empresa = Empresas::where('code', $code)->first();
         $configuracion = Configuraciones::where('id_empresa', $user->id_empresa)->first();
+        $banners = BannersTienda::where('id_empresa', $user->id_empresa)->orderBy('orden', 'asc')->get();
 
-        return view('settings.index', compact('configuracion', 'empresa'));
+        return view('settings.index', compact('configuracion', 'empresa', 'banners'));
     }
 
     public function inicial($id, Request $request){
@@ -78,25 +80,28 @@ class ConfiguracionController extends Controller
 
         $empresa = Empresas::where('code', '=', $code)->first();
         $empresa->nombre = $request->get('nombre_empresa');
-        $empresa->logo = $request->get('logo');
+        if ($request->hasFile("logo")) {
+            $file = $request->file('logo');
+            $path = public_path() . '/logo/empresa'.auth()->user()->id_empresa;
+            $fileName = uniqid() . $file->getClientOriginalName();
+            $file->move($path, $fileName);
+            $empresa->logo = $fileName;
+        }
         $empresa->telefono = $request->get('telefono_empresa');
         $empresa->correo = $request->get('correo_empresa');
         $empresa->update();
 
-        $direccion = Direcciones::find($empresa->id_direccion);
-        $direccion->codigo_postal = $request->get('codigo_postal');
-        $direccion->estado = $request->get('estado');
-        $direccion->alcaldia = $request->get('alcaldia');
-        $direccion->pais = $request->get('pais');
-        $direccion->colonia = $request->get('colonia');
-        $direccion->calle_numero = $request->get('calle_numero');
-        $direccion->update();
+        // $direccion = Direcciones::find($empresa->id_direccion);
+        // $direccion->codigo_postal = $request->get('codigo_postal');
+        // $direccion->estado = $request->get('estado');
+        // $direccion->alcaldia = $request->get('alcaldia');
+        // $direccion->pais = $request->get('pais');
+        // $direccion->colonia = $request->get('colonia');
+        // $direccion->calle_numero = $request->get('calle_numero');
+        // $direccion->update();
 
         $config_data = [
             "nombre" => $empresa->nombre,
-            "codigo_postal" => $direccion->codigo_postal,
-            "estado" => $direccion->estado,
-            "alcaldia" => $direccion->alcaldia,
         ];
 
         return response()->json(['success' => true, 'config_data' => $config_data]);
@@ -124,6 +129,52 @@ class ConfiguracionController extends Controller
 
         return response()->json(['success' => true]);
 
+    }
+
+    public function configuracion_tienda($id, Request $request){
+        $user = auth()->user()->id_empresa;
+        $configuraciones = Configuraciones::where('id_empresa', '=', $id)->first();
+        $configuraciones->facebook = $request->get('facebook');
+        $configuraciones->tiktok = $request->get('tiktok');
+        $configuraciones->instagram = $request->get('instagram');
+        $configuraciones->whatsapp = $request->get('whatsapp');
+        $configuraciones->update();
+
+        $baner = new BannersTienda;
+        $baner->id_empresa = $user;
+        if ($request->hasFile("imagen_banner")) {
+            $file = $request->file('imagen_banner');
+            $path = public_path() . '/banners/empresa'.auth()->user()->id_empresa;
+            $fileName = uniqid() . $file->getClientOriginalName();
+            $file->move($path, $fileName);
+            $baner->imagen = $fileName;
+        }
+        $baner->orden = $request->get('orden_banner');
+        $baner->estatus = $request->get('estatus_banner');
+        $baner->save();
+
+        $config_data = [
+            "facebook" => $configuraciones->facebook,
+            "tiktok" => $configuraciones->tiktok,
+            "instagram" => $configuraciones->instagram,
+        ];
+
+        return response()->json(['success' => true, 'config_data' => $config_data]);
+
+    }
+
+    public function actualizarOrden(Request $request){
+        // Obtén los datos de orden desde la solicitud
+        $orderArray = $request->input('orderArray');
+
+        // Actualiza el orden en la base de datos según el array recibido
+        foreach ($orderArray as $orderItem) {
+            $banner = BannersTienda::find($orderItem['id']);
+            $banner->orden = $orderItem['order'];
+            $banner->save();
+        }
+
+        return response()->json(['success' => true]);
     }
 
     public function tarjeta_presentacion($code){

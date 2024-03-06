@@ -99,7 +99,7 @@ class ProductosController extends Controller
                     $newValue = $request->input($field);
 
                     if ($oldValue != $newValue) {
-                        $changes[$field] = "De {$oldValue} A {$product->visibilidad_estatus}";
+                        $changes[$field] = "Cambio a: {$product->visibilidad_estatus}";
                         $product->{$field} = $newValue;
                     }
                 }
@@ -149,7 +149,7 @@ class ProductosController extends Controller
                 $newValue = $request->input($field);
 
                 if ($oldValue != $newValue) {
-                    $changes[$field] = "De {$oldValue} A {$product->visibilidad_estatus}";
+                    $changes[$field] = "Cambio a: {$product->visibilidad_estatus}";
                     $product->{$field} = $newValue;
                 }
             }
