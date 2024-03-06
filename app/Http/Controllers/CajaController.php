@@ -21,7 +21,7 @@ class CajaController extends Controller
     public function index($code){
         $user = auth()->user()->id_empresa;
 
-        $productos = Productos::where('id_empresa', $user)->get();
+        $productos = Productos::where('id_empresa', $user)->where('visibilidad_estatus', '=', 'Si')->get();
         $clientes = Clientes::where('id_empresa', $user)->get();
 
         return view('caja.index', compact('productos', 'clientes', 'user'));

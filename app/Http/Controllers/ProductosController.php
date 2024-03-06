@@ -134,14 +134,14 @@ class ProductosController extends Controller
             $product = Productos::find($producto); // Obtener el producto por SKU
 
             if ($product) {
-                $product->visibilidad_estatus = 'Visible';
+                $product->visibilidad_estatus = 'Si';
                 $product->update();
             }
 
             $changes = [];
 
             $fields = [
-                'visibilidad_estatus' => 'Visible',
+                'visibilidad_estatus' => 'Si',
             ];
 
             foreach ($fields as $field => $label) {
