@@ -21,6 +21,7 @@ class CustomAuthController extends Controller
     {
 
         $input = $request->all();
+
         $request->validate([
             'telefono' => 'required',
             'password' => 'required',

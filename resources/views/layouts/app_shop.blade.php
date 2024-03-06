@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/inputs.css') }}">
 
+    @yield('css_custom')
+
 </head>
 
     <body>

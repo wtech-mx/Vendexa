@@ -1,0 +1,73 @@
+.container_herder_shop{
+    background-color: #000;
+}
+
+.container_banner{
+    border-radius: 12px;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.25);
+    background-color: rgba(255, 255, 255, 1);    border-radius: 9px;
+}
+
+.container_product_shop{
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.25);
+    background-color: rgba(255, 255, 255, 1);    border-radius: 9px;
+    padding: 15px;
+
+    border-radius: 12px;
+}
+
+.img_shop_icon_rs{
+    width: 20px;
+}
+
+.icons_rs_header{
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.img_banner_shop{
+    width: 100%;
+}
+
+.img_logo_shop{
+    width: 100px;
+
+}
+
+
+.li_categoria{
+    text-decoration: none;
+    color: #000;
+}
+
+.img_prodcut_shop{
+    width: 100%;
+}
+
+.product_title__11Ti1 {
+    font-weight: 500;
+    word-break: break-word;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.product_category_shop {
+    font-size: 12px;
+    font-weight: 400;
+    color: #a9b1be;
+}
+
+.precio_rpduct_shop{
+    font-size: 20px;
+    font-weight: 500;
+    color: #2d2d2a;
+}
+
+.prodct_description{
+    margin-top: 5px;
+    font-size: 12px;
+    line-height: 20px;
+}
+
