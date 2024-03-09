@@ -28,10 +28,10 @@
 
         <div class="container_herder_shop p-3">
             <div class="d-flex justify-content-around">
-                <a href="{{$configuracion->instagram}}" class="icons_rs_header"><img class="img_shop_icon_rs" src="{{ asset('assets/media/icons/instagram.webp') }}" alt="">Instagram</a>
-                <a href="{{$configuracion->tiktok}}" class="icons_rs_header"><img class="img_shop_icon_rs" src="{{ asset('assets/media/icons/tik-tok.webp') }}" alt="">Tiktok</a>
-                <a href="{{$configuracion->facebook}}" class="icons_rs_header"><img class="img_shop_icon_rs" src="{{ asset('assets/media/icons/facebook.webp') }}" alt="">Facebook</a>
-                <a href="{{$configuracion->whatsapp}}" class="icons_rs_header"><img class="img_shop_icon_rs" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="">Atencion via WhatsApp</a>
+                <a href="{{$configuracion->instagram}}" class="icons_rs_header m"><img class="img_shop_icon_rs me-3" src="{{ asset('assets/media/icons/instagram.webp') }}" alt="">Instagram</a>
+                <a href="{{$configuracion->tiktok}}" class="icons_rs_header m"><img class="img_shop_icon_rs me-3" src="{{ asset('assets/media/icons/tik-tok.webp') }}" alt="">Tiktok</a>
+                <a href="{{$configuracion->facebook}}" class="icons_rs_header m"><img class="img_shop_icon_rs me-3" src="{{ asset('assets/media/icons/facebook.webp') }}" alt="">Facebook</a>
+                <a href="{{$configuracion->whatsapp}}" class="icons_rs_header m"><img class="img_shop_icon_rs me-3" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="">Atencion via WhatsApp</a>
             </div>
         </div>
     </div>
@@ -101,12 +101,9 @@
 
                         <div class="container_product_shop">
 
-                            <div class="img_container_shop">
-                                    @if ($producto->imagen_principal == NULL)
-                                        <img class="img_prodcut_shop" src="{{ asset('assets/media/icons/image_no_found.webp') }}" alt="Imagen de producto">
-                                    @else
-                                        <img class="img_prodcut_shop" src="{{ asset('imagen_principal/empresa'.$empresa->id.'/'.$producto->imagen_principal) }}" alt="{{ $producto->imagen_principal }}">
-                                    @endif
+                            <div class="img_container_shop" style=" background-image: url('@if($producto->imagen_principal != NULL){{ asset('imagen_principal/empresa'.$empresa->id.'/'.$producto->imagen_principal) }}@else{{ asset('assets/media/icons/image_no_found.webp') }}@endif');">
+                                <div class="img_prodcut_shop" style=" background-image: url('@if($producto->imagen_principal != NULL){{ asset('imagen_principal/empresa'.$empresa->id.'/'.$producto->imagen_principal) }}@else{{ asset('assets/media/icons/image_no_found.webp') }}@endif');">
+                                </div>
                             </div>
 
                             <div class="information_shop_card">
