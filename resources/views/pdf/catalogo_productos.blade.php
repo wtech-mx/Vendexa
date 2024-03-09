@@ -55,17 +55,22 @@
         <table>
             <tr>
                 <td>
-                    <img src="https://scontent.fmex28-1.fna.fbcdn.net/v/t39.30808-1/270423810_1957165624443123_3118909372186457774_n.png?stp=dst-png_p320x320&_nc_cat=107&cb=99be929b-3346023f&ccb=1-7&_nc_sid=c6021c&_nc_eui2=AeEq-_E2_BPGWHpdBOmu_cJ3vgYiDdkWP32-BiIN2RY_fQS0nBp0Ti0tVOuWt_hVM05Q5gKBsRSjTgntsM7oj2P-&_nc_ohc=zrBtm5FGDOgAX8BWwqM&_nc_ht=scontent.fmex28-1.fna&oh=00_AfDcPrCBVhGlaxX8TbohV9MSNuI6DN_LuxiDET4vKRd5kQ&oe=64ABE0F2" alt="Logo">
+                    @if ($configuracion->logo)
+                        <img src="{{ asset('assets/media/img/logos/not-found.webp') }}" alt="Logo">
+                    @else
+                        <img src="{{ asset('logo/empresa'.auth()->user()->id_empresa.'/'.$configuracion->logo) }}" alt="Logo">
+                    @endif
+
                 </td>
                 <td>
                     <p style="color: #577590">---------------------------------------</p>
                 </td>
                 <td style="width: 350px">
-                    <h1>- Maniabike Boutique</h1>
+                    <h1>- {{ $empresa->nombre }}</h1>
                     <ul style="list-style: none;text-align:left">
-                        <li><strong>Telefono:</strong> 5519637033</li>
-                        <li><strong>Dirección:</strong> Cto. Interior 888, Insurgentes Mixcoac, Benito Juárez, 03920, CDMX </li>
-                        <li><strong>Horario: </strong> L a V  10:00 AM a 6:00 PM, Sabado :10:00 AM a 3:00 PM</li>
+                        <li><strong>Telefono:</strong> {{ $configuracion->whatsapp }}</li>
+                        <li><strong>Dirección:</strong>{{ $configuracion->Direccion->calle_numero }}, {{ $configuracion->Direccion->colonia }}, {{ $configuracion->Direccion->codigo_postal }}, {{ $configuracion->Direccion->pais }}</li>
+                        {{-- <li><strong>Horario: </strong> L a V  10:00 AM a 6:00 PM, Sabado :10:00 AM a 3:00 PM</li> --}}
                     </ul>
                 </td>
             </tr>
@@ -99,7 +104,11 @@
         <table>
             <tr>
                 <td>
-                    <img src="https://scontent.fmex28-1.fna.fbcdn.net/v/t39.30808-1/270423810_1957165624443123_3118909372186457774_n.png?stp=dst-png_p320x320&_nc_cat=107&cb=99be929b-3346023f&ccb=1-7&_nc_sid=c6021c&_nc_eui2=AeEq-_E2_BPGWHpdBOmu_cJ3vgYiDdkWP32-BiIN2RY_fQS0nBp0Ti0tVOuWt_hVM05Q5gKBsRSjTgntsM7oj2P-&_nc_ohc=zrBtm5FGDOgAX8BWwqM&_nc_ht=scontent.fmex28-1.fna&oh=00_AfDcPrCBVhGlaxX8TbohV9MSNuI6DN_LuxiDET4vKRd5kQ&oe=64ABE0F2" alt="Logo">
+                    @if ($configuracion->logo)
+                        <img src="{{ asset('assets/media/img/logos/not-found.webp') }}" alt="Logo">
+                    @else
+                        <img src="{{ asset('logo/empresa'.auth()->user()->id_empresa.'/'.$configuracion->logo) }}" alt="Logo">
+                    @endif
                 </td>
                 <td>
                     <p style="color: #577590">---------------------------------------</p>

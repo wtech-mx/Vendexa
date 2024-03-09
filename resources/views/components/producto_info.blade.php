@@ -386,9 +386,11 @@
                                     <div class="col-12 px-4 py-1">
                                         <h2 class="tiitle_modal_white text-left ms-2">Ventas</h2>
                                     </div>
-
-                                    @include('components.producto_ventas')
-
+                                    @foreach($ordesprodcutos as $item)
+                                        @if($producto->id == $item->id_producto)
+                                            @include('components.producto_ventas')
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
 

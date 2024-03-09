@@ -56,7 +56,9 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-compras" role="tabpanel" aria-labelledby="pills-compras-tab" tabindex="0">
                         <div class="row">
-                            @include('components.producto_ventas')
+                            @foreach ($compras as $compra)
+                                @include('components.ordenes_ventas')
+                            @endforeach
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-adeudos" role="tabpanel" aria-labelledby="pills-adeudos-tab" tabindex="0">
