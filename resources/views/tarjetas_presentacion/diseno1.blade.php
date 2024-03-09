@@ -19,7 +19,7 @@
               <h4 class="fw-bold mb-0 text-center tittle_vendexa_tarjeta">VENDEXA</h4>
 
               <h2 class="text-center mt-3 mb-3">
-                <img class="logo_desgin_tarjetas" src="{{ asset('logo/empresa'.auth()->user()->id_empresa.'/'.$configuracion->logo) }}" alt="">
+                <img class="logo_desgin_tarjetas" src="{{ asset('logo/empresa'.$empresa->id_empresa.'/'.$configuracion->logo) }}" alt="">
               </h2>
 
               <h2 class="fw-bold mt-4 mb-4 text-center subtittle_vendexa_tarjeta">

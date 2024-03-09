@@ -9,19 +9,20 @@ use App\Models\Admin\Empresas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Productos;
+use App\Models\BannersTienda;
 
 
 class TiendaController extends Controller
 {
     public function index($code){
 
-        $user = auth()->user()->id_empresa;
+        $empresa = Empresas::where('code', $code)->first();
+        $configuracion = Configuraciones::where('id_empresa', $empresa->id)->first();
 
-        $productos = Productos::where('id_empresa', $user)->orderBy('created_at', 'desc')->take(100)->get();
-        $empresa = Empresas::where('id', $user)->first();
-        $configuracion = Configuraciones::where('id_empresa', $user)->first();
+        $productos = Productos::where('id_empresa', $empresa->id)->orderBy('created_at', 'desc')->take(100)->get();
+        $baner = BannersTienda::where('id_empresa', $empresa->id)->orderBy('orden', 'asc')->get();
 
-        return view('shop.home', compact('productos', 'empresa', 'configuracion'));
+        return view('shop.home', compact('productos', 'empresa', 'configuracion','baner'));
 
     }
 }

@@ -180,8 +180,9 @@ class ConfiguracionController extends Controller
     public function tarjeta_presentacion($code){
 
         $empresa = Empresas::where('code', $code)->first();
+        $configuracion = Configuraciones::where('id_empresa', $empresa->id)->first();
 
-        return view('tarjetas_presentacion.diseno1',compact( 'empresa'));
+        return view('tarjetas_presentacion.diseno1',compact( 'empresa','configuracion'));
 
     }
 }

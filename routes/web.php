@@ -23,6 +23,11 @@ Route::get('/', function () {
 Route::post('custom-login', [App\Http\Controllers\CustomAuthController::class, 'customLogin'])->name('login.custom');
 Route::get('signout', [App\Http\Controllers\CustomAuthController::class, 'signOut'])->name('signout');
 
+Route::get('/tarjeta_digital/{code}', [App\Http\Controllers\ConfiguracionController::class, 'tarjeta_presentacion'])->name('tarjeta_digital.index');
+Route::get('/tienda_online/{code}', [App\Http\Controllers\TiendaController::class, 'index'])->name('tienda_online.index');
+
+
+
 // ============================================= A D M I N I S T R A D O R =====================================================
 
 Route::group(['prefix' => 'wtech', 'middleware' => 'web', 'namespace' => 'App\Http\Controllers'], function ()  {
@@ -59,9 +64,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
     //     return view('tarjetas_presentacion.diseno1');
     // });
 
-    Route::get('/tarjeta_digital/{code}', 'ConfiguracionController@tarjeta_presentacion')->name('tarjeta_digital.index');
 
-    Route::get('/tienda_online/{code}', 'TiendaController@index')->name('tienda_online.index');
 
 
     // ============================================= G E N E R A L E S =====================================================
