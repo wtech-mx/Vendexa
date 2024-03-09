@@ -8,7 +8,11 @@
 
 @section('css_custom')
 
-<link rel="stylesheet" href="{{ asset('assets/css/shop.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop.css') }}">
+    <!-- css custom -->
+    <link rel="stylesheet" href="{{ asset('assets/css/animations.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}">
 
 @if ($empresa->logo == NULL)
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/media/img/logos/LogosinF.png ') }}">
@@ -31,7 +35,7 @@
                 <a href="{{$configuracion->instagram}}" class="icons_rs_header m"><img class="img_shop_icon_rs me-3" src="{{ asset('assets/media/icons/instagram.webp') }}" alt="">Instagram</a>
                 <a href="{{$configuracion->tiktok}}" class="icons_rs_header m"><img class="img_shop_icon_rs me-3" src="{{ asset('assets/media/icons/tik-tok.webp') }}" alt="">Tiktok</a>
                 <a href="{{$configuracion->facebook}}" class="icons_rs_header m"><img class="img_shop_icon_rs me-3" src="{{ asset('assets/media/icons/facebook.webp') }}" alt="">Facebook</a>
-                <a href="{{$configuracion->whatsapp}}" class="icons_rs_header m"><img class="img_shop_icon_rs me-3" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="">Atencion via WhatsApp</a>
+                <a href="{{$configuracion->whatsapp}}" class="icons_rs_header m"><img class="img_shop_icon_rs me-3" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="">WhatsApp</a>
             </div>
         </div>
     </div>
@@ -69,12 +73,14 @@
 </div>
 
 <div class="row mt-3">
-    <div class="col-3">
+    <div class="col-12 col-sm-3 col-md-3 col-lg-3">
+
         <h2 class="text-center">Categorias</h2>
         <a href="" class="ms-5 li_categoria">{{$empresa->nombre}}</a>
     </div>
 
-    <div class="col-9">
+    <div class="col-12 col-sm-9 col-md-9 col-lg-9">
+
         <div class="container_grid_product p-3">
 
             <div class="row mb-4">
@@ -97,39 +103,77 @@
             <div class="row">
 
                 @foreach ($productos as $producto)
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 mb-4">
+
+                        {{-- <div class="card_dashboard p-2">
+
+                            <div class="card_img">
+                                <a href="">
+                                    @if ($producto->imagen_principal == NULL)
+                                        <img class="img_icon_dash" src="{{ asset('assets/media/icons/image_no_found.webp') }}" alt="Imagen de producto">
+                                    @else
+                                        <img class="img_icon_dash" src="{{ asset('imagen_principal/empresa'.$empresa->id.'/'.$producto->imagen_principal) }}" alt="{{ $producto->imagen_principal }}">
+                                    @endif
+                                </a>
+                            </div>
+
+
+                            <h6 class="tittle_card_dash text-center mt-3 mb-3">Corte</h6>
+
+                            <a href="" class="btn_primary_blue_dash">Acceder </a>
+
+                            <a type="button" class="btn_plus_dash" data-bs-toggle="modal" data-bs-target="#creatRegCaja">
+                                <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
+                            </a>
+                        </div> --}}
 
                         <div class="container_product_shop">
 
-                            <div class="img_container_shop" style=" background-image: url('@if($producto->imagen_principal != NULL){{ asset('imagen_principal/empresa'.$empresa->id.'/'.$producto->imagen_principal) }}@else{{ asset('assets/media/icons/image_no_found.webp') }}@endif');">
+                            {{-- <div class="img_container_shop" style=" background-image: url('{{ asset('imagen_principal/empresa'.$empresa->id.'/'.$producto->imagen_principal) }}');"> --}}
+                            <div class="img_container_shop" style=" background-image: url('{{ asset('assets/media/img/backgrounds/fondo_shop_products.png') }}');">
+
                                 <div class="img_prodcut_shop" style=" background-image: url('@if($producto->imagen_principal != NULL){{ asset('imagen_principal/empresa'.$empresa->id.'/'.$producto->imagen_principal) }}@else{{ asset('assets/media/icons/image_no_found.webp') }}@endif');">
                                 </div>
                             </div>
 
                             <div class="information_shop_card">
 
-                            <h4 class="product_title__11Ti1 mt-3">{{$producto->nombre}}</h4>
+                                <h4 class="product_title__11Ti1 mt-3">{{$producto->nombre}}</h4>
 
-                            <div class="d-flex justify-content-between">
-                                    <p class="product_category_shop">{{$producto->Categoria->nombre}}</p>
-                                    <p class="product_category_shop">Sku: {{$producto->sku}}</p>
-                            </div>
+                                <div class="d-flex justify-content-between">
+                                        <p class="product_category_shop">{{$producto->Categoria->nombre}}</p>
+                                        <p class="product_category_shop">Sku: {{$producto->sku}}</p>
+                                </div>
 
-                            <h3 class="precio_rpduct_shop">
-                                @if ($fechaActual_global >= $producto->fecha_inicio_desc && $fechaActual_global <= $producto->fecha_fin_desc)
-                                    <strong>${{$producto->precio_descuento}}</strong> <del>${{ $producto->precio_normal }}</del>
-                                @else
-                                    <strong>${{$producto->precio_normal}}</strong>
-                                @endif
-                            </h3>
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="precio_rpduct_shop">
+                                        @if ($fechaActual_global >= $producto->fecha_inicio_desc && $fechaActual_global <= $producto->fecha_fin_desc)
+                                            <strong>${{number_format($producto->precio_descuento, 2, '.', ',')}} MXN</strong> <br> <del class="precio_tachado">${{number_format($producto->precio_normal, 2, '.', ',')}}  MXN</del>
+                                        @else
+                                            <strong><br>${{number_format($producto->precio_normal, 2, '.', ',')}} MXN</strong>
+                                        @endif
+                                    </h3>
 
-                            <p class="prodct_description">{{$producto->descripcion}}</p>
+                                    @if ($fechaActual_global >= $producto->fecha_inicio_desc && $fechaActual_global <= $producto->fecha_fin_desc)
+                                        <a type="button" class="btn_primary_blue_dash" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$producto->id}}"style="height: 35px;">
+                                            Acceder
+                                        </a>
+                                    @else
+                                        <a type="button" class="btn_primary_blue_dash" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$producto->id}}"style="height: 35px;">
+                                            Comprar
+                                        </a>
+                                    @endif
+
+                                </div>
+
+                                <p class="prodct_description">{{$producto->descripcion}}</p>
 
                             </div>
 
                         </div>
 
                     </div>
+                @include('shop.modal_single')
                 @endforeach
 
             </div>

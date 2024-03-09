@@ -59,10 +59,13 @@
     background-color: #f1f1f1;
     border-radius: 21px;
     width: 100%;
-    height: 153px;
+    height: 160px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-color: hsl(208deg 25% 45% / 30%);
+    border-radius: 9px;
+    border: solid 4px #577590;
 }
 
 .img_prodcut_shop{
@@ -73,11 +76,49 @@
     background-repeat: no-repeat;
 }
 
+/* .img_container_shop{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 153px;
+    border: solid 0px transparent;
+    background-color: hsl(208deg 25% 45% / 30%);
+    border-radius: 9px;
+    border: solid 4px #577590;
+} */
+
+/* .img_container_shop::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -263px;
+    right: 0;
+    bottom: -6px;
+    background-image: url(/assets/media/img/backgrounds/patter_sf.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    opacity: 0.2;
+    z-index: 1;
+    width: 500%;
+}
+
+.img_prodcut_shop {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    z-index: 100;
+    top: 15px;
+    left: 35px;
+} */
+
 .product_title__11Ti1 {
+    color: #577590 ;
+    font-family: Lexend;
+    font-size: 17px;
+    letter-spacing: 0;
     font-weight: 500;
-    word-break: break-word;
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 1px 3px 11px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -88,14 +129,45 @@
 }
 
 .precio_rpduct_shop{
+    color: #577590 ;
+    font-family: Lexend;
     font-size: 20px;
+    letter-spacing: 0;
     font-weight: 500;
-    color: #2d2d2a;
+    text-shadow: 1px 3px 11px rgba(0, 0, 0, 0.2);
 }
 
 .prodct_description{
     margin-top: 5px;
     font-size: 12px;
     line-height: 20px;
+    color: #577590 ;
+    font-family: Lexend;
+    text-shadow: 1px 3px 11px rgba(0, 0, 0, 0.1);
+
 }
 
+.precio_tachado{
+    font-size: 12px;
+    color: rgb(87 117 144 / 60%);
+}
+
+.container_img_open_product{
+    border-radius: 9px;
+    border: solid 7px #577590;
+}
+
+.img_open_product{
+    width: 100%;
+}
+
+.btn_primary_verde_dash{
+    box-shadow: 1px 1px 6px #579067;
+    background-color: #579067;
+    border-radius: 9px;
+    color: #fff;
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: Lexend;
+}
