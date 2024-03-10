@@ -172,6 +172,18 @@
     font-family: Lexend;
 }
 
+.btn_primary_blue_dash_shop {
+    box-shadow: 1px 1px 6px #577590;
+    background-color: #577590;
+    border-radius: 9px;
+    color: #fff;
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: Lexend;
+    height: 35px;
+}
+
 @media only screen and (max-width: 450px) {
     .product_title__11Ti1{
         font-size: 14px;
@@ -181,7 +193,7 @@
         font-size: 9px;
     }
 
-    .btn_primary_blue_dash {
+    .btn_primary_blue_dash_shop {
         font-size: 11px;
         height: 26px;
     }
@@ -195,7 +207,6 @@
     }
 
     .prodct_description {
-
         font-size: 10px;
     }
 }

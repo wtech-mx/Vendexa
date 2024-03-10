@@ -195,11 +195,11 @@
                                     </h3>
 
                                     @if (date('Y-m-d') >= $producto->fecha_inicio_desc && date('Y-m-d') <= $producto->fecha_fin_desc)
-                                        <a type="button" class="btn_primary_blue_dash" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$producto->id}}"style="height: 35px;">
+                                        <a type="button" class="btn_primary_blue_dash_shop" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$producto->id}}">
                                             Acceder
                                         </a>
                                     @else
-                                        <a type="button" class="btn_primary_blue_dash" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$producto->id}}"style="height: 35px;">
+                                        <a type="button" class="btn_primary_blue_dash_shop" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$producto->id}}">
                                             Comprar
                                         </a>
                                     @endif

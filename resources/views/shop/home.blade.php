@@ -129,7 +129,7 @@
 
                             <h6 class="tittle_card_dash text-center mt-3 mb-3">Corte</h6>
 
-                            <a href="" class="btn_primary_blue_dash">Acceder </a>
+                            <a href="" class="btn_primary_blue_dash_shop">Acceder </a>
 
                             <a type="button" class="btn_plus_dash" data-bs-toggle="modal" data-bs-target="#creatRegCaja">
                                 <img class="img_plus_dash" src="{{ asset('assets/media/icons/anadir_white.webp') }}" alt="">
@@ -164,7 +164,7 @@
                                     </h3>
 
                                     @if (date('Y-m-d') >= $producto->fecha_inicio_desc && date('Y-m-d') <= $producto->fecha_fin_desc)
-                                        <a type="button" class="btn_primary_blue_dash" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$producto->id}}"style="height: 35px;">
+                                        <a type="button" class="btn_primary_blue_dash_shop" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$producto->id}}">
                                             Acceder
                                         </a>
                                     @else
@@ -172,8 +172,8 @@
                                             $valorid = $producto->id;
                                             $producto_single = Str::of($producto->nombre)->slug("-")->limit(300 - mb_strlen($valorid) - 1, "")->trim("-")->append("-", $valorid);
                                     @endphp
-                                        {{-- <a class="btn_primary_blue_dash" href="{{ route('tienda_single.index',$producto_single) }}"> --}}
-                                        <a type="button" class="btn_primary_blue_dash" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$producto->id}}"style="height: 35px;">
+                                        {{-- <a class="btn_primary_blue_dash_shop" href="{{ route('tienda_single.index',$producto_single) }}"> --}}
+                                        <a type="button" class="btn_primary_blue_dash_shop" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$producto->id}}">
                                             Comprar
                                         </a>
                                     @endif
