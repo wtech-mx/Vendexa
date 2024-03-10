@@ -8,19 +8,6 @@
 
 @section('css_custom')
 
-    <link rel="stylesheet" href="{{ asset('assets/css/shop.css') }}">
-    <!-- css custom -->
-    <link rel="stylesheet" href="{{ asset('assets/css/animations.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}">
-
-@if ($empresa->logo == NULL)
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/media/img/logos/LogosinF.png ') }}">
-    @else
-
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/media/img/logos/'. $empresa->logo) }}">
-@endif
-
 @endsection
 
 @section('shop')
@@ -75,8 +62,30 @@
 <div class="row mt-3">
     <div class="col-12 col-sm-3 col-md-3 col-lg-3">
 
-        <h2 class="text-center">Categorias</h2>
-        <a href="" class="ms-5 li_categoria">{{$empresa->nombre}}</a>
+        <div class="flex-shrink-0 p-3" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none ">
+              <span class="fs-5 fw-semibold">Categorias</span>
+            </a>
+            <ul class="list-unstyled ps-0">
+                @foreach($categorias as $categoria)
+                    <li class="mb-1">
+                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed product_title__11Ti1 mt-3" data-bs-toggle="collapse" data-bs-target="#{{ str_replace(' ', '_', $categoria->nombre) }}-collapse" aria-expanded="false">
+                            {{ $categoria->nombre }}
+                        </button>
+                        <div class="collapse" id="{{ str_replace(' ', '_', $categoria->nombre) }}-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                @foreach($categoria->subcategorias as $subcategoria)
+                                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded prodct_description">{{ $subcategoria->nombre }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+
+          </div>
+
+
     </div>
 
     <div class="col-12 col-sm-9 col-md-9 col-lg-9">
@@ -147,18 +156,23 @@
 
                                 <div class="d-flex justify-content-between">
                                     <h3 class="precio_rpduct_shop">
-                                        @if ($fechaActual_global >= $producto->fecha_inicio_desc && $fechaActual_global <= $producto->fecha_fin_desc)
+                                        @if (date('Y-m-d') >= $producto->fecha_inicio_desc && date('Y-m-d') <= $producto->fecha_fin_desc)
                                             <strong>${{number_format($producto->precio_descuento, 2, '.', ',')}} MXN</strong> <br> <del class="precio_tachado">${{number_format($producto->precio_normal, 2, '.', ',')}}  MXN</del>
                                         @else
                                             <strong><br>${{number_format($producto->precio_normal, 2, '.', ',')}} MXN</strong>
                                         @endif
                                     </h3>
 
-                                    @if ($fechaActual_global >= $producto->fecha_inicio_desc && $fechaActual_global <= $producto->fecha_fin_desc)
+                                    @if (date('Y-m-d') >= $producto->fecha_inicio_desc && date('Y-m-d') <= $producto->fecha_fin_desc)
                                         <a type="button" class="btn_primary_blue_dash" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$producto->id}}"style="height: 35px;">
                                             Acceder
                                         </a>
                                     @else
+                                    @php
+                                            $valorid = $producto->id;
+                                            $producto_single = Str::of($producto->nombre)->slug("-")->limit(300 - mb_strlen($valorid) - 1, "")->trim("-")->append("-", $valorid);
+                                    @endphp
+                                        {{-- <a class="btn_primary_blue_dash" href="{{ route('tienda_single.index',$producto_single) }}"> --}}
                                         <a type="button" class="btn_primary_blue_dash" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$producto->id}}"style="height: 35px;">
                                             Comprar
                                         </a>

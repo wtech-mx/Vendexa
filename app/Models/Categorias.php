@@ -17,4 +17,9 @@ class Categorias extends Model
         'area',
         'id_empresa',
     ];
+
+    public function subcategorias()
+    {
+        return $this->hasMany(SubCategorias::class, 'id_categoria');
+    }
 }

@@ -25,6 +25,7 @@ Route::get('signout', [App\Http\Controllers\CustomAuthController::class, 'signOu
 
 Route::get('/tarjeta_digital/{code}', [App\Http\Controllers\ConfiguracionController::class, 'tarjeta_presentacion'])->name('tarjeta_digital.index');
 Route::get('/tienda_online/{code}', [App\Http\Controllers\TiendaController::class, 'index'])->name('tienda_online.index');
+Route::get('/tienda_online/producto/{slug}', [App\Http\Controllers\TiendaController::class, 'single_product'])->name('tienda_single.index');
 
 
 

@@ -33,8 +33,11 @@
                                 <p class="product_category_shop">Sku: {{$producto->sku}}</p>
                         </div>
 
+                        <p class="product_title__11Ti1">Stock {{$producto->stock}}</p>
+
+
                         <h3 class="precio_rpduct_shop">
-                            @if ($fechaActual_global >= $producto->fecha_inicio_desc && $fechaActual_global <= $producto->fecha_fin_desc)
+                            @if (date('Y-m-d') >= $producto->fecha_inicio_desc && date('Y-m-d') <= $producto->fecha_fin_desc)
                                 <strong>${{number_format($producto->precio_descuento, 2, '.', ',')}} MXN</strong> <br> <del class="precio_tachado">${{number_format($producto->precio_normal, 2, '.', ',')}}  MXN</del>
                             @else
                                 <strong><br>${{number_format($producto->precio_normal, 2, '.', ',')}} MXN</strong>
@@ -43,9 +46,16 @@
 
                         <p class="prodct_description">{{$producto->descripcion}}</p>
 
-                        <a type="button" class="btn_primary_verde_dash" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$producto->id}}"style="height: 35px;">
+                        @php
+                                $valorid = $producto->id;
+                                $producto_single = Str::of($producto->nombre)->slug("-")->limit(300 - mb_strlen($valorid) - 1, "")->trim("-")->append("-", $valorid);
+                        @endphp
+
+                        <a type="button" target="_blank" class="btn_primary_verde_dash" style="height: 35px;" href="https://wa.me/+52{{$configuracion->whatsapp}}?text=Hola%20quiero%20ordenar%20el%20producto:%0A%0A{{$producto->nombre}}%0AStock:%20{{$producto->stock}}%0APrecio:%20${{number_format($producto->precio_normal, 2, '.', ',')}}%20MXN%0A%0AMás%20detalles%20y%20compra%20aquí:%0A%0A{{ route('tienda_single.index',$producto_single) }}">
                             <img class="img_plus_dash" src="{{ asset('assets/media/icons/whatsapp_w.webp') }}" alt=""> Pedir por WhatsApp
                         </a>
+
+
 
                     </div>
 
