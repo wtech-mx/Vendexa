@@ -35,9 +35,8 @@ class ClienteController extends Controller
         $adeudos = Ordenes::where('id_cliente', $id)->where('restante', '>', 0)->where('cotizacion', '=', 'No')->get();
         $cotizaciones = Ordenes::where('id_cliente', $id)->where('cotizacion', '=', 'Si')->get();
         $productos = Productos::where('id_empresa', auth()->user()->id_empresa)->orderBy('created_at', 'desc')->take(100)->get();
-        $ordesprodcutos = OrdenesProductos::get();
 
-        return view('clientes.show', compact('cliente','compras','cotizaciones', 'adeudos', 'ordesprodcutos'));
+        return view('clientes.show', compact('cliente','compras','cotizaciones', 'adeudos'));
     }
 
     public function store(Request $request){

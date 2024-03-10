@@ -1,6 +1,5 @@
 @foreach($ordesprodcutos as $item)
-
-        @if($producto->id == $item->id_producto)
+@if($producto->id == $item->id_producto)
 
         <div class="col-12 col-sm-6 col-md-6 col-xl-4 px-4 py-1">
                 <div class="row bg_minicart_ventas">
@@ -59,6 +58,5 @@
 
                 </div>
         </div>
-
-        @endif
+   @endif
 @endforeach

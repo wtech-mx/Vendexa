@@ -48,7 +48,7 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/whatsapp.webp') }}" alt="" >
                             </span>
-                            <input  name="email" id="number" type="number"  class="form-control input_custom_tab_dark"  value="{{$trabajador->email}}">
+                            <input  name="telefono" id="number" type="number"  class="form-control input_custom_tab_dark"  value="{{$trabajador->email}}">
                         </div>
                     </div>
 

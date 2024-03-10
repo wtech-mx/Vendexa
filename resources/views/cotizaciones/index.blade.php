@@ -131,7 +131,7 @@
         @foreach ($cotizaciones as $cotizacion)
             <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center px-3 py-3 ">
                     <div class="row px-3">
-                        <div class="col-12 bg_minicart_ventas ">
+                        <div class="col-12 bg_minicart_ventas @if ($cotizacion->estatus_cotizacion == 'Rechazado')borde_card_product_sin_stock @elseif ($cotizacion->estatus_cotizacion == NULL)borde_card_product_bajo_stock @elseif ($cotizacion->estatus_cotizacion >= 'Aprovado') borde_card_product_stock @endif">
                             <p class="text-center" style="margin: 0">
                                 @foreach ($cotizacion->Productos->take(1) as $producto)
                                     <img class="img_portada_product_edit_ventas" src="{{ asset('imagen_principal/empresa'.auth()->user()->id_empresa.'/'.$producto->Productos->imagen_principal) }}" alt="">
@@ -214,8 +214,12 @@
 
                                 <div class="col-12 mb-2 mt-3">
                                     <div class="d-flex justify-content-center">
-                                        <a type="button" target="_blank" class="btn btn-sm btn_edit_prodcut_primary" href="{{ route('cotizaciones.pdf', $cotizacion->id) }}">
-                                            Ver cotizacion <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/validando-billete.webp') }}" alt="">
+                                        <a type="button" target="_blank" class="btn btn-sm btn_edit_prodcut_primary" href="{{ route('cotizaciones.pdf', ['id' => $cotizacion->id, 'code' => $code_global]) }}">
+                                            Editar <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/semaforos.webp') }}" alt="">
+                                        </a>
+
+                                        <a type="button" target="_blank" class="btn btn-sm btn_edit_prodcut_primary" href="{{ route('cotizaciones.pdf', ['id' => $cotizacion->id, 'code' => $code_global]) }}">
+                                            Descargar <img class="icon_edit_btn_warning" src="{{ asset('assets/media/icons/validando-billete.webp') }}" alt="">
                                         </a>
                                     </div>
 
@@ -226,6 +230,7 @@
                         </div>
                     </div>
             </div>
+            @include('modals.edit_cotizacion')
         @endforeach
 
     </div>
