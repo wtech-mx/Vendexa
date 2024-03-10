@@ -195,7 +195,8 @@
 
     .btn_primary_blue_dash_shop {
         font-size: 11px;
-        height: 26px;
+        height: 22px;
+        padding: 2px 5px 2px 5px;
     }
 
     .precio_rpduct_shop {

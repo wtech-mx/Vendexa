@@ -165,7 +165,7 @@
 
                                     @if (date('Y-m-d') >= $producto->fecha_inicio_desc && date('Y-m-d') <= $producto->fecha_fin_desc)
                                         <a type="button" class="btn_primary_blue_dash_shop" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$producto->id}}">
-                                            Acceder
+                                            Comprar
                                         </a>
                                     @else
                                     @php
@@ -173,7 +173,7 @@
                                             $producto_single = Str::of($producto->nombre)->slug("-")->limit(300 - mb_strlen($valorid) - 1, "")->trim("-")->append("-", $valorid);
                                     @endphp
                                         {{-- <a class="btn_primary_blue_dash_shop" href="{{ route('tienda_single.index',$producto_single) }}"> --}}
-                                        <a type="button" class="btn_primary_blue_dash_shop" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$producto->id}}">
+                                        <a type="button" class="btn_primary_blue_dash_shop mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$producto->id}}">
                                             Comprar
                                         </a>
                                     @endif
