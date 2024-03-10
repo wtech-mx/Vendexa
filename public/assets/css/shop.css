@@ -171,3 +171,31 @@
     font-size: 17px;
     font-family: Lexend;
 }
+
+@media only screen and (max-width: 450px) {
+    .product_title__11Ti1{
+        font-size: 14px;
+    }
+
+    .product_category_shop {
+        font-size: 9px;
+    }
+
+    .btn_primary_blue_dash {
+        font-size: 11px;
+        height: 26px;
+    }
+
+    .precio_rpduct_shop {
+        font-size: 13px;
+    }
+
+    .precio_tachado {
+        font-size: 9px;
+    }
+
+    .prodct_description {
+
+        font-size: 10px;
+    }
+}
