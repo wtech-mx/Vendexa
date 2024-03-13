@@ -29,7 +29,9 @@
             </div>
         </div>
 
-        <div class="form-group col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 py-3">
+        <div class="col-0 col-sm-0 col-md-12 col-lg-12 col-xl-12 px-4 py-3"></div>
+
+        <div class="form-group col-12 col-sm-6 col-md-6 col-lg-9 col-xl-3 px-4 py-3">
             <label for="name" class="label_custom_primary_sm mb-2">Reporte producto</label>
             <div class="input-group ">
                 <span class="input-group-text span_custom_tab" >
@@ -44,7 +46,7 @@
             </div>
         </div>
 
-        <div class="form-group col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 px-4 py-3">
+        <div class="form-group col-12 col-sm-4 col-md-4 col-lg-3 col-xl-3 px-4 py-3">
             <label for="name" class="label_custom_primary_sm mb-2">Buscar</label>
             <div class="input-group ">
                 <button class="btn btn_filter text-white" type="submit" style="">Buscar
@@ -56,17 +58,17 @@
 
     @if(Route::currentRouteName() == 'reportes.filtro_producto')
         @if (!empty($productosMasVendidos))
-            <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 px-4 py-3">
-                <h3 for="name" class="label_custom_primary_product mb-4">Productos Mas vendidos</h3>
+        <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 px-4 py-3">
+            <h3 for="name" class="label_custom_primary_product mb-4">Productos Mas vendidos</h3>
 
                 @foreach ($productosMasVendidos as $productoMasVendido)
-                    <div class="comtainer_products_width row">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-9 my-auto">
+                    <div class="comtainer_products_width row mb-3">
+                        <div class="col-8 col-sm-8 col-md-6 col-lg-9 my-auto">
                             <img class="img_prodcut_reportes d-inline" src="{{ asset('assets/media/icons/calendar-dar.webp') }}" alt="" >
                             <h5 class="d-inline text_titlle_tab_reporte">{{$productoMasVendido->nombre}}</h5>
                         </div>
 
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="col-4 col-sm-4 col-md-6 col-lg-3">
                             <h6 class="text_subtitlle_tab_reporte">SKU : {{explode('_', $productoMasVendido->sku)[0]}}</h6>
                             <h5 class="text_titlle_tab_reporte">{{$productoMasVendido->total_vendido}} Ventas</h5>
                             <h6 class="text_subtitlle_tab_reporte">STOCK : {{$productoMasVendido->stock}}</h6>
@@ -75,17 +77,17 @@
                 @endforeach
             </div>
 
-            <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 px-4 py-3">
+            <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 px-4 py-3">
                 <h3 for="name" class="label_custom_primary_product mb-4 ">Productos Menos vendidos</h3>
 
                 @foreach ($productosMenosVendidos as $productoMenosVendido)
-                    <div class="comtainer_products_width row">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-9 my-auto">
+                    <div class="comtainer_products_width row mb-3">
+                        <div class="col-8 col-sm-8 col-md-6 col-lg-9 my-auto">
                             <img class="img_prodcut_reportes d-inline" src="{{ asset('assets/media/icons/calendar-dar.webp') }}" alt="" >
                             <h5 class="d-inline text_titlle_tab_reporte">{{$productoMenosVendido->nombre}}</h5>
                         </div>
 
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="col-4 col-sm-4 col-md-6 col-lg-3">
                             <h6 class="text_subtitlle_tab_reporte">SKU : {{explode('_', $productoMenosVendido->sku)[0]}}</h6>
                             <h5 class="text_titlle_tab_reporte">{{$productoMenosVendido->total_vendido}} Ventas</h5>
                             <h6 class="text_subtitlle_tab_reporte">STOCK : {{$productoMasVendido->stock}}</h6>

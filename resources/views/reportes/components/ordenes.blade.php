@@ -42,39 +42,44 @@
 
         </div>
     </form>
+    @if(Route::currentRouteName() == 'reportes.filtro_order')
 
     <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 px-4 py-3">
         <h3 for="name" class="label_custom_primary_product mb-4">Ordenes</h3>
 
-        @if(Route::currentRouteName() == 'reportes.filtro_order')
+        <div class="row" style="padding-right: 0px!important;max-width: initial;width:  fit-content;;">
             @foreach ($ordersVendidos as $orderVendido)
-                <div class="comtainer_products_width row">
 
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-9 my-auto">
+            <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+                <div class="row comtainer_products_width  mb-2 mt-2" style="margin: 0px;">
+
+                    <div class="form-group col-6 col-sm-6 col-md-6 col-lg-7 col-xl-6 px-4 py-3">
                         <img class="img_prodcut_reportes d-inline" src="{{ asset('assets/media/icons/clientes.webp') }}" alt="" >
                         <h5 class="d-inline text_titlle_tab_reporte">{{$orderVendido->Cliente->nombre}}</h5>
                     </div>
 
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-3">
-                            <h5 class="text_titlle_tab_reporte"># {{ $orderVendido->id}}</h5>
-                            <h6 class="text_subtitlle_tab_reporte">Total : ${{ number_format($orderVendido->total, 2, '.', ',') }}</h6>
-                        @if ($orderVendido->tipo_desc != 'Ninguno')
-                            <h6 class="text_subtitlle_tab_reporte">{{$orderVendido->tipo_desc}}: {{$orderVendido->descuento}}</h6>
-                        @endif
-                        @if ($orderVendido->restante > 0)
-                            <h6 class="text_subtitlle_tab_reporte">Deudor: ${{ number_format($orderVendido->restante, 2, '.', ',') }}</h6>
-                        @endif
-                        @if ($orderVendido->factura == 'Si')
-                            <h5 class="text_titlle_tab_reporte">Factura</h5>
-                        @endif
-                        <a href="{{ route('orders.show', $orderVendido->id) }}" class="text_titlle_tab_reporte">Ver orden</a>
+                    <div class="form-group col-6 col-sm-6 col-md-6 col-lg-5 col-xl-6 px-4 py-3">
+                        <h5 class="text_titlle_tab_reporte"># {{ $orderVendido->id}}</h5>
+                        <h6 class="text_subtitlle_tab_reporte">Total : ${{ number_format($orderVendido->total, 2, '.', ',') }}</h6>
+                    @if ($orderVendido->tipo_desc != 'Ninguno')
+                        <h6 class="text_subtitlle_tab_reporte">{{$orderVendido->tipo_desc}}: {{$orderVendido->descuento}}</h6>
+                    @endif
+                    @if ($orderVendido->restante > 0)
+                        <h6 class="text_subtitlle_tab_reporte">Deudor: ${{ number_format($orderVendido->restante, 2, '.', ',') }}</h6>
+                    @endif
+                    @if ($orderVendido->factura == 'Si')
+                        <h5 class="text_titlle_tab_reporte">Factura</h5>
+                    @endif
+                    <a href="" class="text_titlle_tab_reporte">Ver orden</a>
                     </div>
-
                 </div>
+            </div>
+
             @endforeach
-        @endif
+        </div>
 
     </div>
+    @endif
 
     <div class="form-group col-12 px-4 py-3 mb-3">
         @if(Route::currentRouteName() == 'reportes.filtro_order')

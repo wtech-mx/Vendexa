@@ -60,20 +60,21 @@
         </div>
     </form>
 
-    <div class="form-group col-6 px-4 py-3">
+    <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 px-4 py-3">
         <h3 for="name" class="label_custom_primary_product mb-4">Empleados con Mas ventas</h3>
 
 
         @if(Route::currentRouteName() == 'reportes.filtro_empleados')
-            @foreach ($vendedoresMasVendieron as $vendedorMasVendieron)
-                <div class="comtainer_products_width row">
 
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-9 my-auto">
+            @foreach ($vendedoresMasVendieron as $vendedorMasVendieron)
+                <div class="comtainer_products_width row mb-3">
+
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-9 my-auto">
                         <img class="img_prodcut_reportes d-inline" src="{{ asset('assets/media/icons/clientes.webp') }}" alt="" >
                         <h5 class="d-inline text_titlle_tab_reporte">{{$vendedorMasVendieron->name}}</h5>
                     </div>
 
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-3">
+                    <div class="col-4 col-sm-4 col-md-6 col-lg-3">
                         <h6 class="text_subtitlle_tab_reporte">telefono : {{$vendedorMasVendieron->telefono}}</h6>
                         <h5 class="text_titlle_tab_reporte">{{$vendedorMasVendieron->total_ventas}} Ventas</h5>
                         <a href="{{ route('trabajadores.show', $vendedorMasVendieron->id) }}" class="text_titlle_tab_reporte">Ver ventas</a>
@@ -81,12 +82,13 @@
 
                 </div>
             @endforeach
+
         @endif
 
 
     </div>
 
-    <div class="form-group col-6 px-4 py-3">
+    <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 px-4 py-3">
         <h3 for="name" class="label_custom_primary_product mb-4">Empleados con Menos ventas</h3>
 
 
