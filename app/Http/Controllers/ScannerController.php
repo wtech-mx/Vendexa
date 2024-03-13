@@ -11,6 +11,7 @@ use App\Models\Proveedores;
 use Carbon\Carbon;
 use App\Models\ModificacionesProductos;
 use App\Models\Ordenes;
+use App\Models\OrdenesProductos;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -31,6 +32,7 @@ class ScannerController extends Controller
 
             $modoficaciones_productos = ModificacionesProductos::whereMonth('fecha', $mesActual)->get();
             $compras = Ordenes::where('id_empresa', $user)->where('cotizacion', '=', 'No')->get();
+            $ordesprodcutos = OrdenesProductos::get();
 
             $output = "";
             $producto = Productos::where('sku', $codigo)->first();
@@ -52,7 +54,25 @@ class ScannerController extends Controller
                     'compras',
                 ));
 
-                return view('components.producto_info', ['producto' => $producto,'modoficaciones_productos' => $modoficaciones_productos,'compras' => $compras]);
+                return view('components.producto_info', ['ordesprodcutos' => $ordesprodcutos,'producto' => $producto,'modoficaciones_productos' => $modoficaciones_productos,'compras' => $compras]);
+        }
+    }
+
+    public function index_palabra(Request $request){
+        $user = auth()->user()->id_empresa;
+        if ($request->ajax()) {
+            $productos = Productos::where('id_empresa', '=', $user);
+            $nombre = $request->input('search');
+
+            if ($nombre) {
+                $palabras = explode(" ", $nombre);
+                foreach($palabras as $palabra) {
+                    $productos->where('nombre', 'LIKE', "%$palabra%");
+                }
+            }
+            $productos = $productos->get();
+
+            return view('modals.show_producto_scanner', ['productos' => $productos]);
         }
     }
 

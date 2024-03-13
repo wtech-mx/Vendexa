@@ -151,7 +151,7 @@
 
                                 <div class="d-flex justify-content-between">
                                         <p class="product_category_shop">{{$producto->Categoria->nombre}}</p>
-                                        <p class="product_category_shop">Sku: {{$producto->sku}}</p>
+                                        <p class="product_category_shop">Sku: {{explode('_', $producto->sku)[0]}}</p>
                                 </div>
 
                                 <div class="d-flex justify-content-between">

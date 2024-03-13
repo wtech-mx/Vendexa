@@ -74,6 +74,8 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\Http\Controllers'], 
 
     Route::get('/scanner', 'ScannerController@index')->name('scanner.index');
 
+    Route::get('/scanner/palabra', 'ScannerController@index_palabra')->name('scanner.index_palabra');
+
     Route::patch('/key/update/{id}', 'LicenciasController@update_key')->name('key.update');
 
     // ============================================= M O D U L O   C O N F I G U R A C I O N ===============================

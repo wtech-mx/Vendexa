@@ -112,7 +112,7 @@
 
                     <div class="d-flex justify-content-between">
                             <p class="product_category_shop">{{$producto_sigle->Categoria->nombre}}</p>
-                            <p class="product_category_shop">Sku: {{$producto_sigle->sku}}</p>
+                            <p class="product_category_shop">Sku: {{explode('_', $producto_sigle->sku)[0]}}</p>
                     </div>
 
                     <p class="product_title__11Ti1">Stock {{$producto_sigle->stock}}</p>
@@ -182,7 +182,7 @@
 
                                 <div class="d-flex justify-content-between">
                                         <p class="product_category_shop">{{$producto->Categoria->nombre}}</p>
-                                        <p class="product_category_shop">Sku: {{$producto->sku}}</p>
+                                        <p class="product_category_shop">Sku: {{explode('_', $producto->sku)[0]}}</p>
                                 </div>
 
                                 <div class="d-flex justify-content-between">

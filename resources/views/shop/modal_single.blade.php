@@ -30,7 +30,7 @@
 
                         <div class="d-flex justify-content-between">
                                 <p class="product_category_shop">{{$producto->Categoria->nombre}}</p>
-                                <p class="product_category_shop">Sku: {{$producto->sku}}</p>
+                                <p class="product_category_shop">Sku: {{explode('_', $producto->sku)[0]}}</p>
                         </div>
 
                         <p class="product_title__11Ti1">Stock {{$producto->stock}}</p>
@@ -51,7 +51,7 @@
                                 $producto_single = Str::of($producto->nombre)->slug("-")->limit(300 - mb_strlen($valorid) - 1, "")->trim("-")->append("-", $valorid);
                         @endphp
 
-                        <a type="button" target="_blank" class="btn_primary_verde_dash" style="height: 35px;" href="https://wa.me/+52{{$configuracion->whatsapp}}?text=Hola%20quiero%20ordenar%20el%20producto:%0A%0A{{$producto->nombre}}%0AStock:%20{{$producto->stock}}%0APrecio:%20${{number_format($producto->precio_normal, 2, '.', ',')}}%20MXN%0A%0AMás%20detalles%20y%20compra%20aquí:%0A%0A{{ route('tienda_single.index',$producto_single) }}">
+                        <a type="button" target="_blank" class="btn_primary_verde_dash" style="height: 35px;" href="https://wa.me/+52{{$configuracion->whatsapp}}?text=Hola%20quiero%20ordenar%20el%20producto:%0A%0A{{$producto->nombre}}%0AStock:%20{{$producto->stock}}%0ASku:%20{{explode('_', $producto->sku)[0]}}%0APrecio:%20${{number_format($producto->precio_normal, 2, '.', ',')}}%20MXN%0A%0AMás%20detalles%20y%20compra%20aquí:%0A%0A{{ route('tienda_single.index',$producto_single) }}">
                             <img class="img_plus_dash" src="{{ asset('assets/media/icons/whatsapp_w.webp') }}" alt=""> Pedir por WhatsApp
                         </a>
 

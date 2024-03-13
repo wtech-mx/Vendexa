@@ -102,7 +102,12 @@
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/camion.webp') }}" alt="" >
                                             </span>
                                             <select name="id_proveedor" id="id_proveedor" class="form-select d-inline-block input_custom_tab">
-                                                <option value="{{$producto->id_proveedor}}">{{$producto->Proveedor->nombre}}</option>
+                                                @if ($producto->id_proveedor == NULL)
+                                                    <option value="">Seleccionar proveedor</option>
+                                                @else
+                                                    <option value="{{$producto->id_proveedor}}">{{$producto->Proveedor->nombre}}</option>
+                                                @endif
+
                                                 @foreach ($proveedores as $proveedor)
                                                     <option value="{{ old($proveedor->id) }}" @if(old('id_proveedor') == $proveedor->id) selected @endif>{{ $proveedor->nombre }}</option>
                                                 @endforeach

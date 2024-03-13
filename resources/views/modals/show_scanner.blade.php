@@ -59,7 +59,7 @@
                                 <h2 class="accordion-header accordeon_scanner_header">
                                   <button class="accordion-button accordion_scanner d-block collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseManual" aria-expanded="false" aria-controls="collapseManual">
                                       <div class="d-flex justify-content-between">
-                                          <p style="margin-bottom: 0;">Busqueda Manual</p>
+                                          <p style="margin-bottom: 0;">Busqueda Sku</p>
                                           <p style="margin-bottom: 0;">
                                               <img class="img_scanner_dropdown" src="{{ asset('assets/media/icons/buscar.webp') }}" alt="">
                                           </p>
@@ -110,7 +110,7 @@
                               <h2 class="accordion-header accordeon_scanner_header">
                                 <button class="accordion-button accordion_scanner d-block collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
                                     <div class="d-flex justify-content-between">
-                                        <p style="margin-bottom: 0;">Busqueda avanzada</p>
+                                        <p style="margin-bottom: 0;">Busqueda palabra clave</p>
                                         <p style="margin-bottom: 0;">
                                             <img class="img_scanner_dropdown" src="{{ asset('assets/media/icons/filtrar.webp') }}" alt="">
                                         </p>
@@ -118,10 +118,34 @@
                                 </button>
                               </h2>
                               <div id="collapseFilters" class="accordion-collapse collapse" data-bs-parent="#accordionScanner">
-                                <div class="accordion-body">
-                                    <form class="row mt-3 mb-3" action="{{ route('productos.filtro',$code_global) }}" method="GET" >
-                                        {{-- @include('components.producto_filtro') --}}
-                                    </form>
+                                <div class="accordion-body row">
+                                    <div class="form-group col-12">
+                                        <label for="name" class="label_custom_primary_product mb-2">Ingresa palabra clave : *</label>
+                                        <div class="input-group ">
+                                            <span class="input-group-text span_custom_primary_dark" >
+                                                <img class="icon_span_form" src="{{ asset('assets/media/icons/code_barras.webp') }}" alt="" >
+                                            </span>
+                                            <input id="buscar_palabra" name="buscar_palabra" type="text" class="form-control input_custom_primary_dark" >
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-12">
+                                        <p class="text-center">
+                                            <button type="button" id="btn-buscar-palabra" class="span_custom_primary_dark mt-3 text-white"> Buscar
+                                                <img class="img_scanner_dropdown" src="{{ asset('assets/media/icons/buscar.webp') }}" alt="">
+                                            </button>
+                                        </p>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div id="input_camera_palabra" class=""></div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center">
+                                        <a id="resetScannerProductPalabra_input" class="input-group-text span_custom_primary_warning mt-2 mb-2">
+                                            <img class="icon_span_form" src="{{ asset('assets/media/icons/reset.webp') }}" alt="" >
+                                        </a>
+                                    </div>
                                 </div>
                               </div>
                             </div>
@@ -150,12 +174,22 @@ $(document).ready(function() {
         audio.play();
     });
 
+    $('#btn-buscar-palabra').click(function() {
+        buscar_palabra();
+        const audio = new Audio("{{ asset('assets/media/audio/barras.mp3')}}");
+        audio.play();
+    });
+
     $('#resetScannerProduct').click(function() {
         resetScanner();
     });
 
     $('#resetScannerProduct_input').click(function() {
         resetScannerInput();
+    });
+
+    $('#resetScannerProductPalabra_input').click(function() {
+        resetScannerPalabraInput();
     });
 
     let html5ScannerProdcut = new Html5QrcodeScanner("reader_search", { fps: 15, qrbox: 200 , autostart: false });
@@ -222,6 +256,33 @@ $(document).ready(function() {
 
     }
 
+    function buscar_palabra() {
+        var result_palabra = $('#buscar_palabra').val();
+        console.log(result_palabra);
+        $.ajax({
+            url: '{{ route('scanner.index_palabra') }}',
+            type: 'get',
+            data: {
+                'search': result_palabra,
+                '_token': token // Agregar el token CSRF a los datos enviados
+            },
+            success: function(data) {
+                console.log('Skus:', data);
+                $('#input_camera_palabra').html(data); // Actualiza la sección con los datos del servicio
+            },
+            error: function(error) {
+            console.log(error);
+        },
+            complete: function() {
+                // Ocultar el spinner cuando la búsqueda esté completa
+                scanner.clear();
+                console.log(`clear = ${result_palabra}`);
+            }
+
+        });
+
+    }
+
     function onScanFailure(error) {
     }
 
@@ -236,6 +297,13 @@ $(document).ready(function() {
         html5ScannerProdcut.render(onScanSuccess);
         $('#input_camera').empty();
         $('#buscar').val('');
+    }
+
+    function resetScannerPalabraInput() {
+        html5ScannerProdcut.clear();
+        html5ScannerProdcut.render(onScanSuccess);
+        $('#input_camera_palabra').empty();
+        $('#buscar_palabra').val('');
     }
 
 });
