@@ -61,6 +61,12 @@
     </li>
  </a>
 
+ <a href="{{ route('proveedor.index', auth()->user()->Empresa->code) }}" class="enlace_sidebar">
+    <li class="li_navbar d-flex justify-content-around">
+        Proveedores  <img class="icon_navbar" src="{{ asset('assets/media/icons/distribuidor-imageonline.co-1952752.webp') }}" alt="">
+    </li>
+</a>
+
  <a href="{{ route('trabajadores.index', auth()->user()->Empresa->code) }}" class="enlace_sidebar">
     <li class="li_navbar d-flex justify-content-around">
         Empleados <img class="icon_navbar" src="{{ asset('assets/media/icons/empleados.webp') }}" alt="">
