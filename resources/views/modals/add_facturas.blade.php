@@ -29,26 +29,89 @@
                     <form method="POST" action="{{ route('proveedor_fact.store') }}" class="z-1"  id="miFormularioProveedorFactEdit" enctype="multipart/form-data">
                         @csrf
                         <input  name="id_proveedor" type="text"  class="form-control input_custom_tab_dark" style="display: none" value="{{ $proveedor->id }}">
-                        <div class="form-group col-12 mb-3 p-2">
-                            <label for="name" class="label_custom_primary_product mb-2">IMG o PDF : *</label>
-                            <div class="input-group ">
-                                <span class="input-group-text span_custom_tab" >
-                                    <img class="icon_span_form" src="{{ asset('assets/media/icons/fuente.webp') }}" alt="" >
-                                </span>
-                                <input name="factura[]" type="file"  class="form-control input_custom_tab_dark" multiple>
+
+                        <div class="row">
+                            <div class="form-group col-6 mb-3 p-2">
+                                <label for="name" class="label_custom_primary_product mb-2">Num Articulos Comprados *</label>
+                                <div class="input-group ">
+                                    <span class="input-group-text span_custom_tab" >
+                                        <img class="icon_span_form" src="{{ asset('assets/media/icons/carrito.webp') }}" alt="" >
+                                    </span>
+                                    <input name="num_articulos_comprados" type="number"  class="form-control input_custom_tab_dark" multiple>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-6 mb-3 p-2">
+                                <label for="name" class="label_custom_primary_product mb-2">Num Articulos Recibidos *</label>
+                                <div class="input-group ">
+                                    <span class="input-group-text span_custom_tab" >
+                                        <img class="icon_span_form" src="{{ asset('assets/media/icons/carrito.webp') }}" alt="" >
+                                    </span>
+                                    <input name="num_articulos_recibidos" type="number"  class="form-control input_custom_tab_dark" multiple>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-6 mb-3 p-2">
+                                <label for="name" class="label_custom_primary_product mb-2">Total *</label>
+                                <div class="input-group ">
+                                    <span class="input-group-text span_custom_tab" >
+                                        <img class="icon_span_form" src="{{ asset('assets/media/icons/bolsa-de-dinero.webp') }}" alt="" >
+                                    </span>
+                                    <input name="total" type="number"  class="form-control input_custom_tab_dark" multiple>
+                                </div>
+                            </div>
+
+                            <div class="col-6"></div>
+
+                            <div class="form-group col-6 mb-3 p-2">
+                                <label for="name" class="label_custom_primary_product mb-2">IMG o PDF  *</label>
+                                <div class="input-group ">
+                                    <span class="input-group-text span_custom_tab" >
+                                        <img class="icon_span_form" src="{{ asset('assets/media/icons/imagen.webp') }}" alt="" >
+                                    </span>
+                                    <input name="factura" type="file"  class="form-control input_custom_tab_dark" multiple>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-6 mb-3 p-2">
+                                <label for="name" class="label_custom_primary_product mb-2">IMG o PDF 2 Opcional</label>
+                                <div class="input-group ">
+                                    <span class="input-group-text span_custom_tab" >
+                                        <img class="icon_span_form" src="{{ asset('assets/media/icons/imagen.webp') }}" alt="" >
+                                    </span>
+                                    <input name="factura2" type="file"  class="form-control input_custom_tab_dark" multiple>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-6 mb-3 p-2">
+                                <label for="name" class="label_custom_primary_product mb-2">IMG o PDF 3 Opcional</label>
+                                <div class="input-group ">
+                                    <span class="input-group-text span_custom_tab" >
+                                        <img class="icon_span_form" src="{{ asset('assets/media/icons/imagen.webp') }}" alt="" >
+                                    </span>
+                                    <input name="factura3" type="file"  class="form-control input_custom_tab_dark" multiple>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-6 mb-3 p-2">
+                                <label for="name" class="label_custom_primary_product mb-2">IMG o PDF 4 Opcional</label>
+                                <div class="input-group ">
+                                    <span class="input-group-text span_custom_tab" >
+                                        <img class="icon_span_form" src="{{ asset('assets/media/icons/imagen.webp') }}" alt="" >
+                                    </span>
+                                    <input name="factura4" type="file"  class="form-control input_custom_tab_dark" multiple>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-12 mt-4 mb-4 mx-auto">
+                                <p class="text-center ">
+                                    <button type="submit" class="btn btn-success btn_save_custom">Guardar</button>
+                                </p>
                             </div>
                         </div>
 
-                        <div class="form-group col-12 mt-4 mb-4 ">
-                            <p class="text-center ">
-                                <button type="submit" class="btn btn-success btn_save_custom">Guardar</button>
-                            </p>
-                        </div>
                     </form>
                 </div>
-
-
-
 
         </div>
 
