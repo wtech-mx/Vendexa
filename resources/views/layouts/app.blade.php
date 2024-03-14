@@ -85,14 +85,15 @@ if (!isset($_COOKIE['mostrarModal'])) {
 
         <div id="burgerBtn"></div>
 
-        <ul id="nav">
-            @include('layouts.menu_items')
-        </ul>
+
 
         @if(auth()->user()->estatus_rol == 'Superadmin_root')
             <div id="mobileBodyContent" style="border: solid 6px #2fff02;border-radius: 9px;">
 
             @else
+                <ul id="nav">
+                    @include('layouts.menu_items')
+                </ul>
 
             <div id="mobileBodyContent" style="border: solid 0px  transparent;border-radius: 9px;">
         @endif

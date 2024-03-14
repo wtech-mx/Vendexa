@@ -44,7 +44,7 @@ return new class extends Migration
                 ->references('id')->on('empresas')
                 ->inDelete('set null');
 
-            $table->unsignedBigInteger('id_direccion');
+            $table->unsignedBigInteger('id_direccion')->nullable();
             $table->foreign('id_direccion')
                 ->references('id')->on('direcciones')
                 ->inDelete('set null');
