@@ -22,17 +22,6 @@
             <h5 class="tittle_orders text-center mt-2 mb-3">
                 ¡ Corte Caja !
             </h5>
-
-            @if ($caja_corte_global->total == NULL)
-            <form class="d-flex" role="search" action="{{ route('caja_corte.cerrar') }}" method="GET" id="miFormularioCorte">
-                <button type="submit" class="btn btn_save_custom">Cerrar caja</button>
-            </form>
-            @endif
-
-            @if ($caja_corte_global->total != NULL)
-                <a href="{{ route('caja_corte.pdf') }}" class="btn btn_save_custom">Imprimir reporte</a>
-            @endif
-
         </div>
 
         <div class="col-12 mt-3">
@@ -172,6 +161,26 @@
 
                 </div>
             </div>
+
+            <div class="col-6 mt-3 d-flex justify-content-center">
+                @if ($caja_corte_global->total == NULL)
+                    <form class="d-flex" role="search" action="{{ route('caja_corte.cerrar') }}" method="GET" id="miFormularioCorte">
+                        <a type="submit" class="btn_plus_dash text-dark mb-3 bg-white" data-bs-toggle="modal" data-bs-target="#creatClient">
+                            Cerrar caja <img class="img_plus_dash" src="{{ asset('assets/media/icons/close_dark.webp') }}" alt="">
+                        </a>
+                    </form>
+                @endif
+            </div>
+
+            <div class="col-6 mt-3 d-flex justify-content-center">
+                @if ($caja_corte_global->total == NULL)
+                    <a type="submit" class="btn_plus_dash text-dark mb-3 bg-white" href="{{ route('caja_corte.pdf') }}">
+                        Imprimir <img class="img_plus_dash" src="{{ asset('assets/media/icons/pdf.webp') }}" alt="">
+                    </a>
+                @endif
+            </div>
+
+
         </div>
 
     </div>
