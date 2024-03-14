@@ -212,3 +212,32 @@
     }
 
   }
+
+    @media only screen and (min-width: 430px) {
+
+    .card_header_dash {
+        width: 120px;
+        height: 120px;
+    }
+
+    .tittle_dash{
+        font-size: 19px!important;
+    }
+
+    .ingresos_dash{
+        font-size: 22px;
+    }
+
+    .img_card_head_dash {
+        width: 35px;
+        height: 35px;
+    }
+    .text_minicards {
+        font-size: 11px;
+    }
+
+    .ingresos_dash {
+        font-size: 19px;
+    }
+
+  }

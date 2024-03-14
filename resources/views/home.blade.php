@@ -9,37 +9,37 @@
         <div class="border_card_header ">
 
             <div class="d-flex justify-content-center ">
-                <h5 class="tittle_dash text-center mt-2 mb-3 animation_card_header">
+                <h5 class="tittle_dash text-center mt-1  mt-lg-2  mb-1  mb-lg-3 animation_card_header">
                     ¡BIENVENIDO!
                 </h5>
             </div>
 
             <div class="d-flex justify-content-center ">
-                <h6 class="ingresos_dash text-center mt-2 mb-3 animation_card_header">
+                <h6 class="ingresos_dash text-center mt-0 mt-lg-2 mb-1 mb-lg-3 animation_card_header">
                     Ingresos : ${{number_format($sumaIngresos, 2, '.', ',')}}
                 </h6>
             </div>
 
 
             <div class="d-flex justify-content-center ">
-                <a href="{{ route('tarjeta_digital.index', $user->Empresa->code) }}" class="ingresos_dash text-center mt-2 mb-3 animation_card_header" target="_black" style="text-decoration: none">
+                <a href="{{ route('tarjeta_digital.index', $user->Empresa->code) }}" class="ingresos_dash text-center  mt-0 mt-lg-2 mb-1 mb-lg-3 animation_card_header" target="_black" style="text-decoration: none">
                     <img src="{{ asset('assets/media/icons/compartir.webp') }}" alt="" style="width:30px;">
                     Tarjeta de presentacion.
                 </a>
             </div>
 
             <div class="d-flex justify-content-center ">
-                <a href="{{ route('tienda_online.index', $user->Empresa->code) }}" class="ingresos_dash text-center mt-2 mb-3 animation_card_header" target="_black" style="text-decoration: none">
+                <a href="{{ route('tienda_online.index', $user->Empresa->code) }}" class="ingresos_dash text-center  mt-0 mt-lg-2 mb-1 mb-lg-3 animation_card_header" target="_black" style="text-decoration: none">
                     <img src="{{ asset('assets/media/icons/carrito.webp') }}" alt="" style="width:30px;">
                     Tienda Online
                 </a>
             </div>
 
             <div class="d-flex justify-content-center ">
-                <p class="text-center mt-2 mb-3 subtiitle_dash animation_card_header">
+                <p class="text-center  mt-0 mt-lg-2 mb-1 mb-lg-3 subtiitle_dash animation_card_header">
                     Ordenes<br># {{$conteoCompras}}
                 </p>
-                <p class="text-center mt-2 mb-3 subtiitle_dash animation_card_header">
+                <p class="text-center  mt-0 mt-lg-2 mb-1 mb-lg-3 subtiitle_dash animation_card_header">
                     Cotizaciones<br># {{$conteoCotizaciones}}
                 </p>
             </div>
