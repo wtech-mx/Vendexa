@@ -35,7 +35,7 @@ class ConfiguracionMiddleware
             $licencia_global = Licencias::where('id_empresa', auth()->user()->id_empresa)->orderby('id','DESC')->first();
 
             if(auth()->user()->estatus_rol == 'Superadmin_root'){
-                $code_global = $empresa->id;
+                $code_global = auth()->user()->id;
             }else{
                 $code_global = $empresa->code;
             }

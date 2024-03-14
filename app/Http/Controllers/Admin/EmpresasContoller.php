@@ -51,7 +51,7 @@ class EmpresasContoller extends Controller
 
         $user = new User;
         $user->name = $request->get('nombre_usuario') . ' ' . $request->get('apellido_usuario');
-        $user->email = $request->get('email_usuario');
+        $user->correo = $request->get('email_usuario');
         $user->telefono = $request->get('telefono_usuario');
         $user->password_caja = $request->get('nombre_usuario');
         $user->password = Hash::make($request->get('password'));

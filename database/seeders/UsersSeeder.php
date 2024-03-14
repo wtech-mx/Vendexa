@@ -16,13 +16,12 @@ class UsersSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'Nombre del Usuario',
+            'name' => 'Super admin',
             'telefono' => '5539907266',
             'correo' => 'usuario@dominio.com',
+            'estatus_rol' => 'Superadmin_root',
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
-            'id_direccion' => 1, // Reemplaza 1 con el ID de la dirección correspondiente
-            'id_empresa' => 1, // Reemplaza 1 con el ID de la empresa correspondiente
             'id_woocommerce' => null,
             'created_at' => now(),
             'updated_at' => now(),

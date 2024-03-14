@@ -29,57 +29,6 @@
                 </p>
             </div>
 
-            <div class="row">
-                @if ($configuracion->tarjeta == 1)
-                    <div class="col-3 d-flex justify-content-center animation_card_header">
-                        <div class="card_header_dash mb-3">
-                            <p class="text-center mt-3">
-                                <img src="{{ asset('assets/media/icons/t debito.webp') }}" alt="" class="img_card_head_dash">
-                            </p>
-                            <p class="text_minicards text-center">Tarjeta <br> <strong>  </strong>
-
-                            </p>
-                        </div>
-                    </div>
-                @endif
-                @if ($configuracion->efectivo == 1)
-                    <div class="col-3 d-flex justify-content-center animation_card_header">
-                        <div class="card_header_dash mb-3">
-                            <p class="text-center mt-3">
-                                <img src="{{ asset('assets/media/icons/efectivo.webp') }}" alt="" class="img_card_head_dash">
-                            </p>
-                            <p class="text_minicards text-center">Efectivo <br> <strong> $</strong>
-
-                            </p>
-                        </div>
-                    </div>
-                @endif
-                @if ($configuracion->transferencia == 1)
-                    <div class="col-3 d-flex justify-content-center animation_card_header">
-                        <div class="card_header_dash mb-3">
-                            <p class="text-center mt-3">
-                                <img src="{{ asset('assets/media/icons/pago-movil.webp') }}" alt="" class="img_card_head_dash">
-                            </p>
-                            <p class="text_minicards text-center">Transferencias <br> <strong> $</strong>
-
-                            </p>
-                        </div>
-                    </div>
-                @endif
-                @if ($configuracion->mercado_pago == 1)
-                    <div class="col-3 d-flex justify-content-center animation_card_header">
-                        <div class="card_header_dash mb-3">
-                            <p class="text-center mt-3">
-                                <img src="{{ asset('assets/media/icons/t credito.png.webp') }}" alt="" class="img_card_head_dash">
-                            </p>
-                            <p class="text_minicards text-center">Mercado Pago <br> <strong> $ </strong>
-
-                            </p>
-                        </div>
-                    </div>
-                @endif
-            </div>
-
         </div>
 
     </div>

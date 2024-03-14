@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('correo')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('password_caja')->unique();
+            $table->string('password_caja')->unique()->nullable();
             $table->text('foto')->nullable();
             $table->string('estatus_rol')->nullable();
             $table->rememberToken();
@@ -28,7 +28,7 @@ return new class extends Migration
                 ->references('id')->on('direcciones')
                 ->inDelete('set null');
 
-            $table->unsignedBigInteger('id_empresa');
+            $table->unsignedBigInteger('id_empresa')->nullable();
             $table->foreign('id_empresa')
                 ->references('id')->on('empresas')
                 ->inDelete('set null');

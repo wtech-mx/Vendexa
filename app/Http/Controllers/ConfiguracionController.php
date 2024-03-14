@@ -34,10 +34,6 @@ class ConfiguracionController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $empresa = Empresas::where('id', '=', $user->id_empresa)->first();
-        $empresa->nombre = $request->get('nombre_empresa');
-        $empresa->update();
-
         $configuracion = Configuraciones::find($id);
         $configuracion->estatus_config = 1;
         $configuracion->tarjeta = $request->get('tarjeta');
@@ -63,6 +59,11 @@ class ConfiguracionController extends Controller
             $configuracion->logo = $fileName;
         }
         $configuracion->update();
+
+        $empresa = Empresas::where('id', '=', $user->id_empresa)->first();
+        $empresa->nombre = $request->get('nombre_empresa');
+        $empresa->logo = $configuracion->logo;
+        $empresa->update();
 
         $config_data = [
             "nombre" => $empresa->nombre,
@@ -108,9 +109,10 @@ class ConfiguracionController extends Controller
 
     }
 
-    public function configuracion_caja($id, Request $request){
+    public function configuracion_caja($code, Request $request){
 
-        $configuracion = Configuraciones::where('id', '=', $id)->first();
+        $empresa = Empresas::where('code', '=', $code)->first();
+        $configuracion = Configuraciones::where('id_empresa', '=', $empresa->id)->first();
         $configuracion->codigo_caja = $request->get('codigo_caja');
         $configuracion->tarjeta = $request->get('tarjeta');
         $configuracion->efectivo = $request->get('efectivo');
@@ -131,9 +133,10 @@ class ConfiguracionController extends Controller
 
     }
 
-    public function configuracion_tienda($id, Request $request){
+    public function configuracion_tienda($code, Request $request){
         $user = auth()->user()->id_empresa;
-        $configuraciones = Configuraciones::where('id_empresa', '=', $id)->first();
+        $empresa = Empresas::where('code', '=', $code)->first();
+        $configuraciones = Configuraciones::where('id_empresa', '=', $empresa->id)->first();
         $configuraciones->facebook = $request->get('facebook');
         $configuraciones->tiktok = $request->get('tiktok');
         $configuraciones->instagram = $request->get('instagram');

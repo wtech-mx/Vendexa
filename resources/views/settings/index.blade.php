@@ -68,22 +68,12 @@
                                  </div>
 
                                 <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-3 px-4 py-3">
-                                    <label for="name" class="label_custom_primary_sm mb-2">Nombre Empresa : *</label>
+                                    <label for="name" class="label_custom_primary_sm mb-2">Nom. Empresa : *</label>
                                     <div class="input-group ">
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_tab" src="{{ asset('assets/media/icons/camion.webp') }}" alt="" >
                                         </span>
                                         <input id="" name="nombre_empresa" type="text"  class="form-control input_custom_tab @error('nombre_empresa') is-invalid @enderror"  value="{{ $empresa->nombre }}" autocomplete="" autofocus>
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-3 px-4 py-3">
-                                    <label for="name" class="label_custom_primary_sm mb-2">Logo Empresa : *</label>
-                                    <div class="input-group ">
-                                        <span class="input-group-text span_custom_tab" >
-                                            <img class="icon_span_tab" src="{{ asset('assets/media/icons/imagen.webp') }}" alt="" >
-                                        </span>
-                                        <input id="logo" name="logo" type="file"  class="form-control input_custom_tab @error('logo') is-invalid @enderror"  value="{{ $empresa->logo }}"  autocomplete="" autofocus>
                                     </div>
                                 </div>
 
@@ -97,7 +87,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-6 col-xs-6 col-sm-6 col-md-6 col-xl-3 px-4 py-3">
+                                <div class="form-group col-12 col-xs-12 col-sm-12 col-md-12 col-xl-3 px-4 py-3">
                                     <label for="name" class="label_custom_primary_sm mb-2">Correo : *</label>
                                     <div class="input-group ">
                                         <span class="input-group-text span_custom_tab" >
@@ -107,9 +97,19 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group col-12 col-xs-12 col-sm-12 col-md-12 col-xl-3 px-4 py-3">
+                                    <label for="name" class="label_custom_primary_sm mb-2">Logo Empresa : *</label>
+                                    <div class="input-group ">
+                                        <span class="input-group-text span_custom_tab" >
+                                            <img class="icon_span_tab" src="{{ asset('assets/media/icons/imagen.webp') }}" alt="" >
+                                        </span>
+                                        <input id="logo" name="logo" type="file"  class="form-control input_custom_tab @error('logo') is-invalid @enderror"  value="{{ $empresa->logo }}"  autocomplete="" autofocus>
+                                    </div>
+                                </div>
+
                                 <div class="form-group col-6 px-5 py-3">
                                     <p class="text-center mb-0">
-                                        <img class="" src="{{ asset('logo/empresa'.auth()->user()->id_empresa.'/'.$empresa->logo) }}" alt="">
+                                        <img class="" src="{{ asset('logo/empresa'.auth()->user()->id_empresa.'/'.$empresa->logo) }}" style="height: 80px;">
                                     </p>
                                 </div>
 
@@ -190,7 +190,11 @@
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_form" src="{{ asset('assets/media/icons/cero.webp') }}" alt="" >
                                         </span>
-                                        <input  name="codigo_postal" type="number"  class="form-control input_custom_tab_dark @error('codigo_postal') is-invalid @enderror"  value="{{ $configuracion->Direccion->codigo_postal }}"  autocomplete="" autofocus>
+                                        @if ($configuracion->id_direccion == NULL)
+                                            <input  name="codigo_postal" type="number"  class="form-control input_custom_tab_dark @error('codigo_postal') is-invalid @enderror" autocomplete="" autofocus>
+                                        @else
+                                            <input  name="codigo_postal" type="number"  class="form-control input_custom_tab_dark @error('codigo_postal') is-invalid @enderror" value="{{ $configuracion->Direccion->codigo_postal }}" autocomplete="" autofocus>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -200,7 +204,11 @@
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_form" src="{{ asset('assets/media/icons/independencia.webp') }}" alt="" >
                                         </span>
-                                        <input  name="estado" type="text"  class="form-control input_custom_tab_dark @error('estado') is-invalid @enderror"  value="{{ $configuracion->Direccion->estado }}"  autocomplete="" autofocus>
+                                        @if ($configuracion->id_direccion == NULL)
+                                            <input  name="estado" type="text"  class="form-control input_custom_tab_dark @error('estado') is-invalid @enderror"  autocomplete="" autofocus>
+                                        @else
+                                            <input  name="estado" type="text"  class="form-control input_custom_tab_dark @error('estado') is-invalid @enderror"  value="{{ $configuracion->Direccion->estado }}"  autocomplete="" autofocus>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -210,7 +218,11 @@
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_form" src="{{ asset('assets/media/icons/alcaldia.webp') }}" alt="" >
                                         </span>
-                                        <input  name="alcaldia" type="text"  class="form-control input_custom_tab_dark @error('alcaldia') is-invalid @enderror"  value="{{ $configuracion->Direccion->alcaldia }}"  autocomplete="" autofocus>
+                                        @if ($configuracion->id_direccion == NULL)
+                                            <input  name="alcaldia" type="text"  class="form-control input_custom_tab_dark @error('alcaldia') is-invalid @enderror" autocomplete="" autofocus>
+                                        @else
+                                            <input  name="alcaldia" type="text"  class="form-control input_custom_tab_dark @error('alcaldia') is-invalid @enderror"  value="{{ $configuracion->Direccion->alcaldia }}"  autocomplete="" autofocus>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -220,7 +232,11 @@
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_form" src="{{ asset('assets/media/icons/edificios_ciudad.webp') }}" alt="" >
                                         </span>
+                                        @if ($configuracion->id_direccion == NULL)
+                                        <input  name="pais" type="text"  class="form-control input_custom_tab_dark @error('pais') is-invalid @enderror" autocomplete="" autofocus>
+                                        @else
                                         <input  name="pais" type="text"  class="form-control input_custom_tab_dark @error('pais') is-invalid @enderror"  value="{{ $configuracion->Direccion->pais }}"  autocomplete="" autofocus>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -230,7 +246,11 @@
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_form" src="{{ asset('assets/media/icons/poste_luz.webp') }}" alt="" >
                                         </span>
+                                        @if ($configuracion->id_direccion == NULL)
+                                        <input  name="colonia" type="text"  class="form-control input_custom_tab_dark @error('colonia') is-invalid @enderror" autocomplete="" autofocus>
+                                        @else
                                         <input  name="colonia" type="text"  class="form-control input_custom_tab_dark @error('colonia') is-invalid @enderror"  value="{{ $configuracion->Direccion->colonia }}"  autocomplete="" autofocus>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -240,7 +260,11 @@
                                         <span class="input-group-text span_custom_tab" >
                                             <img class="icon_span_form" src="{{ asset('assets/media/icons/mapa-de-la-ciudad.webp') }}" alt="" >
                                         </span>
+                                        @if ($configuracion->id_direccion == NULL)
+                                        <input  name="calle_numero" type="text"  class="form-control input_custom_tab_dark @error('calle_numero') is-invalid @enderror" autocomplete="" autofocus>
+                                        @else
                                         <input  name="calle_numero" type="text"  class="form-control input_custom_tab_dark @error('calle_numero') is-invalid @enderror"  value="{{ $configuracion->Direccion->calle_numero }}"  autocomplete="" autofocus>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -255,7 +279,7 @@
                     </div>
 
                     <div class="tab-pane fade" id="pills-cajaTab" role="tabpanel" aria-labelledby="pills-caja-tab" tabindex="0">
-                        <form method="POST" action="{{ route('configuracion_caja.update', $empresa->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="cajaForm_Config">
+                        <form method="POST" action="{{ route('configuracion_caja.update', $empresa->code) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="cajaForm_Config">
                             @csrf
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="row">
@@ -278,7 +302,7 @@
                                           </div>
 
                                           <div class="form-check form-check-inline">
-                                            @if ($configuracion->codigo_caja == 0)
+                                            @if ($configuracion->codigo_caja == 0 || $configuracion->codigo_caja == NULL)
                                                 <input class="form-check-input" type="radio" name="codigo_caja" id="radioNocodigo_caja" value="0" checked>
                                             @else
                                                 <input class="form-check-input" type="radio" name="codigo_caja" id="radioNocodigo_caja" value="0">
@@ -486,7 +510,7 @@
                     </div>
                     <div class="tab-pane fade" id="pills-generalesTab" role="tabpanel" aria-labelledby="pills-generales-tab" tabindex="0">
                         <div class="row">
-                            <form method="POST" action="{{ route('configuracion_tienda.update', $empresa->id) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="empresaFormConfig_tienda">
+                            <form method="POST" action="{{ route('configuracion_tienda.update', $empresa->code) }}" enctype="multipart/form-data" class="z-1 px-4 dropzone" id="empresaFormConfig_tienda">
                                 @csrf
                                 <input type="hidden" name="_method" value="PATCH">
                                 <div class="row">
