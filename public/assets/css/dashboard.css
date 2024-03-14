@@ -213,7 +213,7 @@
 
   }
 
-    @media only screen and (min-width: 430px) {
+    @media only screen and (max-width: 430px) {
 
     .card_header_dash {
         width: 120px;
