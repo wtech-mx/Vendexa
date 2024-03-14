@@ -24,6 +24,14 @@ return new class extends Migration
                 ->inDelete('set null');
 
             $table->text('file')->nullable();
+            $table->text('file2')->nullable();
+            $table->text('file3')->nullable();
+            $table->text('file4')->nullable();
+
+            $table->integer('num_articulos_comprados')->nullable();
+            $table->integer('num_articulos_recibidos')->nullable();
+            $table->float('total')->nullable();
+
             $table->date('fecha')->nullable();
             $table->timestamps();
         });

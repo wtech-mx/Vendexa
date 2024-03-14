@@ -52,7 +52,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group col-12 mb-3 p-2">
+                    <div class="form-group col-6 mb-3 p-2">
                         <label for="name" class="label_custom_primary_product mb-2">Correo Electronico *</label>
                         <div class="input-group ">
                             <span class="input-group-text span_custom_tab" >
