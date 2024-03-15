@@ -511,7 +511,7 @@ class ProductosController extends Controller
         $producto->id_subcategoria = $subcategoria;
         $producto->clave_sat = $request->get('clave_sat');
         $producto->unidad_venta = $request->get('unidad_venta');
-
+        
         if ($request->hasFile("imagen_principal")) {
             $file = $request->file('imagen_principal');
             $path = public_path() . '/imagen_principal/empresa'.auth()->user()->id_empresa;

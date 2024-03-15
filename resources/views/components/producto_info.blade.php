@@ -366,7 +366,7 @@
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/imagen.webp') }}" alt="" >
                                             </span>
-                                            <input id="imagen_principal" name="imagen_principal" type="file"  class="form-control input_custom_tab_dark @error('imagen_principal') is-invalid @enderror"  value="{{ old('imagen_principal', $producto->imagen_principal) }}" autocomplete="" autofocus>
+                                            <input id="imagen_principal" name="imagen_principal" type="file"  class="form-control input_custom_tab_dark @error('imagen_principal') is-invalid @enderror"  value="{{ old('imagen_principal', $producto->imagen_principal) }}">
                                         </div>
                                     </div>
 

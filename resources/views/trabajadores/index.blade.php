@@ -95,7 +95,7 @@
                                     Tel
                                 </p>
                                 <p class="text_subtittle_ventas_sv text-center">
-                                    {{$trabajador->email}}
+                                    {{$trabajador->telefono}}
                                 </p>
                             </div>
 

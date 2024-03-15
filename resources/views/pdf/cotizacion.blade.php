@@ -148,7 +148,11 @@
 
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">
                                 <img class="img_icon_pdf" alt="" src="{{ asset('assets/media/icons/gps.webp') }}" style="">
-                                Direccion: {{$configuracion->Direccion->calle_numero}}, {{$configuracion->Direccion->codigo_postal}}
+                                Direccion:
+                                @if ($configuracion->id_direccion != NULL)
+                                    {{$configuracion->Direccion->calle_numero}}, {{$configuracion->Direccion->codigo_postal}}
+                                @endif
+
                             </p>
 
                             <p class="text-right  text-white" style="color: #000;font-size: 18px;">

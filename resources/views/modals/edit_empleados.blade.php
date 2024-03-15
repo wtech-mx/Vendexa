@@ -106,7 +106,11 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/cero.webp') }}" alt="" >
                             </span>
-                            <input  name="codigo_postal" type="number"  class="form-control input_custom_tab_dark"  value="{{ $trabajador->Direcion->codigo_postal }}">
+                            @if ($trabajador->id_direccion == NULL)
+                                <input  name="codigo_postal" type="number"  class="form-control input_custom_tab_dark">
+                            @else
+                                <input  name="codigo_postal" type="number"  class="form-control input_custom_tab_dark"  value="{{ $trabajador->Direcion->codigo_postal }}">
+                            @endif
                         </div>
                     </div>
 
@@ -116,7 +120,11 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/independencia.webp') }}" alt="" >
                             </span>
+                            @if ($trabajador->id_direccion == NULL)
+                            <input  name="estado" type="text"  class="form-control input_custom_tab_dark ">
+                            @else
                             <input  name="estado" type="text"  class="form-control input_custom_tab_dark "  value="{{ $trabajador->Direcion->estado }}">
+                            @endif
                         </div>
                     </div>
 
@@ -126,7 +134,11 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/alcaldia.webp') }}" alt="" >
                             </span>
+                            @if ($trabajador->id_direccion == NULL)
+                            <input  name="alcaldia" type="text"  class="form-control input_custom_tab_dark ">
+                            @else
                             <input  name="alcaldia" type="text"  class="form-control input_custom_tab_dark "  value="{{ $trabajador->Direcion->alcaldia }}">
+                            @endif
                         </div>
                     </div>
 
@@ -136,7 +148,11 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/edificios_ciudad.webp') }}" alt="" >
                             </span>
+                            @if ($trabajador->id_direccion == NULL)
+                            <input  name="ciudad" type="text"  class="form-control input_custom_tab_dark ">
+                            @else
                             <input  name="ciudad" type="text"  class="form-control input_custom_tab_dark "  value="{{ $trabajador->Direcion->estado }}">
+                            @endif
                         </div>
                     </div>
 
@@ -146,7 +162,11 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/poste_luz.webp') }}" alt="" >
                             </span>
+                            @if ($trabajador->id_direccion == NULL)
+                            <input  name="colonia" type="text"  class="form-control input_custom_tab_dark ">
+                            @else
                             <input  name="colonia" type="text"  class="form-control input_custom_tab_dark "  value="{{ $trabajador->Direcion->colonia }}">
+                            @endif
                         </div>
                     </div>
 
@@ -156,7 +176,11 @@
                             <span class="input-group-text span_custom_tab" >
                                 <img class="icon_span_form" src="{{ asset('assets/media/icons/mapa-de-la-ciudad.webp') }}" alt="" >
                             </span>
+                            @if ($trabajador->id_direccion == NULL)
+                            <input  name="calle_numero" type="text"  class="form-control input_custom_tab_dark">
+                            @else
                             <input  name="calle_numero" type="text"  class="form-control input_custom_tab_dark"  value="{{ $trabajador->Direcion->calle_numero }}">
+                            @endif
                         </div>
                     </div>
 
