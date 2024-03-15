@@ -279,7 +279,7 @@ class ProductosController extends Controller
             'costo' => 'required',
             'precio_normal' => 'required',
             'visibilidad_estatus' => 'required',
-            // 'id_proveedor' => 'required_if:nombre_proveedor,null',
+            'id_proveedor' => 'required_if:nombre_proveedor,null',
             'id_marca' => 'required_if:nombre_marca,null',
             'id_categoria' => 'required_if:nombre_categoria,null',
             'unidad_venta' => 'required',
@@ -511,7 +511,7 @@ class ProductosController extends Controller
         $producto->id_subcategoria = $subcategoria;
         $producto->clave_sat = $request->get('clave_sat');
         $producto->unidad_venta = $request->get('unidad_venta');
-        
+
         if ($request->hasFile("imagen_principal")) {
             $file = $request->file('imagen_principal');
             $path = public_path() . '/imagen_principal/empresa'.auth()->user()->id_empresa;

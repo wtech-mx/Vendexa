@@ -141,7 +141,7 @@
                                 <div class="row">
 
                                     <div class="form-group col-9 px-4 py-3">
-                                        <label for="name" class="label_custom_primary_product mb-2">Proveedor :</label>
+                                        <label for="name" class="label_custom_primary_product mb-2">Proveedor *:</label>
                                         <div class="input-group ">
                                             <span class="input-group-text span_custom_tab" >
                                                 <img class="icon_span_tab" src="{{ asset('assets/media/icons/camion.webp') }}" alt="" >
@@ -543,7 +543,7 @@
             async function saveSuccess(response) {
                 const producto_data = response.producto_data;
                 const code = "{{ $code_global }}";
-                
+
                 Swal.fire({
                         title: "Producto Guardado <strong>¡Exitosamente!</strong>",
                         icon: "success",
